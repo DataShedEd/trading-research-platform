@@ -1,7 +1,7 @@
 # QNT-014 — Corporate action canonical schema
 
 - **Ticket ID:** QNT-014
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 3 — Market Data
 
@@ -41,18 +41,18 @@ Computing adjustment factors or adjusted prices (QNT-015), applying events to th
 ingestion, rights-issue theoretical ex-rights pricing.
 
 ## Acceptance criteria
-- [ ] Each action type is a frozen Pydantic v2 model in a discriminated union keyed on
+- [x] Each action type is a frozen Pydantic v2 model in a discriminated union keyed on
       `action_type`; parsing a record with an unknown type raises rather than falling back to a
       generic action.
-- [ ] Split and rights ratios are stored as exact fractions (numerator and denominator integers) and
+- [x] Split and rights ratios are stored as exact fractions (numerator and denominator integers) and
       a test asserts that a 1-for-3 consolidation round-trips without becoming `0.3333…`.
-- [ ] Every monetary amount carries an explicit currency and quotation unit; a dividend without a
+- [x] Every monetary amount carries an explicit currency and quotation unit; a dividend without a
       currency fails construction.
-- [ ] `ex_date` is mandatory for splits, dividends, and rights issues; `record_date` and `pay_date`
+- [x] `ex_date` is mandatory for splits, dividends, and rights issues; `record_date` and `pay_date`
       are optional and validated to be on or after `ex_date` when present.
-- [ ] Every record carries `available_at` as a timezone-aware UTC timestamp; where the source gives
+- [x] Every record carries `available_at` as a timezone-aware UTC timestamp; where the source gives
       none it is imputed conservatively per DEC-007 and `available_at_imputed` is set.
-- [ ] Unit tests cover the term representation of each of the seven action types with a realistic
+- [x] Unit tests cover the term representation of each of the seven action types with a realistic
       worked example, including a special dividend distinguished from an ordinary one.
 
 ## Technical notes
@@ -99,4 +99,17 @@ fixtures here must be shaped for reuse there.
 the ratio direction convention.
 
 ## Completion notes
-_Not started._
+2026-08-16. `src/trp/domain/corporate_actions.py`: discriminated union
+(`corporate_action_adapter`) over `Split`, `Dividend` (special as a flag, per this
+ticket's own terms table, rather than a seventh type), `RightsIssue`, `Merger`,
+`DelistingAction`, `TickerChangeAction`; unknown `action_type` raises. Ratios are exact
+integer pairs (`new_shares`/`old_shares`, direction explicit in the field names; 1-for-3
+consolidation round-trips as Fraction(1,3), tested), serialised as integers so exactness
+survives storage. Monetary amounts are Decimal with mandatory currency/quotation unit.
+`ex_date` mandatory on every type (documented per-type meaning); record/pay dates
+validated ≥ ex-date; delisting `last_trading_date` must precede `ex_date`. Missing
+`available_at` is imputed as start-of-ex-date UTC with `available_at_imputed=True`
+(DEC-007 — the market applies the adjustment from the ex-date open, so this is the latest
+defensible moment); explicit timestamps are unflagged. Delisting/ticker-change kept as
+market-data records for QNT-010's lifecycle helpers to consume. Tests:
+`tests/domain/test_corporate_actions.py` (worked example per type). All checks green.
