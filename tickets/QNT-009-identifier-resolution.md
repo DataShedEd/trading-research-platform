@@ -1,7 +1,7 @@
 # QNT-009 — Identifier resolution service
 
 - **Ticket ID:** QNT-009
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 2 — Security Master
 
@@ -32,19 +32,19 @@ Knowledge-time (`as_of`) filtering — that is QNT-011 and layers on top of this
 application (QNT-010). Fuzzy or name-based matching of any kind.
 
 ## Acceptance criteria
-- [ ] `resolve` requires `on_date` as a positional-or-keyword argument with no default; a call
+- [x] `resolve` requires `on_date` as a positional-or-keyword argument with no default; a call
       without it is a type error under `mypy --strict`.
-- [ ] Resolving a ticker that belonged to company A until 2015 and to company B afterwards returns
+- [x] Resolving a ticker that belonged to company A until 2015 and to company B afterwards returns
       A's `security_id` for a 2013 date and B's for a 2019 date.
-- [ ] A value with no valid mapping on `on_date` raises `IdentifierNotFound` carrying the value,
+- [x] A value with no valid mapping on `on_date` raises `IdentifierNotFound` carrying the value,
       kind, and date; it never returns `None` and never falls back to the nearest date.
-- [ ] `AmbiguousIdentifier` is raised, listing every candidate `security_id` and applying no
+- [x] `AmbiguousIdentifier` is raised, listing every candidate `security_id` and applying no
       tie-break heuristic, both when two securities are validly mapped to the same
       `(value, kind, exchange)` on the same date and when `kind=TICKER` is resolved without an
       `exchange` while the ticker is valid on more than one venue.
-- [ ] `identifiers_for` returns only records whose validity range contains `on_date`, and a test
+- [x] `identifiers_for` returns only records whose validity range contains `on_date`, and a test
       asserts an identifier retired before the date is absent.
-- [ ] `resolve_many` over a Polars column returns resolutions in input order and reports failures as
+- [x] `resolve_many` over a Polars column returns resolutions in input order and reports failures as
       structured rows rather than raising on the first bad value, with a documented strict mode that
       does raise.
 
@@ -86,4 +86,17 @@ security whose mapping only began later.
 contract; a short usage example in the module docstring showing why `on_date` is mandatory.
 
 ## Completion notes
-_Not started._
+2026-08-16. `src/trp/domain/resolution.py` (domain service over an in-memory
+`SecurityMaster`, rather than reading the store directly — the store round-trips the same
+models, QNT-008). `IdentifierResolver.resolve(value, kind, on, *, mic, provider)` with typed
+`UnknownIdentifier` / `AmbiguousIdentifier` (candidates listed, no tie-break, no
+nearest-date fallback); `identifiers_for` reverse lookup excludes retired records;
+`resolve_many` returns a Polars frame (`value`, `security_id`, `error`) preserving input
+order, failures as rows, with `strict=True` raising. Superseded records are excluded —
+knowledge-time resolution goes through `PointInTimeSecurityMaster` (QNT-011). Deviations:
+`on` is positional-or-keyword without default (mypy-enforced presence); dict-index +
+linear scan within group instead of binary search — the master is small and behaviour
+obvious; revisit only with evidence. Timetravel-relevant resolution cases live in
+`tests/timetravel/test_security_master_pit.py` rather than a separate file. Tests:
+`tests/domain/test_resolution.py` (ticker reassignment across dates, gap → unknown,
+cross-exchange ambiguity, bulk resolution).
