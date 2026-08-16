@@ -71,8 +71,8 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 
 | ID | Title | Priority | Status |
 |---|---|---|---|
-| [QNT-037](QNT-037-universe-membership-schema.md) | Universe membership schema and storage | P1 | BACKLOG |
-| [QNT-038](QNT-038-universe-query-api.md) | Universe membership query API | P1 | BACKLOG |
+| [QNT-037](QNT-037-universe-membership-schema.md) | Universe membership schema and storage | P1 | DONE |
+| [QNT-038](QNT-038-universe-query-api.md) | Universe membership query API | P1 | DONE |
 | [QNT-039](QNT-039-ftse-membership-sourcing.md) | FTSE index membership sourcing | P1 | BACKLOG |
 | [QNT-040](QNT-040-broad-uk-universe.md) | Broad UK-listed universe construction | P1 | BACKLOG |
 | [QNT-041](QNT-041-universe-survivorship-tests.md) | Universe survivorship test suite | P1 | BACKLOG |

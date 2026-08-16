@@ -1,7 +1,7 @@
 # QNT-037 — Universe membership schema and storage
 
 - **Ticket ID:** QNT-037
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 6 — Historical Universe Engine
 
@@ -42,20 +42,20 @@ construction (QNT-040); the survivorship acceptance suite (QNT-041); any factor 
 consumption of universes.
 
 ## Acceptance criteria
-- [ ] `UniverseMembership` is a frozen Pydantic v2 model using the half-open range convention fixed
+- [x] `UniverseMembership` is a frozen Pydantic v2 model using the half-open range convention fixed
       in QNT-006, with `valid_to = None` for open-ended membership; `mypy --strict` passes.
-- [ ] Writing a set of records in which two rows for the same `(universe, security_id)` overlap
+- [x] Writing a set of records in which two rows for the same `(universe, security_id)` overlap
       raises a typed error naming both offending records; adjacent ranges that merely touch, and
       genuinely disjoint spells of membership for the same security, are both accepted.
-- [ ] Records round-trip through `data/canonical/universes/` Parquet storage with dates, `None`
+- [x] Records round-trip through `data/canonical/universes/` Parquet storage with dates, `None`
       `valid_to`, and `source` preserved exactly; a read-after-write test asserts equality of the
       full record set.
-- [ ] Writing a record whose `security_id` is absent from the security master raises rather than
+- [x] Writing a record whose `security_id` is absent from the security master raises rather than
       creating an orphaned membership row.
-- [ ] The writer is re-runnable: rewriting the same universe from the same inputs produces
+- [x] The writer is re-runnable: rewriting the same universe from the same inputs produces
       byte-identical partitions, and no code path mutates an existing row's `valid_to` in place
       outside the documented "close the open spell" helper.
-- [ ] Unit tests cover overlap detection (identical, contained, straddling, touching, disjoint),
+- [x] Unit tests cover overlap detection (identical, contained, straddling, touching, disjoint),
       re-entry after removal, and open-ended membership.
 
 ## Technical notes
@@ -111,4 +111,20 @@ convention, the non-overlap invariant, and the meaning of `source`. `docs/ARCHIT
 to note the creation of the `trp.universe` package.
 
 ## Completion notes
-_Not started._
+2026-08-16. `src/trp/universe/{membership,storage}.py`. `UniverseMembership` extends the
+bitemporal `EffectiveDated` base (half-open ranges + recorded_at/superseded_at, DEC-008)
+— knowledge time came for free and QNT-038's `as_of` builds on it. Central registry
+(`register_universe`; FTSE100/250/350, UK_ALL_ORDINARY, SP500 pre-registered); unknown
+name raises `UnknownUniverseError` at record construction. `check_memberships` reuses
+`ranges.first_overlap` per (universe, security); identical/contained/straddling rejected,
+touching and disjoint re-entry legal (all tested). Storage: one deterministic Parquet
+file per universe under `universe=<NAME>/`, staged-rename, wholesale rewrite
+byte-identical (tested); writer validates registered name, non-overlap and security-id
+resolution against a caller-supplied known-id set (orphans rejected); `valid_to=None`
+persists as a genuine null (asserted via Polars). `close_open_spell` is the single
+sanctioned mutation, returning a new record set (supersession when knowledge_time given).
+Deviations: invariants live in `membership.py` rather than a separate `invariants.py`;
+the master link is a `known_security_ids` set parameter rather than a hard dependency on
+`SecurityMaster` (keeps storage testable; QNT-041 wires the real master through).
+Storage-level timetravel test included. Tests: `tests/universe/test_membership.py`,
+`tests/timetravel/test_universe_membership.py`. Green.

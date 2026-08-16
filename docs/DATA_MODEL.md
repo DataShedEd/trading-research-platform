@@ -121,10 +121,23 @@ invariants.
   revision per key, provenance columns in every result; empty for too-early `as_of`, raises
   for unknown line items.
 
-## Universes
+## Universes (implemented: QNT-037/038, `trp.universe`)
 
-- **universe_membership** — universe name, `security_id`, `valid_from`/`valid_to`, source.
-  Supports `members(universe, date)` from historical constituent data only.
+- **universe_membership** — universe name (registered centrally — a typo raises, never a
+  silently empty universe), `security_id`, half-open `[valid_from, valid_to)` spell
+  (`valid_to=None` = current member, a genuine null on disk), mandatory `source`
+  provenance, plus the bitemporal knowledge axis (`recorded_at`/`superseded_at`, DEC-008).
+  Invariant: non-overlap per (universe, security) — never uniqueness; re-entry is two
+  spells. Storage: one deterministic Parquet file per universe under
+  `data/canonical/universes/universe=<NAME>/`; wholesale rewrites are byte-identical;
+  security ids must resolve in the master; `close_open_spell` is the only sanctioned
+  mutation.
+- **Query** (`trp.universe.query.UniverseQuery` — the sole supported access path):
+  `members(universe, date, *, as_of)` answers from historical constituent data only, with
+  `date` (event time) and `as_of` (knowledge time) independent; a date before coverage
+  raises `UniverseCoverageError` rather than returning an empty set; unknown names raise
+  listing the registered universes. `membership_changes` replays exactly between any two
+  member sets; results cached per (universe, date, as_of, dataset version).
 
 ## Derived
 

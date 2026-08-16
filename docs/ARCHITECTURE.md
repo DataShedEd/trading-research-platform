@@ -39,7 +39,12 @@ providers  ──►  ingestion (raw, immutable)  ──►  canonical  ──�
 - **`trp.bakeoff`** — provider evaluation harness: a deliberately awkward validation universe,
   empirical checks, scoring, and a generated comparison report (`DATA_PROVIDER_EVALUATION.md`).
 
-Later packages (created when their epic starts): `universe`, `factors`, `backtest`, `risk`,
+- **`trp.universe`** — time-indexed universe membership (QNT-037/038): bitemporal spells
+  in Parquet per universe; `UniverseQuery.members(universe, date, *, as_of)` is the ONLY
+  supported way to obtain a universe — `date` is the simulated calendar date, `as_of` is
+  knowledge time, and out-of-coverage dates raise rather than returning an empty set.
+
+Later packages (created when their epic starts): `factors`, `backtest`, `risk`,
 `experiments`, `portfolio`, `api` (FastAPI), and a separate web frontend.
 
 ## Storage
