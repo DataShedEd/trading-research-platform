@@ -1,7 +1,7 @@
 # QNT-006 — Security master domain model
 
 - **Ticket ID:** QNT-006
-- **Status:** READY
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 2 — Security Master
 
@@ -35,19 +35,19 @@ Identifier mapping records (QNT-007), persistence (QNT-008), resolution (QNT-009
 application helpers (QNT-010), point-in-time query API (QNT-011).
 
 ## Acceptance criteria
-- [ ] `trp.domain` exports frozen (`model_config = ConfigDict(frozen=True)`) Pydantic v2 models
+- [x] `trp.domain` exports frozen (`model_config = ConfigDict(frozen=True)`) Pydantic v2 models
       `Entity`, `Security`, `SecurityStatus`, `Listing`, and the enums `SecurityType`,
       `SecurityStatus`-value enum, and `IdentifierKind`; `mypy --strict` passes.
-- [ ] Constructing a record whose `valid_to`/`effective_to` is earlier than its
+- [x] Constructing a record whose `valid_to`/`effective_to` is earlier than its
       `valid_from`/`effective_from` raises `ValidationError`; equal dates are rejected unless the
       range is explicitly documented as inclusive-of-a-single-day.
-- [ ] Exchange MIC is validated as a four-character uppercase ISO 10383 code and currency as a
+- [x] Exchange MIC is validated as a four-character uppercase ISO 10383 code and currency as a
       three-character uppercase ISO 4217 code (`GBX` permitted as a documented quotation unit).
-- [ ] A `Listing` with a delisting date must have `valid_to` equal to that date, and a `Listing`
+- [x] A `Listing` with a delisting date must have `valid_to` equal to that date, and a `Listing`
       carrying a delisting reason must carry a delisting date.
-- [ ] `security_id` and `entity_id` are opaque string identifiers validated against a documented
+- [x] `security_id` and `entity_id` are opaque string identifiers validated against a documented
       format; there is no code path that derives one from a ticker.
-- [ ] Unit tests cover each invariant with both an accepted and a rejected example, and assert that
+- [x] Unit tests cover each invariant with both an accepted and a rejected example, and assert that
       mutation of a constructed model raises.
 
 ## Technical notes
@@ -90,4 +90,13 @@ definition and to state the chosen range convention. A `DECISIONS.md` entry if t
 format decision is non-obvious.
 
 ## Completion notes
-_Not started._
+2026-08-16. Implemented in `src/trp/domain/{identifiers,security,ranges}.py` with re-exports
+from `trp.domain`; single `security.py` module rather than the sketched entity/listing split.
+Records: `Entity`, `Security`, `SecurityStatusPeriod` (status history), `Listing`; enums
+`SecurityType`, `SecurityStatus`, `DelistingReason`, `IdentifierKind`. Half-open ranges
+`[valid_from, valid_to)`, `valid_to=None` open-ended, via `EffectiveDated` mixin — which also
+carries the bitemporal knowledge axis (`recorded_at`/`superseded_at`, DEC-008, added by
+QNT-011). IDs are `SEC-`/`ENT-` + UUID4, minted only by explicit `new_*_id()` functions.
+Deviations: `Security` has no primary-currency field (quote currency lives on `Listing`);
+entity name history deferred (documented in the docstring); no Decimal fields exist in these
+tables yet. Tests: `tests/domain/test_security.py`, `test_ranges.py`. All checks green.
