@@ -1,7 +1,7 @@
 # QNT-039 — FTSE index membership sourcing
 
 - **Ticket ID:** QNT-039
-- **Status:** READY
+- **Status:** IN_PROGRESS
 - **Priority:** P1
 - **Epic:** EPIC 6 — Historical Universe Engine
 
@@ -129,3 +129,23 @@ Schema and query API (QNT-037/038) are DONE and waiting for this data.
 live bake-off confirmed LSE delisted coverage. Next investigation: whether EODHD's index
 fundamentals endpoints carry usable historical FTSE constituent changes, or whether curated
 quarterly-review data is needed.
+
+**Investigation findings (2026-08-16, IN_PROGRESS):** probed EODHD index fundamentals with
+the live key (payloads archived in the raw store, `/fundamentals/{FTSE,FTMC,GSPC}.INDX`):
+
+- **S&P 500 (`GSPC.INDX`): historical membership EXISTS** — `HistoricalTickerComponents`
+  with 819 entries, 315 departed members, StartDate/EndDate ranges back to 1957-03-04.
+  Directly ingestible into the QNT-037 membership schema.
+- **FTSE 100 (`FTSE.INDX`) and FTSE 250 (`FTMC.INDX`): current components only** (exactly
+  100 and 250 rows), `HistoricalTickerComponents` absent. EODHD cannot supply historical
+  FTSE membership at this tier.
+
+Consequence: UK historical index membership needs one of (a) hand-curated quarterly-review
+history from public sources (LSE/FTSE Russell announcements; feasible — FTSE 100 changes
+~12-16 names/year — but a real curation effort with provenance obligations), (b) the
+QNT-040 rule-based route: a point-in-time "top-N by market cap" proxy universe built from
+EODHD's full LSE list incl. delisted, avoiding index-committee licensing entirely, or
+(c) licensed FTSE Russell constituent history (out of budget). **Owner input requested on
+(a) vs (b) as the primary UK universe** — it affects benchmark choice under
+RESEARCH_METHODOLOGY rule 6. S&P 500 sourcing can proceed regardless and will prove the
+ingestion pipeline end to end.
