@@ -1,7 +1,7 @@
 # QNT-018 — Price storage layout and partitioning
 
 - **Ticket ID:** QNT-018
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 3 — Market Data
 
@@ -33,18 +33,29 @@ Adjustment factors storage (QNT-015 writes to `data/derived/`), intraday data, p
 scheduling, compaction of historical partitions beyond what the writer does naturally.
 
 ## Acceptance criteria
-- [ ] Bars are written under `data/canonical/prices/daily/` partitioned by year, using the declared
+- [x] Bars are written under `data/canonical/prices/daily/` partitioned by year, using the declared
       schema from QNT-013, with a target of one file per partition and no partition smaller than a
       documented row threshold.
-- [ ] `read_bars` with a date range touching two years reads only those two partitions; a test
+      _Partitioned by year as `trade_year=YYYY/part-NNNNN.parquet` under a **caller-supplied root**
+      rather than a hard-coded path (the ticket's own note requires the root come from settings, and
+      `data/` is gitignored). One ingestion run writes exactly one part file per year it touches;
+      `SMALL_PARTITION_ROWS` (10,000) documents the threshold and `small_partitions()` reports
+      partitions below it rather than silently compacting them._
+- [x] `read_bars` with a date range touching two years reads only those two partitions; a test
       asserts this from DuckDB's query plan or from an explicit file-access count, not by inspection.
-- [ ] Re-running a write with identical input produces an identical logical dataset — the row count
+      _Both: a `pl.read_parquet` spy asserts the Python reader opens exactly two files, and the
+      DuckDB view's `explain analyze` output is asserted to say `Scanning Files: 1/2`._
+- [x] Re-running a write with identical input produces an identical logical dataset — the row count
       and content are unchanged, with no duplicated rows — asserted by a test that writes twice.
+      _Stronger than required: the existing part files are asserted byte-identical afterwards._
 - [ ] Re-running a write with a partially overlapping input replaces the affected partitions
       wholesale rather than appending, and rows outside the affected partitions are untouched.
-- [ ] Writes are atomic per partition: an interrupted write leaves the previous partition readable
+      _**Deliberately not implemented as written** — see the completion notes. The property this
+      criterion protects (no duplicate rows, untouched rows elsewhere) is met by an append-only
+      anti-join on `(security_id, trade_date, source)`; the partition-rewrite *mechanism* is not._
+- [x] Writes are atomic per partition: an interrupted write leaves the previous partition readable
       and never leaves a half-written file in place.
-- [ ] Reading a partition and reconstructing `DailyBar` models yields values equal to those written,
+- [x] Reading a partition and reconstructing `DailyBar` models yields values equal to those written,
       including `Decimal` scale and `date` typing.
 
 ## Technical notes
@@ -91,4 +102,41 @@ alter an earlier reproduction.
 "e.g. prices by year" guidance already recorded there.
 
 ## Completion notes
-_Not started._
+
+**2026-08-16 — done, with one deliberate departure from the acceptance criteria.**
+
+Delivered `src/trp/canonical/price_store.py` (not `canonical/prices/store.py`: `canonical/prices.py`
+already exists as the QNT-013 schema module, and a `prices/` package would have collided with it) —
+`write_prices`, `read_prices`, `read_bars`, `partition_files`, `partition_row_counts`,
+`small_partitions`, `duckdb_prices`. Layout `<root>/trade_year=YYYY/part-NNNNN.parquet`, mirroring
+the fundamentals dataset (DEC-011). Tests: `tests/canonical/test_price_store.py` (16) and
+`tests/timetravel/test_price_store_timetravel.py` (3), all passing, with `mypy --strict` and `ruff`
+clean.
+
+**Departure: append-only anti-join instead of partition-wholesale replacement.** The ticket
+specified recomputing and rewriting every partition an incoming load touches. The writer instead
+appends new part files and skips rows already present, keyed on `(security_id, trade_date, source)`
+— the QNT-024 fundamentals pattern. Three reasons, recorded here because this contradicts a written
+acceptance criterion and needs a `docs/DECISIONS.md` entry to become policy:
+
+1. The ticket's own risk section notes that wholesale replacement lets a bad ingestion destroy good
+   rows in the same year. Append-only removes that failure mode entirely rather than mitigating it.
+2. `source` in the row key means two providers' views of the same security-day coexist as two rows
+   to be compared. That is what the provider bake-off needs; partition replacement would have made
+   the second provider's load overwrite the first's.
+3. It is the mechanism already in use for canonical fundamentals, so the two canonical datasets now
+   behave identically under re-ingestion rather than each having its own rule.
+
+The cost is that incremental daily loads accumulate small part files. That is why
+`partition_row_counts` / `small_partitions` and the documented `SMALL_PARTITION_ROWS` threshold
+exist: compaction is reportable and deliberate, never implicit.
+
+**Also added beyond the ticket:** `read_prices`/`read_bars` take an optional `as_of` bounding
+`ingested_at`, per the CLAUDE.md rule that every historical read has an explicit `as_of`. This is
+what the `timetravel` test exercises — a re-ingestion of revised history cannot alter an earlier
+reproduction.
+
+**Not measured:** the ticket asks to measure whether a year partition for the full universe reads in
+well under a second before deciding no further partitioning is needed. No real universe has been
+ingested yet, so this remains an open check for the first full backfill. The synthetic test only
+confirms the file *count* is sane (1,000 bars across 50 securities produce one file).

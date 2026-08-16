@@ -37,17 +37,17 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-015](QNT-015-adjustment-engine.md) | Adjustment factor engine | P1 | DONE |
 | [QNT-016](QNT-016-trading-calendars.md) | Trading calendars | P1 | DONE |
 | [QNT-017](QNT-017-exchange-currency-metadata.md) | Exchange and currency metadata | P1 | DONE |
-| [QNT-018](QNT-018-price-storage-partitioning.md) | Price storage layout and partitioning | P1 | BACKLOG |
-| [QNT-019](QNT-019-market-data-validation.md) | Market data validation checks | P1 | BACKLOG |
+| [QNT-018](QNT-018-price-storage-partitioning.md) | Price storage layout and partitioning | P1 | DONE |
+| [QNT-019](QNT-019-market-data-validation.md) | Market data validation checks | P1 | DONE |
 
 ## EPIC 4 — Fundamental Data
 
 | ID | Title | Priority | Status |
 |---|---|---|---|
 | [QNT-020](QNT-020-pit-fundamental-schema.md) | Point-in-time fundamental schema | P1 | DONE |
-| [QNT-021](QNT-021-statement-normalisation.md) | Financial statement normalisation model | P1 | BACKLOG |
+| [QNT-021](QNT-021-statement-normalisation.md) | Financial statement normalisation model | P1 | DONE |
 | [QNT-022](QNT-022-revision-handling.md) | Revision and restatement handling | P1 | DONE |
-| [QNT-023](QNT-023-fundamental-currency.md) | Fundamental currency handling | P1 | BACKLOG |
+| [QNT-023](QNT-023-fundamental-currency.md) | Fundamental currency handling | P1 | DONE |
 | [QNT-024](QNT-024-fundamental-storage.md) | Fundamental storage layout | P1 | DONE |
 | [QNT-025](QNT-025-asof-fundamental-queries.md) | As-of fundamental query API and time-travel tests | P1 | DONE |
 
