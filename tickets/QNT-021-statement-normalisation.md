@@ -1,7 +1,7 @@
 # QNT-021 — Financial statement normalisation model
 
 - **Ticket ID:** QNT-021
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 4 — Fundamental Data
 
@@ -34,23 +34,23 @@ and provider adapters (QNT-031…033) supply real ones later. Derived ratios and
 are Epic 8 and are explicitly not part of the taxonomy.
 
 ## Acceptance criteria
-- [ ] A canonical taxonomy exists covering, at minimum, the line items needed for value and
+- [x] A canonical taxonomy exists covering, at minimum, the line items needed for value and
       quality factors across all three statements, each entry carrying statement membership, a
       one-line definition, a unit kind (currency amount | share count | ratio) and a documented
       sign convention.
-- [ ] Provider mappings live in data files, not Python `if`/`dict` literals embedded in transform
+- [x] Provider mappings live in data files, not Python `if`/`dict` literals embedded in transform
       code; each mapping entry records provider item name, canonical item, and a mapping-confidence
       or review status; the loader validates every file against a schema at load time and fails
       loudly on an unknown canonical name or duplicate provider key.
-- [ ] Normalising the same fixture payload twice produces byte-identical canonical output
+- [x] Normalising the same fixture payload twice produces byte-identical canonical output
       (deterministic ordering, no dependence on dict iteration or wall-clock time).
-- [ ] An item with no mapping is never dropped and never guessed: it is returned in an explicit
+- [x] An item with no mapping is never dropped and never guessed: it is returned in an explicit
       unmapped collection carrying the raw provider name and value, is counted in a summary that
       the caller can log or assert on, and does not appear under a canonical name.
-- [ ] Mapping tables are versioned — the taxonomy and each mapping file carry a version identifier
+- [x] Mapping tables are versioned — the taxonomy and each mapping file carry a version identifier
       that is recorded on normalisation output, so a canonical row can be traced to the mapping
       version that produced it.
-- [ ] Unit tests cover a full fixture payload mapping deterministically, an unmapped item being
+- [x] Unit tests cover a full fixture payload mapping deterministically, an unmapped item being
       surfaced rather than coerced, a duplicate/conflicting mapping being rejected at load, and a
       sign-convention case (e.g. capital expenditure) normalising to the documented sign.
 
@@ -104,4 +104,65 @@ Note the unmapped-item policy in `CLAUDE.md` conventions if contributors would o
 to "fix" an unmapped item by adding a loose mapping.
 
 ## Completion notes
-_Not started._
+
+**2026-08-16 — done.**
+
+Delivered:
+
+- `src/trp/canonical/fundamentals/line_item_taxonomy.json` — the taxonomy as data, v1.0, 21
+  entries across all three statements (revenue → free_cash_flow, plus share counts and per-share
+  amounts). Every entry carries statement membership, a one-line definition, a unit kind
+  (`currency_amount` | `per_share_amount` | `share_count` | `ratio`) and a sign convention.
+- `src/trp/canonical/fundamentals/taxonomy.py` — models and loaders for the taxonomy and for the
+  provider mapping tables, with all cross-file validation in the loader: unknown canonical name,
+  canonical item on the wrong statement, duplicate `(statement, provider_item)` key, two provider
+  items claiming one canonical item, a table written against a different taxonomy version, and a
+  file whose declared provider disagrees with its filename all raise `MappingTableError`.
+- `src/trp/canonical/fundamentals/mappings/{eodhd,fmp}.json` — mapping tables as data, keyed on
+  `(statement, provider_item)` because providers reuse names across statements. Every entry
+  carries an explicit `sign` flag and a `review_status`; **every shipped entry is
+  `provisional`**, because the names were taken from provider documentation and not from recorded
+  payloads. QNT-031/032 must confirm each field name, statement and sign against real captured
+  JSON before promoting entries to `verified`; the EODHD capex sign flip is called out in the file
+  as the highest-risk entry.
+- `src/trp/canonical/fundamentals/normalisation.py` — `normalise_line_items`, returning mapped
+  items (sorted, deterministic, each stamped with taxonomy and mapping version) plus an explicit
+  `unmapped` collection and a counted summary. `sign_violations` surfaces values that contradict
+  their taxonomy convention as data rather than raising. `to_fundamental_value` builds the QNT-020
+  record from a mapped item plus the caller's period/availability facts.
+
+Deliberate design choices beyond the ticket text:
+
+- **A fourth unit kind, `per_share_amount`.** EPS is money per share, and the distinction is
+  load-bearing for QNT-023: monetary kinds convert by an FX rate, share counts and ratios never do.
+- **`canonical: null` + `review_status: excluded`** distinguishes "we looked at this and refuse to
+  map it" (the cash flow statement's repeat of net income) from "nobody has considered it". Both
+  come back unmapped; only the second needs a human.
+- **No scale factor.** A provider reporting in thousands is real, but modelling it before it is
+  seen in a recorded payload means applying a multiplier on faith. Noted in the module docstring
+  as the thing to add when an adapter needs it.
+- Payload-level duplicates (`(statement, provider_item)` twice in one payload) raise rather than
+  one silently winning.
+
+Tests: `tests/canonical/test_fundamental_taxonomy.py` (8) and
+`tests/canonical/test_provider_mapping.py` (21) — 29 passing. Fixtures:
+`tests/fixtures/provider_payload.py` (a checked-in synthetic payload with mappable items, a
+sign-inverted capex, a deliberately-excluded item and an unmapped one) and
+`tests/fixtures/mappings/stub.json`. Coverage includes byte-identical re-normalisation,
+unmapped items surfaced and counted, every loader rejection above, the capex sign case, a wrong
+sign flag showing up in `sign_violations`, and an assertion that no model in the normalisation
+path has a temporal field and the module never reads the clock.
+
+Deviations: none material. The ticket's suggested `mappings/<provider>.<ext>` layout is followed;
+the taxonomy data file sits beside `taxonomy.py` as `line_item_taxonomy.json` (a directory would
+have collided with the module name).
+
+**Docs the coordinator should update** (this ticket was scoped to new files only, so `docs/` was
+not touched):
+
+- `docs/DATA_MODEL.md`, fundamentals section: canonical line items come from the versioned
+  taxonomy at `trp.canonical.fundamentals.taxonomy` (data in `line_item_taxonomy.json`, provider
+  tables in `mappings/`); normalisation output records taxonomy and mapping version; unmapped
+  provider items are preserved and counted, never coerced.
+- `CLAUDE.md` conventions: the never-coerce rule — an unmapped provider item is fixed by adding a
+  reviewed mapping entry or by leaving it unmapped, never by loosening an existing mapping.

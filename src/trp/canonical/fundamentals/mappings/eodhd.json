@@ -1,0 +1,125 @@
+{
+  "provider": "eodhd",
+  "version": "0.1",
+  "taxonomy_version": "1.0",
+  "notes": "PROVISIONAL THROUGHOUT. Every entry here was written from provider documentation, not from a recorded payload, so every review_status is 'provisional' and no factor should be built on this table until QNT-031 confirms each field name, statement placement and sign against real captured JSON and promotes the entries to 'verified'. That promotion is the point of the review_status field: an unverified mapping producing plausible numbers is the failure mode this whole ticket exists to prevent. Nothing is mapped on suspicion — an item nobody has checked is simply absent, and normalisation will report it as unmapped rather than guessing.",
+  "entries": [
+    {
+      "provider_item": "totalRevenue",
+      "statement": "income",
+      "canonical": "revenue",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "costOfRevenue",
+      "statement": "income",
+      "canonical": "cost_of_sales",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "grossProfit",
+      "statement": "income",
+      "canonical": "gross_profit",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "operatingIncome",
+      "statement": "income",
+      "canonical": "operating_profit",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "incomeBeforeTax",
+      "statement": "income",
+      "canonical": "pre_tax_profit",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "netIncome",
+      "statement": "income",
+      "canonical": "net_income",
+      "review_status": "provisional",
+      "note": "Confirm whether this is before or after minority interests; the taxonomy says after."
+    },
+    {
+      "provider_item": "totalAssets",
+      "statement": "balance",
+      "canonical": "total_assets",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "totalLiab",
+      "statement": "balance",
+      "canonical": "total_liabilities",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "totalStockholderEquity",
+      "statement": "balance",
+      "canonical": "total_equity",
+      "review_status": "provisional",
+      "note": "Confirm whether minority interests are included; the taxonomy includes them."
+    },
+    {
+      "provider_item": "cash",
+      "statement": "balance",
+      "canonical": "cash_and_equivalents",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "commonStockSharesOutstanding",
+      "statement": "balance",
+      "canonical": "shares_outstanding",
+      "review_status": "provisional",
+      "note": "Confirm treasury shares are excluded and that the figure is at period end, not current."
+    },
+    {
+      "provider_item": "totalCashFromOperatingActivities",
+      "statement": "cash_flow",
+      "canonical": "operating_cash_flow",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "capitalExpenditures",
+      "statement": "cash_flow",
+      "canonical": "capital_expenditure",
+      "sign": "flip",
+      "review_status": "provisional",
+      "note": "Documented as a positive magnitude, so flipped to the canonical outflow-negative convention. This is the single highest-risk entry in the file: if the provider in fact reports it negative, the flip silently doubles free cash flow. QNT-031 must check the sign on a real payload before promotion."
+    },
+    {
+      "provider_item": "freeCashFlow",
+      "statement": "cash_flow",
+      "canonical": "free_cash_flow",
+      "review_status": "provisional",
+      "note": "The provider's own figure; its definition may not equal operating_cash_flow + capital_expenditure."
+    },
+    {
+      "provider_item": "dividendsPaid",
+      "statement": "cash_flow",
+      "canonical": "dividends_paid",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "depreciation",
+      "statement": "cash_flow",
+      "canonical": "depreciation_amortisation",
+      "review_status": "provisional",
+      "note": "Confirm amortisation of intangibles is included, not only depreciation of tangibles."
+    },
+    {
+      "provider_item": "netIncome",
+      "statement": "cash_flow",
+      "canonical": null,
+      "review_status": "excluded",
+      "note": "Deliberately not mapped: the cash flow statement opens with the income-statement figure, and mapping it here would create a second net_income row for the same period from the same filing. Take net_income from the income statement only."
+    },
+    {
+      "provider_item": "totalCashflowsFromInvestingActivities",
+      "statement": "cash_flow",
+      "canonical": null,
+      "review_status": "excluded",
+      "note": "Deliberately not mapped: an aggregate spanning capex, acquisitions and securities purchases. No canonical item means it, and forcing it into capital_expenditure would be wrong by whatever the company bought that year."
+    }
+  ]
+}

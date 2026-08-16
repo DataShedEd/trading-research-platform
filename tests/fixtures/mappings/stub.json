@@ -1,0 +1,59 @@
+{
+  "provider": "stub",
+  "version": "1.0",
+  "taxonomy_version": "1.0",
+  "notes": "A fixture provider for the QNT-021 suite. Not a real feed: the names are invented to exercise the mapper's behaviour (a plain mapping, a sign flip, a deliberate exclusion, and — by omission — an item nobody has mapped). Entries are marked 'verified' because they are verified against the checked-in payload in tests/fixtures/provider_payload.py, which is the whole universe this table claims to describe.",
+  "entries": [
+    {
+      "provider_item": "turnover",
+      "statement": "income",
+      "canonical": "revenue",
+      "review_status": "verified"
+    },
+    {
+      "provider_item": "costOfSales",
+      "statement": "income",
+      "canonical": "cost_of_sales",
+      "review_status": "verified"
+    },
+    {
+      "provider_item": "profitForTheYear",
+      "statement": "income",
+      "canonical": "net_income",
+      "review_status": "verified"
+    },
+    {
+      "provider_item": "totalAssets",
+      "statement": "balance",
+      "canonical": "total_assets",
+      "review_status": "verified"
+    },
+    {
+      "provider_item": "sharesInIssue",
+      "statement": "balance",
+      "canonical": "shares_outstanding",
+      "review_status": "verified"
+    },
+    {
+      "provider_item": "netCashFromOperations",
+      "statement": "cash_flow",
+      "canonical": "operating_cash_flow",
+      "review_status": "verified"
+    },
+    {
+      "provider_item": "capitalExpenditure",
+      "statement": "cash_flow",
+      "canonical": "capital_expenditure",
+      "sign": "flip",
+      "review_status": "verified",
+      "note": "This fixture provider reports capex as a positive magnitude, so the entry flips it to the canonical outflow-negative convention."
+    },
+    {
+      "provider_item": "profitForTheYear",
+      "statement": "cash_flow",
+      "canonical": null,
+      "review_status": "excluded",
+      "note": "The cash flow statement opens with the income-statement figure; mapping it here would create a second net_income for one filing. Note that the same provider name maps under 'income' and is excluded under 'cash_flow' — which is why the mapping key includes the statement."
+    }
+  ]
+}

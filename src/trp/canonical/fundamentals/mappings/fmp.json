@@ -1,0 +1,139 @@
+{
+  "provider": "fmp",
+  "version": "0.1",
+  "taxonomy_version": "1.0",
+  "notes": "PROVISIONAL THROUGHOUT, on the same terms as the EODHD table: written from provider documentation, not from recorded payloads, and to be confirmed field by field in QNT-032 before any entry is promoted to 'verified'. The value of a second table before the bake-off is coverage comparison — which canonical items each provider can actually populate — not production use.",
+  "entries": [
+    {
+      "provider_item": "revenue",
+      "statement": "income",
+      "canonical": "revenue",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "costOfRevenue",
+      "statement": "income",
+      "canonical": "cost_of_sales",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "grossProfit",
+      "statement": "income",
+      "canonical": "gross_profit",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "operatingIncome",
+      "statement": "income",
+      "canonical": "operating_profit",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "incomeBeforeTax",
+      "statement": "income",
+      "canonical": "pre_tax_profit",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "netIncome",
+      "statement": "income",
+      "canonical": "net_income",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "eps",
+      "statement": "income",
+      "canonical": "eps_basic",
+      "review_status": "provisional",
+      "note": "Confirm this is the basic figure as filed and not a recomputed one; if recomputed it is a derived value and belongs in Epic 8, not here."
+    },
+    {
+      "provider_item": "epsdiluted",
+      "statement": "income",
+      "canonical": "eps_diluted",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "weightedAverageShsOut",
+      "statement": "income",
+      "canonical": "weighted_average_shares_basic",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "totalAssets",
+      "statement": "balance",
+      "canonical": "total_assets",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "totalLiabilities",
+      "statement": "balance",
+      "canonical": "total_liabilities",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "totalStockholdersEquity",
+      "statement": "balance",
+      "canonical": "total_equity",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "totalDebt",
+      "statement": "balance",
+      "canonical": "total_debt",
+      "review_status": "provisional",
+      "note": "Confirm lease-liability treatment either side of IFRS 16 before this reaches a leverage factor."
+    },
+    {
+      "provider_item": "cashAndCashEquivalents",
+      "statement": "balance",
+      "canonical": "cash_and_equivalents",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "netCashProvidedByOperatingActivities",
+      "statement": "cash_flow",
+      "canonical": "operating_cash_flow",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "capitalExpenditure",
+      "statement": "cash_flow",
+      "canonical": "capital_expenditure",
+      "review_status": "provisional",
+      "note": "Documented as already negative, so taken as reported. Verify on a payload: this and the EODHD entry disagree on sign, and at most one of them is right."
+    },
+    {
+      "provider_item": "freeCashFlow",
+      "statement": "cash_flow",
+      "canonical": "free_cash_flow",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "dividendsPaid",
+      "statement": "cash_flow",
+      "canonical": "dividends_paid",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "commonStockRepurchased",
+      "statement": "cash_flow",
+      "canonical": "share_buybacks",
+      "review_status": "provisional",
+      "note": "Confirm whether this is gross repurchases or net of issuance; the taxonomy wants repurchases."
+    },
+    {
+      "provider_item": "depreciationAndAmortization",
+      "statement": "cash_flow",
+      "canonical": "depreciation_amortisation",
+      "review_status": "provisional"
+    },
+    {
+      "provider_item": "netIncome",
+      "statement": "cash_flow",
+      "canonical": null,
+      "review_status": "excluded",
+      "note": "Deliberately not mapped, as for EODHD: it repeats the income-statement figure at the head of the cash flow statement."
+    }
+  ]
+}

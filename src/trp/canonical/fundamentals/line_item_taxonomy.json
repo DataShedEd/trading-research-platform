@@ -1,0 +1,153 @@
+{
+  "version": "1.0",
+  "notes": "Canonical financial-statement line items (QNT-021). Versioned repository content: a canonical row is traceable to raw payload plus this version, so a mapping correction is distinguishable from a provider data change. Deliberately small — forty precise items beat three hundred half-understood ones; add an item when a factor needs it, and bump the version when any entry's meaning changes. Names are British English (amortisation, not amortization); provider spellings are the mapping files' problem, not the taxonomy's. Sign conventions: 'positive' means the item is carried as a positive magnitude even where it is economically a cost (cost_of_sales, total_liabilities) — it is subtracted by whoever uses it, never added; 'negative' means a cash outflow is carried negative (capital_expenditure, dividends_paid, share_buybacks), which is the convention that makes free_cash_flow = operating_cash_flow + capital_expenditure a sum; 'either' means the sign is genuinely informative (a loss, negative equity, negative free cash flow). A provider disagreeing with the convention is corrected by the mapping entry's sign flag, never by code. Derived ratios and factor definitions are Epic 8 and are deliberately absent.",
+  "items": [
+    {
+      "name": "revenue",
+      "statement": "income",
+      "unit_kind": "currency_amount",
+      "sign_convention": "positive",
+      "definition": "Turnover from ordinary activities for the period, net of sales taxes and trade discounts."
+    },
+    {
+      "name": "cost_of_sales",
+      "statement": "income",
+      "unit_kind": "currency_amount",
+      "sign_convention": "positive",
+      "definition": "Costs directly attributable to revenue, as a positive magnitude; consumers subtract it."
+    },
+    {
+      "name": "gross_profit",
+      "statement": "income",
+      "unit_kind": "currency_amount",
+      "sign_convention": "either",
+      "definition": "Revenue less cost of sales, as reported; negative for a gross loss."
+    },
+    {
+      "name": "operating_profit",
+      "statement": "income",
+      "unit_kind": "currency_amount",
+      "sign_convention": "either",
+      "definition": "Profit from operations before interest and tax (EBIT), as reported by the company."
+    },
+    {
+      "name": "pre_tax_profit",
+      "statement": "income",
+      "unit_kind": "currency_amount",
+      "sign_convention": "either",
+      "definition": "Profit before taxation, after net finance costs and associates."
+    },
+    {
+      "name": "net_income",
+      "statement": "income",
+      "unit_kind": "currency_amount",
+      "sign_convention": "either",
+      "definition": "Profit for the period attributable to ordinary shareholders, after tax and minority interests."
+    },
+    {
+      "name": "eps_basic",
+      "statement": "income",
+      "unit_kind": "per_share_amount",
+      "sign_convention": "either",
+      "definition": "Basic earnings per share as reported: reporting currency per share, not a total."
+    },
+    {
+      "name": "eps_diluted",
+      "statement": "income",
+      "unit_kind": "per_share_amount",
+      "sign_convention": "either",
+      "definition": "Diluted earnings per share as reported, on the company's own dilution basis."
+    },
+    {
+      "name": "weighted_average_shares_basic",
+      "statement": "income",
+      "unit_kind": "share_count",
+      "sign_convention": "positive",
+      "definition": "Weighted average ordinary shares used as the denominator of basic EPS. A count, never converted by an FX rate."
+    },
+    {
+      "name": "total_assets",
+      "statement": "balance",
+      "unit_kind": "currency_amount",
+      "sign_convention": "positive",
+      "definition": "Total assets at period end, current plus non-current."
+    },
+    {
+      "name": "total_liabilities",
+      "statement": "balance",
+      "unit_kind": "currency_amount",
+      "sign_convention": "positive",
+      "definition": "Total liabilities at period end as a positive magnitude, current plus non-current."
+    },
+    {
+      "name": "total_equity",
+      "statement": "balance",
+      "unit_kind": "currency_amount",
+      "sign_convention": "either",
+      "definition": "Total shareholders' equity including minority interests; genuinely negative for some leveraged issuers."
+    },
+    {
+      "name": "total_debt",
+      "statement": "balance",
+      "unit_kind": "currency_amount",
+      "sign_convention": "positive",
+      "definition": "Interest-bearing borrowings, short and long term, as a positive magnitude. Excludes trade payables; lease liabilities are included only where the provider includes them, which differs pre/post IFRS 16 — check the mapping's review status before using this in a leverage factor."
+    },
+    {
+      "name": "cash_and_equivalents",
+      "statement": "balance",
+      "unit_kind": "currency_amount",
+      "sign_convention": "positive",
+      "definition": "Cash and cash equivalents at period end, excluding restricted cash where the provider distinguishes it."
+    },
+    {
+      "name": "shares_outstanding",
+      "statement": "balance",
+      "unit_kind": "share_count",
+      "sign_convention": "positive",
+      "definition": "Ordinary shares in issue at period end, excluding treasury shares. A count, never converted by an FX rate."
+    },
+    {
+      "name": "operating_cash_flow",
+      "statement": "cash_flow",
+      "unit_kind": "currency_amount",
+      "sign_convention": "either",
+      "definition": "Net cash generated from operating activities, after tax and interest where the company presents them there."
+    },
+    {
+      "name": "capital_expenditure",
+      "statement": "cash_flow",
+      "unit_kind": "currency_amount",
+      "sign_convention": "negative",
+      "definition": "Purchases of property, plant, equipment and intangibles, as a cash OUTFLOW and therefore negative. Providers that report a positive magnitude must carry sign 'flip' in their mapping entry."
+    },
+    {
+      "name": "free_cash_flow",
+      "statement": "cash_flow",
+      "unit_kind": "currency_amount",
+      "sign_convention": "either",
+      "definition": "Operating cash flow plus capital expenditure (capex being negative, so this is a sum). Mapped from the provider's own figure where it publishes one; deriving it is Epic 8's job, not the mapper's."
+    },
+    {
+      "name": "dividends_paid",
+      "statement": "cash_flow",
+      "unit_kind": "currency_amount",
+      "sign_convention": "negative",
+      "definition": "Cash dividends paid to ordinary shareholders during the period, as an outflow and therefore negative."
+    },
+    {
+      "name": "share_buybacks",
+      "statement": "cash_flow",
+      "unit_kind": "currency_amount",
+      "sign_convention": "negative",
+      "definition": "Cash spent repurchasing the company's own shares, as an outflow and therefore negative. Net of issuance only where the provider reports it net, which the mapping's review status must state."
+    },
+    {
+      "name": "depreciation_amortisation",
+      "statement": "cash_flow",
+      "unit_kind": "currency_amount",
+      "sign_convention": "positive",
+      "definition": "Depreciation and amortisation charged in the period, as the positive add-back appearing in the cash flow statement."
+    }
+  ]
+}
