@@ -149,3 +149,19 @@ EODHD's full LSE list incl. delisted, avoiding index-committee licensing entirel
 (a) vs (b) as the primary UK universe** — it affects benchmark choice under
 RESEARCH_METHODOLOGY rule 6. S&P 500 sourcing can proceed regardless and will prove the
 ingestion pipeline end to end.
+
+**Progress (2026-08-16, curated route):** `src/trp/universe/data/ftse100_history.json`
+(v2026-08-16.3): anchor 2005-12-19 (100 names) + 167 dated change events incl. 24
+mid-membership renames, every entry cited, needs_verification flags honest. Validated
+three ways: (1) strict replay (`sourcing.replay_index_history`) passes — 359 ticker
+spells, exactly 100 current members, having caught and driven fixes for real curation
+errors (the Hilton→Ladbrokes rename class); (2) end-state agrees with FTSE Russell's
+June 2026 annual review (authoritative; and exposed EODHD's index components as ~8 weeks
+stale — recorded in DATA_PROVIDER_EVALUATION); (3) exit cross-check vs EODHD LSE lists
+quantifies delisted coverage: solid from ~2010, materially incomplete 2005–2010 (20 of 30
+unmatched exits are 2006–2010).
+
+**Remaining before DONE:** investigate the 8 post-2010 unmatched exits (likely ticker
+notation) and the 6 "still listed" exits (secondary listings/miscategorised reasons);
+resolve ticker spells to security_ids (needs the master populated from EODHD LSE symbol
+lists); write membership spells via QNT-037 storage; hand the real-data gate to QNT-041.

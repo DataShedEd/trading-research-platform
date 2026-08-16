@@ -127,6 +127,26 @@ this pipeline (manual, unscripted, outputs files outside the raw-store audit tra
 `eod-bulk-last-day` API endpoint is the relevant bulk path for daily universe updates and should
 be adopted when ingestion moves from per-symbol backfill to daily refresh.
 
+**Index and delisted-coverage findings (2026-08-16, QNT-039 curation cross-checks):**
+
+- **Index component lists are stale and must not be trusted for membership.** EODHD's
+  `FTSE.INDX` Components, fetched 2026-08-16, still showed pre-June-2026 membership — the
+  FTSE Russell annual review effective 22 June 2026 (Aberdeen Group, Computacenter, Investec
+  in; Berkeley, Mondi, Rightmove out; per the LSEG announcement) was absent ~8 weeks later.
+  The curated history (`src/trp/universe/data/ftse100_history.json`) is authoritative for
+  membership; EODHD supplies the per-security data only. (`GSPC.INDX` does carry genuine
+  `HistoricalTickerComponents` back to 1957 — usable for the S&P 500 — but the same
+  staleness caveat presumably applies to its tail.)
+- **LSE delisted coverage thins sharply before ~2010.** Cross-checking the 64
+  corporate-event exits (acquisition/merger/delisting) in the curated 2005–2026 FTSE 100
+  history: 28 appear in the delisted list, 6 remain listed (secondary listings or
+  reclassified exits to re-verify), and 30 appear in neither list — of which 20 exited in
+  2006–2010 (O2, P&O, BOC, Corus, ScottishPower, Northern Rock, …), with price queries
+  also returning 404. Practical bound: **survivorship-bias-free FTSE 100 reconstruction
+  from EODHD alone is solid from roughly 2010 onwards and materially incomplete
+  2005–2010.** The 8 post-2010 "neither" cases look like ticker-notation variants and need
+  individual investigation before being counted against the provider.
+
 Personal-use plans, EUR, month-to-month or annual. The plan feature matrix was read from the
 server-rendered pricing page markup, so the tier-by-tier ticks below are the vendor's own, not an
 inference ([eodhd.com/pricing](https://eodhd.com/pricing)).

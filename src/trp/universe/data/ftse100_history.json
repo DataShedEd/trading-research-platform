@@ -1,0 +1,4542 @@
+{
+ "version": "2026-08-16.3",
+ "index": "FTSE100",
+ "anchor": {
+  "date": "2005-12-19",
+  "members": [
+   {
+    "name": "3i",
+    "ticker": "III"
+   },
+   {
+    "name": "AMVESCAP",
+    "ticker": "AVZ"
+   },
+   {
+    "name": "Alliance & Leicester",
+    "ticker": "AL."
+   },
+   {
+    "name": "Alliance Unichem",
+    "ticker": "AUN"
+   },
+   {
+    "name": "Anglo American",
+    "ticker": "AAL"
+   },
+   {
+    "name": "Antofagasta",
+    "ticker": "ANTO"
+   },
+   {
+    "name": "Associated British Foods",
+    "ticker": "ABF"
+   },
+   {
+    "name": "AstraZeneca",
+    "ticker": "AZN"
+   },
+   {
+    "name": "Aviva",
+    "ticker": "AV."
+   },
+   {
+    "name": "BAA",
+    "ticker": "BAA"
+   },
+   {
+    "name": "BAE Systems",
+    "ticker": "BA."
+   },
+   {
+    "name": "BG Group",
+    "ticker": "BG."
+   },
+   {
+    "name": "BHP Billiton",
+    "ticker": "BLT"
+   },
+   {
+    "name": "BP",
+    "ticker": "BP."
+   },
+   {
+    "name": "BT Group",
+    "ticker": "BT.A"
+   },
+   {
+    "name": "Barclays Bank",
+    "ticker": "BARC"
+   },
+   {
+    "name": "Boots Group",
+    "ticker": "BOOT"
+   },
+   {
+    "name": "Brambles Industries",
+    "ticker": "BI."
+   },
+   {
+    "name": "British Airways",
+    "ticker": "BAY"
+   },
+   {
+    "name": "British American Tobacco",
+    "ticker": "BATS"
+   },
+   {
+    "name": "British Land Company",
+    "ticker": "BLND"
+   },
+   {
+    "name": "British Sky Broadcasting Group",
+    "ticker": "BSY"
+   },
+   {
+    "name": "Cable & Wireless",
+    "ticker": "CW."
+   },
+   {
+    "name": "Cadbury Schweppes",
+    "ticker": "CBRY"
+   },
+   {
+    "name": "Cairn Energy",
+    "ticker": "CNE"
+   },
+   {
+    "name": "Capita Group",
+    "ticker": "CPI"
+   },
+   {
+    "name": "Carnival",
+    "ticker": "CCL"
+   },
+   {
+    "name": "Centrica",
+    "ticker": "CNA"
+   },
+   {
+    "name": "Compass Group",
+    "ticker": "CPG"
+   },
+   {
+    "name": "DSG International",
+    "ticker": "DSGI"
+   },
+   {
+    "name": "Daily Mail & General Trust",
+    "ticker": "DMGT"
+   },
+   {
+    "name": "Diageo",
+    "ticker": "DGE"
+   },
+   {
+    "name": "Enterprise Inns",
+    "ticker": "ETI"
+   },
+   {
+    "name": "Friends Provident",
+    "ticker": "FP."
+   },
+   {
+    "name": "GUS",
+    "ticker": "GUS"
+   },
+   {
+    "name": "Gallaher Group",
+    "ticker": "GLH"
+   },
+   {
+    "name": "GlaxoSmithKline",
+    "ticker": "GSK"
+   },
+   {
+    "name": "HBOS",
+    "ticker": "HBOS"
+   },
+   {
+    "name": "HSBC",
+    "ticker": "HSBA"
+   },
+   {
+    "name": "Hammerson",
+    "ticker": "HMSO"
+   },
+   {
+    "name": "Hanson",
+    "ticker": "HNS"
+   },
+   {
+    "name": "Hilton Group",
+    "ticker": "HG."
+   },
+   {
+    "name": "ITV",
+    "ticker": "ITV"
+   },
+   {
+    "name": "Imperial Chemical Industries",
+    "ticker": "ICI"
+   },
+   {
+    "name": "Imperial Tobacco",
+    "ticker": "IMT"
+   },
+   {
+    "name": "InterContinental Hotels Group",
+    "ticker": "IHG"
+   },
+   {
+    "name": "International Power",
+    "ticker": "IPR"
+   },
+   {
+    "name": "J Sainsbury",
+    "ticker": "SBRY"
+   },
+   {
+    "name": "Johnson Matthey",
+    "ticker": "JMAT"
+   },
+   {
+    "name": "Kazakhmys",
+    "ticker": "KAZ"
+   },
+   {
+    "name": "Kelda Group",
+    "ticker": "KEL"
+   },
+   {
+    "name": "Kingfisher",
+    "ticker": "KGF"
+   },
+   {
+    "name": "Land Securities Group",
+    "ticker": "LAND"
+   },
+   {
+    "name": "Legal & General",
+    "ticker": "LGEN"
+   },
+   {
+    "name": "Liberty International",
+    "ticker": "LII"
+   },
+   {
+    "name": "Lloyds TSB",
+    "ticker": "LLOY"
+   },
+   {
+    "name": "Man Group",
+    "ticker": "EMG"
+   },
+   {
+    "name": "Marks and Spencer",
+    "ticker": "MKS"
+   },
+   {
+    "name": "National Grid",
+    "ticker": "NG."
+   },
+   {
+    "name": "Next",
+    "ticker": "NXT"
+   },
+   {
+    "name": "Northern Rock",
+    "ticker": "NRK"
+   },
+   {
+    "name": "O2",
+    "ticker": "OOM"
+   },
+   {
+    "name": "Old Mutual",
+    "ticker": "OML"
+   },
+   {
+    "name": "PartyGaming",
+    "ticker": "PRTY"
+   },
+   {
+    "name": "Pearson",
+    "ticker": "PSON"
+   },
+   {
+    "name": "Peninsular and Oriental Steam Navigation Company",
+    "ticker": "PO."
+   },
+   {
+    "name": "Persimmon",
+    "ticker": "PSN"
+   },
+   {
+    "name": "Prudential",
+    "ticker": "PRU"
+   },
+   {
+    "name": "Reckitt Benckiser",
+    "ticker": "RB."
+   },
+   {
+    "name": "Reed Elsevier",
+    "ticker": "REL"
+   },
+   {
+    "name": "Rentokil Initial",
+    "ticker": "RTO"
+   },
+   {
+    "name": "Reuters Group",
+    "ticker": "RTR"
+   },
+   {
+    "name": "Rexam",
+    "ticker": "REX"
+   },
+   {
+    "name": "Rio Tinto",
+    "ticker": "RIO"
+   },
+   {
+    "name": "Rolls-Royce Group",
+    "ticker": "RR."
+   },
+   {
+    "name": "Royal & Sun Alliance Insurance",
+    "ticker": "RSA"
+   },
+   {
+    "name": "Royal Bank of Scotland Group",
+    "ticker": "RBS"
+   },
+   {
+    "name": "Royal Dutch Shell",
+    "ticker": "RDSB"
+   },
+   {
+    "name": "SABMiller",
+    "ticker": "SAB"
+   },
+   {
+    "name": "Sage Group",
+    "ticker": "SGE"
+   },
+   {
+    "name": "Schroders",
+    "ticker": "SDR"
+   },
+   {
+    "name": "Scottish & Newcastle",
+    "ticker": "SCTN"
+   },
+   {
+    "name": "Scottish & Southern Energy",
+    "ticker": "SSE"
+   },
+   {
+    "name": "Scottish Power",
+    "ticker": "SPW"
+   },
+   {
+    "name": "Severn Trent",
+    "ticker": "SVT"
+   },
+   {
+    "name": "Shire Pharmaceuticals Group",
+    "ticker": "SHP"
+   },
+   {
+    "name": "Smith & Nephew",
+    "ticker": "SN."
+   },
+   {
+    "name": "Smiths Group",
+    "ticker": "SMIN"
+   },
+   {
+    "name": "Standard Chartered Bank",
+    "ticker": "STAN"
+   },
+   {
+    "name": "Tate & Lyle",
+    "ticker": "TATE"
+   },
+   {
+    "name": "Tesco",
+    "ticker": "TSCO"
+   },
+   {
+    "name": "The BOC Group",
+    "ticker": "BOC"
+   },
+   {
+    "name": "Unilever",
+    "ticker": "ULVR"
+   },
+   {
+    "name": "United Utilities",
+    "ticker": "UU."
+   },
+   {
+    "name": "Vodafone",
+    "ticker": "VOD"
+   },
+   {
+    "name": "WPP Group",
+    "ticker": "WPP"
+   },
+   {
+    "name": "Wm Morrison Supermarkets",
+    "ticker": "MRW"
+   },
+   {
+    "name": "Wolseley",
+    "ticker": "WOS"
+   },
+   {
+    "name": "Xstrata",
+    "ticker": "XTA"
+   },
+   {
+    "name": "Yell Group",
+    "ticker": "YELL"
+   }
+  ],
+  "source": "Constituent list from the Wikipedia article 'FTSE 100 Index', revision 32097201 of 20 December 2005 (https://en.wikipedia.org/w/index.php?oldid=32097201), which lists exactly 100 companies immediately after the December 2005 annual review, with one correction: that revision still lists Exel, which FTSE Russell replaced with Brambles Industries effective 13 December 2005 (FTSE Russell, 'FTSE 100 - Historic Additions and Deletions', April 2026 edition, row 13-Dec-05). The corrected list was independently reproduced, name for name, by rolling the 100 FTSE 100 constituents as at 22 June 2026 backwards through the 244 change records in this file; that back-cast landed on the same 100 companies with zero unmatched additions or deletions. The 19 December 2005 effective date is from FTSE Russell index notice 349355, 'FTSE UK Annual Review December 2005' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=349355), which states that the review changes were applied after the close of business on Friday 16 December 2005 and were effective on Monday 19 December 2005.",
+  "needs_verification": true
+ },
+ "changes": [
+  {
+   "effective": "2006-01-26",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "British Energy Group",
+     "ticker": "BGY"
+    }
+   ],
+   "removed": [
+    {
+     "name": "O2",
+     "ticker": "OOM",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event - Acquisition of O2 by Telefonica S.A."
+  },
+  {
+   "effective": "2006-02-22",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "HG.",
+     "to_ticker": "LAD",
+     "new_name": "Ladbrokes plc"
+    }
+   ],
+   "added": [],
+   "removed": [],
+   "source": "Hilton Group plc changed its name to Ladbrokes plc on 22 February 2006 on completion of the sale of its hotels business to Hilton Hotels Corporation (Los Angeles Business Journal, 'Hilton Group Changes Name', https://labusinessjournal.com/news/hilton-group-changes-name/). Secondary source; the FTSE Russell UK notice archive contains no name-change notices.",
+   "needs_verification": true,
+   "notes": "Name/ticker change only; membership and constituent count unchanged."
+  },
+  {
+   "effective": "2006-03-09",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Corus Group",
+     "ticker": "CS."
+    }
+   ],
+   "removed": [
+    {
+     "name": "P&O",
+     "ticker": "PO.",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event - Acquisition of P&O by Dubai Ports"
+  },
+  {
+   "effective": "2006-06-19",
+   "review": "quarterly 2006-Q2",
+   "added": [
+    {
+     "name": "Vedanta Resources",
+     "ticker": "VED",
+     "sedol": "3327706"
+    },
+    {
+     "name": "Lonmin",
+     "ticker": "LMI",
+     "sedol": "3119248"
+    },
+    {
+     "name": "Drax Group",
+     "ticker": "DRX",
+     "sedol": "B0MBCM6"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Daily Mail & General Trust",
+     "ticker": "DMGT",
+     "sedol": "0945736",
+     "reason": "review"
+    },
+    {
+     "name": "Cable & Wireless",
+     "ticker": "CW.",
+     "sedol": "0162557",
+     "reason": "review"
+    },
+    {
+     "name": "Ladbrokes",
+     "ticker": "LAD",
+     "sedol": "B0ZSH63",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 348600, 'FTSE UK Quarterly Review June 2006' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=348600) — changes applied after the close of business 2006-06-16, effective 2006-06-19 | FTSE Russell review spreadsheet '20060623143407_2006_Q2_FTSE_UK_Review.xls' (https://web.archive.org/web/20060623143407id_/http://www.ftse.com:80/tech_notices/2006/Q2/FTSE_UK_Review.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2006-06-30",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "ICAP",
+     "ticker": "IAP"
+    }
+   ],
+   "removed": [
+    {
+     "name": "BAA",
+     "ticker": "BAA",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event - Acquisition of BAA by Airport Development and Investment Limited"
+  },
+  {
+   "effective": "2006-07-31",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "BOOT",
+     "to_ticker": "AB.",
+     "new_name": "Alliance Boots plc"
+    }
+   ],
+   "added": [
+    {
+     "name": "Slough Estates",
+     "ticker": "SLOU"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Alliance Unichem",
+     "ticker": "AUN",
+     "reason": "merger"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf) || RENAME: FTSE Russell, 'FTSE 100 - Historic Additions and Deletions', April 2026 edition, row 31-Jul-06, note 'Corporate Event - Merger of Boots Group with Alliance Unichem' (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf); the merged company listed as Alliance Boots plc on 31 July 2006 and took the Boots Group index place, while Alliance UniChem was deleted on the same date (see the removal recorded in this entry).",
+   "needs_verification": true,
+   "notes": "Corporate Event - Merger of Boots Group with Alliance Unichem Includes a name/ticker change that preserves membership."
+  },
+  {
+   "effective": "2006-09-05",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Bradford & Bingley",
+     "ticker": "BB."
+    }
+   ],
+   "removed": [
+    {
+     "name": "BOC",
+     "ticker": "BOC",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event - Acquisition of BOC by Linde AG"
+  },
+  {
+   "effective": "2006-09-18",
+   "review": "quarterly 2006-Q3",
+   "added": [
+    {
+     "name": "Standard Life",
+     "ticker": "SL.",
+     "sedol": "B16KPT4"
+    },
+    {
+     "name": "Resolution",
+     "ticker": "RSL",
+     "sedol": "0434256"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Rentokil",
+     "ticker": "RTO",
+     "reason": "review"
+    },
+    {
+     "name": "Schroders",
+     "ticker": "SDR",
+     "sedol": "0240549",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 348247, 'FTSE UK Quarterly Review September 2006' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=348247) — changes applied after the close of business 2006-09-15, effective 2006-09-18 | FTSE Russell review spreadsheet '20070226180124_2006_Q3_FTSE_UK_Review.xls' (https://web.archive.org/web/20070226180124id_/http://www.ftse.com:80/tech_notices/2006/Q3/FTSE_UK_Review.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2006-10-11",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Experian Group",
+     "ticker": "EXPN"
+    },
+    {
+     "name": "Home Retail Group",
+     "ticker": "HOME"
+    }
+   ],
+   "removed": [
+    {
+     "name": "GUS",
+     "ticker": "GUS",
+     "reason": "merger"
+    },
+    {
+     "name": "Partygaming",
+     "ticker": "PRTY",
+     "reason": "merger"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event - Demerger of GUS Plc into Experian Group Ltd and Home Retail Group"
+  },
+  {
+   "effective": "2006-11-27",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Cable & Wireless",
+     "ticker": "CW."
+    }
+   ],
+   "removed": [
+    {
+     "name": "Brambles Industries",
+     "ticker": "BI.",
+     "reason": "merger"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event - Unification of Brambles Ltd (Australia) and Brambles Industries PLC (UK)"
+  },
+  {
+   "effective": "2006-12-18",
+   "review": "quarterly 2006-Q4",
+   "added": [
+    {
+     "name": "Whitbread",
+     "ticker": "WTB",
+     "sedol": "B15F1S1"
+    }
+   ],
+   "removed": [
+    {
+     "name": "British Energy Group",
+     "ticker": "BGY",
+     "sedol": "B04QKW5",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 347800, 'FTSE UK Annual Review December 2006' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=347800) — changes applied after the close of business 2006-12-15, effective 2006-12-18 | FTSE Russell review spreadsheet '20061208024310_2006_Q4_FTSE_UK_Review.xls' (https://web.archive.org/web/20061208024310id_/http://www.ftse.com:80/tech_notices/2006/Q4/FTSE_UK_Review.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2007-01-01",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "SLOU",
+     "to_ticker": "SGRO",
+     "new_name": "SEGRO plc"
+    }
+   ],
+   "added": [],
+   "removed": [],
+   "source": "SEGRO plc, 'Our History' (https://www.segro.com/about/history): 'In 2007 we changed the company name to SEGRO plc and became a UK Real Estate Investment Trust.' The published sources give the year only; the rename is recorded at the start of 2007 alongside the UK REIT conversion and the date is APPROXIMATE — needs_verification is set for this reason. FTSE Russell's own records show the identifier change: the June 2005 review spreadsheet lists Slough Estates with SEDOL 0814104 and the September 2007 review spreadsheet lists Segro with SEDOL B1YFN97.",
+   "needs_verification": true,
+   "notes": "Name/ticker change only; membership and constituent count unchanged."
+  },
+  {
+   "effective": "2007-03-19",
+   "review": "quarterly 2007-Q1",
+   "added": [
+    {
+     "name": "Daily Mail & General Trust",
+     "ticker": "DMGT",
+     "sedol": "0945736"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Cairn Energy",
+     "ticker": "CNE",
+     "sedol": "3239931",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 347432, 'FTSE UK Quarterly Review March 2007' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=347432) — changes applied after the close of business 2007-03-16, effective 2007-03-19 | FTSE Russell review spreadsheet '20070314035818_2007_Q1_FTSE_UK_Review.xls' (https://web.archive.org/web/20070314035818id_/http://www.ftse.com:80/tech_notices/2007/Q1/FTSE_UK_Review.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2007-03-30",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Schroders",
+     "ticker": "SDR"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Corus Group",
+     "ticker": "CS.",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event - Acquisition of Corus by Tata Steel"
+  },
+  {
+   "effective": "2007-04-17",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Punch Taverns",
+     "ticker": "PUB"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Gallaher Group",
+     "ticker": "GLH",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event - Acquisition of Gallaher Group by Japan Tobacco"
+  },
+  {
+   "effective": "2007-04-20",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Mitchells & Butlers",
+     "ticker": "MAB"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Scottish Power",
+     "ticker": "SPW",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event - Acquisition of Scottish Power by Iberdrola"
+  },
+  {
+   "effective": "2007-05-24",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "AVZ",
+     "to_ticker": "IVZ",
+     "new_name": "Invesco PLC"
+    }
+   ],
+   "added": [],
+   "removed": [],
+   "source": "Invesco Ltd. Form 10-K for FY2007, filed with the SEC (https://www.sec.gov/Archives/edgar/data/914208/000095014408001518/g11915e10vk.htm): 'On May 24, 2007, with approval from our shareholders, we changed our name from AMVESCAP PLC to Invesco PLC'.",
+   "needs_verification": false,
+   "notes": "Name/ticker change only; membership and constituent count unchanged."
+  },
+  {
+   "effective": "2007-06-18",
+   "review": "quarterly 2007-Q2",
+   "added": [
+    {
+     "name": "Barratt Developments",
+     "ticker": "BDEV",
+     "sedol": "0081180"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Bradford & Bingley",
+     "ticker": "BB.",
+     "sedol": "0222815",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 347022, 'FTSE UK Quarterly Review June 2007' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=347022) — changes applied after the close of business 2007-06-15, effective 2007-06-18 | FTSE Russell review spreadsheet '20090509000451_2007_Q2_FTSE_UK_Review.xls' (https://web.archive.org/web/20090509000451id_/http://www.ftse.com:80/tech_notices/2007/Q2/FTSE_UK_Review.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2007-06-26",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "British Energy Group",
+     "ticker": "BGY"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Alliance Boots",
+     "ticker": "AB.",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event - Acquisition of Alliance Boots PLC by AB Acquisitions Ltd"
+  },
+  {
+   "effective": "2007-08-22",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Rentokil Initial",
+     "ticker": "RTO"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Hanson",
+     "ticker": "HNS",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event - Acquisition of Hanson PLC by Lehigh UK Limited"
+  },
+  {
+   "effective": "2007-09-24",
+   "review": "quarterly 2007-Q3",
+   "added": [
+    {
+     "name": "Tullow Oil",
+     "ticker": "TLW",
+     "sedol": "0150080"
+    },
+    {
+     "name": "Taylor Wimpey",
+     "ticker": "TW.",
+     "sedol": "0878230"
+    },
+    {
+     "name": "Carphone Warehouse",
+     "ticker": "CPW",
+     "sedol": "0878702"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Drax Group",
+     "ticker": "DRX",
+     "sedol": "B1VNSX3",
+     "reason": "review"
+    },
+    {
+     "name": "Segro",
+     "ticker": "SGRO",
+     "sedol": "B1YFN97",
+     "reason": "review"
+    },
+    {
+     "name": "Kelda Group",
+     "ticker": "KEL",
+     "sedol": "B1KQN72",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 346643, 'FTSE UK Quarterly Review September 2007' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=346643) — changes applied after the close of business 2007-09-21, effective 2007-09-24 | FTSE Russell review spreadsheet '20090509000456_2007_Q3_FTSE_UK_Review_amend.xls' (https://web.archive.org/web/20090509000456id_/http://www.ftse.com:80/tech_notices/2007/Q3/FTSE_UK_Review_amend.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2007-12-04",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "London Stock Exchange",
+     "ticker": "LSEG"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Invesco Plc",
+     "ticker": "IVZ",
+     "reason": "delisting"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Transfer of listing from LSE to NYSE (change of nationality)"
+  },
+  {
+   "effective": "2007-12-20",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "AMEC",
+     "ticker": "AMEC"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Imperial Chemical Industries",
+     "ticker": "ICI",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event - Acquisition of ICI by Akzo Noble NV (Netherlands)"
+  },
+  {
+   "effective": "2007-12-24",
+   "review": "quarterly 2007-Q4",
+   "added": [
+    {
+     "name": "Cairn Energy",
+     "ticker": "CNE",
+     "sedol": "B1RZDL6"
+    },
+    {
+     "name": "First Group",
+     "ticker": "FGP"
+    },
+    {
+     "name": "TUI Travel",
+     "ticker": "TT.",
+     "sedol": "B1Z7RQ7"
+    },
+    {
+     "name": "Kelda Group",
+     "ticker": "KEL",
+     "sedol": "B1KQN72"
+    },
+    {
+     "name": "Admiral Group",
+     "ticker": "ADM",
+     "sedol": "B02J639"
+    },
+    {
+     "name": "G4S",
+     "ticker": "GFS",
+     "sedol": "B01FLG6"
+    },
+    {
+     "name": "Thomas Cook Group",
+     "ticker": "TCG",
+     "sedol": "B1VYCH8"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Punch Taverns",
+     "ticker": "PUB",
+     "sedol": "3155286",
+     "reason": "review"
+    },
+    {
+     "name": "Tate & Lyle",
+     "ticker": "TATE",
+     "sedol": "0875413",
+     "reason": "review"
+    },
+    {
+     "name": "Daily Mail & General Trust",
+     "ticker": "DMGT",
+     "sedol": "0945736",
+     "reason": "review"
+    },
+    {
+     "name": "DSG International",
+     "ticker": "DSGI",
+     "sedol": "0047245",
+     "reason": "review"
+    },
+    {
+     "name": "Mitchells & Butlers",
+     "ticker": "MAB",
+     "sedol": "B1FP6H5",
+     "reason": "review"
+    },
+    {
+     "name": "Barratt Developments",
+     "ticker": "BDEV",
+     "sedol": "0081180",
+     "reason": "review"
+    },
+    {
+     "name": "Northern Rock",
+     "ticker": "NRK",
+     "sedol": "0145279",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 346228, 'FTSE UK Annual Review December 2007' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=346228) — changes applied after the close of business 2007-12-21, effective 2007-12-24 | FTSE Russell review spreadsheet '20090509000500_2007_Q4_FTSE_UK_Review.xls' (https://web.archive.org/web/20090509000500id_/http://www.ftse.com:80/tech_notices/2007/Q4/FTSE_UK_Review.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2008-02-07",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Alliance Trust",
+     "ticker": "ATST"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Kelda Group",
+     "ticker": "KEL",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event - Acquisition of Kelda Group by Saltaire Water Limited"
+  },
+  {
+   "effective": "2008-03-26",
+   "review": "quarterly 2008-Q1",
+   "added": [
+    {
+     "name": "Eurasian Natural Resources Corporation",
+     "ticker": "ENRC"
+    },
+    {
+     "name": "Tate & Lyle",
+     "ticker": "TATE"
+    },
+    {
+     "name": "Cobham",
+     "ticker": "COB"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Taylor Wimpey",
+     "ticker": "TW.",
+     "reason": "review"
+    },
+    {
+     "name": "Yell Group",
+     "ticker": "YELL",
+     "reason": "review"
+    },
+    {
+     "name": "Rentokil Initial",
+     "ticker": "RTO",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 345928, 'FTSE UK Quarterly Review March 2008' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=345928) — changes applied after the close of business 2008-03-25, effective 2008-03-26 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2008-04-17",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "RTR",
+     "to_ticker": "TRIL",
+     "new_name": "Thomson Reuters PLC"
+    }
+   ],
+   "added": [],
+   "removed": [],
+   "source": "FTSE Russell index notice 345785, 'Reuters Group PLC (UK): Acquisition by Thomson Corporation (Canada)', 14 April 2008 (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=345785): 'Reuters Group (UK 0236913) will be replaced in the index by Thomson Reuters (UK B29MWZ9)... 17 April 2008'. Recorded as a rename because FTSE replaced the constituent one for one, preserving index membership.",
+   "needs_verification": false,
+   "notes": "Name/ticker change only; membership and constituent count unchanged."
+  },
+  {
+   "effective": "2008-04-28",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Wood Group (John)",
+     "ticker": "WG."
+    }
+   ],
+   "removed": [
+    {
+     "name": "Scottish & Newcastle",
+     "ticker": "SCTN",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event - Acquisition of Scottish & Newcastle by Sunrise Acquisitions Limited"
+  },
+  {
+   "effective": "2008-04-30",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Bunzl",
+     "ticker": "BNZL"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Resolution",
+     "ticker": "RSL",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event - Acquisition of Resolution Group by Impala Holdings Limited"
+  },
+  {
+   "effective": "2008-06-23",
+   "review": "quarterly 2008-Q2",
+   "added": [
+    {
+     "name": "Invensys",
+     "ticker": "ISYS",
+     "sedol": "B19DVX6"
+    },
+    {
+     "name": "Ferrexpo",
+     "ticker": "FXPO",
+     "sedol": "B1XH2C0"
+    },
+    {
+     "name": "Petrofac",
+     "ticker": "PFC",
+     "sedol": "B0H2K53"
+    },
+    {
+     "name": "Drax Group",
+     "ticker": "DRX",
+     "sedol": "B1VNSX3"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Alliance & Leicester",
+     "ticker": "AL.",
+     "sedol": "0038614",
+     "reason": "review"
+    },
+    {
+     "name": "Persimmon",
+     "ticker": "PSN",
+     "sedol": "0682538",
+     "reason": "review"
+    },
+    {
+     "name": "Home Retail Group",
+     "ticker": "HOME",
+     "sedol": "B19NKB7",
+     "reason": "review"
+    },
+    {
+     "name": "Tate & Lyle",
+     "ticker": "TATE",
+     "sedol": "0875413",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 345546, 'FTSE UK Quarterly Review June 2008' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=345546) — changes applied after the close of business 2008-06-20, effective 2008-06-23 | FTSE Russell review spreadsheet '20090509000506_2008_Q2_FTSE_UK_Review_update.xls' (https://web.archive.org/web/20090509000506id_/http://www.ftse.com:80/tech_notices/2008/Q2/FTSE_UK_Review_update.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2008-09-22",
+   "review": "quarterly 2008-Q3",
+   "added": [
+    {
+     "name": "Autonomy Corporation",
+     "ticker": "AU.",
+     "sedol": "0118271"
+    },
+    {
+     "name": "Fresnillo",
+     "ticker": "FRES",
+     "sedol": "B2QPKJ1"
+    },
+    {
+     "name": "Inmarsat",
+     "ticker": "ISAT",
+     "sedol": "B09LSH6"
+    },
+    {
+     "name": "Stagecoach Group",
+     "ticker": "SGC",
+     "sedol": "B1VJ6Q0"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Carphone Warehouse Group",
+     "ticker": "CPW",
+     "sedol": "0878702",
+     "reason": "review"
+    },
+    {
+     "name": "Enterprise Inns",
+     "ticker": "ETI",
+     "sedol": "B1L8B62",
+     "reason": "review"
+    },
+    {
+     "name": "Ferrexpo",
+     "ticker": "FXPO",
+     "sedol": "B1XH2C0",
+     "reason": "review"
+    },
+    {
+     "name": "ITV",
+     "ticker": "ITV",
+     "sedol": "3398649",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 345209, 'FTSE UK Quarterly Review September 2008' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=345209) — changes applied after the close of business 2008-09-19, effective 2008-09-22 | FTSE Russell review spreadsheet '20090509000511_2008_Q3_FTSE_UK_Review.xls' (https://web.archive.org/web/20090509000511id_/http://www.ftse.com:80/tech_notices/2008/Q3/FTSE_UK_Review.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2008-12-22",
+   "review": "quarterly 2008-Q4",
+   "added": [
+    {
+     "name": "Amlin",
+     "ticker": "AML",
+     "sedol": "B2988H1"
+    },
+    {
+     "name": "Home Retail Group",
+     "ticker": "HOME",
+     "sedol": "B19NKB7"
+    },
+    {
+     "name": "Randgold Resources",
+     "ticker": "RRS",
+     "sedol": "B01C3S3"
+    },
+    {
+     "name": "Serco Group",
+     "ticker": "SRP",
+     "sedol": "0797379"
+    },
+    {
+     "name": "Tate & Lyle",
+     "ticker": "TATE",
+     "sedol": "0875413"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Fresnillo",
+     "ticker": "FRES",
+     "sedol": "B2QPKJ1",
+     "reason": "review"
+    },
+    {
+     "name": "Lonmin",
+     "ticker": "LMI",
+     "sedol": "3119248",
+     "reason": "review"
+    },
+    {
+     "name": "Petrofac",
+     "ticker": "PFC",
+     "sedol": "B0H2K53",
+     "reason": "review"
+    },
+    {
+     "name": "Stagecoach Group",
+     "ticker": "SGC",
+     "sedol": "B1VJ6Q0",
+     "reason": "review"
+    },
+    {
+     "name": "Wood Group (John)",
+     "ticker": "WG.",
+     "sedol": "3157583",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 344796, 'FTSE UK Annual Review 2008' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=344796) — changes applied after the close of business 2008-12-19, effective 2008-12-22 | FTSE Russell review spreadsheet '20081230083453_2008_Q4_FTSE_UK_Review.xls' (https://web.archive.org/web/20081230083453id_/http://www.ftse.com:80/tech_notices/2008/Q4/FTSE_UK_Review.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2009-01-09",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Pennon Group",
+     "ticker": "PNN"
+    }
+   ],
+   "removed": [
+    {
+     "name": "British Energy Group",
+     "ticker": "BGY",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell index notice 344671, 'British Energy Group PLC (UK): Offer Declared Wholly Unconditional', 6 January 2009 (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=344671)",
+   "needs_verification": false,
+   "notes": "Corporate Event - offer for British Energy Group by Lake Acquisitions (EDF) declared wholly unconditional; Pennon Group promoted from the reserve list. Omitted from the LSEG constituent-history document."
+  },
+  {
+   "effective": "2009-01-19",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Balfour Beatty",
+     "ticker": "BBY"
+    }
+   ],
+   "removed": [
+    {
+     "name": "HBOS",
+     "ticker": "HBOS",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell index notice 344637, 'HBOS PLC (UK): Scheme Of Arrangement', 14 January 2009 (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=344637)",
+   "needs_verification": false,
+   "notes": "Corporate Event - acquisition of HBOS by Lloyds TSB Group; Balfour Beatty promoted from the reserve list. Omitted from the LSEG constituent-history document."
+  },
+  {
+   "effective": "2009-03-23",
+   "review": "quarterly 2009-Q1",
+   "added": [
+    {
+     "name": "Foreign & Colonial Investment Trust",
+     "ticker": "FRCL"
+    },
+    {
+     "name": "Fresnillo",
+     "ticker": "FRES",
+     "sedol": "B2QPKJ1"
+    },
+    {
+     "name": "Intertek Group",
+     "ticker": "ITRK",
+     "sedol": "3163836"
+    },
+    {
+     "name": "Lonmin",
+     "ticker": "LMI",
+     "sedol": "3119248"
+    },
+    {
+     "name": "Petrofac",
+     "ticker": "PFC",
+     "sedol": "B0H2K53"
+    }
+   ],
+   "removed": [
+    {
+     "name": "3i Group",
+     "ticker": "III",
+     "sedol": "B1YW440",
+     "reason": "review"
+    },
+    {
+     "name": "First Group",
+     "ticker": "FGP",
+     "reason": "review"
+    },
+    {
+     "name": "London Stock Exchange Group",
+     "ticker": "LSEG",
+     "sedol": "B0SWJX3",
+     "reason": "review"
+    },
+    {
+     "name": "Wolseley",
+     "ticker": "WOS",
+     "sedol": "0976402",
+     "reason": "review"
+    },
+    {
+     "name": "Tate & Lyle",
+     "ticker": "TATE",
+     "sedol": "0875413",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 344442, 'FTSE UK Quarterly Review 2009' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=344442) — changes applied after the close of business 2009-03-20, effective 2009-03-23 | FTSE Russell review spreadsheet '20110614115455_2009_Q1_FTSE_UK_Review.xls' (https://web.archive.org/web/20110614115455id_/http://www.ftse.com/tech_notices/2009/Q1/FTSE_UK_Review.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2009-06-22",
+   "review": "quarterly 2009-Q2",
+   "added": [
+    {
+     "name": "3i Group",
+     "ticker": "III",
+     "sedol": "B1YW440"
+    },
+    {
+     "name": "London Stock Exchange Group",
+     "ticker": "LSEG",
+     "sedol": "B0SWJX3"
+    },
+    {
+     "name": "Wolseley",
+     "ticker": "WOS",
+     "sedol": "B5ZN3P4"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Amlin",
+     "ticker": "AML",
+     "sedol": "B2988H1",
+     "reason": "review"
+    },
+    {
+     "name": "Drax Group",
+     "ticker": "DRX",
+     "sedol": "B1VNSX3",
+     "reason": "review"
+    },
+    {
+     "name": "Whitbread",
+     "ticker": "WTB",
+     "sedol": "B1KJJ40",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 344012, 'FTSE UK Quarterly Review June 2009' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=344012) — changes applied after the close of business 2009-06-19, effective 2009-06-22 | FTSE Russell review spreadsheet '20110614115509_2009_Q2_FTSE_UK_Review.xls' (https://web.archive.org/web/20110614115509id_/http://www.ftse.com/tech_notices/2009/Q2/FTSE_UK_Review.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2009-09-10",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Burberry Group",
+     "ticker": "BRBY"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Thomson Reuters",
+     "ticker": "TRIL",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Scheme of Arrangement: Unification of Thomson Reuters PLC (UK) & Thomson Reuters Corporation (Canada)"
+  },
+  {
+   "effective": "2009-09-21",
+   "review": "quarterly 2009-Q3",
+   "added": [
+    {
+     "name": "Rentokil Initial",
+     "ticker": "RTO",
+     "sedol": "B082RF1"
+    },
+    {
+     "name": "Segro",
+     "ticker": "SGRO",
+     "sedol": "B5ZN1N8"
+    },
+    {
+     "name": "Whitbread",
+     "ticker": "WTB",
+     "sedol": "B1KJJ40"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Balfour Beatty",
+     "ticker": "BBY",
+     "sedol": "0096162",
+     "reason": "review"
+    },
+    {
+     "name": "Foreign & Col Inv Trust",
+     "ticker": "FRCL",
+     "reason": "review"
+    },
+    {
+     "name": "Pennon Group",
+     "ticker": "PNN",
+     "sedol": "B18V863",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 343585, 'FTSE UK Quarterly Review September 2009' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=343585) — changes applied after the close of business 2009-09-18, effective 2009-09-21 | FTSE Russell review spreadsheet '20090919154336_2009_Q3_FTSE_UK_Review.xls' (https://web.archive.org/web/20090919154336id_/http://www.ftse.com:80/tech_notices/2009/Q3/FTSE_UK_Review.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2009-11-05",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Resolution",
+     "ticker": "RSL"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Friends Provident Group",
+     "ticker": "FP.",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell index notice 343198, 'Friends Provident Group PLC (UK): Scheme of Arrangement', 2 November 2009 (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=343198)",
+   "needs_verification": false,
+   "notes": "Corporate Event - acquisition of Friends Provident Group by Resolution Limited; Resolution replaced Friends Provident in the FTSE 100. Omitted from the LSEG constituent-history document."
+  },
+  {
+   "effective": "2009-12-21",
+   "review": "quarterly 2009-Q4",
+   "added": [
+    {
+     "name": "Aggreko",
+     "ticker": "AGK",
+     "sedol": "0147899"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Rentokil Initial",
+     "ticker": "RTO",
+     "sedol": "B082RF1",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 342980, 'FTSE UK Quarterly Review December 2009' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=342980) — changes applied after the close of business 2009-12-18, effective 2009-12-21 | FTSE Russell review spreadsheet '20100206060447_2009_Q4_FTSE_UK_Review.xls' (https://web.archive.org/web/20100206060447id_/http://www.ftse.com/tech_notices/2009/Q4/FTSE_UK_Review.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2010-02-08",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "ARM Holdings",
+     "ticker": "ARM"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Cadbury",
+     "ticker": "CBRY",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell index notice 342750, 'Cadbury PLC (UK): Offer Declared Wholly Unconditional', 2 February 2010 (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=342750)",
+   "needs_verification": false,
+   "notes": "Corporate Event - offer for Cadbury by Kraft Foods declared wholly unconditional; ARM Holdings promoted from the reserve list. Omitted from the LSEG constituent-history document. Cadbury had been renamed from Cadbury Schweppes on the 2008 demerger of Dr Pepper Snapple Group."
+  },
+  {
+   "effective": "2010-03-22",
+   "review": "quarterly 2010-Q1",
+   "added": [
+    {
+     "name": "Investec",
+     "ticker": "INVP",
+     "sedol": "B17BBQ5"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Resolution",
+     "ticker": "RSL",
+     "sedol": "B3FHW22",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 342583, 'FTSE UK Quarterly Review March 2010' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=342583) — changes applied after the close of business 2010-03-19, effective 2010-03-22 | FTSE Russell review spreadsheet '20100401033402_2010_Q1_FTSE_UK_Review.xls' (https://web.archive.org/web/20100401033402id_/http://www.ftse.com:80/tech_notices/2010/Q1/FTSE_UK_Review.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2010-05-07",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "LII",
+     "to_ticker": "CSCG",
+     "new_name": "Capital Shopping Centres Group PLC"
+    }
+   ],
+   "added": [],
+   "removed": [],
+   "source": "Intu Group investor archive, 'Liberty International Demerger and Change of Name' (http://www.intugroup.co.uk/en/investors/transaction-archives/liberty-international-demerger-and-change-of-name/): Liberty International plc was renamed Capital Shopping Centres Group PLC when the demerger of Capital & Counties Properties became unconditional on Friday 7 May 2010. Company archive rather than a primary regulatory filing.",
+   "needs_verification": true,
+   "notes": "Name/ticker change only; membership and constituent count unchanged."
+  },
+  {
+   "effective": "2010-06-21",
+   "review": "quarterly 2010-Q2",
+   "added": [
+    {
+     "name": "African Barrick Gold",
+     "ticker": "ABG",
+     "sedol": "B61D2N6"
+    },
+    {
+     "name": "Essar energy",
+     "ticker": "ESSR",
+     "sedol": "B5SXPF5"
+    }
+   ],
+   "removed": [
+    {
+     "name": "London Stock Exchange Group",
+     "ticker": "LSEG",
+     "sedol": "B0SWJX3",
+     "reason": "review"
+    },
+    {
+     "name": "Thomas Cook Group",
+     "ticker": "TCG",
+     "sedol": "B1VYCH8",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 342183, 'FTSE UK Annual Review June 2010 - Amendment' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=342183) — changes applied after the close of business 2010-06-18, effective 2010-06-21 | FTSE Russell review spreadsheet '20110110105539_2010_Q2_FTSE_UK_Review.xls' (https://web.archive.org/web/20110110105539id_/http://www.ftse.com/tech_notices/2010/Q2/FTSE_UK_Review.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2010-09-20",
+   "review": "quarterly 2010-Q3",
+   "added": [
+    {
+     "name": "Resolution",
+     "ticker": "RSL",
+     "sedol": "B62W232"
+    },
+    {
+     "name": "Tomkins",
+     "ticker": "TOMK",
+     "sedol": "0896265"
+    },
+    {
+     "name": "Weir Group",
+     "ticker": "WEIR",
+     "sedol": "0946580"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Cable and Wireless Worldwide",
+     "ticker": "CW.",
+     "sedol": "B5WB0X8",
+     "reason": "review"
+    },
+    {
+     "name": "Home Retail Group",
+     "ticker": "HOME",
+     "sedol": "B19NKB7",
+     "reason": "review"
+    },
+    {
+     "name": "Segro",
+     "ticker": "SGRO",
+     "sedol": "B5ZN1N8",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 341699, 'FTSE UK Quarterly Review September 2010 - Amendment' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=341699) — changes applied after the close of business 2010-09-17, effective 2010-09-20 | FTSE Russell review spreadsheet '20100928151516_2010_Q3_FTSE_UK_Review_Amend.xls' (https://web.archive.org/web/20100928151516id_/http://www.ftse.com:80/tech_notices/2010/Q3/FTSE_UK_Review_Amend.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2010-09-24",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "GKN",
+     "ticker": "GKN"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Tomkins",
+     "ticker": "TOMK",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell index notice 341664, 'Tomkins PLC (UK): Scheme of Arrangement', 21 September 2010 (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=341664)",
+   "needs_verification": false,
+   "notes": "Corporate Event - acquisition of Tomkins by Pinafore Acquisitions; GKN promoted from the reserve list. Omitted from the LSEG constituent-history document."
+  },
+  {
+   "effective": "2010-12-20",
+   "review": "quarterly 2010-Q4",
+   "added": [
+    {
+     "name": "IMI",
+     "ticker": "IMI",
+     "sedol": "0457963"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Cobham",
+     "ticker": "COB",
+     "sedol": "B07KD36",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 341320, 'FTSE UK Quarterly Review December 2010' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=341320) — changes applied after the close of business 2010-12-17, effective 2010-12-20 | FTSE Russell review spreadsheet '20110112013337_2010_Q4_FTSE_UK_Review.xls' (https://web.archive.org/web/20110112013337id_/http://www.ftse.com:80/tech_notices/2010/Q4/FTSE_UK_Review.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2011-01-24",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "BAY",
+     "to_ticker": "IAG",
+     "new_name": "International Consolidated Airlines Group"
+    }
+   ],
+   "added": [],
+   "removed": [],
+   "source": "FTSE Russell index notice 341166, 'British Airways PLC (UK): Scheme of Arrangement', 7 January 2011 (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=341166): 'Monday 24 January 2011 (at market open) British Airways will be replaced by IAG on a 1 for 1 basis (i.e. no weighting change to any FTSE indices and no index divisor change).' Recorded as a rename because FTSE preserved the index position one for one on the merger of British Airways with Iberia.",
+   "needs_verification": false,
+   "notes": "Name/ticker change only; membership and constituent count unchanged."
+  },
+  {
+   "effective": "2011-03-21",
+   "review": "quarterly 2011-Q1",
+   "added": [
+    {
+     "name": "Wood Group (John)",
+     "ticker": "WG.",
+     "sedol": "3157583"
+    },
+    {
+     "name": "ITV",
+     "ticker": "ITV",
+     "sedol": "3398649"
+    },
+    {
+     "name": "Hargreaves Lansdown",
+     "ticker": "HL.",
+     "sedol": "B1VZ0M2"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Bunzl",
+     "ticker": "BNZL",
+     "sedol": "B0744B3",
+     "reason": "review"
+    },
+    {
+     "name": "Alliance Trust",
+     "ticker": "ATST",
+     "sedol": "B11V7W9",
+     "reason": "review"
+    },
+    {
+     "name": "African Barrick Gold",
+     "ticker": "ABG",
+     "sedol": "B61D2N6",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 340914, 'FTSE UK Quarterly Review March 2011 - Amendment' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=340914) — changes applied after the close of business 2011-03-18, effective 2011-03-21 | FTSE Russell review spreadsheet '20110322035023_2011_Q1_FTSE_UK_Review_Amendment.xls' (https://web.archive.org/web/20110322035023id_/http://www.ftse.com:80/tech_notices/2011/Q1/FTSE_UK_Review_Amendment.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2011-05-25",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Glencore",
+     "ticker": "GLEN"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Invensys",
+     "ticker": "ISYS",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Fast Entry"
+  },
+  {
+   "effective": "2011-06-20",
+   "review": "quarterly 2011-Q2",
+   "added": [
+    {
+     "name": "Tate & Lyle",
+     "ticker": "TATE",
+     "sedol": "0875413"
+    }
+   ],
+   "removed": [
+    {
+     "name": "TUI Travel",
+     "ticker": "TT.",
+     "sedol": "B1Z7RQ7",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 340435, 'FTSE UK Annual Review June 2011' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=340435) — changes applied after the close of business 2011-06-17, effective 2011-06-20 | FTSE Russell review spreadsheet '20110627051104_2011_Q2_FTSE_UK_Review.xls' (https://web.archive.org/web/20110627051104id_/http://www.ftse.com:80/tech_notices/2011/Q2/FTSE_UK_Review.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2011-09-19",
+   "review": "quarterly 2011-Q3",
+   "added": [
+    {
+     "name": "Ashmore Group",
+     "ticker": "ASHM"
+    },
+    {
+     "name": "Bunzl",
+     "ticker": "BNZL"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Wood Group (John)",
+     "ticker": "WG.",
+     "reason": "review"
+    },
+    {
+     "name": "3i Group",
+     "ticker": "III",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 340031, 'FTSE UK Quarterly Review September 2011 - Amendment' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=340031) — changes applied after the close of business 2011-09-16, effective 2011-09-19 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2011-10-07",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Meggitt",
+     "ticker": "MGGT"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Autonomy Corporation",
+     "ticker": "AU.",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2011-12-19",
+   "review": "quarterly 2011-Q4",
+   "added": [
+    {
+     "name": "CRH",
+     "ticker": "CRH",
+     "sedol": "0182704"
+    },
+    {
+     "name": "Evraz",
+     "ticker": "EVR",
+     "sedol": "B71N6K8"
+    },
+    {
+     "name": "Polymetal International",
+     "ticker": "POLY",
+     "sedol": "B6T5S47"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Inmarsat",
+     "ticker": "ISAT",
+     "sedol": "B09LSH6",
+     "reason": "review"
+    },
+    {
+     "name": "Investec",
+     "ticker": "INVP",
+     "sedol": "B17BBQ5",
+     "reason": "review"
+    },
+    {
+     "name": "Lonmin",
+     "ticker": "LMI",
+     "sedol": "3119248",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 339604, 'FTSE UK Quarterly Review December 2011 - Amendment' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=339604) — changes applied after the close of business 2011-12-16, effective 2011-12-19 | FTSE Russell review spreadsheet '20130328004628_2011_Q4_FTSE_UK_Review.xls' (https://web.archive.org/web/20130328004628id_/http://www.ftse.com/tech_notices/2011/Q4/FTSE_UK_Review.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2012-03-19",
+   "review": "quarterly 2012-Q1",
+   "added": [
+    {
+     "name": "Croda International",
+     "ticker": "CRDA",
+     "sedol": "0233527"
+    },
+    {
+     "name": "Aberdeen Asset Management",
+     "ticker": "ADN",
+     "sedol": "0003128"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Cairn Energy",
+     "ticker": "CNE",
+     "sedol": "B74CDH8",
+     "reason": "review"
+    },
+    {
+     "name": "Essar Energy",
+     "ticker": "ESSR",
+     "sedol": "B5SXPF5",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 339218, 'FTSE UK Quarterly Review March 2012 - Amendment' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=339218) — changes applied after the close of business 2012-03-16, effective 2012-03-19 | FTSE Russell review spreadsheet '20120414225446_2012_Q1_FTSE_UK_Review_Amend.xls' (https://web.archive.org/web/20120414225446id_/http://www.ftse.com/tech_notices/2012/Q1/FTSE_UK_Review_Amend.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2012-06-18",
+   "review": "quarterly 2012-Q2",
+   "added": [
+    {
+     "name": "Babcock International Group",
+     "ticker": "BAB",
+     "sedol": "0969703"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Man Group",
+     "ticker": "EMG",
+     "sedol": "B28KQ18",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 338840, 'FTSE UK Annual Review June 2012 - Amendment' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=338840) — changes applied after the close of business None, effective 2012-06-18 | FTSE Russell review spreadsheet '20130108041945_2012_Q2_FTSE_UK_Review.xls' (https://web.archive.org/web/20130108041945id_/http://www.ftse.com:80/tech_notices/2012/Q2/FTSE_UK_Review.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2012-06-29",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Pennon Group",
+     "ticker": "PNN"
+    }
+   ],
+   "removed": [
+    {
+     "name": "International Power",
+     "ticker": "IPR",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event - Acquisition of International Power by GDF Suez S.A."
+  },
+  {
+   "effective": "2012-09-24",
+   "review": "quarterly 2012-Q3",
+   "added": [
+    {
+     "name": "Melrose",
+     "ticker": "MRO"
+    },
+    {
+     "name": "Wood Group (John)",
+     "ticker": "WG."
+    }
+   ],
+   "removed": [
+    {
+     "name": "ICAP",
+     "ticker": "IAP",
+     "reason": "review"
+    },
+    {
+     "name": "Ashmore Group",
+     "ticker": "ASHM",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 338329, 'FTSE UK Quarterly Review Sept 2012' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=338329) — changes applied after the close of business 2012-09-21, effective 2012-09-24 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2012-12-24",
+   "review": "quarterly 2012-Q4",
+   "added": [
+    {
+     "name": "TUI Travel",
+     "ticker": "TT."
+    }
+   ],
+   "removed": [
+    {
+     "name": "Pennon Group",
+     "ticker": "PNN",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 337910, 'FTSE UK Quarterly Review Dec 2012' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=337910) — changes applied after the close of business 2012-12-21, effective 2012-12-24 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2013-02-18",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "CSCG",
+     "to_ticker": "INTU",
+     "new_name": "Intu Properties plc"
+    }
+   ],
+   "added": [],
+   "removed": [],
+   "source": "CoStar News, 'CSC officially changes name to Intu Properties' (https://www.costar.com/article/161883/csc-officially-changes-name-to-intu-properties): Capital Shopping Centres Group PLC shares began trading under the new name intu properties plc, LSE code INTU, on 18 February 2013. Secondary source.",
+   "needs_verification": true,
+   "notes": "Name/ticker change only; membership and constituent count unchanged."
+  },
+  {
+   "effective": "2013-03-18",
+   "review": "quarterly 2013-Q1",
+   "added": [
+    {
+     "name": "Easyjet",
+     "ticker": "EZJ"
+    },
+    {
+     "name": "London Stock Exchange Group",
+     "ticker": "LSEG"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Intu Properties",
+     "ticker": "INTU",
+     "reason": "review"
+    },
+    {
+     "name": "Kazakhmys",
+     "ticker": "KAZ",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 337491, 'FTSE UK Quarterly Review March 2013' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=337491) — changes applied after the close of business 2013-03-15, effective 2013-03-18 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2013-05-01",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "William Hill",
+     "ticker": "WMH"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Xstrata",
+     "ticker": "XTA",
+     "reason": "merger"
+    }
+   ],
+   "source": "FTSE Russell index notice 337232, 'Xstrata PLC (UK): Merger with Glencore International PLC (UK)', 26 April 2013 (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=337232)",
+   "needs_verification": false,
+   "notes": "Corporate Event - merger of Xstrata with Glencore International; William Hill promoted from the reserve list. Omitted from the LSEG constituent-history document."
+  },
+  {
+   "effective": "2013-06-24",
+   "review": "quarterly 2013-Q2",
+   "added": [
+    {
+     "name": "Persimmon",
+     "ticker": "PSN"
+    },
+    {
+     "name": "Travis Perkins",
+     "ticker": "TPK"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Evraz",
+     "ticker": "EVR",
+     "reason": "review"
+    },
+    {
+     "name": "Polymetal",
+     "ticker": "POLY",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 337008, 'FTSE UK Annual Review June 2013' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=337008) — changes applied after the close of business 2013-06-21, effective 2013-06-24 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2013-09-23",
+   "review": "quarterly 2013-Q3",
+   "added": [
+    {
+     "name": "Coca-Cola HBC AG",
+     "ticker": "CCH",
+     "sedol": "B9895B7"
+    },
+    {
+     "name": "Sports Direct International",
+     "ticker": "SPD",
+     "sedol": "B1QH8P2"
+    },
+    {
+     "name": "Mondi",
+     "ticker": "MNDI",
+     "sedol": "B1CRLC4"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Wood Group (John)",
+     "ticker": "WG.",
+     "sedol": "B5N0P84",
+     "reason": "review"
+    },
+    {
+     "name": "Eurasian Natural Resources Corporation",
+     "ticker": "ENRC",
+     "sedol": "B29BCK1",
+     "reason": "review"
+    },
+    {
+     "name": "Serco Group",
+     "ticker": "SRP",
+     "sedol": "0797379",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 336586, 'FTSE UK Quarterly Review September 2013' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=336586) — changes applied after the close of business 2013-09-20, effective 2013-09-23 | FTSE Russell review spreadsheet '20131001220055_2013_Q3_FTSE_UK_Review.xls' (https://web.archive.org/web/20131001220055id_/http://www.ftse.com/tech_notices/2013/Q3/FTSE_UK_Review.xls) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2013-12-23",
+   "review": "quarterly 2013-Q4",
+   "added": [
+    {
+     "name": "Royal Mail",
+     "ticker": "RMG"
+    },
+    {
+     "name": "Ashtead Group",
+     "ticker": "AHT"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Croda International",
+     "ticker": "CRDA",
+     "reason": "review"
+    },
+    {
+     "name": "Vedanta Resources",
+     "ticker": "VED",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 336066, 'FTSE UK Quarterly Review December 2013 - Amendment' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=336066) — changes applied after the close of business 2013-12-20, effective 2013-12-23 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2014-03-24",
+   "review": "quarterly 2014-Q1",
+   "added": [
+    {
+     "name": "Barratt Developments",
+     "ticker": "BDEV"
+    },
+    {
+     "name": "St. James’s Place",
+     "ticker": "STJ"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Amec",
+     "ticker": "AMEC",
+     "reason": "review"
+    },
+    {
+     "name": "Tate & Lyle",
+     "ticker": "TATE",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 601628, 'FTSE UK Quarterly Review March 2014 - Amendment' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=601628) — changes applied after the close of business 2014-03-21, effective 2014-03-24 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2014-05-01",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "RSL",
+     "to_ticker": "FLG",
+     "new_name": "Friends Life Group Limited"
+    }
+   ],
+   "added": [],
+   "removed": [],
+   "source": "Wikipedia, 'Friends Life Group' (https://en.wikipedia.org/wiki/Friends_Life_Group): 'Resolution changed its name to Friends Life Group in May 2014'; corroborated by the Friends Life Group Limited 2014 Annual Report and Accounts, titled 'FRIENDS LIFE GROUP LIMITED (formerly Resolution Limited)' (https://static.aviva.io/content/dam/aviva-corporate/documents/investors/pdfs/reports/2014/Friends_Life-2014-ARA.PDF). The published sources give the month only; the day recorded here is APPROXIMATE.",
+   "needs_verification": true,
+   "notes": "Name/ticker change only; membership and constituent count unchanged."
+  },
+  {
+   "effective": "2014-06-23",
+   "review": "quarterly 2014-Q2",
+   "added": [
+    {
+     "name": "3i Group",
+     "ticker": "III"
+    },
+    {
+     "name": "Intu Properties",
+     "ticker": "INTU"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Melrose Industries",
+     "ticker": "MRO",
+     "reason": "review"
+    },
+    {
+     "name": "William Hill",
+     "ticker": "WMH",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 603549, 'FTSE UK Annual Review June 2014' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=603549) — changes applied after the close of business 2014-06-20, effective 2014-06-23 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2014-09-22",
+   "review": "quarterly 2014-Q3",
+   "added": [
+    {
+     "name": "Direct Line Insurance Group",
+     "ticker": "DLG"
+    },
+    {
+     "name": "Dixons Carphone",
+     "ticker": "DC."
+    }
+   ],
+   "removed": [
+    {
+     "name": "Barratt Developments",
+     "ticker": "BDEV",
+     "reason": "review"
+    },
+    {
+     "name": "Rexam",
+     "ticker": "REX",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 698522, 'FTSE UK Quarterly Review September 2014' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=698522) — changes applied after the close of business 2014-09-19, effective 2014-09-22 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2014-11-21",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "BSY",
+     "to_ticker": "SKY",
+     "new_name": "Sky plc"
+    }
+   ],
+   "added": [],
+   "removed": [],
+   "source": "British Sky Broadcasting Group plc was renamed Sky plc on 21 November 2014 following shareholder approval at its AGM; the LSE ticker changed from BSY to SKY (Sky Group corporate history, https://en.wikipedia.org/wiki/Sky_Group). Secondary source.",
+   "needs_verification": true,
+   "notes": "Name/ticker change only; membership and constituent count unchanged."
+  },
+  {
+   "effective": "2014-12-17",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "TUI AG",
+     "ticker": "TUI"
+    }
+   ],
+   "removed": [
+    {
+     "name": "TUI Travel",
+     "ticker": "TT.",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event - Acquisition of TUI Travel by TUI AG"
+  },
+  {
+   "effective": "2014-12-22",
+   "review": "quarterly 2014-Q4",
+   "added": [
+    {
+     "name": "Barratt Developments",
+     "ticker": "BDEV"
+    },
+    {
+     "name": "Taylor Wimpey",
+     "ticker": "TW."
+    }
+   ],
+   "removed": [
+    {
+     "name": "IMI",
+     "ticker": "IMI",
+     "reason": "review"
+    },
+    {
+     "name": "Petrofac",
+     "ticker": "PFC",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 1003917, 'FTSE UK Index Series Quarterly Review December 2014' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=1003917) — changes applied after the close of business 2014-12-19, effective 2014-12-22 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2015-03-23",
+   "review": "quarterly 2015-Q1",
+   "added": [
+    {
+     "name": "Hikma Pharmaceuticals",
+     "ticker": "HIK"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Tullow Oil",
+     "ticker": "TLW",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 1328995, 'FTSE UK Index Series Quarterly Review March 2015' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=1328995) — changes applied after the close of business 2015-03-20, effective 2015-03-23 | FTSE Russell index notice 1328995, 'FTSE UK Index Series Quarterly Review March 2015' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=1328995) — applied after the close of business Friday 20 March 2015, effective Monday 23 March 2015 | FTSE Russell, 'FTSE 100 - Historic Additions and Deletions', April 2026 edition",
+   "needs_verification": false,
+   "notes": "Date corrected to the FTSE Russell notice effective date (Monday 23 March 2015); the LSEG constituent-history document dates this change 20 March 2015, the Friday on which the change was applied at the close."
+  },
+  {
+   "effective": "2015-04-13",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Merlin Entertainments",
+     "ticker": "MERL"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Friends Life Group",
+     "ticker": "FLG",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event - Acquisition of Friends Life Group by Aviva"
+  },
+  {
+   "effective": "2015-06-22",
+   "review": "quarterly 2015-Q2",
+   "added": [
+    {
+     "name": "Inmarsat",
+     "ticker": "ISAT"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Aggreko",
+     "ticker": "AGK",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 1357958, 'FTSE UK Index Series Annual Review June 2015' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=1357958) — changes applied after the close of business 2015-06-19, effective 2015-06-22 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2015-09-21",
+   "review": "quarterly 2015-Q3",
+   "added": [
+    {
+     "name": "Berkeley Group Holdings",
+     "ticker": "BKG"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Weir Group",
+     "ticker": "WEIR",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 1358992, 'FTSE UK Index Series Quarterly Review September 2015' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=1358992) — changes applied after the close of business 2015-09-18, effective 2015-09-21 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2015-12-21",
+   "review": "quarterly 2015-Q4",
+   "added": [
+    {
+     "name": "Worldpay Group",
+     "ticker": "WPG"
+    },
+    {
+     "name": "Provident Financial",
+     "ticker": "PFG"
+    },
+    {
+     "name": "DCC",
+     "ticker": "DCC"
+    }
+   ],
+   "removed": [
+    {
+     "name": "G4S",
+     "ticker": "GFS",
+     "reason": "review"
+    },
+    {
+     "name": "Morrison (Wm) Supermarkets",
+     "ticker": "MRW",
+     "reason": "review"
+    },
+    {
+     "name": "Meggitt",
+     "ticker": "MGGT",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 1359979, 'FTSE UK Index Series Quarterly Review December 2015' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=1359979) — changes applied after the close of business 2015-12-18, effective 2015-12-21 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2016-02-08",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "IMT",
+     "to_ticker": "IMB",
+     "new_name": "Imperial Brands PLC"
+    }
+   ],
+   "added": [],
+   "removed": [],
+   "source": "Eurex circular 'Imperial Tobacco Group PLC: Name change' (https://www.eurex.com/ex-en/find/circulars/Imperial-Tobacco-Group-PLC-Name-change-201340) and Tobacco Reporter, 'Brands replace Tobacco at Imperial', 8 February 2016 (https://tobaccoreporter.com/2016/02/08/brands-replace-tobacco-at-imperial/): the change of name was approved at the AGM on 3 February 2016 and took effect on 8 February 2016, with the LSE ticker changing from IMT to IMB.",
+   "needs_verification": true,
+   "notes": "Name/ticker change only; membership and constituent count unchanged."
+  },
+  {
+   "effective": "2016-02-15",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Rexam",
+     "ticker": "REX"
+    }
+   ],
+   "removed": [
+    {
+     "name": "BG Group",
+     "ticker": "BG.",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – Acquisition of BG Group by Royal Dutch Shell"
+  },
+  {
+   "effective": "2016-03-21",
+   "review": "quarterly 2016-Q1",
+   "added": [
+    {
+     "name": "Paddy Power Betfair",
+     "ticker": "PPB",
+     "sedol": "BWXC0Z1"
+    },
+    {
+     "name": "Mediclinic International plc",
+     "ticker": "MDC",
+     "sedol": "B8HX8Z8"
+    },
+    {
+     "name": "Morrison (Wm) Supermarkets",
+     "ticker": "MRW",
+     "sedol": "0604316"
+    },
+    {
+     "name": "Informa",
+     "ticker": "INF",
+     "sedol": "BMJ6DW5"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Smiths Group",
+     "ticker": "SMIN",
+     "sedol": "B1WY233",
+     "reason": "review"
+    },
+    {
+     "name": "Hikma Pharmaceuticals",
+     "ticker": "HIK",
+     "sedol": "B0LCW08",
+     "reason": "review"
+    },
+    {
+     "name": "Aberdeen Asset Management",
+     "ticker": "ADN",
+     "sedol": "0003128",
+     "reason": "review"
+    },
+    {
+     "name": "Sports Direct International",
+     "ticker": "SPD",
+     "sedol": "B1QH8P2",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 1372356, 'FTSE UK Index Series Quarterly Review March 2016' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=1372356) — changes applied after the close of business 2016-03-18, effective 2016-03-21 | FTSE Russell review spreadsheet '20160305151440_FTSE_UK_Review_March_2016.xlsx' (https://web.archive.org/web/20160305151440id_/http://www.ftse.com:80/products/index-notices/home/GetAttachment?id=26f5874e-52b6-45ad-9889-64da2a568520&title=FTSE_UK_Review_March_2016.xlsx) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2016-06-20",
+   "review": "quarterly 2016-Q2",
+   "added": [
+    {
+     "name": "Hikma Pharmaceuticals",
+     "ticker": "HIK"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Inmarsat",
+     "ticker": "ISAT",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 1535523, 'FTSE UK Index Series Annual Review June 2016' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=1535523) — changes applied after the close of business 2016-06-17, effective 2016-06-20 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2016-06-27",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Smiths Group",
+     "ticker": "SMIN"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Rexam",
+     "ticker": "REX",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – Acquisition of Rexam by Ball Corp (USA)"
+  },
+  {
+   "effective": "2016-09-05",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Micro Focus International",
+     "ticker": "MCRO"
+    }
+   ],
+   "removed": [
+    {
+     "name": "ARM Holdings",
+     "ticker": "ARM",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – Acquisition of ARM Holdings by SoftBank Group (Japan)"
+  },
+  {
+   "effective": "2016-09-19",
+   "review": "quarterly 2016-Q3",
+   "added": [
+    {
+     "name": "Polymetal International",
+     "ticker": "POLY"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Berkeley Group Holdings",
+     "ticker": "BKG",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 1706936, 'FTSE UK Index Series Quarterly Review September 2016' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=1706936) — changes applied after the close of business None, effective 2016-09-19 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2016-10-05",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Croda International",
+     "ticker": "CRDA"
+    }
+   ],
+   "removed": [
+    {
+     "name": "SABMiller",
+     "ticker": "SAB",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell index notice 1764665, 'SABMiller (UK): Acquisition by Anheuser-Busch InBev (Belgium)', 30 September 2016 (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=1764665); replacement corroborated by Wikipedia 'FTSE 100 Index' revisions 2016-09-17 and 2016-10-11",
+   "needs_verification": false,
+   "notes": "Corporate Event - cash acquisition of SABMiller by Anheuser-Busch InBev; Croda International promoted from the reserve list. Omitted from the LSEG constituent-history document; replacement identified from contemporaneous constituent lists."
+  },
+  {
+   "effective": "2016-12-19",
+   "review": "quarterly 2016-Q4",
+   "added": [
+    {
+     "name": "ConvaTec Group",
+     "ticker": "CTEC"
+    },
+    {
+     "name": "Smurfit Kappa Group",
+     "ticker": "SKG"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Travis Perkins",
+     "ticker": "TPK",
+     "reason": "review"
+    },
+    {
+     "name": "Polymetal International",
+     "ticker": "POLY",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 1882021, 'FTSE UK Index Series Quarterly Review December 2016' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=1882021) — changes applied after the close of business 2016-12-16, effective 2016-12-19 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2017-03-20",
+   "review": "quarterly 2017-Q1",
+   "added": [
+    {
+     "name": "Scottish Mortgage Investment Trust",
+     "ticker": "SMT"
+    },
+    {
+     "name": "Rentokil Initial",
+     "ticker": "RTO"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Capita",
+     "ticker": "CPI",
+     "reason": "review"
+    },
+    {
+     "name": "Dixons Carphone",
+     "ticker": "DC.",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2057879, 'FTSE UK Index Series Quarterly Review March 2017' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2057879) — changes applied after the close of business 2017-03-17, effective 2017-03-20 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2017-06-19",
+   "review": "quarterly 2017-Q2",
+   "added": [
+    {
+     "name": "G4S",
+     "ticker": "GFS"
+    },
+    {
+     "name": "Segro",
+     "ticker": "SGRO"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Hikma Pharmaceuticals",
+     "ticker": "HIK",
+     "reason": "review"
+    },
+    {
+     "name": "Intu Properties",
+     "ticker": "INTU",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2231376, 'FTSE UK Index Series Annual Review June 2017' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2231376) — changes applied after the close of business 2017-06-16, effective 2017-06-19 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2017-07-31",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "WOS",
+     "to_ticker": "FERG",
+     "new_name": "Ferguson plc"
+    }
+   ],
+   "added": [],
+   "removed": [],
+   "source": "Wolseley plc was renamed Ferguson plc with effect from 31 July 2017 (Ferguson plc corporate history, https://en.wikipedia.org/wiki/Wolseley_plc; Ferguson press room, 'Ferguson reports first-half results, CEO retirement & Wolseley name change', https://www.fergusonpressroom.com/ferguson-reports-first-half-results-ceo-retirement--wolseley-name-change). Secondary sources.",
+   "needs_verification": true,
+   "notes": "Name/ticker change only; membership and constituent count unchanged."
+  },
+  {
+   "effective": "2017-08-14",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "SL.",
+     "to_ticker": "SLA",
+     "new_name": "Standard Life Aberdeen plc"
+    }
+   ],
+   "added": [],
+   "removed": [],
+   "source": "FTSE Russell index notice 2359686, 'Standard Life (UK): Merger with Aberdeen Asset Management (UK)', 7 August 2017 (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2359686): 'Standard Life will be renamed Standard Life Aberdeen effective 14 August 2017'.",
+   "needs_verification": false,
+   "notes": "Name/ticker change only; membership and constituent count unchanged."
+  },
+  {
+   "effective": "2017-09-18",
+   "review": "quarterly 2017-Q3",
+   "added": [
+    {
+     "name": "NMC Health",
+     "ticker": "NMC"
+    },
+    {
+     "name": "Berkeley Group Holdings",
+     "ticker": "BKG"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Royal Mail",
+     "ticker": "RMG",
+     "reason": "review"
+    },
+    {
+     "name": "Provident Financial",
+     "ticker": "PFG",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2405188, 'FTSE UK Index Series Quarterly Review September 2017' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2405188) — changes applied after the close of business 2017-09-15, effective 2017-09-18 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2017-12-18",
+   "review": "quarterly 2017-Q4",
+   "added": [
+    {
+     "name": "Smith (DS)",
+     "ticker": "SMDS",
+     "sedol": "0822011"
+    },
+    {
+     "name": "Just Eat",
+     "ticker": "JE.",
+     "sedol": "BKX5CN8"
+    },
+    {
+     "name": "Halma",
+     "ticker": "HLMA",
+     "sedol": "0405207"
+    }
+   ],
+   "removed": [
+    {
+     "name": "ConvaTec Group",
+     "ticker": "CTEC",
+     "sedol": "BD3VFW7",
+     "reason": "review"
+    },
+    {
+     "name": "Merlin Entertainments",
+     "ticker": "MERL",
+     "sedol": "BDZT6P9",
+     "reason": "review"
+    },
+    {
+     "name": "Babcock International Group",
+     "ticker": "BAB",
+     "sedol": "0969703",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2585272, 'FTSE UK Index Series Quarterly Review December 2017' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2585272) — changes applied after the close of business 2017-12-15, effective 2017-12-18 | FTSE Russell review spreadsheet '20171209193558_FTSE_UK_Review_Dec_2017.xlsx' (https://web.archive.org/web/20171209193558id_/http://www.ftse.com:80/products/index-notices/home/GetAttachment?id=7af0ac2b-e4ed-4e18-86f7-d02fd6cd13d8&title=FTSE_UK_Review_Dec_2017.xlsx) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2018-01-15",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Evraz",
+     "ticker": "EVR"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Worldpay Group",
+     "ticker": "WPG",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – Acquisition of Worldpay Group by Vantiv (USA)"
+  },
+  {
+   "effective": "2018-03-19",
+   "review": "quarterly 2018-Q1",
+   "added": [
+    {
+     "name": "Royal Mail",
+     "ticker": "RMG",
+     "sedol": "BDVZYZ7"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Hammerson",
+     "ticker": "HMSO",
+     "sedol": "0406501",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2587774, 'FTSE UK Index Series Quarterly Review March 2018' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2587774) — changes applied after the close of business 2018-03-16, effective 2018-03-19 | FTSE Russell review spreadsheet '20180308185239_FTSE_UK_Review_March_2018.xlsx' (https://web.archive.org/web/20180308185239id_/http://www.ftse.com:80/products/index-notices/home/GetAttachment?id=94daf0fa-3b7a-40f7-b2ce-608f770e72d5&title=FTSE_UK_Review_March_2018.xlsx) — FTSE 100 Inclusions/Exclusions tables with SEDOLs | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2018-04-24",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Melrose Industries",
+     "ticker": "MRO"
+    }
+   ],
+   "removed": [
+    {
+     "name": "GKN",
+     "ticker": "GKN",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – Acquisition of GKN by Melrose Industries"
+  },
+  {
+   "effective": "2018-06-18",
+   "review": "quarterly 2018-Q2",
+   "added": [
+    {
+     "name": "Ocado Group",
+     "ticker": "OCDO"
+    },
+    {
+     "name": "GVC Holdings",
+     "ticker": "GVC"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Mediclinic International",
+     "ticker": "MDC",
+     "reason": "review"
+    },
+    {
+     "name": "G4S",
+     "ticker": "GFS",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2588861, 'FTSE UK Index Series Annual Review June 2018 - Amendment' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2588861) — changes applied after the close of business 2018-06-15, effective 2018-06-18 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2018-06-28",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Rightmove",
+     "ticker": "RMV"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Old Mutual",
+     "ticker": "OML",
+     "reason": "merger"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – Demerger of Quilter and Nationality change"
+  },
+  {
+   "effective": "2018-10-12",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Wood Group (John)",
+     "ticker": "WG."
+    }
+   ],
+   "removed": [
+    {
+     "name": "Sky",
+     "ticker": "SKY",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – Acquisition of Sky by Comcast (USA) Date read as 12 October 2018 from the LSEG register, whose date cell for this row is typeset '12- Oct-18'."
+  },
+  {
+   "effective": "2018-11-23",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "BLT",
+     "to_ticker": "BHP",
+     "new_name": "BHP Group Plc"
+    }
+   ],
+   "added": [],
+   "removed": [],
+   "source": "BHP media release, 'Change of name to BHP Group', November 2018 (https://www.bhp.com/news/media-centre/releases/2018/11/change-of-name-to-bhp-group): BHP Billiton Plc was renamed BHP Group Plc effective 19 November 2018 and its LSE ticker changed to BHP on 23 November 2018. The ticker date is used here.",
+   "needs_verification": false,
+   "notes": "Name/ticker change only; membership and constituent count unchanged."
+  },
+  {
+   "effective": "2018-12-24",
+   "review": "quarterly 2018-Q4",
+   "added": [
+    {
+     "name": "Hiscox",
+     "ticker": "HSX"
+    },
+    {
+     "name": "Spirax-Sarco Engineering",
+     "ticker": "SPX"
+    },
+    {
+     "name": "Hikma Pharmaceuticals",
+     "ticker": "HIK"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Just Eat",
+     "ticker": "JE.",
+     "reason": "review"
+    },
+    {
+     "name": "Royal Mail",
+     "ticker": "RMG",
+     "reason": "review"
+    },
+    {
+     "name": "Shire",
+     "ticker": "SHP",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell index notice 2591110, 'FTSE UK Index Series Quarterly Review December 2018' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2591110) — changes applied after the close of business 2018-12-21, effective 2018-12-24 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – Acquisition of Shire (UK) by Takeda Pharmaceutical (Japan)"
+  },
+  {
+   "effective": "2018-12-31",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Auto Trader Group",
+     "ticker": "AUTO"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Randgold Resources",
+     "ticker": "RRS",
+     "reason": "merger"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – Merger between Barrick Gold (Canada) and Randgold Resources (UK)"
+  },
+  {
+   "effective": "2019-03-18",
+   "review": "quarterly 2019-Q1",
+   "added": [
+    {
+     "name": "Phoenix Group Holdings",
+     "ticker": "PHNX"
+    },
+    {
+     "name": "Just Eat",
+     "ticker": "JE."
+    }
+   ],
+   "removed": [
+    {
+     "name": "GVC Holdings",
+     "ticker": "GVC",
+     "reason": "review"
+    },
+    {
+     "name": "Wood Group (John)",
+     "ticker": "WG.",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2592029, 'FTSE UK Index Series Quarterly Review March 2019' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2592029) — changes applied after the close of business 2019-03-15, effective 2019-03-18 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2019/ftse-uk-index-series-quarterly-review-march-2019 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2019-05-28",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "PPB",
+     "to_ticker": "FLTR",
+     "new_name": "Flutter Entertainment plc"
+    }
+   ],
+   "added": [],
+   "removed": [],
+   "source": "Paddy Power Betfair plc was renamed Flutter Entertainment plc with effect from 28 May 2019, the ticker changing to FLTR on both the London Stock Exchange and Euronext Dublin (Gaming Intelligence, 'Paddy Power Betfair renamed Flutter Entertainment', https://www.gamingintelligence.com/business/52362-paddy-power-betfair-renamed-flutter-entertainment). Secondary source.",
+   "needs_verification": true,
+   "notes": "Name/ticker change only; membership and constituent count unchanged."
+  },
+  {
+   "effective": "2019-06-24",
+   "review": "quarterly 2019-Q2",
+   "added": [
+    {
+     "name": "JD Sports Fashion",
+     "ticker": "JD."
+    },
+    {
+     "name": "Aveva Group",
+     "ticker": "AVV"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Hikma Pharmaceuticals",
+     "ticker": "HIK",
+     "reason": "review"
+    },
+    {
+     "name": "Easyjet",
+     "ticker": "EZJ",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2592967, 'FTSE UK Index Series Annual Review June 2019' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2592967) — changes applied after the close of business 2019-06-21, effective 2019-06-24 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2019/ftse-uk-index-series-quarterly-review-june-2019 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2019-09-23",
+   "review": "quarterly 2019-Q3",
+   "added": [
+    {
+     "name": "Polymetal International",
+     "ticker": "POLY"
+    },
+    {
+     "name": "Hikma Pharmaceuticals",
+     "ticker": "HIK"
+    },
+    {
+     "name": "Meggitt",
+     "ticker": "MGGT"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Marks and Spencer Group",
+     "ticker": "MKS",
+     "reason": "review"
+    },
+    {
+     "name": "Micro Focus International",
+     "ticker": "MCRO",
+     "reason": "review"
+    },
+    {
+     "name": "Direct Line Insurance Group",
+     "ticker": "DLG",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2593722, 'FTSE UK Index Series Quarterly Review September 2019' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2593722) — changes applied after the close of business 2019-09-20, effective 2019-09-23 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2019/ftse-uk-index-series-quarterly-review-september-2019 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2019-10-21",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "M&G",
+     "ticker": "MNG"
+    }
+   ],
+   "removed": [],
+   "source": "FTSE Russell index notice 2594263, 'Prudential (UK): Demerger of M&G (UK)', 14 October 2019 (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2594263)",
+   "needs_verification": false,
+   "notes": "Corporate Event - demerger of M&G from Prudential; M&G added to the FTSE 100, taking the index to 101 constituents until the re-ranking deletion effective 23 October 2019."
+  },
+  {
+   "effective": "2019-10-23",
+   "review": "ad-hoc",
+   "added": [],
+   "removed": [
+    {
+     "name": "Just Eat",
+     "ticker": "JE.",
+     "reason": "merger"
+    }
+   ],
+   "source": "FTSE Russell index notice 2594312, 'Prudential (UK): Demerger of M&G (UK) - Update', 21 October 2019 (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2594312); constituent corroborated by Wikipedia 'FTSE 100 Index' revisions 2019-10-18 and 2019-10-28",
+   "needs_verification": false,
+   "notes": "Removal of the smallest constituent following the M&G demerger re-ranking, restoring the index to 100."
+  },
+  {
+   "effective": "2019-12-23",
+   "review": "quarterly 2019-Q4",
+   "added": [
+    {
+     "name": "Just Eat",
+     "ticker": "JE."
+    },
+    {
+     "name": "Easyjet",
+     "ticker": "EZJ"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Fresnillo",
+     "ticker": "FRES",
+     "reason": "review"
+    },
+    {
+     "name": "Hiscox",
+     "ticker": "HSX",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2594776, 'FTSE UK Index Series Quarterly Review December 2019' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2594776) — changes applied after the close of business 2019-12-20, effective 2019-12-23 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2019/ftse-uk-index-series-quarterly-review-december-2019 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2020-02-05",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Just Eat Takeaway.com",
+     "ticker": "JET"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Just Eat",
+     "ticker": "JE.",
+     "reason": "merger"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event -combination with Takeway.com Holding (Netherlands)"
+  },
+  {
+   "effective": "2020-03-23",
+   "review": "quarterly 2020-Q1",
+   "added": [
+    {
+     "name": "Intermediate Capital Group",
+     "ticker": "ICP"
+    },
+    {
+     "name": "Pennon Group",
+     "ticker": "PNN"
+    },
+    {
+     "name": "Fresnillo",
+     "ticker": "FRES"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Kingfisher",
+     "ticker": "KGF",
+     "reason": "review"
+    },
+    {
+     "name": "TUI AG",
+     "ticker": "TUI",
+     "reason": "review"
+    },
+    {
+     "name": "NMC Health*",
+     "ticker": "NMC",
+     "reason": "delisting"
+    }
+   ],
+   "source": "FTSE Russell index notice 2595627, 'FTSE UK Index Series Quarterly Review March 2020' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2595627) — changes applied after the close of business 2020-03-20, effective 2020-03-23 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2020/ftse-uk-index-series-quarterly-review-march-2020 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false,
+   "notes": "*As a result of suspension of listing NMC Health was temporarily retained in the FTSE 100 Index"
+  },
+  {
+   "effective": "2020-06-22",
+   "review": "quarterly 2020-Q2",
+   "added": [
+    {
+     "name": "Avast",
+     "ticker": "AVST"
+    },
+    {
+     "name": "GVC Holdings",
+     "ticker": "GVC"
+    },
+    {
+     "name": "Kingfisher",
+     "ticker": "KGF"
+    },
+    {
+     "name": "Homeserve",
+     "ticker": "HSV"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Easyjet",
+     "ticker": "EZJ",
+     "reason": "review"
+    },
+    {
+     "name": "Meggitt",
+     "ticker": "MGGT",
+     "reason": "review"
+    },
+    {
+     "name": "Centrica",
+     "ticker": "CNA",
+     "reason": "review"
+    },
+    {
+     "name": "Carnival",
+     "ticker": "CCL",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2596588, 'FTSE UK Index Series Annual Review June 2020' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2596588) — changes applied after the close of business 2020-06-19, effective 2020-06-22 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2020/ftse-uk-index-series-quarterly-review-june-2020 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2020-07-23",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "RBS",
+     "to_ticker": "NWG",
+     "new_name": "NatWest Group plc"
+    }
+   ],
+   "added": [],
+   "removed": [],
+   "source": "The Royal Bank of Scotland Group plc was renamed NatWest Group plc, the change registered at Companies House on 22 July 2020, with trading on the London Stock Exchange under the ticker NWG commencing on 23 July 2020 (Nasdaq, 'Royal Bank of Scotland Is Now NatWest', https://www.nasdaq.com/articles/royal-bank-of-scotland-is-now-natwest-2020-07-23). Secondary source; the first-day-of-trading date is used.",
+   "needs_verification": true,
+   "notes": "Name/ticker change only; membership and constituent count unchanged."
+  },
+  {
+   "effective": "2020-09-21",
+   "review": "quarterly 2020-Q3",
+   "added": [
+    {
+     "name": "B8M European Value Retail",
+     "ticker": "BME"
+    }
+   ],
+   "removed": [
+    {
+     "name": "ITV",
+     "ticker": "ITV",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2597507, 'FTSE UK Index Series Quarterly Review September 2020' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2597507) — changes applied after the close of business 2020-09-18, effective 2020-09-21 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2020/ftse-uk-index-series-quarterly-review-september-2020 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2020-12-09",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "GVC",
+     "to_ticker": "ENT",
+     "new_name": "Entain plc"
+    }
+   ],
+   "added": [],
+   "removed": [],
+   "source": "GVC Holdings plc changed its name to Entain plc on 9 December 2020 following a shareholder vote (SBC News, 'GVC Holdings begins new era as Entain Plc', 10 December 2020, https://sbcnews.co.uk/sportsbook/2020/12/10/gvc-holdings-begins-new-era-as-entain-plc/). Secondary source.",
+   "needs_verification": true,
+   "notes": "Name/ticker change only; membership and constituent count unchanged."
+  },
+  {
+   "effective": "2020-12-21",
+   "review": "quarterly 2020-Q4",
+   "added": [
+    {
+     "name": "Pershing Square Holdings",
+     "ticker": "PSH"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Homeserve",
+     "ticker": "HSV",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2598543, 'FTSE UK Index Series Quarterly Review December 2020' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2598543) — changes applied after the close of business 2020-12-18, effective 2020-12-21 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2020/ftse-uk-index-series-quarterly-review-december-2020 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2021-03-22",
+   "review": "quarterly 2021-Q1",
+   "added": [
+    {
+     "name": "Weir Group",
+     "ticker": "WEIR"
+    },
+    {
+     "name": "Reinshaw",
+     "ticker": "RSW"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Morrison (Wm) Supermarkets",
+     "ticker": "MRW",
+     "reason": "review"
+    },
+    {
+     "name": "Pennon Group",
+     "ticker": "PNN",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2599478, 'FTSE UK Index Series Quarterly Review March 2021' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2599478) — changes applied after the close of business 2021-03-19, effective 2021-03-22 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2021/ftse-uk-index-series-quarterly-review-march-2021 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2021-04-01",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "RB.",
+     "to_ticker": "RKT",
+     "new_name": "Reckitt Benckiser Group plc"
+    }
+   ],
+   "added": [],
+   "removed": [],
+   "source": "Reckitt Benckiser Group plc announced that, effective from 1 April 2021, its London Stock Exchange TIDM changed from RB. to RKT while its ISIN (GB00B24CGK77) and SEDOL (B24CGK7) were unchanged; the listed company name remains Reckitt Benckiser Group plc and the business trades as 'Reckitt' (company announcement reproduced at https://www.research-tree.com/newsfeed/article/rb-rebrands-as-reckitt-1178298; see also Reckitt, 'Welcome to Reckitt', https://www.reckitt.com/media-landing/press-releases/2021/welcome-to-reckitt/). This entry records a TIDM change only - the legal name did not change and index membership was unaffected.",
+   "needs_verification": false,
+   "notes": "Name/ticker change only; membership and constituent count unchanged."
+  },
+  {
+   "effective": "2021-05-28",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Royal Mail",
+     "ticker": "RMG"
+    }
+   ],
+   "removed": [
+    {
+     "name": "RSA Insurance Group",
+     "ticker": "RSA",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – cash offer for RSA Insurance Group by Regent Bidco Limited (non constituent)"
+  },
+  {
+   "effective": "2021-06-07",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Thungela Resources",
+     "ticker": "TGA"
+    }
+   ],
+   "removed": [],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – demerger of Thungela Resources (non constituent) from Anglo American"
+  },
+  {
+   "effective": "2021-06-11",
+   "review": "ad-hoc",
+   "added": [],
+   "removed": [
+    {
+     "name": "Thungela Resources",
+     "ticker": "TGA",
+     "reason": "merger"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – demerger of Thungela Resources (non constituent) from Anglo American"
+  },
+  {
+   "effective": "2021-06-21",
+   "review": "quarterly 2021-Q2",
+   "added": [
+    {
+     "name": "ITV",
+     "ticker": "ITV"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Reinshaw",
+     "ticker": "RSW",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2600590, 'FTSE UK Index Series Annual Review June 2021_Amendment' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2600590) — changes applied after the close of business 2021-06-18, effective 2021-06-21 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2021/ftse-uk-index-series-quarterly-review-june-2021 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2021-07-05",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "SLA",
+     "to_ticker": "ABDN",
+     "new_name": "abrdn plc"
+    }
+   ],
+   "added": [],
+   "removed": [],
+   "source": "Company announcement, 'Change of company name', 5 July 2021 (https://www.aberdeenplc.com/en-gb/news/all-news/change-of-company-name): 'Standard Life Aberdeen plc has now been renamed abrdn plc... The Company ticker will be changed from SLA to ABDN with effect from 8.00am today.'",
+   "needs_verification": false,
+   "notes": "Name/ticker change only; membership and constituent count unchanged."
+  },
+  {
+   "effective": "2021-09-01",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Jackson Financial (Dummy Line)",
+     "ticker": "JXN.DL"
+    }
+   ],
+   "removed": [],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – demerger of Jackson Financial from Prudential (UK). Inclusion of temporary dummy line."
+  },
+  {
+   "effective": "2021-09-20",
+   "review": "quarterly 2021-Q3",
+   "added": [
+    {
+     "name": "Morrison (Wm) Supermarkets",
+     "ticker": "MRW"
+    },
+    {
+     "name": "Meggitt",
+     "ticker": "MGGT"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Just Eat Takeaway.com*",
+     "ticker": "JET",
+     "reason": "delisting"
+    },
+    {
+     "name": "Weir Group",
+     "ticker": "WEIR",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2603218, 'FTSE UK Index Series Quarterly Review September 2021' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2603218) — changes applied after the close of business None, effective 2021-09-20 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2021/ftse-uk-index-series-quarterly-review-september-2021 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false,
+   "notes": "*Nationality reassigned from UK to Netherlands"
+  },
+  {
+   "effective": "2021-09-22",
+   "review": "ad-hoc",
+   "added": [],
+   "removed": [
+    {
+     "name": "Jackson Financial (Dummy Line)",
+     "ticker": "JXN.DL",
+     "reason": "merger"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – demerger of Jackson Financial from Prudential (FTSE 100). Deletion of temporary dummy line."
+  },
+  {
+   "effective": "2021-10-27",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Darktrace",
+     "ticker": "DARK"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Morrison",
+     "ticker": "MRW",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – Scheme of Arrangement in relation to cash offer for Morrison (Wm) Supermarkets by CD&R Bidco (non constituent)"
+  },
+  {
+   "effective": "2021-12-20",
+   "review": "quarterly 2021-Q4",
+   "added": [
+    {
+     "name": "Dechra Pharmaceuticals",
+     "ticker": "DPH"
+    },
+    {
+     "name": "Electrocomponents",
+     "ticker": "ECM"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Darktrace",
+     "ticker": "DARK",
+     "reason": "review"
+    },
+    {
+     "name": "Johnson Matthey",
+     "ticker": "JMAT",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2602460, 'FTSE UK Index Series Quarterly Review December 2021' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2602460) — changes applied after the close of business 2021-12-17, effective 2021-12-20 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2021/ftse-uk-index-series-quarterly-review-december-2021 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2022-01-31",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "RDSB",
+     "to_ticker": "SHEL",
+     "new_name": "Shell plc"
+    }
+   ],
+   "added": [
+    {
+     "name": "Airtel Africa",
+     "ticker": "AAF"
+    }
+   ],
+   "removed": [
+    {
+     "name": "BHP Group Plc",
+     "ticker": "BHP",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf) || RENAME: Royal Dutch Shell plc changed its name to Shell plc on 21 January 2022 (Shell plc, 'Royal Dutch Shell plc changes its name to Shell plc', https://shell.gcs-web.com/news-releases/news-release-details/royal-dutch-shell-plc-changes-its-name-shell-plc); FTSE Russell applied the resulting index changes for the share-structure simplification effective 31 January 2022 (FTSE Russell, 'FTSE 100 - Historic Additions and Deletions', April 2026 edition, row 31-Jan-22 deleting the Royal Dutch Shell B line). The FTSE date is used. Flagged because this file models one Shell company line where the index carried two (A and B) until this date — see coverage_notes.",
+   "needs_verification": true,
+   "notes": "Corporate Event – Scheme of Arrangement in relation to the unification of BHP Group Plc (UK) and BHP Group Ltd (Australia) creating a single entity assigned Australian nationality. Includes a name/ticker change that preserves membership."
+  },
+  {
+   "effective": "2022-03-21",
+   "review": "quarterly 2022-Q1",
+   "added": [
+    {
+     "name": "Endeavour Mining",
+     "ticker": "EDV"
+    },
+    {
+     "name": "Howden Joinery Group",
+     "ticker": "HWDN"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Evraz",
+     "ticker": "EVR",
+     "reason": "review"
+    },
+    {
+     "name": "Polymetal International",
+     "ticker": "POLY",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2603505, 'FTSE UK Index Series Quarterly Review March 2022' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2603505) — changes applied after the close of business 2022-03-18, effective 2022-03-21 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2022/ftse-uk-index-series-quarterly-review-march-2022 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2022-05-04",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "ECM",
+     "to_ticker": "RS1",
+     "new_name": "RS Group plc"
+    }
+   ],
+   "added": [],
+   "removed": [],
+   "source": "Electrocomponents plc was renamed RS Group plc and its LSE TIDM became RS1 from 8.00am on 4 May 2022 (Pilling & Co Stockbrokers, 'Electrocomponents Plc - Name Change', https://www.pilling.co.uk/electrocomponents-plc-name-change/; RS Group plc corporate history, https://en.wikipedia.org/wiki/RS_Group_plc). Secondary sources.",
+   "needs_verification": true,
+   "notes": "Name/ticker change only; membership and constituent count unchanged."
+  },
+  {
+   "effective": "2022-05-12",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Harbour Energy",
+     "ticker": "HBR"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Ferguson",
+     "ticker": "FERG",
+     "reason": "delisting"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Change of Listing Categy – Ferguson moved from Premium to Standard listing on the LSE"
+  },
+  {
+   "effective": "2022-06-20",
+   "review": "quarterly 2022-Q2",
+   "added": [
+    {
+     "name": "Centrica",
+     "ticker": "CNA"
+    },
+    {
+     "name": "Unite Group",
+     "ticker": "UTG"
+    }
+   ],
+   "removed": [
+    {
+     "name": "ITV",
+     "ticker": "ITV",
+     "reason": "review"
+    },
+    {
+     "name": "Royal Mail",
+     "ticker": "RMG",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2604442, 'FTSE UK Index Series Annual Review June 2022' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2604442) — changes applied after the close of business 2022-06-17, effective 2022-06-20 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2022/ftse-uk-index-series-annual-review-june-2022 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2022-07-18",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Haleon",
+     "ticker": "HLN"
+    }
+   ],
+   "removed": [],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – demerger of Haleon from GSK (FTSE 100)"
+  },
+  {
+   "effective": "2022-07-21",
+   "review": "ad-hoc",
+   "added": [],
+   "removed": [
+    {
+     "name": "Harbour Energy",
+     "ticker": "HBR",
+     "reason": "merger"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Re-ranking deletion following demerger of Haleon from GSK (FTSE 100)"
+  },
+  {
+   "effective": "2022-09-12",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Homeserve",
+     "ticker": "HSV"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Avast",
+     "ticker": "AVST",
+     "reason": "merger"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – merger of Avast with NortonLifeLock Inc (non-constituent)"
+  },
+  {
+   "effective": "2022-09-13",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Frasers Group",
+     "ticker": "FRAS"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Meggitt",
+     "ticker": "MGGT",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – cash acquisition of Meggitt by Parker- Hannifin Corporation (non-constituent)"
+  },
+  {
+   "effective": "2022-09-19",
+   "review": "quarterly 2022-Q3",
+   "added": [
+    {
+     "name": "ConvaTec Group",
+     "ticker": "CTEC"
+    },
+    {
+     "name": "F&C Investment Trust",
+     "ticker": "FCIT"
+    },
+    {
+     "name": "Harbour Energy",
+     "ticker": "HBR"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Abrdn",
+     "ticker": "ABDN",
+     "reason": "review"
+    },
+    {
+     "name": "Hikma Pharmaceuticals",
+     "ticker": "HIK",
+     "reason": "review"
+    },
+    {
+     "name": "Howden Joinery Group",
+     "ticker": "HWDN",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2605373, 'FTSE UK Index Series Quarterly Review September 2022' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2605373) — changes applied after the close of business 2022-09-16, effective 2022-09-19 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2022/ftse-uk-index-series-quarterly-review-september-2022 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2022-12-19",
+   "review": "quarterly 2022-Q4",
+   "added": [
+    {
+     "name": "Abrdn",
+     "ticker": "ABDN"
+    },
+    {
+     "name": "Beazley",
+     "ticker": "BEZ"
+    },
+    {
+     "name": "Weir Group",
+     "ticker": "WEIR"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Dechra Pharmaceuticals",
+     "ticker": "DPH",
+     "reason": "review"
+    },
+    {
+     "name": "Harbour Energy",
+     "ticker": "HBR",
+     "reason": "review"
+    },
+    {
+     "name": "Intermediate Capital Grup",
+     "ticker": "ICP",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2606272, 'FTSE UK Index Series Quarterly Review December 2022' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2606272) — changes applied after the close of business 2022-12-16, effective 2022-12-19 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2022/ftse-uk-index-series-quarterly-review-december-2022 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2023-01-04",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Johnson Matthey",
+     "ticker": "JMAT"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Homeserve",
+     "ticker": "HSV",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – scheme of arrangement in relation to cash offer by Hestia Bidco (non-constituent)"
+  },
+  {
+   "effective": "2023-01-18",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Hiscox",
+     "ticker": "HSX"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Aveva Group",
+     "ticker": "AVV",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – cash offer for Aveva Group by Ascot Acquisition Holdings Limited (non-constituent)"
+  },
+  {
+   "effective": "2023-04-20",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Dowlais Group",
+     "ticker": "DWL"
+    }
+   ],
+   "removed": [],
+   "source": "FTSE Russell index notice 2607680, 'Melrose Industries (UK): Demerger of Dowlais Group (UK)', 13 April 2023 (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2607680)",
+   "needs_verification": false,
+   "notes": "Corporate Event - demerger of Dowlais Group from Melrose Industries. Dowlais entered the FTSE 100, taking the index to 101; Melrose Industries REMAINED a constituent (the LSEG constituent-history document lists Melrose in the Deleted column, which contemporaneous constituent lists and the FTSE Russell notice contradict)."
+  },
+  {
+   "effective": "2023-04-25",
+   "review": "ad-hoc",
+   "added": [],
+   "removed": [
+    {
+     "name": "Dowlais Group",
+     "ticker": "DWL",
+     "reason": "merger"
+    }
+   ],
+   "source": "FTSE Russell index notice 2607713, 'Melrose Industries (UK): Demerger of Dowlais Group (UK) - Update', 20 April 2023 (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2607713); corroborated by Wikipedia 'FTSE 100 Index' revisions 2023-04-15 and 2023-05-10 showing no net change",
+   "needs_verification": false,
+   "notes": "Removal of the smallest constituent following the Dowlais demerger re-ranking, restoring the index to 100. The LSEG constituent-history document places Dowlais in the Added column on this date; the notice and contemporaneous constituent lists show it leaving."
+  },
+  {
+   "effective": "2023-06-19",
+   "review": "quarterly 2023-Q2",
+   "added": [
+    {
+     "name": "IMI",
+     "ticker": "IMI"
+    }
+   ],
+   "removed": [
+    {
+     "name": "British Land Co",
+     "ticker": "BLND",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2608197, 'FTSE UK Index Series Annual Review June 2023 - Amendment' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2608197) — changes applied after the close of business 2023-06-16, effective 2023-06-19 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2023/ftse-uk-index-series-annual-review-june-2023 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2023-09-18",
+   "review": "quarterly 2023-Q3",
+   "added": [
+    {
+     "name": "Dechra Pharmaceuticals",
+     "ticker": "DPH"
+    },
+    {
+     "name": "Diploma",
+     "ticker": "DPLM"
+    },
+    {
+     "name": "Hikma Pharmaceuticals",
+     "ticker": "HIK"
+    },
+    {
+     "name": "Marks & Spencer Group",
+     "ticker": "MKS"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Abrdn",
+     "ticker": "ABDN",
+     "reason": "review"
+    },
+    {
+     "name": "Hiscox",
+     "ticker": "HSX",
+     "reason": "review"
+    },
+    {
+     "name": "Johnson Matthey",
+     "ticker": "JMAT",
+     "reason": "review"
+    },
+    {
+     "name": "Persimmon",
+     "ticker": "PSN",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2608964, 'FTSE UK Index Series Quarterly Review September 2023' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2608964) — changes applied after the close of business 2023-09-15, effective 2023-09-18 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2023/ftse-uk-index-series-quarterly-review-september-2023 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2023-09-25",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Howden Joinery Group",
+     "ticker": "HWDN"
+    }
+   ],
+   "removed": [
+    {
+     "name": "CRH",
+     "ticker": "CRH",
+     "reason": "delisting"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event - transfer of CRH shares from a Premium to an ineligible Standard Listing on the London Stock Exchange"
+  },
+  {
+   "effective": "2023-12-18",
+   "review": "quarterly 2023-Q4",
+   "added": [
+    {
+     "name": "Intermediate Capital Group",
+     "ticker": "ICP"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Hargreaves Lansdown",
+     "ticker": "HL.",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2610882, 'FTSE UK Index Series Quarterly Review December 2023' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2610882) — changes applied after the close of business 2023-12-15, effective 2023-12-18 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2023/ftse-uk-index-series-review-december-2023 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2024-01-16",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Persimmon",
+     "ticker": "PSN"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Dechra Pharmaceuticals",
+     "ticker": "DPH",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – scheme of arrangement in relation to the cash offer for Dechra Pharmaceuticals by Freya Bidco Limited (non-constituent)"
+  },
+  {
+   "effective": "2024-03-18",
+   "review": "quarterly 2024-Q1",
+   "added": [
+    {
+     "name": "Easyjet",
+     "ticker": "EZJ"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Endeavour Mining",
+     "ticker": "EDV",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2611662, 'FTSE UK Index Series Quarterly Review March 2024' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2611662) — changes applied after the close of business 2024-03-15, effective 2024-03-18 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2024/ftse-uk-index-series-review-march-2024 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2024-04-15",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "ICP",
+     "to_ticker": "ICG",
+     "new_name": "Intermediate Capital Group plc"
+    }
+   ],
+   "added": [],
+   "removed": [],
+   "source": "Intermediate Capital Group plc RNS announcement 'Change of ticker symbol to ICG', published 10 April 2024 (https://www.investegate.co.uk/announcement/gnw/intermediate-capital-group--icp/icg-change-of-ticker-symbol-to-icg-/8131678): trading under the ticker ICG took effect from 8.00am on Monday 15 April 2024, with the ISIN and SEDOL unchanged. The company's legal name changed from Intermediate Capital Group plc to ICG plc later, effective 22 July 2025, with no further ticker change (https://www.icgam.com/2025/07/21/change-of-name-to-icg-plc-formerly-intermediate-capital-group-plc/); this file continues to carry the name under which FTSE Russell recorded the constituent.",
+   "needs_verification": false,
+   "notes": "Name/ticker change only; membership and constituent count unchanged."
+  },
+  {
+   "effective": "2024-05-31",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Hargreaves Lansdown",
+     "ticker": "HL."
+    }
+   ],
+   "removed": [
+    {
+     "name": "Flutter Entertainment",
+     "ticker": "FLTR",
+     "reason": "delisting"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event - transfer of Flutter Entertainment shares from a Premium to an ineligible Standard Listing on the London Stock Exchange"
+  },
+  {
+   "effective": "2024-06-24",
+   "review": "quarterly 2024-Q2",
+   "added": [
+    {
+     "name": "Darktrace",
+     "ticker": "DARK"
+    },
+    {
+     "name": "LondonMetric Property",
+     "ticker": "LMP"
+    },
+    {
+     "name": "Vistry Group",
+     "ticker": "VTY"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Ocado Group",
+     "ticker": "OCDO",
+     "reason": "review"
+    },
+    {
+     "name": "RS Group",
+     "ticker": "RS1",
+     "reason": "review"
+    },
+    {
+     "name": "St. James's Place",
+     "ticker": "STJ",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2612739, 'FTSE UK Index Series Annual Review June 2024 - Update' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2612739) — changes applied after the close of business 2024-06-21, effective 2024-06-24 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true
+  },
+  {
+   "effective": "2024-07-08",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Endeavour Mining",
+     "ticker": "EDV"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Smufit Kappa Group",
+     "ticker": "SKG",
+     "reason": "merger"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – combination between Smurfit Kappa Group and WestRock Company (non-constituent)"
+  },
+  {
+   "effective": "2024-08-22",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "BDEV",
+     "to_ticker": "BTRW",
+     "new_name": "Barratt Redrow plc"
+    }
+   ],
+   "added": [],
+   "removed": [],
+   "source": "FTSE Russell index notice 2613238, 'Barratt Developments (UK): Merger with Redrow (UK)', 19 August 2024 (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2613238), index changes effective 22 August 2024; on completion Barratt Developments PLC was renamed Barratt Redrow plc, LSE ticker BTRW (https://en.wikipedia.org/wiki/Barratt_Redrow). The FTSE index-change date is used; the exact TIDM change date is not confirmed against a primary source.",
+   "needs_verification": true,
+   "notes": "Name/ticker change only; membership and constituent count unchanged."
+  },
+  {
+   "effective": "2024-09-23",
+   "review": "quarterly 2024-Q3",
+   "added": [
+    {
+     "name": "Hiscox",
+     "ticker": "HSX"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Burberry Group",
+     "ticker": "BRBY",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2613432, 'FTSE UK Index Series Quarterly Review September 2024' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2613432) — changes applied after the close of business 2024-09-20, effective 2024-09-23 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2024/ftse-uk-index-series-review-september-2024 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2024-10-01",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "British Land Co.",
+     "ticker": "BLND"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Darktrace",
+     "ticker": "DARK",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event - scheme of arrangement in relation to the cash acquisition of Darktrace by Luke Bidco Ltd (non- constituent"
+  },
+  {
+   "effective": "2024-12-23",
+   "review": "quarterly 2024-Q4",
+   "added": [
+    {
+     "name": "Alliance Witan",
+     "ticker": "ALW"
+    },
+    {
+     "name": "Games Workshop Group",
+     "ticker": "GAW"
+    },
+    {
+     "name": "St. James's Place",
+     "ticker": "STJ"
+    }
+   ],
+   "removed": [
+    {
+     "name": "B&M European Value Retail",
+     "ticker": "BME",
+     "reason": "review"
+    },
+    {
+     "name": "Frasers Group",
+     "ticker": "FRAS",
+     "reason": "review"
+    },
+    {
+     "name": "Vistry Group",
+     "ticker": "VTY",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2614328, 'FTSE UK Index Series Quarterly Review December 2024' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2614328) — changes applied after the close of business 2024-12-20, effective 2024-12-23 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2024/ftse-uk-index-series-review-december-2024 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2025-02-03",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Polar Capital Technology Trust",
+     "ticker": "PCT"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Smith (DS)",
+     "ticker": "SMDS",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – scheme of arrangement in relation to the all-share combination between International Paper (non-constituent) and Smith (DS)"
+  },
+  {
+   "effective": "2025-03-24",
+   "review": "quarterly 2025-Q1",
+   "added": [
+    {
+     "name": "Coca-Cola Europacific Partners",
+     "ticker": "CCEP"
+    },
+    {
+     "name": "Babcock International Group",
+     "ticker": "BAB"
+    }
+   ],
+   "removed": [
+    {
+     "name": "British Land Co",
+     "ticker": "BLND",
+     "reason": "review"
+    },
+    {
+     "name": "Hargreaves Lansdown",
+     "ticker": "HL.",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell index notice 2615190, 'FTSE UK Index Series Quarterly Review March 2025' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2615190) — changes applied after the close of business 2025-03-21, effective 2025-03-24 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2025/ftse-uk-index-series-review-march-2025 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false,
+   "notes": "Corporate Event – scheme of arrangement in relation to the cash acquisition of Hargreaves Lansdown by Harp Bidco (non-constituent)"
+  },
+  {
+   "effective": "2025-06-02",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "Valterra Platinum Distribution Line",
+     "ticker": "VALT.DL"
+    }
+   ],
+   "removed": [],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – demerger of Valterra Platinum from Anglo American – temporary line added."
+  },
+  {
+   "effective": "2025-06-05",
+   "review": "ad-hoc",
+   "added": [],
+   "removed": [
+    {
+     "name": "Valterra Platinum Distribution Line",
+     "ticker": "VALT.DL",
+     "reason": "merger"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – demerger of Valterra Platinum from Anglo American – temporary line deleted."
+  },
+  {
+   "effective": "2025-09-22",
+   "review": "quarterly 2025-Q3",
+   "added": [
+    {
+     "name": "Burberry Group",
+     "ticker": "BRBY"
+    },
+    {
+     "name": "Metlen Energy & Metals",
+     "ticker": "MTLN"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Taylor Wimpey",
+     "ticker": "TW.",
+     "reason": "review"
+    },
+    {
+     "name": "Unite Group",
+     "ticker": "UTG",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2616959, 'FTSE UK Index Series Quarterly Review September 2025' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2616959) — changes applied after the close of business 2025-09-19, effective 2025-09-22 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2025/ftse-uk-index-series-review-september-2025 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2025-12-08",
+   "review": "ad-hoc",
+   "added": [
+    {
+     "name": "The Magnum Ice Cream Company",
+     "ticker": "MAGN"
+    }
+   ],
+   "removed": [],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – demerger of The Magnum Ice Cream Company (non-constituent) from Unilever"
+  },
+  {
+   "effective": "2025-12-11",
+   "review": "ad-hoc",
+   "added": [],
+   "removed": [
+    {
+     "name": "The Magnum Ice Cream Company",
+     "ticker": "MAGN",
+     "reason": "merger"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": true,
+   "notes": "Corporate Event – demerger of The Magnum Ice Cream Company (non-constituent) from Unilever"
+  },
+  {
+   "effective": "2025-12-22",
+   "review": "quarterly 2025-Q4",
+   "added": [
+    {
+     "name": "British Land Co",
+     "ticker": "BLND"
+    }
+   ],
+   "removed": [
+    {
+     "name": "WPP",
+     "ticker": "WPP",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2617937, 'FTSE UK Index Series Quarterly Review December 2025' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2617937) — changes applied after the close of business 2025-12-19, effective 2025-12-22 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2025/ftse-uk-index-series-review-december-2025 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2026-03-02",
+   "review": "ad-hoc",
+   "renamed": [
+    {
+     "from_ticker": "PHNX",
+     "to_ticker": "SDLF",
+     "new_name": "Standard Life plc"
+    }
+   ],
+   "added": [
+    {
+     "name": "Tritax Big Box REIT",
+     "ticker": "BBOX"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Ashtead Group",
+     "ticker": "AHT",
+     "reason": "acquisition"
+    }
+   ],
+   "source": "FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf) || RENAME: Phoenix Group Holdings plc completed its change of name to Standard Life plc on 2 March 2026 and is listed on the London Stock Exchange under the ticker SDLF (Pensions Age, 'Phoenix Group completes name change to Standard Life', https://www.pensionsage.com/pa/Phoenix-Group-completes-name-change-to-Standard-Life.php). Secondary source.",
+   "needs_verification": true,
+   "notes": "Corporate Event – scheme of arrangement in relation to a change in holding company and transfer of listing category for Ashtead Group Includes a name/ticker change that preserves membership."
+  },
+  {
+   "effective": "2026-03-23",
+   "review": "quarterly 2026-Q1",
+   "added": [
+    {
+     "name": "IG Group Holdings",
+     "ticker": "IGG"
+    },
+    {
+     "name": "Lion Finance Group",
+     "ticker": "BGEO"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Easyjet",
+     "ticker": "EZJ",
+     "reason": "review"
+    },
+    {
+     "name": "Hikma Pharmaceuticals",
+     "ticker": "HIK",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2618885, 'FTSE UK Index Series Quarterly Review March 2026' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2618885) — changes applied after the close of business 2026-03-20, effective 2026-03-23 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2026/ftse-uk-index-series-review-march-2026 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false
+  },
+  {
+   "effective": "2026-06-22",
+   "review": "quarterly 2026-Q2",
+   "added": [
+    {
+     "name": "Aberdeen Group",
+     "ticker": "ABDN"
+    },
+    {
+     "name": "Computacenter",
+     "ticker": "CCC"
+    },
+    {
+     "name": "Investec",
+     "ticker": "INVP"
+    }
+   ],
+   "removed": [
+    {
+     "name": "Berkeley Group Holdings",
+     "ticker": "BKG",
+     "reason": "review"
+    },
+    {
+     "name": "Mondi",
+     "ticker": "MNDI",
+     "reason": "review"
+    },
+    {
+     "name": "Rightmove",
+     "ticker": "RMV",
+     "reason": "review"
+    }
+   ],
+   "source": "FTSE Russell index notice 2620916, 'FTSE UK Index Series Annual Review June 2026 - Amendment' (https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2620916) — changes applied after the close of business 2026-06-19, effective 2026-06-22 | LSEG press release: https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2026/ftse-uk-index-series-review-june-2026 | FTSE Russell, 'FTSE 100 — Historic Additions and Deletions', April 2026 edition (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf)",
+   "needs_verification": false,
+   "notes": "June 2026 annual review."
+  }
+ ],
+ "coverage_notes": "SCOPE. Anchor snapshot of the FTSE 100 as at 19 December 2005 (the effective date of the December 2005\nannual review) plus every constituent change from then to 22 June 2026 (the June 2026 annual review). 167 dated\nentries: 146 change membership (78 on quarterly/annual review effective dates, 68 ad-hoc - acquisitions, schemes of\narrangement, demergers, suspensions and nationality reassignments between reviews) and 21 are name/ticker changes that\ncarry no membership change (see RENAMES below). Four review quarters in the span\nproduced no FTSE 100 change at all and therefore have no entry: 2006-Q1, 2018-Q3, 2023-Q1 and 2025-Q2; the first was\nconfirmed against the FTSE Russell review spreadsheet, the last two against LSEG press releases, and 2018-Q3 against\ncontemporaneous constituent lists.\n\nEFFECTIVE-DATE CONVENTION (verified). FTSE Russell review notices state the convention explicitly, e.g. the March 2005\nnotice: \"All constituent changes will be applied after the close of business on Friday, 18 March 2005 and will be\neffective on Monday, 21 March 2005\". The `effective` field in this file is FTSE Russell's stated effective date, i.e.\nthe FIRST TRADING DAY on which the new constituent list applies - the Monday after the third Friday of March, June,\nSeptember and December. A backtest that rebalances on `effective` is trading the new membership on its first day, not\nbefore it. Exactly one review in this span departs from the rule: the March 2008 review was applied after the close on\nTuesday 25 March and took effect on Wednesday 26 March 2008, because the third Friday of March 2008 (21 March) was Good\nFriday. Every other review effective date in the file is a Monday falling after the third Friday of its month, and a\nvalidation assertion checks both properties. Every review effective date here was read from the text of the\ncorresponding FTSE Russell notice, never inferred from a calendar rule.\n\nSOURCES, IN ORDER OF WEIGHT.\n(1) FTSE Russell, \"FTSE 100 - Historic Additions and Deletions\", April 2026 edition\n    (https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-100-constituent-history.pdf).\n    This is the index owner's own dated add/delete register back to 1984 and is the spine of the `changes` array.\n(2) FTSE Russell index notices (research.ftserussell.com/products/index-notices), used for EVERY review effective date\n    in the file and for each ad-hoc event listed as a correction below. These are the primary announcements.\n(3) FTSE Russell per-review spreadsheets (FTSE_UK_Review.xls / .xlsx), recovered from Internet Archive captures of\n    www.ftse.com, giving the FTSE 100 Inclusions/Exclusions tables with SEDOLs. Available and used for the June 2005\n    to September 2013 reviews (with gaps at March 2008, September 2011, September and December 2012, and March, June\n    and December 2013) and for March 2016, December 2017 and March 2018.\n(4) LSEG press releases for the March 2019 to June 2026 reviews.\nWikipedia revisions of the \"FTSE 100 Index\" article were used only as an independent cross-check on constituent lists\nat points in time, and to identify the replacement constituent in two ad-hoc events where the FTSE Russell notice did\nnot name it; they are never the sole source for a change.\n\nWHERE THE INDEX OWNER'S OWN DOCUMENT IS WRONG OR INCOMPLETE - READ THIS BEFORE TRUSTING IT.\nReplaying source (1) alone does not conserve the constituent count. Ten events in this span are missing from it or\nrecorded incorrectly, and each has been repaired here against the specific FTSE Russell notice named in the entry's\n`source`:\n  * 2009-01-09  British Energy Group out / Pennon Group in   - missing from (1); notice 344671\n  * 2009-01-19  HBOS out / Balfour Beatty in                  - missing from (1); notice 344637\n  * 2009-11-05  Friends Provident out / Resolution in         - missing from (1); notice 343198\n  * 2010-02-08  Cadbury out / ARM Holdings in                 - missing from (1); notice 342750\n  * 2010-09-24  Tomkins out / GKN in                          - missing from (1); notice 341664\n  * 2013-05-01  Xstrata out / William Hill in                 - missing from (1); notice 337232\n  * 2016-10-05  SABMiller out / Croda International in        - missing from (1); notice 1764665\n  * 2019-10-21/23 M&G in, then Just Eat out on re-ranking     - missing from (1); notices 2594263 and 2594312\n  * 2023-04-20/25 Dowlais Group in, then out on re-ranking    - (1) shows Melrose Industries deleted on 20 April 2023,\n      which is wrong (Melrose remained a constituent), and shows Dowlais as an addition on both dates; notices 2607680\n      and 2607713\n  * 2015-03-23  Hikma Pharmaceuticals in / Tullow Oil out     - (1) dates this 20 March 2015, the Friday on which the\n      change was applied at the close; notice 1328995 gives the effective date as Monday 23 March 2015\n  * 2018-10-12  Sky out / Wood Group (John) in                 - the date cell for this row in (1) is typeset\n      '12- Oct-18' with a space inside the date, which naive extraction silently attaches to the preceding row's date\n      (28 June 2018). The date here is read as 12 October 2018, consistent with Comcast's acquisition of Sky\nAlso removed: a duplicate NMC Health deletion dated 27 April 2020 in (1). NMC Health was removed from the FTSE 100 at\nthe March 2020 review (effective 23 March 2020) while suspended; the April notice (2596168) is the formality that\ncompleted its removal from the wider FTSE UK series after 40 days of suspension, not a second FTSE 100 deletion.\nThe consequence for a user of this file: the LSEG PDF is authoritative on the events it records but demonstrably not\ncomplete, so any independent reconciliation against it will show these differences. They are ours, and they are sourced.\n\nCONSTITUENT COUNT AND THE 101 EXCEPTION. The replay holds at exactly 100 companies on every date in the span except\nduring seven documented demerger windows, when a demerged company is admitted immediately and the smallest constituent\nis removed a few trading days later after re-ranking, leaving the index at 101 companies in between:\n  2019-10-21 to 2019-10-22 (M&G / Prudential), 2021-06-07 to 2021-06-10 (Thungela Resources / Anglo American),\n  2021-09-01 to 2021-09-21 (Jackson Financial dummy line / Prudential), 2022-07-18 to 2022-07-20 (Haleon / GSK),\n  2023-04-20 to 2023-04-24 (Dowlais Group / Melrose Industries), 2025-06-02 to 2025-06-04 (Valterra Platinum\n  distribution line / Anglo American) and 2025-12-08 to 2025-12-10 (The Magnum Ice Cream Company / Unilever).\nEach is sourced to the FTSE Russell notice or to the LSEG register row that created it.\n\nSHARE LINES VERSUS COMPANIES. This file models COMPANY membership, so the anchor is 100 companies and the replay holds\nat 100 companies. The FTSE 100 has carried MORE THAN 100 SECURITY LINES for most of this period, and a security-level\nuniverse will not agree with this file. Royal Dutch Shell A and B were both constituents from 20 July 2005 until the\nshare-structure simplification effective 31 January 2022; Schroders carried a voting and a non-voting line, and the\nFTSE Russell June 2012 review spreadsheet lists both \"Schroders N/V\" and Man Group as FTSE 100 exclusions where the\nLSEG register lists only Man Group. The Wikipedia revision used for the anchor states in terms that in December 2005\nthere were \"100 companies, but a total of 102 listings\". Share-line events are NOT recorded as changes here because no\ncompany entered or left the index: the 31 January 2022 deletion of the Royal Dutch Shell B line is present in the LSEG\nregister and is deliberately omitted from `changes`, and the June 2012 Schroders N/V exclusion is likewise omitted. A\nconsumer needing security-level membership must add these separately.\n\nRENAMES. A change entry may carry a `renamed` list ({from_ticker, to_ticker, new_name}) instead of, or alongside,\nadded/removed. A rename continues the same membership under a new ticker and does not alter the constituent count; the\nreplay splits the spell at the ticker boundary so that ticker+date resolution works either side of it. This file\ncarries 24 rename records, each with its own citation in the entry's `source`: Hilton Group/HG. to Ladbrokes/LAD\n(2006-02-22), Boots Group/BOOT to Alliance Boots/AB. (2006-07-31), Slough Estates/SLOU to SEGRO/SGRO (2007, date\napproximate), AMVESCAP/AVZ to Invesco/IVZ (2007-05-24), Reuters Group/RTR to Thomson Reuters/TRIL (2008-04-17),\nLiberty International/LII to Capital Shopping Centres/CSCG (2010-05-07), British Airways/BAY to International\nConsolidated Airlines Group/IAG (2011-01-24), CSCG to Intu Properties/INTU (2013-02-18), Resolution/RSL to Friends\nLife Group/FLG (May 2014, day approximate), British Sky Broadcasting/BSY to Sky/SKY (2014-11-21), Imperial Tobacco/IMT\nto Imperial Brands/IMB (2016-02-08), Wolseley/WOS to Ferguson/FERG (2017-07-31), Standard Life/SL. to Standard Life\nAberdeen/SLA (2017-08-14), BHP Billiton/BLT to BHP Group/BHP (2018-11-23), Paddy Power Betfair/PPB to Flutter\nEntertainment/FLTR (2019-05-28), RBS to NatWest Group/NWG (2020-07-23), GVC Holdings/GVC to Entain/ENT (2020-12-09),\nReckitt Benckiser RB. to RKT (2021-04-01, TIDM only), Standard Life Aberdeen/SLA to abrdn/ABDN (2021-07-05), Royal\nDutch Shell/RDSB to Shell/SHEL (2022-01-31), Electrocomponents/ECM to RS Group/RS1 (2022-05-04), Intermediate Capital\nICP to ICG (2024-04-15, TIDM only), Barratt Developments/BDEV to Barratt Redrow/BTRW (2024-08-22) and Phoenix Group\nHoldings/PHNX to Standard Life/SDLF (2026-03-02). Eight rest on a FTSE Russell notice, an SEC filing or a company RNS\nand are unflagged; the remaining sixteen rest on company archives or press reporting, or have an approximate day, and\ncarry needs_verification. Two are TIDM changes with no change of legal name (Reckitt, ICG); one further legal-name\nchange is NOT represented because it moved no ticker - Intermediate Capital Group plc became ICG plc on 22 July 2025,\nand this file keeps the earlier name under which FTSE Russell recorded the constituent.\n\nTICKERS - THE WEAKEST FIELD IN THIS FILE. `needs_verification` on a change entry refers to the MEMBERSHIP FACT and its\ndate, not to the ticker. The BASE ticker for each company is an LSE TIDM/EPIC code supplied by the\nauthor from knowledge and partially cross-checked against an EODHD LSE symbol list (live plus delisted); those base\ncodes carry NO primary citation and some are certainly wrong. What IS sourced is every ticker CHANGE: the 24 renames\nabove each cite the announcement that moved the code. Two tickers are synthetic and deliberately unmistakable -\nJXN.DL and VALT.DL - because the constituents concerned were FTSE index-internal lines with no London listing at all\n(the Jackson Financial 'dummy line' created on the Prudential demerger, and the Valterra Platinum 'distribution line'\ncreated on the Anglo American demerger); both are named as such in the FTSE Russell notices cited on those entries,\nand neither should resolve to a security. Do NOT resolve identifiers from these tickers without checking them; where a `sedol` is present it\ncame from the FTSE Russell review spreadsheet for THAT SAME effective date and is both point-in-time and the far\nstronger identifier. 137 of the 470 member entries in `changes` carry a SEDOL on that basis; the rest do not, because\nthe review spreadsheet for their date was not recoverable, and no SEDOL has been carried across from a neighbouring\nreview. Anchor members carry no SEDOL at all: no FTSE Russell constituent file dated 19 December 2005 was recoverable,\nand a SEDOL taken from a later review would not be point-in-time.\n\nWHAT `needs_verification: true` MEANS HERE. It marks a change whose membership fact rests on the LSEG register alone,\nwith no second independent primary source (no recoverable review spreadsheet, no press release, no event-specific\nnotice). That is most of the ad-hoc events and the review quarters between December 2013 and December 2018, which is\nthe thinnest stretch of the file: FTSE Russell moved its review detail into login-gated attachments in December 2014\nand LSEG's public press-release archive only starts in 2019, so for those quarters the register is usually the only\npublic record. Entries with `needs_verification: false` are corroborated by at least two of: the register, a review\nspreadsheet, a press release, or an event-specific notice.\n\nVALIDATION PERFORMED (all assertions passed). This file replays cleanly through\n`trp.universe.sourcing.replay_index_history`, which is TICKER-keyed and strict: it rejects removing a non-member,\nadding an existing member, renaming from a non-member or to an existing member, changes out of date order, a duplicate\nanchor ticker, and any membership count outside 100 +/- 1. The replay yields 359 ticker spells, 100 of them open, and\nthose 100 open spells match the FTSE 100 constituents FTSE Russell published for the June 2026 review ticker for\nticker, with no differences in either direction. Additional throwaway assertions checked that no two entries share an\neffective date, that every entry carries a non-empty `source`, that every `reason` is one of\nreview/acquisition/delisting/merger, that no added or removed member has an empty ticker, that no rename is a no-op,\nthat every review effective date is a Monday apart from the documented 26 March 2008 exception and falls after the\nthird Friday of the review month, and that the only dates on which the count leaves 100 are the eight inside the seven\ndemerger windows listed above. 240 distinct companies were members at some point in the span, of which 140 are no\nlonger in the index - the delisted, acquired and demoted names that a survivorship-free universe exists to retain. Name identity across renames was\nresolved with an explicit alias table (for example Slough Estates -> SEGRO, Wolseley -> Ferguson, GVC Holdings ->\nEntain, Phoenix Group Holdings -> Standard Life, Standard Life -> Standard Life Aberdeen -> abrdn -> Aberdeen Group);\nthat table is a modelling decision, not a source, and a consumer that resolves identifiers independently may disagree\nwith it.\n\nRECONCILIATION AGAINST EODHD, AND WHY IT DISAGREES. A cross-check of this file's end state against EODHD's live\n`FTSE.INDX` component list on 16 August 2026 disagreed on three names in each direction: EODHD omitted Aberdeen\nGroup (ABDN), Computacenter (CCC) and Investec (INVP), and carried Berkeley Group (BKG), Mondi (MNDI) and Rightmove\n(RMV). Those are exactly the six names of the June 2026 annual review recorded here effective 22 June 2026. The\ndisagreement was investigated and resolved AGAINST the provider; this file is unchanged, and a future reconciliation\nwill show the same difference until EODHD refreshes.\nEvidence that the June 2026 review took effect as recorded: (i) FTSE Russell index notice 2620846, 3 June 2026, and\nthe LSEG press release of the same date, which name all six companies - the only amendment, notice 2620916 of 5 June\n2026, concerns Home REIT in the FTSE SmallCap and leaves the FTSE 100 changes untouched; (ii) the Wikipedia 'FTSE 100\nIndex' constituent table as revised 31 July 2026, headed 'after the changes on 19 June 2026', which lists Aberdeen\nGroup, Computacenter and Investec and omits Berkeley, Mondi and Rightmove; (iii) the stockchallenge.co.uk FTSE\nAll-Share ranking as at the close on Thursday 13 August 2026, which tags ABDN, CCC and INVP as FTSE 100 and BKG, MNDI\nand RMV as FTSE 250; and (iv) the Hargreaves Lansdown live FTSE 100 constituent listing\n(https://www.hl.co.uk/shares/stock-market-summary/ftse-100) read on 16 August 2026, which shows ABDN, CCC and INVP and\ndoes not show BKG, MNDI or RMV.\nEvidence that the provider snapshot is stale AND internally inconsistent, from the provider's own data: EODHD's\n`FTMC.INDX` (FTSE 250) list on the same day contains ABDN, CCC and INVP - consistent with a snapshot taken before the\nJune 2026 review - but it ALSO contains IG Group (IGG) and Lion Finance Group (BGEO), which EODHD's `FTSE.INDX` list\nsimultaneously reports as FTSE 100 constituents. Those two were promoted at the March 2026 review, so EODHD's FTSE 100\nlist reflects March 2026 while its FTSE 250 list does not: the two lists are refreshed independently and are not a\ncoherent point-in-time pair. Neither endpoint carries an as-of timestamp. The practical warning: EODHD's UK index\ncomponent lists lag by an unknown and non-uniform amount and must not be used to date membership, nor treated as the\narbiter when they disagree with a FTSE Russell announcement.\n\nKNOWN GAPS AND RESIDUAL RISK. (a) Ad-hoc events that the LSEG register omits AND that leave the constituent count\nunchanged would be invisible to the replay; nothing guarantees the eleven repairs above are the only omissions, only\nthat they are the only ones the count and continuity tests could find. (b) Company names are as the source recorded\nthem and are not normalised across the file; the same company appears under different names before and after a rename,\nand a `renamed` entry's `new_name` is the name in force at that date, not today's. (c) The rename list captures every\nticker change this file's own continuity requires plus every one the author could source for a continuously held\nmember; it is NOT a guaranteed-complete TIDM history, so a company whose code changed while it sat in the index\nwithout the author noticing would still carry one code across that change. (d) Nothing here\ncovers the FTSE 250 or FTSE 350. (e) The file records membership only - no free-float weights, no shares in issue, no\nindex weights. (f) The period before 19 December 2005 is not covered even though the LSEG register reaches back to\n1984, because no full constituent snapshot was sourced for an earlier anchor date."
+}

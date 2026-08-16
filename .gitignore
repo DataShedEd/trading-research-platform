@@ -13,8 +13,9 @@ dist/
 .coverage
 htmlcov/
 
-# Data lives outside version control; schemas and code are the source of truth
-data/
+# The root data lake lives outside version control; schemas and code are the source of
+# truth. Root-anchored: curated in-repo datasets (e.g. src/trp/universe/data/) ARE tracked.
+/data/
 
 # Secrets and local config
 .env
