@@ -1,7 +1,7 @@
 # QNT-017 — Exchange and currency metadata
 
 - **Ticket ID:** QNT-017
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 3 — Market Data
 
@@ -28,20 +28,20 @@ Sourcing or storing actual FX rate history (a later ticket implements the protoc
 portfolio accounting (Epic 6), exchanges beyond those the platform ingests.
 
 ## Acceptance criteria
-- [ ] `Exchange` records exist for at least `XLON`, `XNYS`, and `XNAS`, each with MIC, name,
+- [x] `Exchange` records exist for at least `XLON`, `XNYS`, and `XNAS`, each with MIC, name,
       country, IANA timezone, trading currency, and quotation unit, loaded from a committed data
       file rather than hard-coded in Python.
-- [ ] `GBX` is modelled as a quotation subunit of `GBP` with a factor of exactly 100, and the
+- [x] `GBX` is modelled as a quotation subunit of `GBP` with a factor of exactly 100, and the
       relationship is data rather than a special case in conversion code.
-- [ ] `to_major_currency(amount, unit)` converts 1234.5 GBX to exactly `Decimal("12.345")` GBP, and
+- [x] `to_major_currency(amount, unit)` converts 1234.5 GBX to exactly `Decimal("12.345")` GBP, and
       the round trip back to GBX is exact; a test asserts exactness rather than approximate
       equality.
-- [ ] Conversion between unrelated currencies raises a typed error directing the caller to the FX
+- [x] Conversion between unrelated currencies raises a typed error directing the caller to the FX
       interface, rather than returning the amount unchanged.
-- [ ] `FxRateProvider` is a typed protocol taking a currency pair and a date and returning a
+- [x] `FxRateProvider` is a typed protocol taking a currency pair and a date and returning a
       `Decimal` rate, with the rate direction documented unambiguously; a test-only fixed-rate
       implementation exists for use in other suites.
-- [ ] A test asserts that a price in GBX and a dividend in GBP cannot be combined without an
+- [x] A test asserts that a price in GBX and a dividend in GBP cannot be combined without an
       explicit unit conversion — the arithmetic path either converts or raises, never assumes.
 
 ## Technical notes
@@ -83,4 +83,62 @@ signature must include a date so its future implementation can be point-in-time 
 explicitly. A short note in `CLAUDE.md` conventions flagging pence quotation as a known hazard.
 
 ## Completion notes
-_Not started._
+**2026-08-16 — done.**
+
+Delivered `src/trp/domain/reference.py`, the committed reference file
+`src/trp/domain/reference_data/markets.json`, tests in `tests/domain/test_reference_data.py`
+(44 passing), and the test-only FX fake `tests/fakes/fx.py`.
+
+- `Currency` carries ISO code, `minor_unit` (the ISO 4217 *settlement* exponent, explicitly not a
+  quotation precision — LSE quotes half pence), and the optional pair
+  `quotation_subunit_of` / `units_per_major`. GBX→GBP with factor 100 is therefore a row in the
+  data file; conversion code contains no currency names at all.
+- `units_per_major` must be a power of ten, validated at load. That is what makes conversion an
+  exponent shift on the `Decimal` tuple rather than a division: exact for any value, at any
+  context precision. A test sets `prec=5` and converts a 31-digit amount, asserting the result
+  differs from what `amount / Decimal(100)` returns there.
+- `Exchange` carries MIC (same `^[A-Z0-9]{4}$` rule `Listing` applies), name, ISO country, IANA
+  timezone (constructed through `ZoneInfo` at validation, so a plausible-looking fake zone is
+  rejected), trading currency and quotation unit. XLON is GBP/GBX; XNYS and XNAS are USD/USD.
+- `ReferenceData` enforces cross-record invariants at load: unique MICs and codes, every named
+  currency defined, no chained subunits, and an exchange quoting in a subunit of a *different*
+  currency than it trades in is rejected. Seven malformed-file cases are tested.
+- Unit conversion refuses two distinct ways, with distinct errors: `UnrelatedCurrencyError`
+  (GBP↔USD — names `FxRateProvider` and `convert_with_fx` in the message) and
+  `CurrencyMismatchError` (arithmetic across units, raised even for GBX/GBP so the caller states
+  the result unit rather than inheriting the left operand's).
+- `FxRateProvider.rate(base, quote, on)` returns units of quote per unit of base — multiply to go
+  base→quote — with the direction, the point-in-time meaning of `on`, and the obligation to raise
+  `FxRateUnavailableError` (never 1, never an inverse, never a nearest date) pinned in the
+  docstring. No production implementation.
+
+Deviations and things deliberately not done:
+
+1. **Reference file location.** The ticket's dependency implies loading from a settings-supplied
+   data path, but `data/` is gitignored, so a *committed* file cannot live there. It ships as
+   package data under `src/trp/domain/reference_data/` and is read via `importlib.resources`;
+   `load_reference_data(path)` takes an override path, which is where a settings-supplied location
+   would plug in later. QNT-003 is therefore not actually exercised by this ticket.
+2. **Scope added: `Money`.** A frozen `(amount, unit)` value type with `+`, `-` and `/` that raise
+   across units. Without it the last acceptance criterion has nothing to assert against — "the
+   arithmetic path raises" needs an arithmetic path. `Money` rejects `float` amounts outright
+   (DEC-005) rather than coercing them, and rejects NaN/Infinity. `convert_with_fx` was added with
+   it: it converts to the major currency, applies exactly one dated rate in the documented
+   direction, then converts into the target unit, so the FX interface has a correct call site
+   demonstrating the ordering. Tests assert the provider is asked for GBP/USD, never GBX/USD.
+3. **Documentation requirements not met.** `docs/DATA_MODEL.md` (`exchanges / currencies`) and the
+   `CLAUDE.md` conventions note on pence quotation are **outstanding** — both files are being
+   edited concurrently by other ticket work in this session and this ticket was scoped to new
+   files. The GBX/GBP policy is stated in the module docstring and in the `notes` field of
+   `markets.json` in the meantime.
+4. **No re-export from `trp/domain/__init__.py`** for the same concurrency reason; import from
+   `trp.domain.reference` directly until that file is updated.
+5. **mypy coverage of the test fake.** `uv run mypy` is configured with `packages = ["trp"]`, so it
+   does not typecheck `tests/`. The protocol-conformance criterion was verified by running
+   `uv run mypy --strict tests/fakes/fx.py tests/domain/test_reference_data.py` separately (clean),
+   plus a runtime `isinstance` check against the runtime-checkable protocol.
+6. No `timetravel` test, as the ticket states; the FX signature carries `on` so its future
+   implementation can be point-in-time correct.
+
+Checks run: `ruff check`, `ruff format`, `uv run mypy` (34 source files, clean),
+`uv run pytest tests/domain/test_reference_data.py` — 44 passed.

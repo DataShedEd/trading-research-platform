@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "notes": "Exchange and currency reference data for the venues the platform ingests. Versioned repository content, reviewed on change, never a live lookup: a backtest must be reproducible against the file as it stood. GBX is pence sterling, the LSE quotation unit for ordinary shares: exactly 100 GBX = 1 GBP, and the conversion is always explicit (trp.domain.reference). Adding an exchange means adding its currencies here too; the loader rejects a file that references a currency it does not define.",
+  "currencies": [
+    {
+      "code": "GBP",
+      "name": "Pound sterling",
+      "minor_unit": 2
+    },
+    {
+      "code": "GBX",
+      "name": "Penny sterling (LSE quotation unit)",
+      "minor_unit": 0,
+      "quotation_subunit_of": "GBP",
+      "units_per_major": 100
+    },
+    {
+      "code": "USD",
+      "name": "United States dollar",
+      "minor_unit": 2
+    }
+  ],
+  "exchanges": [
+    {
+      "mic": "XLON",
+      "name": "London Stock Exchange",
+      "country": "GB",
+      "timezone": "Europe/London",
+      "trading_currency": "GBP",
+      "quotation_unit": "GBX"
+    },
+    {
+      "mic": "XNYS",
+      "name": "New York Stock Exchange",
+      "country": "US",
+      "timezone": "America/New_York",
+      "trading_currency": "USD",
+      "quotation_unit": "USD"
+    },
+    {
+      "mic": "XNAS",
+      "name": "Nasdaq Stock Market",
+      "country": "US",
+      "timezone": "America/New_York",
+      "trading_currency": "USD",
+      "quotation_unit": "USD"
+    }
+  ]
+}
