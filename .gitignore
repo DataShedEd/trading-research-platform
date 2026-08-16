@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+build/
+dist/
+
+# Tooling caches
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Data lives outside version control; schemas and code are the source of truth
+data/
+
+# Secrets and local config
+.env
+.env.*
+
+# Notebooks: keep committed notebooks clean of checkpoints
+.ipynb_checkpoints/
+
+# DuckDB working files
+*.duckdb
+*.duckdb.wal
+
+# macOS
+.DS_Store
