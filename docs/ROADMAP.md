@@ -8,6 +8,16 @@ this roadmap — this file states ordering and intent only.
 Question to answer: *can we reliably reconstruct historical UK equity data without survivorship
 bias or future information?*
 
+**Status 2026-08-16:** the machinery is code-complete and tested on fixtures — security
+master (bitemporal), market-data schemas + adjustment engine, PIT fundamentals chain,
+provider interface + raw store, validation universe, bake-off harness + pre-registered
+scoring, universe engine. What remains is data-dependent and **blocked on the owner's
+provider sign-off** (see DATA_PROVIDER_EVALUATION.md recommendation): adapters
+(QNT-031…033), FTSE membership sourcing and the real-data survivorship gate
+(QNT-039…041), and the empirical bake-off runs that produce the Results section.
+M1's question can only be answered affirmatively once real provider data has flowed
+through the whole chain.
+
 Critical path:
 
 1. Foundation: scaffold, tooling/CI, config/logging, docs, ticket system (QNT-001…005).
