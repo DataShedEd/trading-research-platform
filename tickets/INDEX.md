@@ -35,8 +35,8 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-013](QNT-013-ohlcv-schema.md) | Canonical daily OHLCV schema | P1 | DONE |
 | [QNT-014](QNT-014-corporate-action-schema.md) | Corporate action canonical schema | P1 | DONE |
 | [QNT-015](QNT-015-adjustment-engine.md) | Adjustment factor engine | P1 | DONE |
-| [QNT-016](QNT-016-trading-calendars.md) | Trading calendars | P1 | BACKLOG |
-| [QNT-017](QNT-017-exchange-currency-metadata.md) | Exchange and currency metadata | P1 | BACKLOG |
+| [QNT-016](QNT-016-trading-calendars.md) | Trading calendars | P1 | DONE |
+| [QNT-017](QNT-017-exchange-currency-metadata.md) | Exchange and currency metadata | P1 | DONE |
 | [QNT-018](QNT-018-price-storage-partitioning.md) | Price storage layout and partitioning | P1 | BACKLOG |
 | [QNT-019](QNT-019-market-data-validation.md) | Market data validation checks | P1 | BACKLOG |
 
@@ -57,7 +57,7 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 |---|---|---|---|
 | [QNT-026](QNT-026-provider-interface.md) | Common provider interface and raw ingestion layer | P1 | DONE |
 | [QNT-027](QNT-027-validation-universe.md) | Validation universe specification | P1 | BACKLOG |
-| [QNT-028](QNT-028-provider-research-report.md) | Provider research and shortlist report (owner gate) | P1 | BACKLOG |
+| [QNT-028](QNT-028-provider-research-report.md) | Provider research and shortlist report (owner gate) | P1 | DONE |
 | [QNT-029](QNT-029-bakeoff-harness.md) | Bake-off harness core | P1 | BACKLOG |
 | [QNT-030](QNT-030-scoring-rubric.md) | Scoring rubric and criteria weights | P1 | BACKLOG |
 | [QNT-031](QNT-031-eodhd-adapter.md) | EODHD provider adapter | P1 | BACKLOG |

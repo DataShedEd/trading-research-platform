@@ -121,9 +121,7 @@ def check_revision_series(records: Sequence[FundamentalValue]) -> None:
     ordered = sorted(records, key=lambda r: r.revision_sequence)
     sequences = [r.revision_sequence for r in ordered]
     if sequences != list(range(len(ordered))):
-        raise RevisionSeriesError(
-            f"revision sequences must be contiguous from 0; got {sequences}"
-        )
+        raise RevisionSeriesError(f"revision sequences must be contiguous from 0; got {sequences}")
     stamps = [r.revised_at for r in ordered[1:]]
     for earlier, later in pairwise(stamps):
         assert earlier is not None and later is not None  # guaranteed by the record validator

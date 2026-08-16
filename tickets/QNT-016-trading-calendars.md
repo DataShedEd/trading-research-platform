@@ -1,7 +1,7 @@
 # QNT-016 — Trading calendars
 
 - **Ticket ID:** QNT-016
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 3 — Market Data
 
@@ -29,18 +29,18 @@ Intraday session times and market microstructure, settlement calendars, FX and b
 calendars, holiday calendars for exchanges beyond the three named.
 
 ## Acceptance criteria
-- [ ] `TradingCalendar` is constructed for `XLON` and answers `is_trading_day` correctly for a known
+- [x] `TradingCalendar` is constructed for `XLON` and answers `is_trading_day` correctly for a known
       LSE holiday (for example a Christmas or Easter closure) and for a normal trading day either
       side of it.
-- [ ] `previous_trading_day` and `next_trading_day` skip weekends and holidays, and a test covers a
+- [x] `previous_trading_day` and `next_trading_day` skip weekends and holidays, and a test covers a
       date falling immediately after a multi-day closure.
-- [ ] `sessions_between` returns an inclusive-of-both-endpoints or documented half-open range of
+- [x] `sessions_between` returns an inclusive-of-both-endpoints or documented half-open range of
       trading days, matching a hand-counted expected count for a chosen month.
-- [ ] Half days (for example an LSE Christmas Eve early close) are identifiable via `is_half_day`
+- [x] Half days (for example an LSE Christmas Eve early close) are identifiable via `is_half_day`
       and are still trading days.
-- [ ] Querying a date outside the calendar's supported range raises a typed error rather than
+- [x] Querying a date outside the calendar's supported range raises a typed error rather than
       returning a plausible-looking answer derived from weekday logic.
-- [ ] A `DECISIONS.md` entry records the implementation choice (library versus curated data), its
+- [x] A `DECISIONS.md` entry records the implementation choice (library versus curated data), its
       alternatives, and its consequences for offline reproducibility.
 
 ## Technical notes
@@ -86,4 +86,43 @@ approach is chosen, a test must assert the snapshot is used rather than a live l
 exchange.
 
 ## Completion notes
-_Not started._
+2026-08-16 — `src/trp/canonical/calendars.py`: `TradingCalendar` with `is_trading_day`,
+`is_half_day`, `next_trading_day`, `previous_trading_day`, `sessions_between` (inclusive of both
+endpoints, documented on the method) and `missing_sessions` — the calendar half of the QNT-019 gap
+check, which returns trading days in a range with no observed bar. `get_trading_calendar(mic)` is
+the explicit accessor over a module-level per-MIC cache; MIC → library calendar code is an explicit
+map covering `XLON`, `XNYS`, `XNAS`, and an unknown MIC raises `UnknownExchange`.
+
+Source: the `exchange-calendars` library, recorded as DEC-010 with its alternatives and its
+reproducibility consequences. Snapshotting the library output to committed files (the technical
+note's suggested middle path) was **not** done — deviation from the note, deliberate and recorded
+in DEC-010: a snapshot taken before QNT-019 reconciles calendar days against observed price dates
+would freeze unverified data. The reproducibility risk is bounded instead by the version pin in
+`uv.lock`, by tests asserting hand-derived expected values rather than the library's own output
+(so a changed historical calendar fails tests instead of silently changing backtests), and by a
+supported range fixed in code. Curated overrides or a snapshot can be layered on the wrapper later
+without changing any caller.
+
+Sessions for the supported range are materialised once per exchange at construction and all queries
+are bisect lookups over that sorted tuple, so nothing reconstructs a calendar per call. The
+supported range is fixed at 2000-01-01 to 2030-12-31 rather than the library's default, which is
+anchored to today and would make the same historical query answerable one year and out of range the
+next; outside it every method raises `DateOutOfCalendarRange`. `next_trading_day` /
+`previous_trading_day` raise `CalendarRangeExhausted` when the answer exists but falls outside the
+supported range, rather than returning a value the calendar does not vouch for. Half days are
+derived as sessions shorter than the exchange's modal session length — session *length* rather than
+close time, because it is invariant under daylight saving and needs no timezone conversion; only
+dates cross the module boundary, so no UTC conversion can shift a session across a date boundary.
+
+Tests: `tests/canonical/test_calendars.py`, 32 tests, all passing. Cover the 2012 Diamond Jubilee
+four-day LSE closure, Christmas/Boxing Day and Easter closures, ordinary weekends, LSE Christmas
+Eve and New Year's Eve half days plus the NYSE day-after-Thanksgiving early close, multi-day
+closure traversal in both directions, hand-counted `sessions_between` for June 2012 (19 sessions)
+and a chosen week, out-of-range queries on every method, unknown MIC, and the missing-trading-day
+scenario (a security missing one mid-week bar is reported; a market holiday is not).
+`docs/DATA_MODEL.md` `trading_calendars` section updated with the source and supported ranges.
+
+Not done, as scoped out or deferred: no `timetravel` marker (calendars carry no knowledge-time
+axis, per the testing requirements); no snapshot-usage test, since no snapshot was taken; no
+session times, settlement, FX or bond calendars. QNT-003 settings paths were not needed because
+nothing is written to the data layer.
