@@ -1,0 +1,21 @@
+{
+  "version": "2026-08-16.1",
+  "comment": "Fixed BEFORE any real provider results exist (pre-registration discipline, QUANT_PRINCIPLES section 5). Rationale for the ordering lives in docs/DATA_PROVIDER_EVALUATION.md. Weights must sum to exactly 1.",
+  "weights": {
+    "delisted_coverage": "0.20",
+    "pit_fundamentals": "0.20",
+    "corporate_action_accuracy": "0.15",
+    "identifier_stability": "0.10",
+    "historical_depth": "0.10",
+    "revision_history": "0.05",
+    "api_reliability": "0.05",
+    "rate_limits_bulk": "0.05",
+    "licensing": "0.05",
+    "cost": "0.05"
+  },
+  "declared_criteria": ["rate_limits_bulk", "licensing", "cost"],
+  "veto_thresholds": {
+    "delisted_coverage": "0.5",
+    "pit_fundamentals": "0.25"
+  }
+}

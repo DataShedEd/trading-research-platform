@@ -112,3 +112,13 @@ Context: The dataset is long and narrow, queried as a few line items across many
 Alternatives: Partition by security (file explosion); by statement+year (more dirs for little pruning benefit at this width); no partitioning.
 Reason: A universe-year of statements is tens of thousands of rows — one comfortable file per year (validated by a synthetic-volume test: 900 rows across 3 years produce exactly 3 files). Decimal(38,6) spans per-share pence to trillion-scale balance-sheet lines with six decimal places; out-of-range errors rather than truncating.
 Consequences: Changing either choice later means rewriting the dataset (always possible from immutable raw payloads, but expensive). Append-only part-files mean deletion/compaction is a deliberate future operation, never implicit.
+
+---
+
+DEC-012
+Date: 2026-08-16
+Decision: The bake-off rubric includes veto thresholds: a provider scoring below 0.5 on delisted coverage or below 0.25 on point-in-time fundamental availability is marked unsuitable regardless of its weighted total. Weights and thresholds live in versioned data (src/trp/bakeoff/weights.json, v2026-08-16.1) fixed before any real provider results exist.
+Context: QUANT_PRINCIPLES §1 and §2 are non-negotiable; a weighted average can hide a fatal deficiency behind good scores elsewhere.
+Alternatives: Weight inflation only (a bad provider can still win); manual judgement (unauditable).
+Reason: A provider that cannot serve delisted securities cannot support survivorship-bias-free research at any price. The PIT threshold is set lower (0.25) because QNT-028's research already established that no provider in budget offers true PIT fundamentals — the criterion must be scored honestly without disqualifying every candidate.
+Consequences: The report must show veto flags prominently. Revising weights/thresholds later requires a new weights-file version with justification; previously published scores remain attributable to their version.

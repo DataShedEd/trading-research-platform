@@ -1,7 +1,7 @@
 # QNT-030 — Scoring rubric and criteria weights
 
 - **Ticket ID:** QNT-030
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 5 — Data Provider Bake-Off
 
@@ -31,23 +31,23 @@ document (QNT-036); the purchase decision, which is the owner's and is informed 
 the score.
 
 ## Acceptance criteria
-- [ ] Every criterion in the `docs/DATA_PROVIDER_EVALUATION.md` table — historical depth, delisted
+- [x] Every criterion in the `docs/DATA_PROVIDER_EVALUATION.md` table — historical depth, delisted
       coverage, corporate-action accuracy, identifier stability, PIT fundamental availability,
       revision history, API reliability, rate limits and bulk, licensing, cost — has a scoring
       function and a weight, and the weights live in a versioned data file rather than as literals
       in code.
-- [ ] Delisted coverage and PIT fundamental availability carry the highest weights, and the
+- [x] Delisted coverage and PIT fundamental availability carry the highest weights, and the
       rationale for the full weight ordering is documented alongside the table.
-- [ ] Per-criterion scores are normalised to a common scale so that criteria measured by different
+- [x] Per-criterion scores are normalised to a common scale so that criteria measured by different
       numbers of checks are comparable, and the aggregate is a transparent weighted sum whose
       per-criterion contributions are exposed in the breakdown, not just the total.
-- [ ] Not-applicable results are excluded from a criterion's denominator rather than counted as
+- [x] Not-applicable results are excluded from a criterion's denominator rather than counted as
       passes or failures, and a criterion with no applicable results scores as `unmeasured`
       (propagated into the report) rather than as zero or as full marks.
-- [ ] A provider missing an entire dataset kind — because the tier does not include it or the
+- [x] A provider missing an entire dataset kind — because the tier does not include it or the
       adapter declares no capability — scores zero on the criteria that depend on it, with the
       reason recorded, and this is distinguishable from having been tested and failed.
-- [ ] Unit tests over synthetic check results cover: a perfect provider, a provider failing only
+- [x] Unit tests over synthetic check results cover: a perfect provider, a provider failing only
       the highest-weighted criteria (which must rank below one failing several low-weighted ones),
       not-applicable handling, unmeasured criteria, and weight-file validation rejecting weights
       that do not sum as documented.
@@ -104,4 +104,18 @@ weights were fixed before results were collected, with the weight-file version r
 `DECISIONS.md` entry if a veto threshold is adopted, since that can disqualify a provider outright.
 
 ## Completion notes
-_Not started._
+2026-08-16. `src/trp/bakeoff/scoring.py` + `weights.json` (v2026-08-16.1, committed
+before any real provider results exist). Every criterion has a weight in the versioned
+data file (sum-to-1 validated; delisted coverage and PIT fundamentals top at 0.20 each);
+rationale documented in DATA_PROVIDER_EVALUATION.md's extended table. Checks map to
+criteria via their `criterion` attribute (QNT-029). Empirical scores are exact-Decimal
+pass ratios with NOT_APPLICABLE excluded from denominators; unmeasured criteria score
+None and are excluded with the total renormalised over measured weights (breakdown shows
+which); an unsupported dataset zeroes its dependent criteria with the reason recorded —
+distinguishable from unmeasured (tested). Declared criteria (rate limits, licensing,
+cost) enter as `DeclaredScore` research inputs and are labelled declared in the breakdown.
+Veto thresholds adopted (DEC-012): delisted < 0.5 or PIT < 0.25 ⇒ `unsuitable=True`
+regardless of total. Ordering property tested: failing the two heavy criteria ranks below
+failing several light ones AND trips the vetoes. Coverage counts exposed per criterion.
+Determinism tested (identical inputs ⇒ equal scores). Tests:
+`tests/bakeoff/test_scoring.py` (9, synthetic results only). Green.
