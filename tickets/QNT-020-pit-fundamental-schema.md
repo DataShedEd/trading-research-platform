@@ -1,7 +1,7 @@
 # QNT-020 — Point-in-time fundamental schema
 
 - **Ticket ID:** QNT-020
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 4 — Fundamental Data
 
@@ -48,19 +48,19 @@ The canonical line-item taxonomy and provider mappings (QNT-021); revision stora
 (QNT-025). No provider is called from this ticket.
 
 ## Acceptance criteria
-- [ ] `trp.domain` exports a frozen `FundamentalValue` model and the `StatementType` and
+- [x] `trp.domain` exports a frozen `FundamentalValue` model and the `StatementType` and
       `PeriodType` enums; `mypy --strict` and `make check` pass.
-- [ ] `available_at` is a required timezone-aware UTC `datetime`; constructing a record with a
+- [x] `available_at` is a required timezone-aware UTC `datetime`; constructing a record with a
       naive datetime, or with `available_at = None`, raises `ValidationError`.
-- [ ] `value` is a `Decimal` and a `float` input is rejected rather than coerced; `currency` is
+- [x] `value` is a `Decimal` and a `float` input is rejected rather than coerced; `currency` is
       validated as an uppercase ISO 4217 code.
-- [ ] `available_at < period_end` is rejected as a data error, while `available_at >= period_end`
+- [x] `available_at < period_end` is rejected as a data error, while `available_at >= period_end`
       is accepted without the model *assuming* the relation elsewhere — the invariant is asserted
       explicitly in the validator and covered by a test on each side of the boundary.
-- [ ] `revision_sequence` is a non-negative integer with 0 reserved for the original filing;
+- [x] `revision_sequence` is a non-negative integer with 0 reserved for the original filing;
       a record with `revision_sequence > 0` must carry `revised_at`, and one with
       `revision_sequence == 0` must not.
-- [ ] `availability_imputed` is true if and only if an imputation rule identifier is present, and
+- [x] `availability_imputed` is true if and only if an imputation rule identifier is present, and
       unit tests cover every invariant above with both an accepted and a rejected example.
 
 ## Technical notes
@@ -120,4 +120,16 @@ convention. A `DECISIONS.md` entry if the security-versus-entity subject choice 
 rule identifier format constrains later work.
 
 ## Completion notes
-_Not started._
+2026-08-16. `src/trp/domain/fundamentals.py`: `FundamentalValue` (frozen), `StatementType`,
+`PeriodType`, `conservative_available_at(period_end, lag)` helper, `check_revision_series`
+collection validator (contiguous sequences from 0, strictly increasing `revised_at`,
+single series key), `RevisionSeriesError`. All acceptance invariants implemented and
+tested both sides of each boundary, including `available_at == period_end` exactly.
+`value` uses pydantic strict mode so float input is rejected, not coerced. Subject choice:
+`security_id` (documented in module docstring — entity-level via the master's link; no
+separate DEC entry as it doesn't constrain later work beyond that note). The
+filed_at/available_at distinction and the never-fall-back rule are stated in the module
+docstring per this ticket's risk note. Shared fixtures in `tests/fixtures/fundamentals.py`
+(realistic 07:00 RNS timestamps, original + two restatements) for reuse by QNT-022/025.
+Enums/model deliberately not re-exported from `trp.domain.__init__` yet — that happens
+with the Epic 4 query API. Tests: `tests/domain/test_fundamental_model.py` (16). Green.

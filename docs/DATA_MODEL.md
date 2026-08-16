@@ -84,11 +84,18 @@ invariants.
 
 ## Fundamentals (point-in-time)
 
-- **fundamentals** — `security_id` (or `entity_id`), statement (income | balance | cash flow),
-  line item (normalised name), period end, period type (annual | interim | quarterly), currency,
-  value (Decimal), `filed_at` (publication), **`available_at`** (first-known — the field every
-  as-of query filters on), `revised_at` and revision sequence for restatements, source,
-  imputation flag for conservatively-estimated availability.
+- **fundamentals** (record implemented: QNT-020, `trp.domain.fundamentals`) — subject is
+  `security_id` (entity-level analysis goes via the master's entity link); statement enum
+  (income | balance | cash_flow), canonical line item (taxonomy: QNT-021), `period_end`
+  (date, market-local), period type (annual | interim | quarterly), reporting currency,
+  `value` (strict Decimal — float input rejected), `filed_at` (provider's claim,
+  informational), **`available_at`** (required, UTC-aware — the ONLY field as-of queries
+  filter on; never fall back to `filed_at` or `period_end`), `revised_at` +
+  `revision_sequence` (0 = original filing; >0 requires `revised_at`), `source`,
+  `availability_imputed` + `imputation_rule` (set together, DEC-007; rule identifiers like
+  `uk-annual-lag-90d` let QNT-035 measure the assumption). `available_at < period_end` is
+  rejected as a data error. Series-level rules (contiguous sequences, strictly increasing
+  `revised_at`) are enforced by `check_revision_series`.
 - Revisions are new rows, never updates: querying `as_of` a date between original filing and
   restatement returns the original figures.
 

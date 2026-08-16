@@ -44,7 +44,7 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 
 | ID | Title | Priority | Status |
 |---|---|---|---|
-| [QNT-020](QNT-020-pit-fundamental-schema.md) | Point-in-time fundamental schema | P1 | BACKLOG |
+| [QNT-020](QNT-020-pit-fundamental-schema.md) | Point-in-time fundamental schema | P1 | DONE |
 | [QNT-021](QNT-021-statement-normalisation.md) | Financial statement normalisation model | P1 | BACKLOG |
 | [QNT-022](QNT-022-revision-handling.md) | Revision and restatement handling | P1 | BACKLOG |
 | [QNT-023](QNT-023-fundamental-currency.md) | Fundamental currency handling | P1 | BACKLOG |
