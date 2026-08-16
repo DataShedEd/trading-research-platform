@@ -1,7 +1,7 @@
 # QNT-039 — FTSE index membership sourcing
 
 - **Ticket ID:** QNT-039
-- **Status:** BLOCKED
+- **Status:** READY
 - **Priority:** P1
 - **Epic:** EPIC 6 — Historical Universe Engine
 
@@ -124,3 +124,8 @@ _Not started._
 **BLOCKED (2026-08-16):** historical FTSE constituent data requires either the provider
 subscription awaiting owner sign-off (QNT-028 gate) or curated quarterly-review files.
 Schema and query API (QNT-037/038) are DONE and waiting for this data.
+
+**UNBLOCKED (2026-08-16, later same day):** the owner subscribed to EODHD (DEC-013) and the
+live bake-off confirmed LSE delisted coverage. Next investigation: whether EODHD's index
+fundamentals endpoints carry usable historical FTSE constituent changes, or whether curated
+quarterly-review data is needed.

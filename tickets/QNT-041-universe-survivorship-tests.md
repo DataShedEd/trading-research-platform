@@ -1,7 +1,7 @@
 # QNT-041 — Universe survivorship test suite
 
 - **Ticket ID:** QNT-041
-- **Status:** BLOCKED
+- **Status:** READY
 - **Priority:** P1
 - **Epic:** EPIC 6 — Historical Universe Engine
 
@@ -108,3 +108,8 @@ _Not started._
 **BLOCKED (2026-08-16):** the acceptance gate needs real FTSE membership data (QNT-039).
 The survivorship mechanics are already proven on fixtures
 (tests/timetravel/test_universe_membership.py); this ticket re-proves them on real data.
+
+**UNBLOCKED (2026-08-16, later same day):** the owner subscribed to EODHD (DEC-013) and the
+live bake-off confirmed LSE delisted coverage. Next investigation: whether EODHD's index
+fundamentals endpoints carry usable historical FTSE constituent changes, or whether curated
+quarterly-review data is needed.

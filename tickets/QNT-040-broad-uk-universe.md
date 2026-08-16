@@ -1,7 +1,7 @@
 # QNT-040 — Broad UK-listed universe construction
 
 - **Ticket ID:** QNT-040
-- **Status:** BLOCKED
+- **Status:** READY
 - **Priority:** P1
 - **Epic:** EPIC 6 — Historical Universe Engine
 
@@ -114,3 +114,8 @@ _Not started._
 
 **BLOCKED (2026-08-16):** rule-based construction needs the security master populated with
 real UK listings (post provider sign-off, QNT-028 gate).
+
+**UNBLOCKED (2026-08-16, later same day):** the owner subscribed to EODHD (DEC-013) and the
+live bake-off confirmed LSE delisted coverage. Next investigation: whether EODHD's index
+fundamentals endpoints carry usable historical FTSE constituent changes, or whether curated
+quarterly-review data is needed.
