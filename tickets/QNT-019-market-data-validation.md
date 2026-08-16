@@ -1,7 +1,7 @@
 # QNT-019 — Market data validation checks
 
 - **Ticket ID:** QNT-019
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 3 — Market Data
 
@@ -36,21 +36,36 @@ Automatic correction or exclusion of any row; provider reconciliation across sou
 fundamentals validation (Epic 4); alerting or scheduling.
 
 ## Acceptance criteria
-- [ ] `validate_prices` returns a structured `Report` of findings, each carrying check name, its
+- [x] `validate_prices` returns a structured `Report` of findings, each carrying check name, its
       security, its date or date range, the observed values, the threshold applied, and a severity;
       no check mutates, drops, or rewrites any input row.
-- [ ] Calendar-gap detection uses the exchange calendar and the security's listing validity window,
+      _`ValidationReport` is a frozen model holding a tuple of frozen `Finding`s; a test asserts the
+      input frame is `equals`-identical after a run that fires every check._
+- [x] Calendar-gap detection uses the exchange calendar and the security's listing validity window,
       so a delisted security produces no gaps after its delisting date and a holiday produces none.
-- [ ] Unexplained-extreme-move detection cross-references corporate actions within a configured
+      _Good Friday/Easter Monday 2020 and weekends produce nothing; a missing Tuesday is reported
+      with its date. Gaps are grouped into runs contiguous in *trading* days, not calendar days._
+- [x] Unexplained-extreme-move detection cross-references corporate actions within a configured
       window of the move date, and a fixture containing a genuine 2-for-1 split produces no finding
       while an identical move with no action recorded produces one.
-- [ ] Stale-price detection reports a run of identical closes with its length and the associated
+      _The unrecorded case is reported at ERROR naming the ratio it resembles ("an unrecorded
+      2-for-1 split"), which is the split-inversion detector QNT-015's risks ask for._
+- [x] Stale-price detection reports a run of identical closes with its length and the associated
       volumes as evidence, and does not fire on a single repeated close.
-- [ ] Volume-anomaly detection excludes half days per QNT-016 and reports zero-volume trading days
+      _A run with no volume at all is raised to ERROR: that is a provider carrying the last print
+      forward, not a quiet stock._
+- [x] Volume-anomaly detection excludes half days per QNT-016 and reports zero-volume trading days
       separately from outlier volumes.
-- [ ] All thresholds are configuration with documented defaults rather than literals in the check
+      _Two separate checks, `zero_volume` and `volume_outlier`. Half days are excluded from
+      `volume_outlier` only; a zero-volume half day is still reported, with the half day named in
+      its evidence so it can be dismissed at a glance. Suppressing it outright would have hidden a
+      genuinely suspended line that happened to fall on Christmas Eve._
+- [x] All thresholds are configuration with documented defaults rather than literals in the check
       bodies, the report records the thresholds used, and a run over clean fixture data produces an
       empty findings list rather than an error.
+      _`ValidationThresholds`, a frozen model with a docstring per field, stored on the report.
+      `counts_by_check` carries an explicit zero for every check so a clean run is distinguishable
+      from a check that never executed._
 
 ## Technical notes
 Warnings, not fixes. The rule in `CLAUDE.md` and `docs/QUANT_PRINCIPLES.md` is no silent data
@@ -97,4 +112,54 @@ and how to interpret its findings. The no-silent-fixes policy stated explicitly 
 docstring.
 
 ## Completion notes
-_Not started._
+
+**2026-08-16 — done. Defaults remain untuned against real data; see below.**
+
+Delivered `src/trp/canonical/price_validation.py` (a single module rather than a
+`canonical/validation/` package — six checks and a report model do not yet justify a package, and
+the module is the natural sibling of `price_store.py`). Entry points `validate_prices(frame, ...)`
+and `validate_bars(bars, ...)`; each check is also a public pure function taking a frame and
+returning findings, so it can be exercised on a small fixture in isolation. Output is a frozen
+`ValidationReport` with `to_frame()` and `to_markdown()`. Tests:
+`tests/canonical/test_price_validation.py` (45) and
+`tests/timetravel/test_price_validation_timetravel.py` (3), all passing; `mypy --strict` and `ruff`
+clean. Test file names follow the module rather than the ticket's `test_validation.py`, to avoid
+colliding with the fundamentals validation suite Epic 4 will add.
+
+Checks implemented: `non_positive_price`, `calendar_gap`, `extreme_move`, `stale_price_run`,
+`zero_volume`, `volume_outlier`, `adjustment_warning`, plus three diagnostics
+(`listing_unknown`, `calendar_unavailable`, `calendar_range_clamped`) so that a check which *could
+not run* is visible in the report instead of being indistinguishable from a check that found
+nothing. Nothing raises: an unsupported MIC or an out-of-range window becomes a finding.
+
+**DEC-009 is surfaced here as the decision requires.** `check_adjustment_warnings` lifts
+`AdjustmentComputation.provenance.warnings` into the report, so a security with an unadjusted rights
+issue is named in the data-quality output rather than only in a provenance blob. The `timetravel`
+test additionally pins that this warning is itself point-in-time: a rights issue the vendor had not
+yet published does not retrospectively appear in a reproduction of an earlier state.
+
+**Two judgement calls worth review:**
+
+1. *The extreme-move bound is inclusive* (`|move| >= threshold`, default 50%), not strict. An
+   unrecorded 2-for-1 split lands on exactly -50%, so a strict comparison would let the single most
+   common case this check exists to catch fall one step outside the test. This was found by the test
+   fixture, not by reasoning — the first implementation used `>` and silently returned nothing for
+   the split fixture.
+2. *Dividends do not suppress an extreme-move finding.* Only structural actions (split, rights
+   issue, merger, delisting) explain a move; a dividend near the date is attached to the finding as
+   evidence instead. An ordinary dividend cannot cause a 50% move, and letting one suppress the
+   finding would silence exactly the cases worth adjudicating. This is configurable
+   (`explaining_action_types`).
+
+Arithmetic is exact throughout: the threshold test is expressed as multiplication and comparison so
+Polars evaluates it on Decimals without dividing, and the move itself is derived in `Fraction` for
+the flagged rows only. The one non-exact step is the trailing volume median, which is floored to
+whole shares before comparison — integer arithmetic, marginally more sensitive, which is the safe
+direction for a warning-only check. No float64 anywhere (DEC-005).
+
+**Outstanding, and the reason to revisit this ticket after the first real ingestion:** the risk
+section asks for the defaults to be tuned against real ingested data before closing, and no real
+data has been ingested yet. The defaults (50% move, 5-day stale run, 20x volume) are reasoned
+starting points validated only against hand-built fixtures. The observed finding-count distribution
+per check should be reviewed on the first full backfill, and `counts_by_check` exists to make that
+review a one-liner.
