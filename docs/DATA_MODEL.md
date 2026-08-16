@@ -47,11 +47,25 @@ invariants.
 
 ## Prices and corporate actions
 
-- **prices_daily** — `security_id`, trading date, open/high/low/close (raw, as traded),
-  volume, currency, source, ingestion timestamp. Decimal values.
-- **corporate_actions** — `security_id`, action type (split, dividend, special dividend, rights
-  issue, merger, delisting, ticker change), ex-date, record/pay dates where known, terms
-  (ratio, amount + currency), source, `available_at`.
+- **prices_daily** (implemented: QNT-013, `trp.domain.prices` / `trp.canonical.prices`) —
+  `security_id`, `trade_date`, `open`/`high`/`low`/`close` as **raw as-traded Decimals**
+  (Parquet `Decimal(18,6)`, pinned), `volume` (whole shares, `Int64`; fractional volume is
+  rejected, never rounded), `currency` (quotation unit as traded — GBX for LSE pence, no
+  implicit conversion), `source`, `ingested_at` (UTC), and optional
+  `provider_adjusted_close` retained purely as a cross-check for our own adjustment factors.
+  Invariants reject impossible bars (high/low/open/close ordering, zero or negative prices);
+  a flat zero-volume bar is valid. Nothing ever mutates these values — adjusted prices are
+  derived (QNT-015).
+- **corporate_actions** (implemented: QNT-014, `trp.domain.corporate_actions`) — a
+  discriminated union keyed on `action_type`: split, dividend (ordinary/special flag),
+  rights issue, merger, delisting, ticker change. Common fields: `security_id`, `ex_date`
+  (the adjustment date — first date traded without entitlement), optional
+  `record_date`/`pay_date` (validated ≥ ex-date), `source`, `available_at` (UTC) with
+  `available_at_imputed` per DEC-007 (imputed as start of ex-date UTC when the source gives
+  none). **Ratio convention:** exact integer pairs, `new_shares` per `old_shares` — 2-for-1
+  split = (2,1); 1-for-10 consolidation = (1,10); exposed as `Fraction` so cumulative
+  adjustment products stay exact. Monetary terms always carry currency/quotation unit;
+  merger consideration is cash (with currency), a share ratio (integer pair), or both.
 - **adjustment_factors** — derived from corporate actions: per `security_id` and date, cumulative
   split and dividend adjustment factors. Adjusted prices/total returns are computed, not stored
   as the only truth; raw and adjusted are always distinguishable.

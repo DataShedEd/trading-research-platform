@@ -1,7 +1,7 @@
 # QNT-013 — Canonical daily OHLCV schema
 
 - **Ticket ID:** QNT-013
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 3 — Market Data
 
@@ -30,18 +30,18 @@ Storage layout and partitioning (QNT-018), adjustment factors (QNT-015), calenda
 detection (QNT-016, QNT-019), intraday or tick data, provider ingestion adapters.
 
 ## Acceptance criteria
-- [ ] `DailyBar` is a frozen Pydantic v2 model with `Decimal` OHLC fields, `date` trade date, and a
+- [x] `DailyBar` is a frozen Pydantic v2 model with `Decimal` OHLC fields, `date` trade date, and a
       timezone-aware UTC `ingested_at`; `mypy --strict` passes.
-- [ ] Validation rejects `high < low`, `high < open`, `high < close`, `low > open`, `low > close`,
+- [x] Validation rejects `high < low`, `high < open`, `high < close`, `low > open`, `low > close`,
       and negative volume, with an error naming the violated invariant and the offending values.
-- [ ] Zero or negative prices are rejected; a bar with a zero price is a data error, not a valid
+- [x] Zero or negative prices are rejected; a bar with a zero price is a data error, not a valid
       observation, and must fail construction rather than being coerced.
-- [ ] `currency` is a validated ISO 4217 code with `GBX` accepted as a documented quotation unit,
+- [x] `currency` is a validated ISO 4217 code with `GBX` accepted as a documented quotation unit,
       and the model records the quotation unit rather than silently converting it.
-- [ ] The declared Parquet schema pins `Decimal128` precision and scale for OHLC, an integer type
+- [x] The declared Parquet schema pins `Decimal128` precision and scale for OHLC, an integer type
       wide enough for volume, `date32` for `trade_date`, and UTC timestamp for `ingested_at`; a test
       asserts the declared schema against a written file.
-- [ ] A test asserts there is no public method or code path that returns a `DailyBar` with modified
+- [x] A test asserts there is no public method or code path that returns a `DailyBar` with modified
       OHLC values — adjusted prices are produced as separate derived values by QNT-015.
 
 ## Technical notes
@@ -83,4 +83,14 @@ here must be reusable by QNT-018's and QNT-019's time-travel suites.
 invariant list.
 
 ## Completion notes
-_Not started._
+2026-08-16. `src/trp/domain/prices.py` (`DailyBar`) + `src/trp/canonical/prices.py`
+(`PRICES_DAILY_SCHEMA`, `bars_to_frame`/`frame_to_bars`). Invariants reject impossible
+bars naming the violated rule and values; zero/negative prices rejected; degenerate flat
+zero-volume bar accepted (tested). Volume decision: whole shares as Int64 — fractional
+volume rejected, never rounded (documented in module docstring). Decimal pinned at
+Parquet `Decimal(18,6)` (Polars-declared, consistent with the QNT-008 pattern rather than
+a separate PyArrow schema object) — holds GBX quotes and six-figure USD prices exactly;
+on-disk schema asserted against the declaration, Decimal round trip exact. Provider
+adjusted close retained as `provider_adjusted_close` cross-check field only. GBX recorded
+as quotation unit, no implicit conversion (tested). Tests:
+`tests/domain/test_daily_bar.py`. All checks green (157 tests).
