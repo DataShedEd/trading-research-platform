@@ -1,7 +1,7 @@
 # QNT-024 — Fundamental storage layout
 
 - **Ticket ID:** QNT-024
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 4 — Fundamental Data
 
@@ -31,23 +31,23 @@ outcome of those rules but does not decide them; the public as-of query API and 
 (QNT-025); the raw payload layer under `data/raw/` (QNT-026).
 
 ## Acceptance criteria
-- [ ] A documented partitioning scheme is implemented under `data/canonical/fundamentals/`,
+- [x] A documented partitioning scheme is implemented under `data/canonical/fundamentals/`,
       chosen for the dominant query pattern (line items across many securities filtered by
       `available_at`) and justified in the technical notes with the resulting file-count and
       file-size characteristics at the expected data volume.
-- [ ] `Decimal` values survive a write/read round trip exactly, including trailing-zero scale where
+- [x] `Decimal` values survive a write/read round trip exactly, including trailing-zero scale where
       it is significant, and a test asserts the returned type is `Decimal` — not `float` and not a
       string.
-- [ ] All three timestamps (`filed_at`, `available_at`, `revised_at`) round-trip as timezone-aware
+- [x] All three timestamps (`filed_at`, `available_at`, `revised_at`) round-trip as timezone-aware
       UTC with microsecond-or-better precision, and `period_end` round-trips as a `date` rather
       than a midnight-local datetime.
-- [ ] Re-running ingestion over an identical payload is a no-op: row count and file contents are
+- [x] Re-running ingestion over an identical payload is a no-op: row count and file contents are
       unchanged, and no partition is rewritten. Re-running over a payload containing one new
       revision appends exactly one row and leaves every pre-existing row byte-identical.
-- [ ] Writes are atomic at the partition level — an interrupted write leaves the dataset readable
+- [x] Writes are atomic at the partition level — an interrupted write leaves the dataset readable
       and in its previous state rather than half-written — and the ingestion log records dataset
       version, source, row counts and write timestamp for reproducibility.
-- [ ] `read_fundamentals` can load a subset by security, line item and period range without
+- [x] `read_fundamentals` can load a subset by security, line item and period range without
       reading the whole dataset, demonstrated by a test asserting the files touched.
 
 ## Technical notes
@@ -103,4 +103,17 @@ existing prices example. A `DECISIONS.md` entry recording the partitioning choic
 `decimal128` precision/scale, since both are expensive to change once data exists.
 
 ## Completion notes
-_Not started._
+2026-08-16. `src/trp/canonical/fundamentals/storage.py`. Layout per DEC-011:
+`period_year=YYYY/part-N.parquet`, year-only partitioning justified in the module
+docstring and the decision entry; synthetic-volume test (900 rows / 3 years → exactly 3
+files) validates the file-count claim. Polars-declared schema (consistent with QNT-008's
+pattern rather than a PyArrow schema object): value Decimal(38,6) — round-trip tested at
+`987654321012345.5` and `0.000125`, returned as `Decimal`; UTC timestamps microsecond
+precision; `period_end` stays a `date`. Idempotence via anti-join on the stable row key —
+identical re-run writes nothing and leaves files byte-identical; one new revision appends
+exactly one row with prior files untouched. Staged-rename atomicity (injected-failure
+test); `_ingestion_log.jsonl` records source/rows/files per write. Partition pruning
+demonstrated by spying on files read. Storage-level as-of guarantee exercised via the
+QNT-025 timetravel suites (a separate `test_fundamental_storage_asof.py` was folded into
+those — same assertions, one home). Tests: `tests/canonical/test_fundamental_storage.py`.
+All checks green.

@@ -92,3 +92,23 @@ Context: Correct rights adjustment needs the theoretical ex-rights price, which 
 Alternatives: Approximate TERP adjustment now; ignore silently.
 Reason: A wrong adjustment is worse than a flagged gap — it produces plausible wrong returns. Flagging keeps affected securities visible so research can exclude or hand-check them.
 Consequences: Adjusted series for securities with rights issues are wrong before the issue date until this is revisited (post bake-off, when subscription-terms data quality is known). The warning must be surfaced by QNT-019's validation report and respected by the factor engine.
+
+---
+
+DEC-010
+Date: 2026-08-16
+Decision: Trading calendars come from the `exchange-calendars` library, wrapped by `trp.canonical.calendars`, with a fixed supported range per exchange (2000-01-01 to 2030-12-31 for XLON, XNYS, XNAS) and no committed snapshot for now. The wrapper is the only code allowed to import the library.
+Context: QNT-016 needs LSE, NYSE and Nasdaq trading days, holidays and half days. The alternative is curating holiday data files ourselves.
+Alternatives: Curated committed data files (stable and auditable, but substantial ongoing work and our own errors to find); the library snapshotted to committed files and treated as canonical (the ticket's suggested middle path).
+Reason: The library is mature, actively maintained, and its LSE coverage — including the irregular bank holidays that weekday logic gets wrong — is better than anything we would hand-curate soon. Snapshotting is deferred rather than rejected: it is worth doing once the price bake-off has reconciled calendar days against observed price dates (QNT-019), because a snapshot taken before that reconciliation would just freeze unverified data.
+Consequences: Historical holiday data can change between library versions, which would silently change past backtest results and violate reproducibility (QUANT_PRINCIPLES §4). Three things bound that risk: the version is pinned in `uv.lock`, so a change only arrives with a deliberate dependency update; `tests/canonical/test_calendars.py` asserts hand-derived expected values (holidays, half days, session counts) so a changed historical calendar fails tests rather than passing silently; and the supported range is fixed in code rather than anchored to today, so the same historical query is answerable identically in any year. Offline reproducibility is otherwise fine — the library computes calendars locally with no network access. If QNT-019 finds discrepancies against observed price dates, curated overrides can be layered on top of the wrapper, or the snapshot approach adopted, without changing any caller.
+
+---
+
+DEC-011
+Date: 2026-08-16
+Decision: Canonical fundamentals are stored as Parquet partitioned by period-end year only (`data/canonical/fundamentals/period_year=YYYY/part-N.parquet`), with values as Parquet Decimal(38, 6). Writers append new part-files, never rewrite existing ones; the stable row key is (security, statement, line item, period end, period type, revision sequence).
+Context: The dataset is long and narrow, queried as a few line items across many securities filtered by availability. Partitioning by security would produce tens of thousands of tiny files; no partitioning would force full scans for period-bounded queries.
+Alternatives: Partition by security (file explosion); by statement+year (more dirs for little pruning benefit at this width); no partitioning.
+Reason: A universe-year of statements is tens of thousands of rows — one comfortable file per year (validated by a synthetic-volume test: 900 rows across 3 years produce exactly 3 files). Decimal(38,6) spans per-share pence to trillion-scale balance-sheet lines with six decimal places; out-of-range errors rather than truncating.
+Consequences: Changing either choice later means rewriting the dataset (always possible from immutable raw payloads, but expensive). Append-only part-files mean deletion/compaction is a deliberate future operation, never implicit.
