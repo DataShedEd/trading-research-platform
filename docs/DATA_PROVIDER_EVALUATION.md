@@ -32,20 +32,44 @@ fundamentals, stores raw payloads, and runs empirical checks with known-correct 
 
 ## Scoring criteria
 
-Weights defined in QNT-030; all scores computed, with links to the raw evidence.
+Implemented (QNT-030, `trp.bakeoff.scoring`). Weights were **fixed before any real provider
+results existed** (weights file `src/trp/bakeoff/weights.json`, version `2026-08-16.1`) —
+pre-registration, not post-hoc rationalisation. Empirical criteria are scored as
+passes/(passes+fails+errors) over the mapped checks with not-applicable excluded from the
+denominator; a criterion nobody measured scores *unmeasured* (excluded, renormalised),
+distinct from a dataset the provider simply lacks (scored zero, reason recorded). Declared
+criteria come from this document's research, not API checks, and are labelled as such in the
+breakdown. **Veto thresholds (DEC-012):** below 0.5 on delisted coverage or 0.25 on PIT
+fundamentals ⇒ unsuitable regardless of total. Scores are ordinal; the breakdown and
+coverage counts are the real output.
 
-| Criterion | What the harness measures |
-| --- | --- |
-| Historical depth | Earliest usable price/fundamental data per market |
-| Delisted coverage | Fraction of validation-universe delistings present with data to delisting date |
-| Corporate-action accuracy | Splits/dividends match known-correct fixtures (dates, ratios, amounts) |
-| Identifier stability | ISIN/SEDOL presence; behaviour across ticker changes |
-| PIT fundamental availability | Announcement timestamps present? First-known reconstructible? |
-| Revision history | Are restatements visible as distinct records? |
-| API reliability | Error rates, latency, consistency across repeated pulls |
-| Rate limits & bulk | Documented vs observed limits; bulk download paths |
-| Licensing | Storage/redistribution constraints on raw payload retention |
-| Cost | Actual tier needed for the above, per month |
+| Criterion | Weight | Kind | What is measured |
+| --- | --- | --- | --- |
+| Delisted coverage | 0.20 (veto < 0.5) | empirical | Validation-universe delistings present with data to delisting date |
+| PIT fundamental availability | 0.20 (veto < 0.25) | empirical | Announcement timestamps present; first-known reconstructible |
+| Corporate-action accuracy | 0.15 | empirical | Splits/dividends match known-correct fixtures (dates, ratios, amounts) |
+| Identifier stability | 0.10 | empirical | ISIN/SEDOL presence; behaviour across ticker changes |
+| Historical depth | 0.10 | empirical | Earliest usable price/fundamental data per market |
+| Revision history | 0.05 | empirical | Restatements visible as distinct records |
+| API reliability | 0.05 | empirical | Error rates, throttling events, consistency across pulls |
+| Rate limits & bulk | 0.05 | declared | Documented limits and bulk paths (QNT-028 research) |
+| Licensing | 0.05 | declared | Raw-payload retention constraints (QNT-028 research) |
+| Cost | 0.05 | declared | Actual tier needed, per month (QNT-028 research) |
+
+Weight rationale: the top two are the platform's non-negotiables (QUANT_PRINCIPLES §1–2) —
+a provider failing either cannot support correct research at any price, hence vetoes rather
+than weight inflation alone. Corporate-action accuracy is next because a wrong ratio
+corrupts every derived return. Operational criteria (reliability, limits) are inconvenience,
+not correctness, and are weighted accordingly. The PIT veto is set low (0.25) because the
+research above already shows no in-budget provider offers true PIT fundamentals — the
+criterion must be scored honestly without disqualifying every candidate.
+
+**Running the bake-off:** `uv run python -m trp.bakeoff --run-id <id> --provider <name>`
+(subsets by `--market/--dataset/--property`; `--resume` continues an interrupted run). Raw
+payloads persist to `data/raw/` before any check runs; per-cell results append to
+`data/derived/bakeoff/<run_id>/cells.jsonl`; completed runs are never overwritten, and
+re-runs replay stored payloads without spending API quota. See `src/trp/bakeoff/README.md`
+for the check-writing guide.
 
 ## Provider notes and pricing
 

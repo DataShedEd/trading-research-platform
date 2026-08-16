@@ -1,7 +1,7 @@
 # QNT-029 — Bake-off harness core
 
 - **Ticket ID:** QNT-029
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 5 — Data Provider Bake-Off
 
@@ -32,23 +32,23 @@ QNT-035) — this ticket ships the protocol and one or two trivial reference che
 generation (QNT-036); real adapters (QNT-031…033).
 
 ## Acceptance criteria
-- [ ] The runner enumerates the full (provider × security × dataset kind) matrix from the QNT-027
+- [x] The runner enumerates the full (provider × security × dataset kind) matrix from the QNT-027
       universe, supports running a subset by provider, market, awkward property or dataset kind,
       and records the universe version and provider/adapter versions in the run metadata.
-- [ ] Every fetch persists its raw payload through the QNT-026 raw store before any check runs, and
+- [x] Every fetch persists its raw payload through the QNT-026 raw store before any check runs, and
       each `CheckResult` references the raw record that produced it, so any result in the report
       can be traced to the bytes it came from.
-- [ ] Checks are registered against dataset kinds through a documented protocol, so QNT-034 and
+- [x] Checks are registered against dataset kinds through a documented protocol, so QNT-034 and
       QNT-035 add checks without modifying the runner; a check declares which dataset kinds and
       which awkward properties it applies to.
-- [ ] Failure is isolated and informative: a provider error, a rate limit, an unsupported
+- [x] Failure is isolated and informative: a provider error, a rate limit, an unsupported
       capability and a genuinely absent record produce four distinguishable outcomes, one failing
       check never aborts the run, and an exception inside a check is captured as an `error` result
       with its traceback rather than crashing the harness.
-- [ ] Results persist in a structured, machine-readable form keyed by run identifier, provider,
+- [x] Results persist in a structured, machine-readable form keyed by run identifier, provider,
       security, dataset kind and check, with timestamps, so a run is fully reconstructible and two
       runs are comparable; re-running a completed run does not overwrite the previous run's results.
-- [ ] The whole harness runs end to end against the fake provider in tests — full matrix, checks,
+- [x] The whole harness runs end to end against the fake provider in tests — full matrix, checks,
       persistence and subset selection — with no network access, and rate-limit backoff behaviour
       is exercised via the fake.
 
@@ -106,4 +106,23 @@ where results and raw payloads land, and how to reproduce a published result. A 
 `src/trp/bakeoff/` explaining how to write and register a new check.
 
 ## Completion notes
-_Not started._
+2026-08-16. `src/trp/bakeoff/{checks,results,harness,__main__}.py` + README. Runner
+enumerates the (provider x entry x dataset) matrix with subset selection by provider,
+market, awkward property and dataset; run metadata records universe and adapter versions.
+Raw persists through the QNT-026 store BEFORE checks; the harness stamps its canonical
+request params onto stored payloads so replay finds them by identity — replay from the
+raw store is automatic whenever matching payloads exist (tested: second run succeeds with
+a provider scripted to explode). Check protocol: ABC with name/criterion/datasets/
+properties + `run(entry, payloads) -> [Finding]`; registry; findings carry
+expected/observed/explanation; exceptions become `error` results with tracebacks (tested).
+Fetch outcomes are five-way distinguishable (ok/empty/unsupported/rate_limited/
+provider_error, tested). Rate-limit backoff honours retry-after with injectable sleep and
+a retry budget; throttle events recorded per cell. Results: `metadata.json` +
+append-only `cells.jsonl` per run id — inspectable, diffable, resumable (completed cells
+skipped; completed runs never overwritten). CLI `python -m trp.bakeoff` with subset flags;
+its adapter table is empty until QNT-031…033 unblock, and says so. One reference check
+(`payload_presence`) ships; QNT-034/035 add the real ones. Deviations: results are JSONL
+rather than Parquet (equally structured/inspectable, better fit for append+resume; the
+report generator can frame them); per-provider paced sleep beyond backoff is deferred to
+the first real-adapter run. Tests: `tests/bakeoff/test_harness.py` (9, incl. end-to-end
+against the fake with no network). Green.
