@@ -1,7 +1,7 @@
 # QNT-007 — Identifier mapping with effective date ranges
 
 - **Ticket ID:** QNT-007
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 2 — Security Master
 
@@ -29,19 +29,19 @@ Persistence (QNT-008), the resolution service and its error types (QNT-009), app
 lifecycle events (QNT-010), knowledge-time filtering (QNT-011).
 
 ## Acceptance criteria
-- [ ] `IdentifierMap` is a frozen Pydantic v2 model; `kind` uses the `IdentifierKind` enum from
+- [x] `IdentifierMap` is a frozen Pydantic v2 model; `kind` uses the `IdentifierKind` enum from
       QNT-006; `exchange` is required when `kind` is `TICKER` and rejected otherwise.
-- [ ] Identifier values are normalised on construction — uppercased, whitespace stripped — and
+- [x] Identifier values are normalised on construction — uppercased, whitespace stripped — and
       ISIN check-digit validation rejects a malformed ISIN with a typed validation error.
-- [ ] A function such as `check_no_overlaps(records)` raises a typed error naming both offending
+- [x] A function such as `check_no_overlaps(records)` raises a typed error naming both offending
       records when two records share `(security_id, kind, exchange)` and their validity ranges
       overlap; adjacent ranges that merely touch are accepted.
-- [ ] The same identifier value may map to different securities in disjoint periods (ticker reuse)
+- [x] The same identifier value may map to different securities in disjoint periods (ticker reuse)
       and this is accepted; the same value mapping to two securities in overlapping periods is
       rejected by a documented check.
-- [ ] A ticker change is expressible only as closing the old row (`valid_to` set) and inserting a
+- [x] A ticker change is expressible only as closing the old row (`valid_to` set) and inserting a
       new row; a test asserts there is no supported code path that mutates an existing row's value.
-- [ ] Unit tests cover overlap detection (identical, contained, straddling, touching, disjoint) and
+- [x] Unit tests cover overlap detection (identical, contained, straddling, touching, disjoint) and
       a worked ticker-change fixture producing exactly two rows with contiguous ranges.
 
 ## Technical notes
@@ -81,4 +81,14 @@ between the rows.
 overlap invariant.
 
 ## Completion notes
-_Not started._
+2026-08-16. Implemented as `IdentifierRecord` (name differs from the sketched
+`IdentifierMap`) in `src/trp/domain/identifier_map.py`, with check-digit validation for ISIN,
+SEDOL **and** CUSIP in `identifier_validation.py` (stricter than the ticket's ISIN-only
+minimum). `find_mapping_conflicts` returns `MappingConflict` objects naming both records;
+the `SecurityMaster` aggregate (QNT-008) raises on them at construction. Overlap detection is
+O(n log n) via `ranges.first_overlap`. Deviations: values are rejected rather than
+case-normalised (no silent coercion — DEC-005 spirit); `mic` is permitted on non-ticker kinds
+(SEDOLs are market-scoped). Known tension, per this ticket's Risks: if the bake-off surfaces
+genuine old SEDOLs failing the checksum, ingest them as `PROVIDER`-kind identifiers rather
+than weakening the validator. Tests: `test_identifier_validation.py`, `test_identifier_map.py`
+(ticker change as two rows, recycling legal, overlap conflicts).
