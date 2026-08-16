@@ -1,7 +1,7 @@
 # QNT-025 — As-of fundamental query API and time-travel tests
 
 - **Ticket ID:** QNT-025
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 4 — Fundamental Data
 
@@ -31,24 +31,24 @@ engine's `members(universe, date)` (Epic 6); any caching layer — correctness f
 dataset is small enough that caching is premature.
 
 ## Acceptance criteria
-- [ ] `fundamentals(...)` requires an explicit `as_of` argument with no default, and returns, per
+- [x] `fundamentals(...)` requires an explicit `as_of` argument with no default, and returns, per
       (security, statement, line item, period), exactly one row: the highest `revision_sequence`
       whose `available_at <= as_of`, with periods having no such row omitted rather than filled.
-- [ ] The returned frame carries the provenance fields a researcher needs to trust it —
+- [x] The returned frame carries the provenance fields a researcher needs to trust it —
       `available_at`, `revision_sequence`, `availability_imputed`, reporting `currency` and
       `source` — so a result can be audited without a second query.
-- [ ] It is structurally impossible to bypass the filter: the module exposes no unfiltered public
+- [x] It is structurally impossible to bypass the filter: the module exposes no unfiltered public
       read of the fundamentals dataset, and the `as_of` predicate is applied in one place that
       every query path goes through.
-- [ ] A `timetravel`-marked suite asserts, across the restatement fixture from QNT-022 and a
+- [x] A `timetravel`-marked suite asserts, across the restatement fixture from QNT-022 and a
       multi-period fixture, that no returned row has `available_at > as_of`, that a query dated
       between original filing and restatement returns the original figures, and that results are
       unchanged by rows added to the dataset with later availability.
-- [ ] Test-the-test: a deliberately corrupted fixture (a row whose `available_at` has been moved
+- [x] Test-the-test: a deliberately corrupted fixture (a row whose `available_at` has been moved
       earlier than the truth, and a variant query implementation that filters on `period_end`
       instead of `available_at`) causes the time-travel assertions to **fail**, and this is
       asserted in CI — a green suite against the corrupted fixture is itself a test failure.
-- [ ] Requesting an `as_of` earlier than the dataset's earliest availability returns an empty
+- [x] Requesting an `as_of` earlier than the dataset's earliest availability returns an empty
       result rather than raising, and requesting an unknown line item raises rather than returning
       silently empty — the distinction is documented and tested.
 
@@ -110,4 +110,22 @@ meaning of the `availability_imputed` flag in results. `CLAUDE.md` conventions n
 Parquet reads of the fundamentals dataset are not permitted in research code.
 
 ## Completion notes
-_Not started._
+2026-08-16. `src/trp/canonical/fundamentals/queries.py`: `fundamentals(...)` with
+keyword-only mandatory tz-aware `as_of`; the predicate lives in exactly one function
+(`_apply_as_of`) every path goes through; no unfiltered public read exists in the module.
+Per-key latest-knowable revision via sort+group-last; provenance columns in every result.
+Documented + tested edge semantics: too-early `as_of` → empty (legitimate answer);
+unknown line item → `UnknownLineItemError` (likely typo). Timetravel suites:
+`test_fundamental_asof.py` (no returned row postdates `as_of`; results immutable under
+later-availability appends; multi-period knowability — FY2018 invisible in Jan 2019) and
+`test_fundamental_asof_detects_leakage.py` (test-the-test: the corrupted fixture —
+restatement stamped with the original's availability, loudly named, physically separate —
+makes the between-window assertion fail; the classic wrong `period_end`-filtering
+implementation fails `assert_no_leakage`; both failures asserted in CI). `make test` runs
+timetravel markers (no deselection). Epic 4 path demonstrated end to end on the Tesco
+fixture: classify (QNT-022) → write (QNT-024) → query as-of. Docs: ARCHITECTURE +
+DATA_MODEL name this the only read path; RESEARCH_METHODOLOGY gains the PIT-querying
+section; CLAUDE.md forbids direct Parquet reads. Note: QNT-021 (taxonomy) and QNT-023
+(currency conversion) remain open — `line_item` is free-form until QNT-021, and the
+target-currency argument is deferred to QNT-023 rather than half-implemented here.
+Tests: `tests/canonical/test_fundamental_queries.py` + the two timetravel suites. Green.

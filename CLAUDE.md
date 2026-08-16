@@ -42,6 +42,9 @@ uv run pytest -m timetravel   # leakage tests only
   never discarded, edited or deleted — `RawStore` is append-only, and provider adapters must
   never normalise (transport/auth/pagination only; semantics live in `trp.canonical`).
 - Every data-access API that reads historical data takes an explicit `as_of` argument.
+- Research code never reads the canonical Parquet files directly. Fundamentals go through
+  `trp.canonical.fundamentals.queries.fundamentals(...)` (the as-of choke point) — nothing
+  else.
 
 ## Testing
 

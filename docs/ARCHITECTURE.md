@@ -44,8 +44,11 @@ Later packages (created when their epic starts): `universe`, `factors`, `backtes
 
 ## Storage
 
-- **Parquet + DuckDB** for all analytical/historical data. Partition intelligently (e.g. prices
-  by year), avoiding excessive tiny files.
+- **Parquet + DuckDB** for all analytical/historical data. Partition intelligently, avoiding
+  excessive tiny files: fundamentals are partitioned by period-end year with append-only
+  part-files (DEC-011); prices will partition by year (QNT-018). The fundamentals dataset is
+  read ONLY through `trp.canonical.fundamentals.queries.fundamentals(...)` — the single as-of
+  choke point; direct Parquet reads in research code are forbidden.
 - **PostgreSQL deferred** (DEC-004) until there is genuinely transactional state (experiment
   registry writes, paper-trading orders). Milestone 1 has none.
 - `data/` is gitignored; code + raw payloads reproduce everything else.

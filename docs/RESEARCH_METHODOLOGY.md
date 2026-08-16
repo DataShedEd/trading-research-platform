@@ -41,6 +41,25 @@ Keep these distinct and never conflate them:
 8. When a methodological choice could flatter results (universe tweak, exclusion, date range,
    winsorisation change), document it in the experiment record at the time it is made.
 
+## Querying fundamentals point-in-time
+
+The only supported read path is `trp.canonical.fundamentals.queries.fundamentals(...)`,
+which requires an explicit `as_of` and returns the latest revision knowable at that
+instant, with provenance columns (`available_at`, `revision_sequence`,
+`availability_imputed`, `currency`, `source`). Two rules:
+
+- **Never filter on `period_end` as a proxy for knowability.** A December 2017 annual
+  result is not knowable in January 2018; only `available_at` is load-bearing.
+- **Respect `availability_imputed`.** An imputed row's availability is a conservative
+  (late) assumption per DEC-007; results driven by imputed rows understate timeliness,
+  and sensitivity to the imputation lag should be reported when it could matter.
+
+Be aware that the platform's correctness guarantee is bounded by the provider: with a
+latest-view-only provider, originals that were restated before our first ingestion are
+unrecoverable, and research on affected periods silently uses restated figures. The
+bake-off (QNT-035) measures each provider's revision visibility precisely because this
+limits what any downstream care can fix.
+
 ## Workflow
 
 hypothesis → design → (registry entry) → run → evidence persisted → conclusion + weaknesses →

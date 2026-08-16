@@ -79,7 +79,16 @@ invariants.
   overwritten. Rights issues are NOT adjusted (DEC-009) — affected securities are flagged.
   A reconciliation diagnostic compares our adjusted series against any provider-supplied
   adjusted close without ever tuning to it.
-- **trading_calendars** — per exchange: trading days, holidays, half-days.
+- **trading_calendars** (implemented: QNT-016, `trp.canonical.calendars`) — per exchange:
+  trading days, holidays, half-days. Not a stored table: calendars are computed locally by
+  the `exchange-calendars` library (DEC-010), wrapped and cached one instance per MIC by
+  `get_trading_calendar`. Keyed by MIC with an explicit MIC → library-code map; `XLON`,
+  `XNYS` and `XNAS` are supported and an unknown MIC raises. Supported range is fixed at
+  2000-01-01 to 2030-12-31 for all three (LSE holiday data before ~2000 is patchy in every
+  source); a query outside it raises `DateOutOfCalendarRange` rather than falling back to
+  weekday logic. Trading days are market-local `date` values (DEC-005) — no session times
+  are exposed. `sessions_between` is inclusive of both endpoints. A half day is a session
+  shorter than the exchange's usual session length, and is still a trading day.
 - **exchanges / currencies** — MIC, name, country, currency, timezone; FX rates for conversion.
 
 ## Fundamentals (point-in-time)
@@ -96,8 +105,21 @@ invariants.
   `uk-annual-lag-90d` let QNT-035 measure the assumption). `available_at < period_end` is
   rejected as a data error. Series-level rules (contiguous sequences, strictly increasing
   `revised_at`) are enforced by `check_revision_series`.
-- Revisions are new rows, never updates: querying `as_of` a date between original filing and
-  restatement returns the original figures.
+- **Revision handling** (QNT-022, `trp.canonical.fundamentals.revisions`): the revision key
+  is (security, statement, line item, period end, period type) — currency is NOT part of it;
+  a currency change on the same key is a data error. `classify_observations` distinguishes
+  new fact / unchanged re-observation (exact Decimal comparison, exponent-normalised — 100
+  and 100.00 are one fact) / revision (appended with next sequence; its `available_at` is
+  the restatement's own first-known time, strictly later than the previous revision's).
+  Append-only end to end: revisions are new rows, never updates, and querying `as_of` a date
+  between original filing and restatement returns the original figures.
+- **Storage** (QNT-024, `trp.canonical.fundamentals.storage`): DEC-011 — year-partitioned
+  append-only part-files, Decimal(38,6), idempotent writes keyed on (revision key, sequence),
+  staged-rename atomicity, `_ingestion_log.jsonl` per write.
+- **Query API** (QNT-025, `trp.canonical.fundamentals.queries`): `fundamentals(...)` is the
+  ONLY supported read path — mandatory `as_of`, single choke-point predicate, latest knowable
+  revision per key, provenance columns in every result; empty for too-early `as_of`, raises
+  for unknown line items.
 
 ## Universes
 
