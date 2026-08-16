@@ -1,7 +1,7 @@
 # QNT-022 — Revision and restatement handling
 
 - **Ticket ID:** QNT-022
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 4 — Fundamental Data
 
@@ -34,23 +34,23 @@ The record type (QNT-020); the taxonomy (QNT-021); the physical Parquet layout a
 (QNT-035).
 
 ## Acceptance criteria
-- [ ] The revision key is defined in one place and documented: (security identifier, statement,
+- [x] The revision key is defined in one place and documented: (security identifier, statement,
       canonical line item, `period_end`, `period_type`) — currency is not part of the key, and a
       currency change for the same key is treated as a data error rather than a revision.
-- [ ] `classify_observation` distinguishes new fact, byte-identical re-observation (idempotent
+- [x] `classify_observation` distinguishes new fact, byte-identical re-observation (idempotent
       no-op, no new row), and revision (new row, `revision_sequence` incremented, `revised_at`
       set); re-running ingestion over the same payload twice adds no rows.
-- [ ] Revisions are only ever appended: there is no code path in the fundamentals layer that
+- [x] Revisions are only ever appended: there is no code path in the fundamentals layer that
       rewrites or deletes an existing row's `value`, `available_at`, or `revision_sequence`, and a
       test asserts this by re-reading the original row after a restatement has been applied.
-- [ ] A restatement's `available_at` is the first-known timestamp of the *restatement*, not of the
+- [x] A restatement's `available_at` is the first-known timestamp of the *restatement*, not of the
       original filing, and must be strictly greater than the previous revision's `available_at`;
       violations raise rather than being silently reordered.
-- [ ] A `timetravel`-marked test using the restatement fixture proves that querying as of a date
+- [x] A `timetravel`-marked test using the restatement fixture proves that querying as of a date
       between the original filing and the restatement returns the original value, as of a date
       after the restatement returns the restated value, and as of a date before the original
       filing returns nothing.
-- [ ] The restatement fixture is documented: real company, period, line item, original value,
+- [x] The restatement fixture is documented: real company, period, line item, original value,
       restated value, and both availability dates, with a source note so the expectations can be
       re-verified.
 
@@ -107,4 +107,17 @@ the provider exposes revisions at all, since with a latest-view-only provider th
 correctness guarantee is limited to what the provider preserves.
 
 ## Completion notes
-_Not started._
+2026-08-16. `src/trp/canonical/fundamentals/revisions.py`: revision key defined in one
+place (currency excluded — `CurrencyChangeError` on change); `classify_observations`
+handles batches across keys, distinguishing new fact (sequence 0), unchanged
+re-observation (exact Decimal comparison, exponent-normalised, stored scale preserved —
+documented) and revision (next sequence, `revised_at` = the restatement's own
+`available_at`, never inherited; strict-increase enforced via `RevisionOrderError`).
+Re-ingestion idempotence tested at both this layer and storage (QNT-024). Restatement
+fixture: Tesco plc 2014 H1 trading-profit guidance (GBP 1,100m announced 29 Aug 2014;
+c. GBP 850m after the 22 Sep 2014 overstatement announcement), fully documented with
+source notes in `tests/fixtures/fundamentals.py::tesco_restatement`. Latest-view-only
+provider limitation documented in RESEARCH_METHODOLOGY (new PIT-querying section).
+Timetravel windows (before/between/after) in
+`tests/timetravel/test_fundamental_revisions.py`. Tests: `tests/canonical/test_revisions.py`.
+All checks green.
