@@ -1,7 +1,7 @@
 # QNT-026 — Common provider interface and raw ingestion layer
 
 - **Ticket ID:** QNT-026
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 5 — Data Provider Bake-Off
 
@@ -32,23 +32,23 @@ layer translate transport only; the canonical transforms that consume raw payloa
 the bake-off runner (QNT-029).
 
 ## Acceptance criteria
-- [ ] `MarketDataProvider` is an abstract base class with the six methods named above, fully typed
+- [x] `MarketDataProvider` is an abstract base class with the six methods named above, fully typed
       under `mypy --strict`, each documented with its parameters, its return shape and whether it
       is expected to be paginated; a subclass that omits a method fails to instantiate.
-- [ ] Capability declaration is explicit: an adapter states which methods it genuinely supports, so
+- [x] Capability declaration is explicit: an adapter states which methods it genuinely supports, so
       an unsupported dataset raises a distinguishable `ProviderCapabilityError` rather than
       returning an empty result that the bake-off would score as "no data found".
-- [ ] Raw payloads are written verbatim — bytes as received, with no reformatting, key reordering,
+- [x] Raw payloads are written verbatim — bytes as received, with no reformatting, key reordering,
       type coercion or pretty-printing — alongside sidecar metadata recording provider, endpoint,
       request parameters, a stable hash of those parameters, fetch timestamp (UTC) and the
       adapter/provider version.
-- [ ] The raw store is append-only and immutable: writing the same endpoint and parameters again
+- [x] The raw store is append-only and immutable: writing the same endpoint and parameters again
       creates a new timestamped record rather than overwriting, and there is no public delete or
       overwrite method; a test asserts an existing payload file is never modified.
-- [ ] Credentials never reach disk or logs: the parameter hash and stored metadata exclude API keys
+- [x] Credentials never reach disk or logs: the parameter hash and stored metadata exclude API keys
       and tokens, and a test asserts a known secret value is absent from every written file and
       from captured log output.
-- [ ] A fake in-memory provider implements the full interface with scriptable responses, errors,
+- [x] A fake in-memory provider implements the full interface with scriptable responses, errors,
       pagination and rate-limit conditions, and the full ingestion path is exercised against it in
       tests with no network access.
 
@@ -104,4 +104,18 @@ exception taxonomy and the raw path layout. `CLAUDE.md` gains a note that adapte
 normalise and that raw payloads are never edited or deleted.
 
 ## Completion notes
-_Not started._
+2026-08-16. `src/trp/providers/base.py`: `MarketDataProvider` ABC (six methods, each
+yielding `RawPayload` pages — pagination is the iterator shape), class-level
+`name`/`version`/`capabilities` with `require()` raising `ProviderCapabilityError`;
+exception taxonomy `ProviderError` / `ProviderCapabilityError` / `ProviderRateLimitError`
+(carries retry-after) / `ProviderUnavailableError`. `src/trp/ingestion/raw.py`: `RawStore`
+with human-navigable layout `data/raw/<provider>/<dataset>/<params_hash>/<stamp>-<n>.<ext>`
++ `.meta.json` sidecars (`RawRecord`), append-only (sequence suffix, no delete/overwrite
+method), verbatim byte fidelity tested against deliberately non-JSON bytes, UTC-aware fetch
+timestamps enforced, order-independent parameter hashing, credential denylist stripping
+before hash/write (tested: secret absent from every file), and per-write `retain=False`
+storing sidecar + content SHA only for licence-restricted payloads. `tests/fakes/provider.py`:
+scriptable `FakeProvider` (pages, mid-pagination errors, rate limits, call log) +
+`NoFundamentalsProvider`; full ingestion path exercised with no network. Docs: ARCHITECTURE
+provider/ingestion sections rewritten with the final contract; CLAUDE.md notes the
+never-normalise / never-delete rules. All checks green (127 tests).

@@ -39,7 +39,8 @@ uv run pytest -m timetravel   # leakage tests only
   derived analytics.
 - Polars for dataframe work; DuckDB/Parquet for storage; SQL where set-based logic is clearer.
 - Deterministic functions; no hidden state; no silent data coercion; raw provider payloads are
-  never discarded or mutated.
+  never discarded, edited or deleted — `RawStore` is append-only, and provider adapters must
+  never normalise (transport/auth/pagination only; semantics live in `trp.canonical`).
 - Every data-access API that reads historical data takes an explicit `as_of` argument.
 
 ## Testing

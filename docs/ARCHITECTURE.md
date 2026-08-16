@@ -16,13 +16,21 @@ providers  ──►  ingestion (raw, immutable)  ──►  canonical  ──�
                        risk engine, experiment registry, API, terminal, execution
 ```
 
-- **`trp.providers`** — `MarketDataProvider` abstract interface (securities, prices,
-  corporate_actions, fundamentals, financial_periods, delisted_securities) plus one adapter per
-  provider. Adapters translate transport/auth/pagination only; they do not normalise semantics.
-- **`trp.ingestion`** — fetches via adapters and writes provider payloads **verbatim** to
-  `data/raw/<provider>/…` with fetch timestamp, endpoint, and parameters. Raw data is immutable
-  and append-only; it is the audit trail and the reprocessing source. Never discarded unless
-  licensing forbids storage.
+- **`trp.providers`** — `MarketDataProvider` abstract interface (implemented, QNT-026):
+  `securities`, `prices`, `corporate_actions`, `fundamentals`, `financial_periods`,
+  `delisted_securities`, each yielding `RawPayload` pages (verbatim bytes + logical request
+  params, credentials excluded). Adapters declare `name`/`version`/`capabilities`; an
+  unsupported dataset raises `ProviderCapabilityError` — distinct from an empty result — and
+  throttling/outage raise `ProviderRateLimitError`/`ProviderUnavailableError` so the bake-off
+  can tell "no such data" from "we were throttled". Adapters translate transport, auth,
+  pagination and rate limits only; they never normalise semantics.
+- **`trp.ingestion`** — `RawStore` (implemented, QNT-026) writes payloads **verbatim** to
+  `data/raw/<provider>/<dataset>/<params_hash>/<fetched_at>-<n>.{json,csv,bin}` with a
+  `.meta.json` sidecar (provider, version, endpoint, sanitised params, param hash, UTC fetch
+  timestamp, content SHA-256). Append-only and immutable: re-fetches append, nothing is ever
+  overwritten or deleted, and there is no delete method. A per-write `retain=False` flag
+  (licensing) stores the sidecar with content hash only. Credential-shaped parameter keys are
+  stripped before hashing or writing.
 - **`trp.canonical`** — deterministic, re-runnable transforms from raw to the canonical model
   (see `DATA_MODEL.md`): security master, prices, corporate actions, fundamentals, universes.
   Stored as Parquet under `data/canonical/…`, queried via DuckDB and Polars.
