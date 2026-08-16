@@ -163,7 +163,7 @@ def test_special_dividend_matches() -> None:
                 {
                     "type": "dividend",
                     "ex_date": "2004-11-15",
-                    "amount": "3.00",
+                    "amount": "3.08",
                     "currency": "USD",
                     "special": True,
                 }
@@ -377,7 +377,7 @@ def test_dividend_adjustment_reconciles() -> None:
             {"date": "2004-11-12", "close": "100", "adjusted_close": "97"},
             {"date": "2004-11-15", "close": "97", "adjusted_close": "97"},
         ],
-        [{"type": "dividend", "ex_date": "2004-11-15", "amount": "3.00", "currency": "USD"}],
+        [{"type": "dividend", "ex_date": "2004-11-15", "amount": "3.08", "currency": "USD"}],
     )
     (finding,) = RawVersusAdjustedCheck().run(entry("microsoft"), [payload])
     assert finding.outcome is Outcome.PASS

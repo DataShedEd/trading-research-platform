@@ -22,3 +22,8 @@ def setup_logging(level: str = "INFO") -> None:
     root.handlers.clear()
     root.addHandler(handler)
     root.setLevel(level.upper())
+
+    # httpx/httpcore log full request URLs at INFO — for providers whose auth is a query
+    # parameter (EODHD) that would print the API token. Secrets never appear in logs.
+    for noisy in ("httpx", "httpcore"):
+        logging.getLogger(noisy).setLevel(logging.WARNING)

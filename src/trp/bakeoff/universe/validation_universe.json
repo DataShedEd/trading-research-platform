@@ -1,5 +1,5 @@
 {
-  "version": "2026-08-16.1",
+  "version": "2026-08-16.2",
   "entries": [
     {
       "key": "apple",
@@ -118,9 +118,9 @@
       ],
       "properties": ["special_dividend"],
       "facts": [
-        {"fact": "dividend", "ex_date": "2004-11-15", "amount": "3.00", "unit": "USD", "special": true, "source": "Microsoft press release 2004-07-20 ($32bn one-time dividend); ex-date per Nasdaq", "verified_on": "2026-08-16"}
+        {"fact": "dividend", "ex_date": "2004-11-15", "amount": "3.08", "unit": "USD", "special": true, "source": "Microsoft press release 2004-07-20: $3.00 one-time special PLUS the $0.08 quarterly ordinary, both ex 2004-11-15 — providers aggregate per ex-date, so the checkable per-ex-date total is 3.08. Confirmed independently by EODHD and Tiingo live payloads, 2026-08-16.", "verified_on": "2026-08-16"}
       ],
-      "notes": "The special was ~38x the concurrent quarterly ordinary (0.08): providers that fold specials into adjusted series silently diverge here — exactly the reconciliation QNT-015 reports."
+      "notes": "The special was ~38x the concurrent quarterly ordinary (0.08) sharing its ex-date: providers that fold specials into adjusted series silently diverge here — exactly the reconciliation QNT-015 reports. Original expectation of 3.00 corrected to the 3.08 per-ex-date aggregate after both live providers agreed (universe v2026-08-16.2)."
     },
     {
       "key": "morrisons",

@@ -16,3 +16,10 @@ def test_setup_logging_emits_utc_single_handler(capsys: pytest.CaptureFixture[st
     assert err.count("hello") == 1
     # ISO-ish UTC timestamp with explicit Z suffix.
     assert "Z INFO" in err
+
+
+def test_httpx_request_urls_never_reach_logs(capsys: pytest.CaptureFixture[str]) -> None:
+    # httpx logs full URLs at INFO; query-parameter API tokens must not be loggable.
+    setup_logging("INFO")
+    logging.getLogger("httpx").info("GET https://example.com/?api_token=SECRET")
+    assert "SECRET" not in capsys.readouterr().err

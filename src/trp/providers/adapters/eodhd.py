@@ -97,6 +97,8 @@ class EodhdProvider(MarketDataProvider):
 
     def _eodhd_symbol(self, symbol: str) -> str:
         ticker, mic = split_symbol(symbol)
+        # LSE tickers like "RR." carry a trailing dot; EODHD codes drop it (RR.LSE).
+        ticker = ticker.rstrip(".")
         if mic is None:
             return ticker
         exchange = MIC_TO_EXCHANGE.get(mic)

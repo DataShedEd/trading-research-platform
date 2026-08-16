@@ -1,7 +1,7 @@
 # QNT-031 — EODHD provider adapter
 
 - **Ticket ID:** QNT-031
-- **Status:** IN_PROGRESS
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 5 — Data Provider Bake-Off
 
@@ -29,24 +29,24 @@ Any normalisation, renaming, unit conversion or type coercion of payload content
 (QNT-034, QNT-035); scoring (QNT-030); purchasing the subscription (owner decision, QNT-028).
 
 ## Acceptance criteria
-- [ ] The adapter implements every `MarketDataProvider` method or explicitly declares the
+- [x] The adapter implements every `MarketDataProvider` method or explicitly declares the
       capability unsupported, with the declaration reflecting the subscribed tier rather than the
       full published product range.
-- [ ] Payloads reach the raw store byte-identical to the API response: no JSON re-serialisation, no
+- [x] Payloads reach the raw store byte-identical to the API response: no JSON re-serialisation, no
       key reordering, no numeric parsing on the way through; a test compares stored bytes with the
       recorded fixture exactly.
-- [ ] Authentication uses the API key from `Settings` as a `SecretStr`, and the key appears in no
+- [x] Authentication uses the API key from `Settings` as a `SecretStr`, and the key appears in no
       log line, no exception message, no stored request metadata and no test artefact — asserted by
       a test that greps captured logs and written files for a known sentinel key value.
-- [ ] Pagination, rate limiting and transient errors are handled in the adapter: paged endpoints
+- [x] Pagination, rate limiting and transient errors are handled in the adapter: paged endpoints
       are followed to completion, HTTP 429 and the provider's quota responses raise
       `ProviderRateLimitError`, 5xx and timeouts retry with bounded exponential backoff, and
       persistent failure raises `ProviderUnavailableError` rather than returning partial data
       silently.
-- [ ] Delisted-security retrieval is implemented as a first-class method — enumerating delisted
+- [x] Delisted-security retrieval is implemented as a first-class method — enumerating delisted
       tickers for a market and fetching their price history to the delisting date — because it is
       the highest-weighted criterion in the rubric.
-- [ ] All tests run against recorded or stubbed responses with no live API calls, CI fails if a
+- [x] All tests run against recorded or stubbed responses with no live API calls, CI fails if a
       test attempts network access, and the recorded fixtures are checked in with the date and
       endpoint they were captured from and with any key redacted.
 
@@ -108,7 +108,20 @@ report. `docs/DATA_PROVIDER_EVALUATION.md` provider notes updated with anything 
 reveals that the desk research got wrong.
 
 ## Completion notes
-_Not started._
+2026-08-16. `src/trp/providers/adapters/eodhd.py` + shared `_http.py` (retry/backoff,
+uniform error taxonomy, injectable sleep). Capabilities: securities, prices, corporate
+actions (splits + dividends as two pages), fundamentals, delisted securities;
+financial_periods unsupported. EODHD only accepts query-parameter auth: the token is
+attached at request time only — absent from stored params, endpoints, exceptions and
+(after fixing httpx's INFO URL logging, which would have printed it) all log output.
+LSE ticker quirk handled: trailing-dot tickers (`RR.`) map to `RR.LSE`. MIC→exchange map
+explicit; unknown MIC is loud. Fixture tests: byte fidelity, token hygiene, two-page
+corporate actions, delisted flag, LSE+US paging, backoff. **Validated live the same day**
+(owner's paid key, runs `eodhd-final-1`/`-1b`): 44 cells, zero failures, zero throttles;
+all four LSE validation delistings present with matching ISINs; 1990-onwards price depth;
+UK fundamentals confirmed to lack usable publication timestamps (see DEC-013 and the
+generated Results section). Tier: paid monthly, 100k req/day observed — owner to confirm
+exact tier name/cost for the record. Tests: `tests/providers/test_adapters.py`.
 
 **BLOCKED (2026-08-16):** awaiting owner sign-off on the QNT-028 recommendation (subscription
 purchase + licensing consequences documented in docs/DATA_PROVIDER_EVALUATION.md). Adapter

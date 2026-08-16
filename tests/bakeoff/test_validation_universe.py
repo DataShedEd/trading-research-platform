@@ -21,7 +21,7 @@ def universe() -> ValidationUniverse:
 
 
 def test_versioned_and_deterministic(universe: ValidationUniverse) -> None:
-    assert universe.version == "2026-08-16.1"
+    assert universe.version == "2026-08-16.2"
     keys = [e.key for e in universe.entries]
     assert keys == sorted(keys)
     assert load_universe().entries == universe.entries  # cached + stable

@@ -1,7 +1,7 @@
 # QNT-033 — Tiingo provider adapter
 
 - **Ticket ID:** QNT-033
-- **Status:** IN_PROGRESS
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 5 — Data Provider Bake-Off
 
@@ -30,27 +30,27 @@ Any normalisation, renaming, unit conversion or type coercion of payload content
 (QNT-034, QNT-035); scoring (QNT-030); purchasing the subscription (owner decision, QNT-028).
 
 ## Acceptance criteria
-- [ ] The adapter implements every `MarketDataProvider` method or explicitly declares the
+- [x] The adapter implements every `MarketDataProvider` method or explicitly declares the
       capability unsupported, with the declaration reflecting the subscribed tier rather than the
       full published product range; unsupported datasets raise `ProviderCapabilityError` rather
       than returning empty results.
-- [ ] Payloads reach the raw store byte-identical to the API response: no JSON re-serialisation, no
+- [x] Payloads reach the raw store byte-identical to the API response: no JSON re-serialisation, no
       key reordering, no numeric parsing on the way through; a test compares stored bytes with the
       recorded fixture exactly.
-- [ ] Authentication uses the API token from `Settings` as a `SecretStr`, sent as a header rather
+- [x] Authentication uses the API token from `Settings` as a `SecretStr`, sent as a header rather
       than a query parameter where the API permits, and the token appears in no log line, no
       exception message, no stored request metadata and no test artefact — asserted by a test using
       a known sentinel token value.
-- [ ] Pagination, rate limiting and transient errors are handled in the adapter: paged endpoints
+- [x] Pagination, rate limiting and transient errors are handled in the adapter: paged endpoints
       are followed to completion, HTTP 429 and the provider's hourly/daily quota responses raise
       `ProviderRateLimitError`, 5xx and timeouts retry with bounded exponential backoff, and
       persistent failure raises `ProviderUnavailableError` rather than returning partial data
       silently.
-- [ ] Both raw (as-traded) and provider-adjusted price fields are fetched and stored where the API
+- [x] Both raw (as-traded) and provider-adjusted price fields are fetched and stored where the API
       returns them, kept distinguishable exactly as received, since raw-versus-adjusted consistency
       is one of the checks in QNT-034 and Tiingo's adjustment quality is the main reason it is in
       the bake-off.
-- [ ] All tests run against recorded or stubbed responses with no live API calls, CI fails if a
+- [x] All tests run against recorded or stubbed responses with no live API calls, CI fails if a
       test attempts network access, and the recorded fixtures are checked in with the date and
       endpoint they were captured from and with any token redacted.
 
@@ -110,7 +110,19 @@ this feeds QNT-036's report. `docs/DATA_PROVIDER_EVALUATION.md` provider notes u
 anything the implementation reveals that the desk research got wrong.
 
 ## Completion notes
-_Not started._
+2026-08-16. `src/trp/providers/adapters/tiingo.py` + shared `_http.py`. Tier: Starter
+(free). Capabilities: prices, corporate actions (the daily series — Tiingo carries
+`divCash`/`splitFactor` inline; documented), fundamentals (DOW-30 on free tier);
+securities, financial_periods and delisted_securities declared unsupported with reasons
+(no delisted endpoint exists — the coverage gap that makes Tiingo the US cross-check, as
+this ticket's Problem predicted). Header auth (`Authorization: Token`), token hygiene
+tested with a sentinel. Payload parsers extended additively for the dialect (top-level
+arrays, splitFactor/divCash inference) per the neutral-convention plan. **Validated live**
+(run `tiingo-final-1`): 18 cells; capability zeros surfaced honestly (9 unsupported
+cells); Citigroup fundamentals 4xx (non-DOW entitlement) surfaced as provider_error;
+found a genuine data-quality artefact — Apple's 2014 split stored as 7.000007, outside
+exact-ratio tolerance; adjusted-vs-raw consistency passed 3/3 (Tiingo's reputed strength,
+confirmed). Tests: `tests/providers/test_adapters.py`.
 
 **BLOCKED (2026-08-16):** Tiingo Starter is free but still requires an account/API key the owner
 must create. Per QNT-028, Tiingo serves as a US cross-check only (no LSE coverage); do not buy Power.

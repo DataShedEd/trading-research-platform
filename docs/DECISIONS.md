@@ -122,3 +122,13 @@ Context: QUANT_PRINCIPLES §1 and §2 are non-negotiable; a weighted average can
 Alternatives: Weight inflation only (a bad provider can still win); manual judgement (unauditable).
 Reason: A provider that cannot serve delisted securities cannot support survivorship-bias-free research at any price. The PIT threshold is set lower (0.25) because QNT-028's research already established that no provider in budget offers true PIT fundamentals — the criterion must be scored honestly without disqualifying every candidate.
 Consequences: The report must show veto flags prominently. Revising weights/thresholds later requires a new weights-file version with justification; previously published scores remain attributable to their version.
+
+---
+
+DEC-013
+Date: 2026-08-16
+Decision: The QNT-028 Phase 1 provider purchase is executed. Owner subscribed to EODHD (paid monthly; 100,000 requests/day and extraLimit 500 observed via /api/user on 2026-08-16) and created a free Tiingo Starter account. Keys live in .env as TRP_EODHD_API_KEY / TRP_TIINGO_API_KEY (SecretStr; never logged — httpx request-URL logging is suppressed since it would print query-parameter tokens).
+Context: DATA_PROVIDER_EVALUATION.md recommended EODHD ALL-IN-ONE month-to-month first, Tiingo free as US cross-check. Owner populated both keys on 2026-08-16.
+Alternatives: Delay purchase; start with FMP.
+Reason: EODHD is the only in-budget candidate covering UK prices, corporate actions, delisted securities and fundamentals in one subscription; the live bake-off run the same day confirmed LSE delisted coverage (all four validation delistings present with matching ISINs).
+Consequences: The raw-payload archive is licensed, not owned — cancellation obliges deletion within one month, so the durable bake-off evidence is derived results, not raw payloads. The exact tier name and monthly cost should be confirmed by the owner for the record (observed entitlements are consistent with ALL-IN-ONE). Live findings: EODHD UK fundamentals carry no usable publication timestamps (filing_date is a period-end default for ~99% of UK/EU rows), so DEC-007 imputation is confirmed load-bearing for UK point-in-time research; the pre-registered PIT veto (DEC-012) correctly marks both providers unsuitable *as PIT-fundamentals sources* while EODHD remains strong for prices/corporate actions/delisted coverage.

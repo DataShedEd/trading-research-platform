@@ -18,6 +18,7 @@ Symbols: the harness addresses securities as ``TICKER:MIC`` (latest known ticker
 universe entry); adapters translate to their provider's native symbology.
 """
 
+import importlib
 import logging
 import time
 import traceback
@@ -208,7 +209,16 @@ def _run_checks(
     return tuple(results)
 
 
+def _ensure_checks_registered() -> None:
+    """The real check suites register at import; importing here means no caller (CLI,
+    notebook, test) can silently run a bake-off with an empty registry."""
+    importlib.import_module("trp.bakeoff.checks_corporate_actions")
+    importlib.import_module("trp.bakeoff.checks_pit_fundamentals")
+
+
 def run_bakeoff(config: RunConfig) -> RunSummary:
+    if config.checks is None:
+        _ensure_checks_registered()
     metadata = RunMetadata(
         run_id=config.run_id,
         universe_version=config.universe.version,
@@ -244,8 +254,10 @@ def run_bakeoff(config: RunConfig) -> RunSummary:
                 else:
                     status, pages, throttles = _fetch(provider, dataset, symbol, end, config)
                     for page in pages:  # raw persists BEFORE any check runs
-                        # Stamp the harness's canonical request params so replay can
-                        # find the payload by the same identity that produced it.
+                        # Stamp the harness's canonical request params — replay finds a
+                        # payload by the hash of exactly these params, so nothing else
+                        # may leak into them. Adapter-side context (e.g. which exchange
+                        # a page covers) lives in the endpoint path, which is preserved.
                         canonical = revalidated_copy(page, params=params)
                         refs.append(
                             str(store.write(provider.name, provider.version, dataset, canonical))
