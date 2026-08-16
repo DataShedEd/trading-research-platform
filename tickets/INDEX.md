@@ -34,7 +34,7 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 |---|---|---|---|
 | [QNT-013](QNT-013-ohlcv-schema.md) | Canonical daily OHLCV schema | P1 | DONE |
 | [QNT-014](QNT-014-corporate-action-schema.md) | Corporate action canonical schema | P1 | DONE |
-| [QNT-015](QNT-015-adjustment-engine.md) | Adjustment factor engine | P1 | BACKLOG |
+| [QNT-015](QNT-015-adjustment-engine.md) | Adjustment factor engine | P1 | DONE |
 | [QNT-016](QNT-016-trading-calendars.md) | Trading calendars | P1 | BACKLOG |
 | [QNT-017](QNT-017-exchange-currency-metadata.md) | Exchange and currency metadata | P1 | BACKLOG |
 | [QNT-018](QNT-018-price-storage-partitioning.md) | Price storage layout and partitioning | P1 | BACKLOG |

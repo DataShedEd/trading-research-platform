@@ -1,7 +1,7 @@
 # QNT-015 — Adjustment factor engine
 
 - **Ticket ID:** QNT-015
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 3 — Market Data
 
@@ -33,19 +33,19 @@ FX conversion of dividends (QNT-017 supplies the interface), factor computation 
 accounting for delisting proceeds (Epic 6).
 
 ## Acceptance criteria
-- [ ] Cumulative factors are computed backwards from the most recent date so that the latest date
+- [x] Cumulative factors are computed backwards from the most recent date so that the latest date
       has a factor of exactly 1, and applying them to raw prices reproduces the standard adjusted
       series; the convention is stated in the module docstring.
-- [ ] A 2-for-1 split fixture: the adjusted return across the ex-date equals the hand-computed
+- [x] A 2-for-1 split fixture: the adjusted return across the ex-date equals the hand-computed
       value, and the raw bars are byte-identical before and after the computation.
-- [ ] A 1-for-5 consolidation fixture produces exact factors with no rounding drift, verified by
+- [x] A 1-for-5 consolidation fixture produces exact factors with no rounding drift, verified by
       asserting the `Fraction`-derived factor rather than a float approximation.
-- [ ] An ordinary-dividend fixture: the price return and the total return across the ex-date differ
+- [x] An ordinary-dividend fixture: the price return and the total return across the ex-date differ
       by exactly the hand-computed dividend yield, and a special-dividend fixture is handled by the
       same path with its special flag preserved in the output provenance.
-- [ ] Two events on the same ex-date (a split and a dividend) compose in a documented, tested order
+- [x] Two events on the same ex-date (a split and a dividend) compose in a documented, tested order
       producing the hand-computed result.
-- [ ] `compute_adjustment_factors` requires `as_of` and excludes corporate actions with
+- [x] `compute_adjustment_factors` requires `as_of` and excludes corporate actions with
       `available_at > as_of`; stored factors carry the source data versions and ingestion timestamps
       of their inputs, so a result can be regenerated per `docs/QUANT_PRINCIPLES.md` §4.
 
@@ -96,4 +96,19 @@ normalisation convention. A `RESEARCH_METHODOLOGY.md` note (or a `DECISIONS.md` 
 deferral of rights-issue adjustment and its effect on affected securities.
 
 ## Completion notes
-_Not started._
+2026-08-16. `src/trp/derived/adjustments.py`. Backward-cumulative factors (latest = 1,
+documented in module docstring): split factor = product of `old/new` over later splits;
+dividend factor = product of `1 - D/P` with P the guarded previous close (missing bar or
+>7-calendar-day gap raises `AdjustmentError` rather than reaching back — the constant is
+refined by QNT-016's calendar). Same-date split+dividend composes split-first against the
+post-split previous close (documented + hand-worked test: P=100, 2-for-1, D=1 → 49/50).
+All derivation in exact `Fraction`s; split factors persisted as integer pairs;
+`factors_to_float_frame` is the single sanctioned float boundary. All four named fixtures
+hand-computed and passing (2-for-1, 1-for-5 exact as Fraction(5,1), ordinary dividend
+price-vs-total return differs by exactly the yield, special dividend flagged in
+provenance). `as_of` mandatory and tz-aware; late-published dividend excluded at earlier
+`as_of` (timetravel suite). `write_adjustment_factors` persists factors + provenance JSON
+and refuses to overwrite an existing set. Rights issues flagged, never adjusted (DEC-009).
+`reconcile_provider_adjusted` reports discrepancies vs `provider_adjusted_close`.
+Tests: `tests/derived/test_adjustments.py`, `tests/timetravel/test_adjustments_timetravel.py`.
+All checks green (169 tests).

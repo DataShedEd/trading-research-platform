@@ -66,9 +66,19 @@ invariants.
   split = (2,1); 1-for-10 consolidation = (1,10); exposed as `Fraction` so cumulative
   adjustment products stay exact. Monetary terms always carry currency/quotation unit;
   merger consideration is cash (with currency), a share ratio (integer pair), or both.
-- **adjustment_factors** — derived from corporate actions: per `security_id` and date, cumulative
-  split and dividend adjustment factors. Adjusted prices/total returns are computed, not stored
-  as the only truth; raw and adjusted are always distinguishable.
+- **adjustment_factors** (implemented: QNT-015, `trp.derived.adjustments`) — derived from
+  corporate actions, stored as data under `data/derived/`, never in-place mutation.
+  Backward-cumulative convention: the latest bar date has factor exactly 1; for date `d` the
+  split factor is the product over splits with `ex_date > d` of `old_shares/new_shares`, and
+  the dividend factor the product of `1 - D/P` (P = raw close of the last bar before the
+  ex-date, expressed post-split when a split shares the ex-date — split composes first).
+  Derivation is exact `Fraction` arithmetic; split factors persist as integer pairs;
+  `factors_to_float_frame` is the single sanctioned Decimal→float boundary. Computation
+  requires `as_of` and excludes actions with `available_at > as_of`; each persisted factor
+  set carries provenance (as_of, input counts, ingestion timestamps, warnings) and is never
+  overwritten. Rights issues are NOT adjusted (DEC-009) — affected securities are flagged.
+  A reconciliation diagnostic compares our adjusted series against any provider-supplied
+  adjusted close without ever tuning to it.
 - **trading_calendars** — per exchange: trading days, holidays, half-days.
 - **exchanges / currencies** — MIC, name, country, currency, timezone; FX rates for conversion.
 

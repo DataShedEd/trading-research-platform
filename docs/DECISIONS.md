@@ -82,3 +82,13 @@ Context: A vendor backfilling a 2014 ticker change in 2026 must not make a 2014 
 Alternatives: Event-time only with documented limitation; full snapshot copies of the master per ingestion run.
 Reason: Supersession preserves knowledge history at row granularity with no snapshot storage cost, and revalidation on every change makes inconsistent states unconstructable. `recorded_at=None` (backfill) treated as always-known is the honest-but-lenient default; fundamentals will use conservative imputation instead (DEC-007) because there the leak direction matters more.
 Consequences: Storage carries superseded rows forever (small for the master). Uniqueness invariants apply to current records only. `model_copy(update=...)` is banned on domain records in favour of `revalidated_copy`.
+
+---
+
+DEC-009
+Date: 2026-08-16
+Decision: Rights-issue price adjustment is deferred. The adjustment engine flags any security with a rights issue in its corporate-action history (computation warning + provenance) instead of adjusting for it.
+Context: Correct rights adjustment needs the theoretical ex-rights price, which requires reliable subscription terms and cum-rights prices; provider data quality for historical UK rights issues is unproven until the bake-off runs.
+Alternatives: Approximate TERP adjustment now; ignore silently.
+Reason: A wrong adjustment is worse than a flagged gap — it produces plausible wrong returns. Flagging keeps affected securities visible so research can exclude or hand-check them.
+Consequences: Adjusted series for securities with rights issues are wrong before the issue date until this is revisited (post bake-off, when subscription-terms data quality is known). The warning must be surfaced by QNT-019's validation report and respected by the factor engine.
