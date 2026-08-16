@@ -20,13 +20,13 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 
 | ID | Title | Priority | Status |
 |---|---|---|---|
-| [QNT-006](QNT-006-security-master-domain-model.md) | Security master domain model | P1 | READY |
-| [QNT-007](QNT-007-identifier-mapping.md) | Identifier mapping with effective date ranges | P1 | BACKLOG |
-| [QNT-008](QNT-008-security-master-storage.md) | Security master storage (Parquet/DuckDB) | P1 | BACKLOG |
-| [QNT-009](QNT-009-identifier-resolution.md) | Identifier resolution service | P1 | BACKLOG |
-| [QNT-010](QNT-010-corporate-change-handling.md) | Ticker, listing and status change handling | P1 | BACKLOG |
-| [QNT-011](QNT-011-pit-security-lookup.md) | Point-in-time security lookup API | P1 | BACKLOG |
-| [QNT-012](QNT-012-security-master-lifecycle-tests.md) | Security master lifecycle test suite | P1 | BACKLOG |
+| [QNT-006](QNT-006-security-master-domain-model.md) | Security master domain model | P1 | DONE |
+| [QNT-007](QNT-007-identifier-mapping.md) | Identifier mapping with effective date ranges | P1 | DONE |
+| [QNT-008](QNT-008-security-master-storage.md) | Security master storage (Parquet/DuckDB) | P1 | DONE |
+| [QNT-009](QNT-009-identifier-resolution.md) | Identifier resolution service | P1 | DONE |
+| [QNT-010](QNT-010-corporate-change-handling.md) | Ticker, listing and status change handling | P1 | DONE |
+| [QNT-011](QNT-011-pit-security-lookup.md) | Point-in-time security lookup API | P1 | DONE |
+| [QNT-012](QNT-012-security-master-lifecycle-tests.md) | Security master lifecycle test suite | P1 | READY |
 
 ## EPIC 3 — Market Data
 

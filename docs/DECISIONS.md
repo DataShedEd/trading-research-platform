@@ -72,3 +72,13 @@ Context: Point-in-time correctness requires `available_at`; many providers omit 
 Alternatives: Use period end (leaks up to months of future information); drop such rows (destroys coverage).
 Reason: A late-biased assumption can only understate strategy performance, never flatter it — the safe direction per QUANT_PRINCIPLES.
 Consequences: Backtests on imputed data are conservative; the imputed flag lets us measure sensitivity once a provider with real timestamps is available.
+
+---
+
+DEC-008
+Date: 2026-08-16
+Decision: Security master records are bitemporal. Event time is a half-open date range (`valid_from` inclusive, `valid_to` exclusive, None = open-ended); knowledge time is `recorded_at`/`superseded_at` (UTC timestamps). Lifecycle changes supersede records rather than replacing them, so every historical knowledge state is reconstructable (`pit.known_as_of`). Downstream consumers use `PointInTimeSecurityMaster`, which requires an explicit `as_of` on every query.
+Context: A vendor backfilling a 2014 ticker change in 2026 must not make a 2014 backtest smarter than a 2014 investor. Single-axis event dating cannot express this.
+Alternatives: Event-time only with documented limitation; full snapshot copies of the master per ingestion run.
+Reason: Supersession preserves knowledge history at row granularity with no snapshot storage cost, and revalidation on every change makes inconsistent states unconstructable. `recorded_at=None` (backfill) treated as always-known is the honest-but-lenient default; fundamentals will use conservative imputation instead (DEC-007) because there the leak direction matters more.
+Consequences: Storage carries superseded rows forever (small for the master). Uniqueness invariants apply to current records only. `model_copy(update=...)` is banned on domain records in favour of `revalidated_copy`.

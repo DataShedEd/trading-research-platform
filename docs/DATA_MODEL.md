@@ -3,23 +3,47 @@
 Conceptual schemas; authoritative definitions live in `trp.domain` as typed models and evolve
 via tickets. Raw provider payloads are stored as received and are **not** described here.
 
-## Security master
+## Security master (implemented: QNT-006…011, `trp.domain`)
 
-The spine of the system. A ticker is never a permanent identifier.
+The spine of the system. A ticker is never a permanent identifier. `trp.domain` is the
+authoritative definition; this section states the conventions.
 
-- **entity** — the company: `entity_id` (internal, immutable), name history, country of
-  incorporation.
-- **security** — an instrument issued by an entity: `security_id` (internal, immutable, never
-  reused), `entity_id`, type (ordinary share, ADR, …), status (active, delisted, acquired, …)
-  with status effective dates.
-- **listing** — a security trading on an exchange: `security_id`, exchange (MIC), currency,
-  `valid_from`/`valid_to`, delisting date and reason where known.
-- **identifier_map** — external identifiers with effective ranges: `security_id`, kind
-  (ISIN | SEDOL | CUSIP | ticker+exchange | provider-specific), value, `valid_from`/`valid_to`,
-  source. Ticker changes are two rows, not an update.
+**Conventions.** Event-time validity is half-open: `[valid_from, valid_to)`, `valid_to=None`
+meaning open-ended (a genuine null in storage, never a sentinel date). Effective-dated records
+are **bitemporal** (DEC-008): `recorded_at`/`superseded_at` (UTC) say when we believed the
+record; revisions supersede, never delete, so any historical knowledge state is
+reconstructable via `trp.domain.pit.known_as_of`. `recorded_at=None` (backfill) means
+always-known.
 
-Resolution: (external identifier, date) → `security_id`; reverse lookup returns the identifiers
-valid on a date. Both take `as_of` where knowledge of the mapping itself is time-dependent.
+- **entity** — `entity_id` (internal, immutable, `ENT-<uuid4>`), current name, ISO country.
+  Name history as effective-dated records is future work.
+- **security** — `security_id` (internal, immutable, never reused, `SEC-<uuid4>`, minted only
+  by explicit `new_security_id()`), `entity_id`, type enum.
+- **security_status** — effective-dated periods: active | suspended | delisted | acquired |
+  liquidated, with free-text `reason` and `related_security_id` (e.g. the acquirer).
+- **listing** — `security_id`, exchange MIC, quote currency as quoted (GBX for LSE pence),
+  validity range, `delisting_reason` enum (failure | acquisition | voluntary | regulatory |
+  exchange_move) — an enum so backtest accounting can branch on it.
+- **identifier_map** — `security_id`, kind (ISIN | SEDOL | CUSIP | ticker+MIC | FIGI |
+  provider), value, validity range, source. ISIN/SEDOL/CUSIP check digits are validated at
+  construction. A ticker change is two rows, never an update; ticker reuse across disjoint
+  periods is legal, overlap is not.
+
+**Aggregate invariants** (`SecurityMaster`, enforced at construction): referential integrity;
+no overlapping status periods or identifier claims among current records; nothing in force
+past a terminal status date.
+
+**Resolution** (`IdentifierResolver`): `(value, kind, date[, mic]) → security_id`; no match
+and ambiguity are typed errors — never a guess, never a nearest-date fallback. Bulk
+`resolve_many` returns failures as rows so callers must handle them. Point-in-time consumers
+use `PointInTimeSecurityMaster`, whose every query takes a mandatory `as_of` knowledge
+timestamp alongside the event date.
+
+**Storage** (`trp.canonical.security_store`): five Parquet tables under
+`data/canonical/securities/` — `entities`, `securities`, `listings`, `status_periods`,
+`identifiers` — explicit schemas, deterministic ordering, staged-rename atomic writes, and a
+DuckDB helper registering each as a view. Reads reconstruct domain models, re-running all
+invariants.
 
 ## Prices and corporate actions
 

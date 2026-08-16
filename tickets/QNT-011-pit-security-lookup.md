@@ -1,7 +1,7 @@
 # QNT-011 — Point-in-time security lookup API
 
 - **Ticket ID:** QNT-011
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 2 — Security Master
 
@@ -33,18 +33,18 @@ Fundamentals point-in-time handling (Epic 4), price data as-of queries (Epic 3),
 resolution semantics themselves — this ticket wraps QNT-009 rather than replacing it.
 
 ## Acceptance criteria
-- [ ] Every public method requires `as_of` as a keyword-only argument with no default; omitting it
+- [x] Every public method requires `as_of` as a keyword-only argument with no default; omitting it
       fails `mypy --strict`.
-- [ ] Rows with `available_at > as_of` are excluded from every result; a test constructs a master
+- [x] Rows with `available_at > as_of` are excluded from every result; a test constructs a master
       where a ticker change was recorded late and asserts the old mapping is returned for an
       `as_of` before the record's `available_at`.
-- [ ] Event date and knowledge date are independently variable: a matrix test over
+- [x] Event date and knowledge date are independently variable: a matrix test over
       (`on_date`, `as_of`) pairs produces the documented expected result for each cell.
-- [ ] Where a source supplies no `available_at`, it is imputed conservatively (late) per DEC-007 and
+- [x] Where a source supplies no `available_at`, it is imputed conservatively (late) per DEC-007 and
       the row carries an `available_at_imputed` flag that is visible in results.
-- [ ] Passing an `as_of` earlier than the earliest known record returns an empty result or raises
+- [x] Passing an `as_of` earlier than the earliest known record returns an empty result or raises
       `IdentifierNotFound`, per the documented contract — never a silently unfiltered answer.
-- [ ] `as_of` is validated as a timezone-aware UTC timestamp; a naive datetime is rejected.
+- [x] `as_of` is validated as a timezone-aware UTC timestamp; a naive datetime is rejected.
 
 ## Technical notes
 The two axes: `on_date` (a `datetime.date`, market-local, "when was this true") and `as_of` (a
@@ -89,4 +89,18 @@ visibility. Plus `tests/canonical/test_pit_api.py` for signature, validation, an
 module docstring.
 
 ## Completion notes
-_Not started._
+2026-08-16. `src/trp/domain/pit.py`. Knowledge time is modelled bitemporally on the records
+themselves (`recorded_at`/`superseded_at`, DEC-008) rather than a single `available_at`
+field: `known_as_of(master, at)` reconstructs the master as believed at ``at`` (not-yet-
+recorded rows absent, already-superseded rows absent, future supersession cleared), and
+`PointInTimeSecurityMaster` is the consumer facade — `resolve`, `identifiers_for`,
+`status_on`, `listings_on`, each with keyword-only mandatory `as_of` (UTC-aware, naive
+rejected), views cached per `as_of`. Knowledge filtering happens before resolution, so
+unknown mappings cannot cause spurious ambiguity. Deviations from the sketch:
+no `available_at_imputed` flag here — `recorded_at=None` (backfill) is documented as
+always-known (lenient); conservative imputation per DEC-007 applies to *fundamentals*
+(QNT-020/025) where the leak direction is dangerous. An `as_of` before all records simply
+yields the backfill view; contract documented. Tests:
+`tests/timetravel/test_security_master_pit.py` — late-delivered delisting invisible early,
+visible-with-January-event-date later, (on_date × as_of) matrix, replay stability, naive
+timestamp rejection.
