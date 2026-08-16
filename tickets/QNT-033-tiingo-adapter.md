@@ -1,7 +1,7 @@
 # QNT-033 — Tiingo provider adapter
 
 - **Ticket ID:** QNT-033
-- **Status:** BLOCKED
+- **Status:** IN_PROGRESS
 - **Priority:** P1
 - **Epic:** EPIC 5 — Data Provider Bake-Off
 

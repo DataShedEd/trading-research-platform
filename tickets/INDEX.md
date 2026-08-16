@@ -60,9 +60,9 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-028](QNT-028-provider-research-report.md) | Provider research and shortlist report (owner gate) | P1 | DONE |
 | [QNT-029](QNT-029-bakeoff-harness.md) | Bake-off harness core | P1 | DONE |
 | [QNT-030](QNT-030-scoring-rubric.md) | Scoring rubric and criteria weights | P1 | DONE |
-| [QNT-031](QNT-031-eodhd-adapter.md) | EODHD provider adapter | P1 | BLOCKED |
+| [QNT-031](QNT-031-eodhd-adapter.md) | EODHD provider adapter | P1 | IN_PROGRESS |
 | [QNT-032](QNT-032-fmp-adapter.md) | Financial Modeling Prep provider adapter | P1 | BLOCKED |
-| [QNT-033](QNT-033-tiingo-adapter.md) | Tiingo provider adapter | P1 | BLOCKED |
+| [QNT-033](QNT-033-tiingo-adapter.md) | Tiingo provider adapter | P1 | IN_PROGRESS |
 | [QNT-034](QNT-034-corporate-action-checks.md) | Corporate-action and price accuracy checks | P1 | DONE |
 | [QNT-035](QNT-035-pit-fundamental-checks.md) | PIT fundamental and revision checks | P1 | DONE |
 | [QNT-036](QNT-036-provider-comparison-report.md) | Automated provider comparison report | P1 | DONE |

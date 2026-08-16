@@ -1,7 +1,7 @@
 # QNT-031 — EODHD provider adapter
 
 - **Ticket ID:** QNT-031
-- **Status:** BLOCKED
+- **Status:** IN_PROGRESS
 - **Priority:** P1
 - **Epic:** EPIC 5 — Data Provider Bake-Off
 

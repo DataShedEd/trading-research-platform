@@ -243,7 +243,12 @@ def parse_timestamp(value: object) -> datetime | None:
 
 
 def _pages(payloads: Sequence[bytes], key: str) -> tuple[list[tuple[int, object]], list[str]]:
-    """Decode each page and pull out ``key``'s list. Never raises."""
+    """Decode each page and pull out ``key``'s list. Never raises.
+
+    Real providers (Tiingo, EODHD) return top-level JSON **arrays** rather than the
+    neutral convention's keyed object; a top-level array is accepted as the block itself,
+    whatever ``key`` was asked for — the caller's parser decides what the rows mean.
+    """
     rows: list[tuple[int, object]] = []
     errors: list[str] = []
     for index, raw in enumerate(payloads):
@@ -254,6 +259,15 @@ def _pages(payloads: Sequence[bytes], key: str) -> tuple[list[tuple[int, object]
             document = json.loads(raw)
         except (json.JSONDecodeError, UnicodeDecodeError) as exc:
             errors.append(f"page {index}: not valid JSON ({exc})")
+            continue
+        if isinstance(document, list):
+            for item in document:
+                if isinstance(item, dict):
+                    rows.append((index, item))
+                else:
+                    errors.append(
+                        f"page {index}: array entry is {type(item).__name__}, expected object"
+                    )
             continue
         if not isinstance(document, dict):
             errors.append(f"page {index}: top level is {type(document).__name__}, expected object")
@@ -317,12 +331,33 @@ def _split_shares(item: Mapping[str, object]) -> tuple[Decimal | None, Decimal |
             if separator in text:
                 left, _, right = text.partition(separator)
                 return _decimal(left), _decimal(right)
-    factor = _first(item, "factor", "split_factor")
+    factor = _first(item, "factor", "split_factor", "splitFactor")
     if factor is not None:
         parsed = _decimal(factor[1])
         if parsed is not None:
             return parsed, Decimal(1)
     return new, old
+
+
+def _infer_kind(
+    item: Mapping[str, object],
+    new: Decimal | None,
+    old: Decimal | None,
+    amount: Decimal | None,
+) -> str | None:
+    """Provider dialects without a ``type`` key.
+
+    Tiingo carries actions inline on daily price rows (``splitFactor``/``divCash``, both
+    present on every row with identity values 1 and 0); EODHD's split rows have a
+    ``split`` ratio string and its dividend rows a ``value``. A row that is neither
+    (splitFactor == 1 and no positive cash) is an ordinary price row, not an action —
+    returned as None and skipped without an error.
+    """
+    if new is not None and old is not None and new != old:
+        return "split"
+    if amount is not None and amount > 0:
+        return "dividend"
+    return None
 
 
 def parse_actions(payloads: Sequence[bytes]) -> ParsedPages[ActionRow]:
@@ -331,12 +366,19 @@ def parse_actions(payloads: Sequence[bytes]) -> ParsedPages[ActionRow]:
     actions: list[ActionRow] = []
     for page, item in raw_rows:
         assert isinstance(item, dict)
-        kind_found = _first(item, "type", "action", "kind")
-        kind = str(kind_found[1]).strip().lower() if kind_found else "unknown"
         ex_found = _first(item, "ex_date", "exDate", "ex_dividend_date", "date")
-        amount_found = _first(item, "amount", "value", "dividend", "cash_amount")
+        amount_found = _first(item, "amount", "value", "dividend", "cash_amount", "divCash")
         currency_found = _first(item, "currency", "unit")
         new, old = _split_shares(item)
+        amount = _decimal(amount_found[1]) if amount_found else None
+        kind_found = _first(item, "type", "action", "kind")
+        if kind_found is not None:
+            kind = str(kind_found[1]).strip().lower()
+        else:
+            inferred = _infer_kind(item, new, old, amount)
+            if inferred is None:
+                continue  # a price row carried along with inline actions, not an action
+            kind = inferred
         special = bool(item.get("special", False))
         actions.append(
             ActionRow(
@@ -344,7 +386,7 @@ def parse_actions(payloads: Sequence[bytes]) -> ParsedPages[ActionRow]:
                 ex_date=parse_date(ex_found[1]) if ex_found else None,
                 new_shares=new,
                 old_shares=old,
-                amount=_decimal(amount_found[1]) if amount_found else None,
+                amount=amount,
                 currency=str(currency_found[1]).strip() if currency_found else None,
                 special=special,
                 page=page,
@@ -354,9 +396,51 @@ def parse_actions(payloads: Sequence[bytes]) -> ParsedPages[ActionRow]:
     return ParsedPages(items=tuple(actions), errors=tuple(errors), pages=len(payloads))
 
 
+def _eodhd_statement_rows(document: Mapping[str, object]) -> list[dict[str, object]]:
+    """EODHD's fundamentals dialect: one big object with ``Financials`` →
+    Income_Statement/Balance_Sheet/Cash_Flow → yearly/quarterly → {date: entry}.
+
+    Entries keep their verbatim keys (``date``, ``filing_date``, ``currency_symbol`` are
+    already accepted spellings below, so QNT-035 reports the provider's own field names);
+    the whole entry doubles as ``items`` — numeric fields are extracted, the rest ignored.
+    """
+    financials = document.get("Financials")
+    if not isinstance(financials, Mapping):
+        return []
+    rows: list[dict[str, object]] = []
+    for statement_block in financials.values():
+        if not isinstance(statement_block, Mapping):
+            continue
+        for cadence, period_type in (("yearly", "annual"), ("quarterly", "quarterly")):
+            entries = statement_block.get(cadence)
+            if not isinstance(entries, Mapping):
+                continue
+            for entry in entries.values():
+                if isinstance(entry, Mapping):
+                    plain = dict(entry)
+                    rows.append({**plain, "period_type": period_type, "items": plain})
+    return rows
+
+
 def parse_statements(payloads: Sequence[bytes]) -> ParsedPages[StatementRow]:
     """Fundamental statements with their timestamps and the field names that supplied them."""
-    raw_rows, errors = _pages(payloads, "statements")
+    raw_rows: list[tuple[int, object]] = []
+    neutral_pages: list[bytes] = []
+    for index, raw in enumerate(payloads):
+        document: object = None
+        if raw.strip():
+            try:
+                document = json.loads(raw)
+            except (json.JSONDecodeError, UnicodeDecodeError):
+                document = None
+        if isinstance(document, dict) and "Financials" in document:
+            raw_rows.extend((index, row) for row in _eodhd_statement_rows(document))
+            neutral_pages.append(b'{"statements": []}')  # keeps page numbering aligned
+        else:
+            neutral_pages.append(raw)
+    parsed_rows, errors = _pages(neutral_pages, "statements")
+    raw_rows.extend(parsed_rows)
+    errors = list(errors)
     statements: list[StatementRow] = []
     for page, item in raw_rows:
         assert isinstance(item, dict)
@@ -366,7 +450,7 @@ def parse_statements(payloads: Sequence[bytes]) -> ParsedPages[StatementRow]:
         )
         known_found = _first(item, "first_known_at", "available_at", "firstKnownAt")
         type_found = _first(item, "period_type", "period", "periodType")
-        currency_found = _first(item, "currency", "reported_currency")
+        currency_found = _first(item, "currency", "reported_currency", "currency_symbol")
         raw_items = item.get("items")
         values: dict[str, Decimal] = {}
         if isinstance(raw_items, dict):

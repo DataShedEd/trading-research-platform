@@ -11,9 +11,14 @@ from trp.bakeoff.harness import RunConfig, run_bakeoff
 from trp.bakeoff.universe.loader import AwkwardProperty, Market, load_universe
 from trp.config import load_settings
 from trp.logging import setup_logging
+from trp.providers.adapters.eodhd import EodhdProvider
+from trp.providers.adapters.tiingo import TiingoProvider
 from trp.providers.base import Dataset, MarketDataProvider
 
-_ADAPTERS: dict[str, type[MarketDataProvider]] = {}  # filled by QNT-031…033
+_ADAPTERS: dict[str, type[MarketDataProvider]] = {
+    "eodhd": EodhdProvider,
+    "tiingo": TiingoProvider,
+}
 
 
 def main(argv: list[str] | None = None) -> int:
