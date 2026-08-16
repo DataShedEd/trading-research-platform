@@ -12,7 +12,10 @@ partly generated: the scoring tables below will be produced by the bake-off harn
 ## Method
 
 We do not trust marketing pages. Each candidate is exercised against a deliberately awkward
-**validation universe** (defined in QNT-027, versioned in the repo) containing, at minimum:
+**validation universe** — now implemented (QNT-027) as the authoritative, versioned
+specification at `src/trp/bakeoff/universe/validation_universe.json` (current version
+`2026-08-16.1`; typed loader with strict schema validation; see the README alongside it for
+the standard of evidence). The illustrative list below describes the categories it covers:
 
 - long-lived current securities (e.g. Shell, Unilever, AstraZeneca);
 - delisted securities and outright failures (e.g. Carillion 2018, Thomas Cook 2019);

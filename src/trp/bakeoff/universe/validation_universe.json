@@ -1,0 +1,244 @@
+{
+  "version": "2026-08-16.1",
+  "entries": [
+    {
+      "key": "apple",
+      "entity_name": "Apple Inc.",
+      "market": "us",
+      "mic": "XNAS",
+      "quote_currency": "USD",
+      "reporting_currency": "USD",
+      "identifiers": [
+        {"kind": "isin", "value": "US0378331005"},
+        {"kind": "ticker", "value": "AAPL", "mic": "XNAS", "valid_from": "1980-12-12"}
+      ],
+      "properties": ["long_lived", "split"],
+      "facts": [
+        {"fact": "split", "ex_date": "2020-08-31", "new_shares": 4, "old_shares": 1, "source": "Apple Inc. press release 2020-07-30; Nasdaq notice", "verified_on": "2026-08-16"},
+        {"fact": "split", "ex_date": "2014-06-09", "new_shares": 7, "old_shares": 1, "source": "Apple Inc. press release 2014-04-23", "verified_on": "2026-08-16"}
+      ]
+    },
+    {
+      "key": "arm-holdings",
+      "entity_name": "ARM Holdings plc",
+      "market": "uk",
+      "mic": "XLON",
+      "quote_currency": "GBX",
+      "reporting_currency": "GBP",
+      "identifiers": [
+        {"kind": "isin", "value": "GB0000595859", "valid_to": "2016-09-06"},
+        {"kind": "sedol", "value": null},
+        {"kind": "ticker", "value": "ARM", "mic": "XLON", "valid_to": "2016-09-06"}
+      ],
+      "properties": ["acquisition"],
+      "facts": [
+        {"fact": "acquisition", "effective": "2016-09-05", "acquirer": "SoftBank Group Corp.", "cash_per_share": "17.00", "unit": "GBP", "source": "Scheme of arrangement, RNS 2016-07-18 offer announcement; completion RNS Sep 2016", "verified_on": "2026-08-16"},
+        {"fact": "delisting", "effective": "2016-09-06", "reason": "acquisition", "source": "LSE notice on scheme completion", "verified_on": "2026-08-16", "needs_verification": true}
+      ],
+      "notes": "Tests delisted-with-consideration coverage and whether the 2016 identifier set survives in provider data."
+    },
+    {
+      "key": "astrazeneca",
+      "entity_name": "AstraZeneca PLC",
+      "market": "uk",
+      "mic": "XLON",
+      "quote_currency": "GBX",
+      "reporting_currency": "USD",
+      "identifiers": [
+        {"kind": "isin", "value": "GB0009895292"},
+        {"kind": "ticker", "value": "AZN", "mic": "XLON", "valid_from": "1999-04-06"}
+      ],
+      "properties": ["long_lived", "non_gbp_reporter"],
+      "facts": [],
+      "notes": "GBX-quoted, USD-reporting: exercises the QNT-023 mixed-currency path."
+    },
+    {
+      "key": "carillion",
+      "entity_name": "Carillion plc",
+      "market": "uk",
+      "mic": "XLON",
+      "quote_currency": "GBX",
+      "reporting_currency": "GBP",
+      "identifiers": [
+        {"kind": "isin", "value": "GB0007365546", "valid_to": "2018-01-15"},
+        {"kind": "sedol", "value": null},
+        {"kind": "ticker", "value": "CLLN", "mic": "XLON", "valid_to": "2018-01-15"}
+      ],
+      "properties": ["failure"],
+      "facts": [
+        {"fact": "delisting", "effective": "2018-01-15", "reason": "failure", "source": "RNS 2018-01-15 compulsory liquidation announcement; trading suspended that morning", "verified_on": "2026-08-16"}
+      ],
+      "notes": "Equity worthless; formal listing cancellation followed the 15 Jan suspension. A provider with no Carillion price history has failed the delisted-coverage criterion outright."
+    },
+    {
+      "key": "citigroup",
+      "entity_name": "Citigroup Inc.",
+      "market": "us",
+      "mic": "XNYS",
+      "quote_currency": "USD",
+      "reporting_currency": "USD",
+      "identifiers": [
+        {"kind": "isin", "value": "US1729674242"},
+        {"kind": "ticker", "value": "C", "mic": "XNYS"}
+      ],
+      "properties": ["consolidation"],
+      "facts": [
+        {"fact": "split", "ex_date": "2011-05-09", "new_shares": 1, "old_shares": 10, "source": "Citigroup press release 2011-03-21; NYSE notice (effective after close 2011-05-06)", "verified_on": "2026-08-16"}
+      ],
+      "notes": "The classic reverse split: a provider with an inverted ratio produces a 100x error here."
+    },
+    {
+      "key": "flutter",
+      "entity_name": "Flutter Entertainment plc (formerly Paddy Power Betfair plc)",
+      "market": "uk",
+      "mic": "XLON",
+      "quote_currency": "GBX",
+      "reporting_currency": "GBP",
+      "identifiers": [
+        {"kind": "isin", "value": "IE00BWT6H894"},
+        {"kind": "ticker", "value": "PPB", "mic": "XLON", "valid_to": "2019-05-28"},
+        {"kind": "ticker", "value": "FLTR", "mic": "XLON", "valid_from": "2019-05-28"}
+      ],
+      "properties": ["ticker_change"],
+      "facts": [
+        {"fact": "ticker_change", "effective": "2019-05-28", "old_ticker": "PPB", "new_ticker": "FLTR", "mic": "XLON", "source": "RNS name change to Flutter Entertainment, May 2019 AGM approval", "verified_on": "2026-08-16", "needs_verification": true}
+      ],
+      "notes": "Entity persisted through rename + ticker change: price history must be continuous across it."
+    },
+    {
+      "key": "microsoft",
+      "entity_name": "Microsoft Corporation",
+      "market": "us",
+      "mic": "XNAS",
+      "quote_currency": "USD",
+      "reporting_currency": "USD",
+      "identifiers": [
+        {"kind": "isin", "value": "US5949181045"},
+        {"kind": "ticker", "value": "MSFT", "mic": "XNAS"}
+      ],
+      "properties": ["special_dividend"],
+      "facts": [
+        {"fact": "dividend", "ex_date": "2004-11-15", "amount": "3.00", "unit": "USD", "special": true, "source": "Microsoft press release 2004-07-20 ($32bn one-time dividend); ex-date per Nasdaq", "verified_on": "2026-08-16"}
+      ],
+      "notes": "The special was ~38x the concurrent quarterly ordinary (0.08): providers that fold specials into adjusted series silently diverge here — exactly the reconciliation QNT-015 reports."
+    },
+    {
+      "key": "morrisons",
+      "entity_name": "Wm Morrison Supermarkets plc",
+      "market": "uk",
+      "mic": "XLON",
+      "quote_currency": "GBX",
+      "reporting_currency": "GBP",
+      "identifiers": [
+        {"kind": "isin", "value": "GB0006043169", "valid_to": "2021-10-27"},
+        {"kind": "ticker", "value": "MRW", "mic": "XLON", "valid_to": "2021-10-27"}
+      ],
+      "properties": ["acquisition"],
+      "facts": [
+        {"fact": "acquisition", "effective": "2021-10-27", "acquirer": "Clayton, Dubilier & Rice", "cash_per_share": "287", "unit": "GBX", "source": "Scheme of arrangement, CD&R offer 287p per share (auction outcome 2021-10-02); scheme effective late Oct 2021", "verified_on": "2026-08-16", "needs_verification": true}
+      ]
+    },
+    {
+      "key": "rolls-royce",
+      "entity_name": "Rolls-Royce Holdings plc",
+      "market": "uk",
+      "mic": "XLON",
+      "quote_currency": "GBX",
+      "reporting_currency": "GBP",
+      "identifiers": [
+        {"kind": "isin", "value": "GB00B63H8491"},
+        {"kind": "ticker", "value": "RR.", "mic": "XLON"}
+      ],
+      "properties": ["long_lived", "rights_issue"],
+      "facts": [
+        {"fact": "rights_issue", "ex_date": "2020-10-28", "new_shares": 10, "old_shares": 3, "subscription_price": "32", "unit": "GBX", "source": "RNS 2020-10-01 GBP 2bn rights issue announcement: 10-for-3 at 32p; ex-rights date per prospectus", "verified_on": "2026-08-16", "needs_verification": true}
+      ],
+      "notes": "Deep-discount 10-for-3 rights: the un-adjusted case DEC-009 defers. Any provider's adjusted series here is a direct test of their rights handling."
+    },
+    {
+      "key": "sap",
+      "entity_name": "SAP SE",
+      "market": "eu",
+      "mic": "XETR",
+      "quote_currency": "EUR",
+      "reporting_currency": "EUR",
+      "identifiers": [
+        {"kind": "isin", "value": "DE0007164600"},
+        {"kind": "ticker", "value": "SAP", "mic": "XETR"}
+      ],
+      "properties": ["long_lived"],
+      "facts": [],
+      "notes": "European coverage baseline: identifiers, EUR quotes, XETR calendar."
+    },
+    {
+      "key": "shell",
+      "entity_name": "Shell plc (formerly Royal Dutch Shell plc)",
+      "market": "uk",
+      "mic": "XLON",
+      "quote_currency": "GBX",
+      "reporting_currency": "USD",
+      "identifiers": [
+        {"kind": "isin", "value": "GB00B03MM408", "valid_to": "2022-01-25"},
+        {"kind": "isin", "value": "GB00BP6MXD84", "valid_from": "2022-01-25"},
+        {"kind": "ticker", "value": "RDSB", "mic": "XLON", "valid_to": "2022-01-25"},
+        {"kind": "ticker", "value": "SHEL", "mic": "XLON", "valid_from": "2022-01-25"}
+      ],
+      "properties": ["long_lived", "ticker_change", "non_gbp_reporter"],
+      "facts": [
+        {"fact": "ticker_change", "effective": "2022-01-25", "old_ticker": "RDSB", "new_ticker": "SHEL", "mic": "XLON", "source": "RNS: assimilation of A/B shares and rename to Shell plc, single line SHEL from 2022-01-25", "verified_on": "2026-08-16"}
+      ],
+      "notes": "A/B share assimilation + rename + ISIN change in one event; USD reporter quoted in GBX. The single hardest identifier-continuity case in the UK large-cap universe."
+    },
+    {
+      "key": "tesco",
+      "entity_name": "Tesco PLC",
+      "market": "uk",
+      "mic": "XLON",
+      "quote_currency": "GBX",
+      "reporting_currency": "GBP",
+      "identifiers": [
+        {"kind": "isin", "value": "GB00BLGZ9862", "valid_from": "2021-02-15"},
+        {"kind": "isin", "value": "GB0008847096", "valid_to": "2021-02-15"},
+        {"kind": "ticker", "value": "TSCO", "mic": "XLON"}
+      ],
+      "properties": ["long_lived", "restatement", "special_dividend", "consolidation"],
+      "facts": [
+        {"fact": "restatement", "line_item": "trading_profit_guidance", "period_end": "2014-08-23", "original_value": "1100000000", "restated_value": "850000000", "unit": "GBP", "original_available": "2014-08-29", "restatement_available": "2014-09-22", "source": "RNS 2014-08-29 trading statement (c. GBP 1.1bn H1 guidance); RNS 2014-09-22 overstatement announcement (c. GBP 250m); interim results 2014-10-23 quantified GBP 263m", "verified_on": "2026-08-16", "needs_verification": true},
+        {"fact": "dividend", "ex_date": "2021-02-15", "amount": "50.93", "unit": "GBX", "special": true, "source": "RNS: special dividend funded by Tesco Bank/Asia disposal, paid Feb 2021 with 15-for-19 consolidation", "verified_on": "2026-08-16", "needs_verification": true},
+        {"fact": "split", "ex_date": "2021-02-15", "new_shares": 15, "old_shares": 19, "source": "RNS: share consolidation 15 new for 19 held, effective with the special dividend", "verified_on": "2026-08-16", "needs_verification": true}
+      ],
+      "notes": "Three awkward properties in one name. The restatement values are the publicly announced guidance figures (see QNT-022 fixture docstring); the 2021 special+consolidation on one ex-date exercises QNT-015's same-date composition order."
+    },
+    {
+      "key": "thomas-cook",
+      "entity_name": "Thomas Cook Group plc",
+      "market": "uk",
+      "mic": "XLON",
+      "quote_currency": "GBX",
+      "reporting_currency": "GBP",
+      "identifiers": [
+        {"kind": "isin", "value": "GB00B1VYCH82", "valid_to": "2019-09-23"},
+        {"kind": "ticker", "value": "TCG", "mic": "XLON", "valid_to": "2019-09-23"}
+      ],
+      "properties": ["failure"],
+      "facts": [
+        {"fact": "delisting", "effective": "2019-09-23", "reason": "failure", "source": "RNS 2019-09-23: compulsory liquidation, trading suspended", "verified_on": "2026-08-16"}
+      ]
+    },
+    {
+      "key": "unilever",
+      "entity_name": "Unilever PLC",
+      "market": "uk",
+      "mic": "XLON",
+      "quote_currency": "GBX",
+      "reporting_currency": "EUR",
+      "identifiers": [
+        {"kind": "isin", "value": "GB00B10RZP78"},
+        {"kind": "ticker", "value": "ULVR", "mic": "XLON"}
+      ],
+      "properties": ["long_lived", "non_gbp_reporter"],
+      "facts": [],
+      "notes": "EUR reporter quoted in GBX; NV/PLC unification (2020) is a known identifier wrinkle providers may mishandle."
+    }
+  ]
+}

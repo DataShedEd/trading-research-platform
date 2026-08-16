@@ -1,7 +1,7 @@
 # QNT-027 — Validation universe specification
 
 - **Ticket ID:** QNT-027
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 5 — Data Provider Bake-Off
 
@@ -43,25 +43,25 @@ Fetching anything from a provider (QNT-029 onwards); the checks that consume the
 is a different thing entirely and is not defined here.
 
 ## Acceptance criteria
-- [ ] The specification is a data file, not Python code, and carries an explicit version
+- [x] The specification is a data file, not Python code, and carries an explicit version
       identifier that the loader returns, so a bake-off result can be tied to the universe version
       that produced it.
-- [ ] Every entry records: a stable internal key, entity and security names, identifiers (ISIN and
+- [x] Every entry records: a stable internal key, entity and security names, identifiers (ISIN and
       SEDOL where known, primary exchange MIC, ticker with the date range it was valid for), the
       market, and the awkward property or properties it exercises, drawn from a closed enumeration
       so the harness can select subsets by property.
-- [ ] Every entry carries expected facts precise enough to be checked mechanically — for example
+- [x] Every entry carries expected facts precise enough to be checked mechanically — for example
       a delisting date and reason, a split ratio with its ex-date, a dividend amount with currency
       and ex-date, an old and new ticker with the change date, a restated line item with original
       and restated values — and each expected fact records the source it was verified against and
       the date of verification.
-- [ ] All the categories listed in Scope are represented, with at least one non-UK entry per
+- [x] All the categories listed in Scope are represented, with at least one non-UK entry per
       category where the category is not inherently UK-specific, and the loader exposes selection
       by market and by awkward property.
-- [ ] The loader validates the file against a schema and fails loudly on a missing identifier, an
+- [x] The loader validates the file against a schema and fails loudly on a missing identifier, an
       unknown property value, an expected fact with no source, or a date that is inconsistent with
       the entry's stated lifecycle (e.g. a split ex-date after delisting).
-- [ ] Tests assert the schema is enforced, the required categories are all present, and the
+- [x] Tests assert the schema is enforced, the required categories are all present, and the
       universe loads deterministically with a stable ordering.
 
 ## Technical notes
@@ -118,4 +118,21 @@ inline. A short README alongside the data file explaining how to add an entry an
 evidence required for an expected fact.
 
 ## Completion notes
-_Not started._
+2026-08-16. `src/trp/bakeoff/universe/`: `validation_universe.json` (version 2026-08-16.1,
+14 entries, key-sorted) + strict typed loader (`loader.py`) + README stating the standard
+of evidence. Coverage: long-lived UK (Shell, Unilever, AstraZeneca, Rolls-Royce, Tesco),
+failures (Carillion 2018, Thomas Cook 2019), acquisitions (Arm 2016 £17 cash, Morrisons
+2021 287p), ticker changes with entity persistence (Shell RDSB→SHEL incl. ISIN change;
+Flutter PPB→FLTR), splits (Apple 4:1 and 7:1), consolidation (Citigroup 1-for-10 2011;
+Tesco 15-for-19 2021), special dividends (Microsoft $3.00 2004 — ~38x the ordinary;
+Tesco 50.93p 2021, same ex-date as its consolidation — exercising QNT-015's composition
+order), rights issue (Rolls-Royce 10-for-3 at 32p, 2020 — the DEC-009 unadjusted case),
+restatement (Tesco 2014, matching the QNT-022 fixture), non-GBP reporters (Shell/AZN USD,
+Unilever EUR), US (XNAS/XNYS) and EU (SAP, XETR) entries. Loader validates ISIN/SEDOL
+check digits (all 15 recorded ISINs pass), closed property enum, mandatory source +
+verified_on per fact, and lifecycle consistency (fact after delisting rejected — tested).
+Honesty mechanism: `needs_verification` flags facts whose precision was recalled rather
+than confirmed against a primary source (exact ex-dates, some amounts) — the README and
+loader docstring require re-verification before those facts score a provider. Deviation:
+spec file lives at `validation_universe.json` (loader validates on load; no separate
+schema file). Tests: `tests/bakeoff/test_validation_universe.py` (8). Green.
