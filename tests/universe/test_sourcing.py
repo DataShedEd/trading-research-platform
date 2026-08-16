@@ -105,6 +105,44 @@ def test_size_drift_caught() -> None:
     assert len(spells) == 3
 
 
+def test_rename_preserves_membership_continuity() -> None:
+    history = tiny_history(
+        [
+            {
+                "effective": "2006-05-23",
+                "review": "ad-hoc",
+                "renamed": [{"from_ticker": "BETA", "to_ticker": "BTTR", "new_name": "Better plc"}],
+                "source": "test rename",
+            },
+            {
+                "effective": "2010-03-22",
+                "added": [{"name": "Delta plc", "ticker": "DELT"}],
+                "removed": [{"name": "Better plc", "ticker": "BTTR"}],
+                "source": "test review",
+            },
+        ]
+    )
+    spells = replay_index_history(history, expected_size=3, size_tolerance=0)
+    old = next(s for s in spells if s.ticker == "BETA")
+    new = next(s for s in spells if s.ticker == "BTTR")
+    assert old.valid_to == date(2006, 5, 23)
+    assert new.valid_from == date(2006, 5, 23)  # contiguous: membership never lapsed
+    assert new.valid_to == date(2010, 3, 22)
+    assert "rename" in new.source and "renamed to BTTR" in old.source
+
+    orphan = tiny_history(
+        [
+            {
+                "effective": "2006-05-23",
+                "renamed": [{"from_ticker": "ZETA", "to_ticker": "ZZZZ"}],
+                "source": "test",
+            }
+        ]
+    )
+    with pytest.raises(HistoryReplayError, match="cannot rename"):
+        replay_index_history(orphan, expected_size=3, size_tolerance=0)
+
+
 def test_out_of_order_changes_rejected() -> None:
     history = tiny_history(
         [

@@ -77,6 +77,38 @@ def replay_index_history(
         flagged = bool(change.get("needs_verification", False))
         source = change["source"]
 
+        for rename in change.get("renamed", []):
+            old_ticker = rename["from_ticker"].strip()
+            new_ticker = rename["to_ticker"].strip()
+            if old_ticker not in members:
+                raise HistoryReplayError(
+                    f"{effective}: cannot rename {old_ticker!r} — not currently a member"
+                )
+            if new_ticker in members:
+                raise HistoryReplayError(
+                    f"{effective}: cannot rename to {new_ticker!r} — already a member"
+                )
+            name, valid_from, entry_source, entry_flagged = members.pop(old_ticker)
+            # Membership continued; the spell splits at the ticker boundary so that
+            # ticker+date resolution works, and the source records the continuity so a
+            # survivorship cross-check never mistakes a rename for an index change.
+            spells.append(
+                TickerSpell(
+                    ticker=old_ticker,
+                    name=name,
+                    valid_from=valid_from,
+                    valid_to=effective,
+                    source=f"{entry_source}; renamed to {new_ticker}: {source}",
+                    needs_verification=entry_flagged or flagged,
+                )
+            )
+            members[new_ticker] = (
+                rename.get("new_name", name),
+                effective,
+                f"continuation of {old_ticker} (rename): {source}",
+                entry_flagged or flagged,
+            )
+
         for removed in change.get("removed", []):
             ticker = removed["ticker"].strip()
             if ticker not in members:
