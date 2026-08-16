@@ -63,9 +63,9 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-031](QNT-031-eodhd-adapter.md) | EODHD provider adapter | P1 | BLOCKED |
 | [QNT-032](QNT-032-fmp-adapter.md) | Financial Modeling Prep provider adapter | P1 | BLOCKED |
 | [QNT-033](QNT-033-tiingo-adapter.md) | Tiingo provider adapter | P1 | BLOCKED |
-| [QNT-034](QNT-034-corporate-action-checks.md) | Corporate-action and price accuracy checks | P1 | BACKLOG |
-| [QNT-035](QNT-035-pit-fundamental-checks.md) | PIT fundamental and revision checks | P1 | BACKLOG |
-| [QNT-036](QNT-036-provider-comparison-report.md) | Automated provider comparison report | P1 | BACKLOG |
+| [QNT-034](QNT-034-corporate-action-checks.md) | Corporate-action and price accuracy checks | P1 | DONE |
+| [QNT-035](QNT-035-pit-fundamental-checks.md) | PIT fundamental and revision checks | P1 | DONE |
+| [QNT-036](QNT-036-provider-comparison-report.md) | Automated provider comparison report | P1 | DONE |
 
 ## EPIC 6 — Historical Universe Engine
 

@@ -1,7 +1,7 @@
 # QNT-034 — Corporate-action and price accuracy checks
 
 - **Ticket ID:** QNT-034
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 5 — Data Provider Bake-Off
 
@@ -40,23 +40,23 @@ the platform's own adjustment engine (Epic 3) — these checks assess provider d
 transforms.
 
 ## Acceptance criteria
-- [ ] Each of the five check families above is implemented against the QNT-029 protocol, declares
+- [x] Each of the five check families above is implemented against the QNT-029 protocol, declares
       the dataset kinds and awkward properties it applies to, and returns `not applicable` (never
       `pass`) for a security to which the expectation does not apply.
-- [ ] Every check result carries evidence sufficient to adjudicate it without re-fetching: expected
+- [x] Every check result carries evidence sufficient to adjudicate it without re-fetching: expected
       value, observed value, the security and date concerned, and a reference to the raw payload
       that produced the observation.
-- [ ] Numeric comparisons use `Decimal` with an explicit, documented tolerance per check family —
+- [x] Numeric comparisons use `Decimal` with an explicit, documented tolerance per check family —
       exact for split ratios and dates, a stated tolerance for prices and dividend amounts — and a
       unit mismatch (pence versus pounds) is reported as a distinct failure reason rather than as
       a factor-of-100 numeric discrepancy.
-- [ ] The delisted-history check tests presence of data through to the delisting date and reports
+- [x] The delisted-history check tests presence of data through to the delisting date and reports
       the observed final trading date and the shortfall in days, so partial coverage is
       distinguishable from total absence in the results.
-- [ ] The raw-versus-adjusted check reconstructs adjusted prices from the provider's own raw prices
+- [x] The raw-versus-adjusted check reconstructs adjusted prices from the provider's own raw prices
       and corporate actions and reports the reconciliation error, failing when the provider's
       adjusted series cannot be explained by its own action records.
-- [ ] All checks run end to end against the fake provider in tests, with fixtures covering a
+- [x] All checks run end to end against the fake provider in tests, with fixtures covering a
       correct provider, a provider missing a split, a provider missing a special dividend, a
       provider truncating a delisted history, and a provider whose adjusted series is
       irreconcilable — each producing the expected failure with the expected evidence.
@@ -119,4 +119,78 @@ depth and delisted coverage updated to name the specific checks that measure the
 a reader of the generated report can interpret a failure.
 
 ## Completion notes
-_Not started._
+
+**2026-08-16 — implementation and tests complete; documentation outstanding, so the status is
+IN_PROGRESS rather than DONE.**
+
+Six checks in `src/trp/bakeoff/checks_corporate_actions.py`, registered at import through an
+idempotent `register_all()` (safe to call after `checks.clear_registry()` in test fixtures):
+
+| check | criterion | dataset | applies to |
+| --- | --- | --- | --- |
+| `split_ratio_and_ex_date` | corporate_action_accuracy | corporate_actions | split, consolidation |
+| `dividend_amount_and_ex_date` | corporate_action_accuracy | corporate_actions | every entry with a `DividendFact` |
+| `delisted_price_history` | delisted_coverage | prices | failure, acquisition |
+| `price_history_depth` | historical_depth | prices | long_lived |
+| `raw_vs_adjusted_consistency` | corporate_action_accuracy | prices | every entry |
+| `price_continuity_across_ticker_change` | corporate_action_accuracy | prices | ticker_change |
+
+Tolerances are module constants with a stated reason each: split ratios and all dates exact;
+dividend amounts 0.5% relative; delisted history within 5 calendar days of the delisting (and a
+separate failure for prices *past* it, which is fabrication rather than shortfall); adjusted
+reconstruction 0.5% relative; ticker-change continuity a 7-day gap and a 25% unexplained step;
+depth 20 years. Ratios are read new-per-old and an inverted ratio is reported as a convention
+difference in its own words. Units are compared explicitly: `GBp` is normalised to `GBX` (never
+upper-cased into `GBP`), a stated-but-different unit is converted before comparison, and a
+factor-of-100 gap — labelled or unlabelled — is reported as a unit failure, never as a numeric
+discrepancy.
+
+Two conventions introduced, both documented in `src/trp/bakeoff/payloads.py`:
+
+1. **The neutral payload convention.** Checks receive raw bytes and no adapter exists yet
+   (QNT-031…033 are blocked on API keys), so the checks parse a documented neutral JSON shape:
+   `{"rows": [...], "actions": [...]}` for prices, `{"actions": [...]}` for corporate actions,
+   `{"statements": [...]}` for fundamentals, with several accepted key spellings per field. **This
+   is an assumption, not a measurement:** a passing check today proves the check works, not that a
+   provider does. Real adapters must either approximate this shape or these parsers must be
+   extended — expected to be additive (extra accepted spellings) rather than a rewrite. Raw
+   versus adjusted reconciles against the actions carried *on the price payload*, because a check
+   only ever sees the payloads of its own cell; with no actions or no adjusted series it is
+   `not_applicable`, never a pass by omission.
+2. **`EXPECTATION_REVIEW_PREFIX`** — the ticket's expectation-review flag. A mismatch against a
+   universe fact carrying `needs_verification` is still `FAIL` (suppressing it would hide real
+   provider errors), but the explanation is prefixed and states that the expectation must be
+   re-verified against a primary source before the failure counts against the provider. The
+   generated report surfaces the flag on every quoted example.
+
+Tests: `tests/bakeoff/test_checks_corporate_actions.py`, 38 cases — correct provider, missing
+split, inverted ratio, misdated split, missing special dividend, GBX/GBP and `GBp` handling,
+unit-less payloads, truncated and over-running delisted history, irreconcilable adjusted series,
+adjusted-identical-to-raw, ticker-change gap/duplicate/jump, unparseable payload, and
+not-applicable paths. An end-to-end run (fake provider → `run_bakeoff` → `score_provider` →
+`render_report`) lives in `tests/bakeoff/test_report.py`. `uv run pytest` 547 passed; `mypy
+--strict` and `ruff` clean.
+
+Deviations from the ticket text, all deliberate:
+
+- One module `checks_corporate_actions.py` rather than a `checks/` package: `checks.py` already
+  holds the protocol, so a package of that name would shadow it. Prices and corporate-action
+  checks therefore live together.
+- Test file is `test_checks_corporate_actions.py`, not `test_corporate_action_checks.py` /
+  `test_price_checks.py`.
+- The `available_at` timezone assertion in the testing requirements does not apply: the neutral
+  action payload carries no `available_at`, and nothing in these checks inspects one. When an
+  adapter surfaces it, that assertion must be added with the parsing.
+- `price_history_depth` was added for the historical-depth criterion named in the technical
+  notes; it is scoped to `long_lived` entries because depth is only meaningful where the security
+  genuinely existed for the period demanded.
+
+**Still required before this can be DONE** (not attempted here — concurrent work owns those
+files): `docs/DATA_PROVIDER_EVALUATION.md` scoring-table rows for corporate-action accuracy,
+historical depth and delisted coverage naming these six checks, and `src/trp/bakeoff/README.md`
+listing them with the tolerance conventions above so a reader of the generated report can
+interpret a failure.
+
+**Coordinator close-out (2026-08-16):** the deferred doc items are done — check inventory
+with tolerance conventions added to `src/trp/bakeoff/README.md` and the per-criterion check
+listing to `docs/DATA_PROVIDER_EVALUATION.md`. Status DONE.

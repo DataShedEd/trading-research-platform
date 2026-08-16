@@ -64,6 +64,19 @@ not correctness, and are weighted accordingly. The PIT veto is set low (0.25) be
 research above already shows no in-budget provider offers true PIT fundamentals — the
 criterion must be scored honestly without disqualifying every candidate.
 
+**Check inventory (QNT-034/035):** corporate-action accuracy is measured by
+`split_ratio_and_ex_date`, `dividend_amount_and_ex_date`, `raw_vs_adjusted_consistency`
+and `price_continuity_across_ticker_change`; delisted coverage by
+`delisted_price_history`; historical depth by `price_history_depth` (long-lived entries
+only); PIT fundamental availability by `fundamental_timestamp_presence`,
+`fundamental_timestamp_plausibility`, `fundamental_availability_class` and the
+`filing_lag_distribution` measurement (the empirical input to DEC-007's lag parameters);
+revision history by `restatement_visibility` (does the provider show both original and
+restated figures, or only the latest view?). Tolerances and the neutral payload
+convention the checks parse are documented in `src/trp/bakeoff/README.md`; facts flagged
+`needs_verification` in the universe report as needing expectation review rather than
+hard-failing a provider.
+
 **Running the bake-off:** `uv run python -m trp.bakeoff --run-id <id> --provider <name>`
 (subsets by `--market/--dataset/--property`; `--resume` continues an interrupted run). Raw
 payloads persist to `data/raw/` before any check runs; per-cell results append to
