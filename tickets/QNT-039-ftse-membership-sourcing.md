@@ -1,7 +1,7 @@
 # QNT-039 — FTSE index membership sourcing
 
 - **Ticket ID:** QNT-039
-- **Status:** BACKLOG
+- **Status:** BLOCKED
 - **Priority:** P1
 - **Epic:** EPIC 6 — Historical Universe Engine
 
@@ -120,3 +120,7 @@ cite the coverage caveats. A `DECISIONS.md` entry recording the chosen source of
 
 ## Completion notes
 _Not started._
+
+**BLOCKED (2026-08-16):** historical FTSE constituent data requires either the provider
+subscription awaiting owner sign-off (QNT-028 gate) or curated quarterly-review files.
+Schema and query API (QNT-037/038) are DONE and waiting for this data.

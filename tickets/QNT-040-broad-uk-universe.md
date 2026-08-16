@@ -1,7 +1,7 @@
 # QNT-040 — Broad UK-listed universe construction
 
 - **Ticket ID:** QNT-040
-- **Status:** BACKLOG
+- **Status:** BLOCKED
 - **Priority:** P1
 - **Epic:** EPIC 6 — Historical Universe Engine
 
@@ -111,3 +111,6 @@ price floor and rebalance frequency choices.
 
 ## Completion notes
 _Not started._
+
+**BLOCKED (2026-08-16):** rule-based construction needs the security master populated with
+real UK listings (post provider sign-off, QNT-028 gate).

@@ -1,7 +1,7 @@
 # QNT-041 — Universe survivorship test suite
 
 - **Ticket ID:** QNT-041
-- **Status:** BACKLOG
+- **Status:** BLOCKED
 - **Priority:** P1
 - **Epic:** EPIC 6 — Historical Universe Engine
 
@@ -104,3 +104,7 @@ the list of known-casualty fixtures.
 
 ## Completion notes
 _Not started._
+
+**BLOCKED (2026-08-16):** the acceptance gate needs real FTSE membership data (QNT-039).
+The survivorship mechanics are already proven on fixtures
+(tests/timetravel/test_universe_membership.py); this ticket re-proves them on real data.
