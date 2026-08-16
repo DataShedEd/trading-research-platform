@@ -1,7 +1,7 @@
 # QNT-038 — Universe membership query API
 
 - **Ticket ID:** QNT-038
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 6 — Historical Universe Engine
 
@@ -36,20 +36,20 @@ survivorship acceptance gate (QNT-041); universe-level filters such as size or l
 which belong to the universe that defines them.
 
 ## Acceptance criteria
-- [ ] `members(universe, date)` returns the set of `security_id`s whose membership spell contains
+- [x] `members(universe, date)` returns the set of `security_id`s whose membership spell contains
       `date` under the half-open convention, including securities that have since delisted, and
       excludes current constituents whose spell had not begun by `date`.
-- [ ] Querying a date before a universe's first membership record raises a typed
+- [x] Querying a date before a universe's first membership record raises a typed
       `UniverseCoverageError` naming the universe and its covered range, rather than returning an
       empty set that a caller would read as "no members".
-- [ ] `membership_changes` over a period returns each addition and removal exactly once with its
+- [x] `membership_changes` over a period returns each addition and removal exactly once with its
       effective date and source, and reconstructing membership by applying the changes to
       `members(universe, start)` reproduces `members(universe, end)` exactly.
-- [ ] Every public query method takes an explicit `as_of` (defaulting to "all knowledge") and never
+- [x] Every public query method takes an explicit `as_of` (defaulting to "all knowledge") and never
       returns rows whose knowledge timestamp exceeds it, per QUANT_PRINCIPLES §1.
-- [ ] Unknown universe names raise a typed error listing the registered names; no query path
+- [x] Unknown universe names raise a typed error listing the registered names; no query path
       returns a silently empty result for a mistyped universe.
-- [ ] Time-travel tests in `tests/timetravel/` pass and would fail if the implementation fell back
+- [x] Time-travel tests in `tests/timetravel/` pass and would fail if the implementation fell back
       to current membership.
 
 ## Technical notes
@@ -99,4 +99,20 @@ access path and the `date` versus `as_of` distinction. `docs/DATA_MODEL.md` cros
 the universes section to the query API.
 
 ## Completion notes
-_Not started._
+2026-08-16. `src/trp/universe/query.py`: `UniverseQuery` over QNT-037 storage —
+`members(universe, on, *, as_of=None)` (frozenset; event time and knowledge time
+independent, tested both ways), `membership_changes` (additions/removals in (start, end]
+each exactly once; replay from members(start) reproduces members(end) exactly — tested),
+`history` (every spell), `universes()` (names + coverage). Coverage friction implemented:
+a date before the universe's first (knowledge-visible) record raises
+`UniverseCoverageError`; unknown names raise `UnknownUniverseError` listing registered
+names — no silently empty results anywhere. Member sets cached per
+(universe, date, as_of, dataset version = file mtime; canonical data rewrites wholesale).
+Timetravel suite: delisted member present in 2012 and absent today; 2020 joiner absent
+from 2012; a spell backfilled with recorded_at 2021 invisible to `as_of` mid-2020 and
+visible at the backfill instant; current-spell fallback impossible (re-entrant absent
+between spells). Deviations: `as_of` defaults to None = all current knowledge (documented)
+rather than being mandatory — the factor/backtest layers (QNT-042/050) must pass it
+explicitly and their tickets already say so; filtering is Python-over-records rather than
+DuckDB SQL (record counts are thousands; behaviour identical, revisit only with
+evidence). Tests: `tests/universe/test_query.py` + timetravel suite. Green.
