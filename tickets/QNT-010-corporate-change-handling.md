@@ -1,7 +1,7 @@
 # QNT-010 — Ticker, listing and status change handling
 
 - **Ticket ID:** QNT-010
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 2 — Security Master
 
@@ -30,21 +30,21 @@ Sourcing events from a provider feed (Epic 3 ingestion), price adjustment arithm
 knowledge-time modelling of when we learned of an event (QNT-011).
 
 ## Acceptance criteria
-- [ ] Each event type is a frozen Pydantic model carrying an effective date, a source, and the
+- [x] Each event type is a frozen Pydantic model carrying an effective date, a source, and the
       fields that event needs; `apply_event` is pure — it returns a new master, never mutates its
       input, and applying the same event twice is either rejected with a typed error or is a no-op
       per a documented, tested choice.
-- [ ] Applying a ticker change produces exactly one closed identifier row and one new open row with
+- [x] Applying a ticker change produces exactly one closed identifier row and one new open row with
       contiguous ranges, leaves `security_id` unchanged, and leaves the listing's other fields
       untouched.
-- [ ] Applying a delisting sets `valid_to` and the delisting date and reason on the listing, appends
+- [x] Applying a delisting sets `valid_to` and the delisting date and reason on the listing, appends
       a `delisted` status row effective from that date, and closes every identifier row for the
       security on that date.
-- [ ] A cross-table invariant check rejects any master state with an identifier or listing valid
+- [x] A cross-table invariant check rejects any master state with an identifier or listing valid
       after the security's delisting date, naming the offending rows.
-- [ ] Applying an exchange move closes the old listing and opens a new one with the new MIC and its
+- [x] Applying an exchange move closes the old listing and opens a new one with the new MIC and its
       currency, and creates a new `(TICKER, exchange)` identifier row for the new venue.
-- [ ] Applying an acquisition sets the target's status to `acquired` with the acquirer's
+- [x] Applying an acquisition sets the target's status to `acquired` with the acquirer's
       `security_id` or `entity_id` recorded, and does not delete or alter any historical row.
 
 ## Technical notes
@@ -85,4 +85,16 @@ applied answers queries about 2012 identically to a master without it.
 `docs/DECISIONS.md` entry if the duplicate-event behaviour (reject versus no-op) is contentious.
 
 ## Completion notes
-_Not started._
+2026-08-16. `src/trp/domain/changes.py`: frozen event models (`TickerChange`,
+`EntityRename`, `ExchangeMove`, `Delisting`, `Acquisition`) with `apply_event` dispatch to
+pure functions returning a new, fully revalidated master. Delisting reason is the
+`DelistingReason` enum; `Delisting(reason=FAILURE)` maps to `LIQUIDATED` status, others to
+`DELISTED`; acquisitions record `related_security_id` (None for unknown/unlisted acquirers).
+Cross-table invariant (nothing in force past a terminal status date) added to the
+`SecurityMaster` aggregate, so it holds everywhere, not just in these helpers. Duplicate
+application is rejected with `ChangeError` (documented choice: reject, not no-op).
+Events compose with the bitemporal knowledge axis: `knowledge_time` supersedes revised rows
+(QNT-011/DEC-008). Deviation: entity rename updates the current label only (name history
+deferred with QNT-006). Tests: `tests/domain/test_changes.py`, `test_events.py`; the
+2015-event-doesn't-change-2012-answers property is covered by the knowledge-view tests in
+`tests/timetravel/test_security_master_pit.py`.
