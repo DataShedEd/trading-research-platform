@@ -26,7 +26,7 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-009](QNT-009-identifier-resolution.md) | Identifier resolution service | P1 | DONE |
 | [QNT-010](QNT-010-corporate-change-handling.md) | Ticker, listing and status change handling | P1 | DONE |
 | [QNT-011](QNT-011-pit-security-lookup.md) | Point-in-time security lookup API | P1 | DONE |
-| [QNT-012](QNT-012-security-master-lifecycle-tests.md) | Security master lifecycle test suite | P1 | READY |
+| [QNT-012](QNT-012-security-master-lifecycle-tests.md) | Security master lifecycle test suite | P1 | DONE |
 
 ## EPIC 3 — Market Data
 

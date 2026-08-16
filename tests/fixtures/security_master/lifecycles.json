@@ -1,0 +1,86 @@
+{
+  "comment": "Synthetic company lifecycles with hand-derived expectations. Dates are realistic in shape (trading-day-ish, month boundaries) but every company is fictional. Expected values were derived from the narrative by hand BEFORE running the code against them.",
+  "companies": {
+    "icarus": {
+      "narrative": "Failure: Icarus Freight plc lists 1999-03-01 (XLON, ticker ICF), trades until compulsory liquidation effective 2018-01-15. The vendor delivers the delisting record late, on 2018-03-20T12:00:00Z.",
+      "entity": {"name": "Icarus Freight plc", "country": "GB"},
+      "listing": {"mic": "XLON", "currency": "GBX", "valid_from": "1999-03-01"},
+      "ticker": {"value": "ICF", "valid_from": "1999-03-01"}
+    },
+    "meridian": {
+      "narrative": "Rename: Beacon Industries plc lists 2000-01-04 (XLON, ticker BCN); renamed Meridian Group plc with ticker change BCN->MRD effective 2015-06-01, announced/recorded 2015-05-29T16:30:00Z (knowledge precedes the event). Still trading.",
+      "entity": {"name": "Beacon Industries plc", "country": "GB"},
+      "listing": {"mic": "XLON", "currency": "GBX", "valid_from": "2000-01-04"},
+      "ticker": {"value": "BCN", "valid_from": "2000-01-04"}
+    },
+    "bracken": {
+      "narrative": "Ticker reuse: Bracken Capital plc, unrelated, lists 2019-09-02 (XLON) and is assigned the abandoned ticker BCN.",
+      "entity": {"name": "Bracken Capital plc", "country": "GB"},
+      "listing": {"mic": "XLON", "currency": "GBX", "valid_from": "2019-09-02"},
+      "ticker": {"value": "BCN", "valid_from": "2019-09-02", "deferred": true, "recorded_at": "2019-09-02T07:00:00Z"},
+      "comment": "deferred + recorded_at: the reused ticker is only assignable after meridian's 2015 change frees BCN, and it must carry a knowledge timestamp — a backfilled always-known record would make historical knowledge views see two owners of BCN at once (the aggregate rejects exactly that)."
+    },
+    "talos": {
+      "narrative": "Acquisition: Talos Metals plc lists 2005-07-20 (XLON, ticker TLM); acquired by Meridian Group effective 2021-10-27, recorded 2021-10-27T18:00:00Z.",
+      "entity": {"name": "Talos Metals plc", "country": "GB"},
+      "listing": {"mic": "XLON", "currency": "GBX", "valid_from": "2005-07-20"},
+      "ticker": {"value": "TLM", "valid_from": "2005-07-20"}
+    }
+  },
+  "events": [
+    {
+      "type": "rename",
+      "company": "meridian",
+      "new_name": "Meridian Group plc"
+    },
+    {
+      "type": "ticker_change",
+      "company": "meridian",
+      "mic": "XLON",
+      "new_ticker": "MRD",
+      "effective": "2015-06-01",
+      "knowledge_time": "2015-05-29T16:30:00Z"
+    },
+    {
+      "type": "delisting_failure",
+      "company": "icarus",
+      "effective": "2018-01-15",
+      "knowledge_time": "2018-03-20T12:00:00Z",
+      "detail": "compulsory liquidation"
+    },
+    {
+      "type": "acquisition",
+      "company": "talos",
+      "acquirer": "meridian",
+      "effective": "2021-10-27",
+      "knowledge_time": "2021-10-27T18:00:00Z"
+    }
+  ],
+  "probes": [
+    {"id": "F1", "query": "resolve", "value": "ICF", "on": "2005-06-01", "expect": "icarus"},
+    {"id": "F2", "query": "status", "company": "icarus", "on": "2010-01-04", "expect": "active"},
+    {"id": "F3", "query": "resolve", "value": "ICF", "on": "2018-02-01", "as_of": "2018-02-15T00:00:00Z", "expect": "icarus"},
+    {"id": "F4", "query": "resolve", "value": "ICF", "on": "2018-02-01", "as_of": "2018-04-01T00:00:00Z", "expect_error": "unknown"},
+    {"id": "F5", "query": "status", "company": "icarus", "on": "2018-02-01", "expect": "liquidated"},
+    {"id": "F6", "query": "status", "company": "icarus", "on": "1998-12-31", "expect": null},
+    {"id": "F7", "query": "identifiers", "company": "icarus", "on": "2017-12-29", "expect": ["ICF"]},
+
+    {"id": "R1", "query": "resolve", "value": "BCN", "on": "2010-05-14", "expect": "meridian"},
+    {"id": "R2", "query": "resolve", "value": "BCN", "on": "2015-06-01", "expect_error": "unknown"},
+    {"id": "R3", "query": "resolve", "value": "MRD", "on": "2015-06-01", "expect": "meridian"},
+    {"id": "R4", "query": "resolve", "value": "BCN", "on": "2020-01-06", "expect": "bracken"},
+    {"id": "R5", "query": "resolve", "value": "MRD", "on": "2014-01-02", "expect_error": "unknown"},
+    {"id": "R6", "query": "resolve", "value": "MRD", "on": "2015-05-30", "as_of": "2015-05-31T00:00:00Z", "expect_error": "unknown"},
+    {"id": "R7", "query": "resolve", "value": "BCN", "on": "2015-06-15", "as_of": "2015-05-01T00:00:00Z", "expect": "meridian"},
+    {"id": "R8", "query": "identifiers", "company": "meridian", "on": "2016-01-04", "expect": ["MRD"]},
+    {"id": "R9", "query": "status", "company": "meridian", "on": "2024-01-02", "expect": "active"},
+
+    {"id": "A1", "query": "resolve", "value": "TLM", "on": "2010-03-01", "expect": "talos"},
+    {"id": "A2", "query": "status", "company": "talos", "on": "2021-11-01", "expect": "acquired"},
+    {"id": "A3", "query": "status", "company": "talos", "on": "2021-10-26", "expect": "active"},
+    {"id": "A4", "query": "resolve", "value": "TLM", "on": "2021-11-01", "as_of": "2021-10-27T12:00:00Z", "expect": "talos"},
+    {"id": "A5", "query": "resolve", "value": "TLM", "on": "2021-11-01", "expect_error": "unknown"},
+    {"id": "A6", "query": "identifiers", "company": "talos", "on": "2021-10-26", "expect": ["TLM"]},
+    {"id": "A7", "query": "acquirer", "company": "talos", "expect": "meridian"}
+  ]
+}

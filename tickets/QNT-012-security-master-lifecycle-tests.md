@@ -1,7 +1,7 @@
 # QNT-012 — Security master lifecycle test suite
 
 - **Ticket ID:** QNT-012
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 2 — Security Master
 
@@ -32,18 +32,18 @@ Price or corporate-action data for these companies (Epic 3 fixtures build on the
 performance benchmarking; any production code change beyond bugs this suite uncovers.
 
 ## Acceptance criteria
-- [ ] Three lifecycle fixtures exist as committed data files with documented, hand-checked expected
+- [x] Three lifecycle fixtures exist as committed data files with documented, hand-checked expected
       results at a minimum of five probe dates each.
-- [ ] For every probe date, the suite asserts resolution forward (identifier to `security_id`) and
+- [x] For every probe date, the suite asserts resolution forward (identifier to `security_id`) and
       reverse (`security_id` to identifiers) match the fixture's expectations.
-- [ ] The reassigned-ticker case asserts that the old ticker resolves to the renamed company before
+- [x] The reassigned-ticker case asserts that the old ticker resolves to the renamed company before
       reassignment and to the unrelated company afterwards, with no ambiguity error at any probe
       date.
-- [ ] A full round trip through QNT-008 storage — build master, write, read, re-run every assertion
+- [x] A full round trip through QNT-008 storage — build master, write, read, re-run every assertion
       — produces identical results, proving persistence loses nothing.
-- [ ] Point-in-time assertions with varying `as_of` confirm that events are invisible before their
+- [x] Point-in-time assertions with varying `as_of` confirm that events are invisible before their
       `available_at`, including for the delisting and the acquisition.
-- [ ] The suite runs in the default `make test` run and its `timetravel`-marked subset runs under
+- [x] The suite runs in the default `make test` run and its `timetravel`-marked subset runs under
       `uv run pytest -m timetravel`.
 
 ## Technical notes
@@ -83,4 +83,16 @@ A short `tests/lifecycle/README.md` describing each fixture's narrative and how 
 `CLAUDE.md` testing section updated to name this suite as the Epic 2 regression harness.
 
 ## Completion notes
-_Not started._
+2026-08-16. `tests/fixtures/security_master/lifecycles.json` (fixture data: four synthetic
+companies — the rename narrative needs both the renamed company and the unrelated reuser —
+with 23 hand-derived probes) plus `tests/lifecycle/` (builder, runner, README). Every probe
+asserts three ways: built master, Parquet storage round-trip, and (where `as_of` present)
+through `PointInTimeSecurityMaster` under the `timetravel` marker. Boundary cases pinned:
+resolution on the ticker-change date itself (half-open: old ticker unknown, new one
+resolves), knowledge preceding the event (change announced 2015-05-29, effective 06-01),
+late-delivered delisting, acquisition visible at noon but not after 18:00 completion.
+Building the fixtures surfaced two genuine ordering rules, now documented in the README:
+a reused ticker can only be added after the event that frees it, and it must carry
+`recorded_at` — a backfilled always-known reuse record makes historical knowledge views
+see two owners at once (the aggregate rejects it). CLAUDE.md names this suite the Epic 2
+regression harness. All checks green (116 tests).

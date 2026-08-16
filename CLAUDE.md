@@ -47,3 +47,8 @@ uv run pytest -m timetravel   # leakage tests only
 Quantitative correctness over coverage numbers. Any feature touching historical data needs a
 time-travel test (marker `timetravel`) proving future information cannot leak. Corporate-action
 handling needs worked numeric examples as fixtures.
+
+`tests/lifecycle/` is the Epic 2 (security master) regression harness: data-driven company
+lifecycles (failure, rename + ticker reuse, acquisition) asserted directly, after a storage
+round-trip, and through the point-in-time facade. Anything touching the security master must
+leave it green; run it first when a downstream result looks wrong.
