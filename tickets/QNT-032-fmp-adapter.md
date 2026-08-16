@@ -1,7 +1,7 @@
 # QNT-032 — Financial Modeling Prep provider adapter
 
 - **Ticket ID:** QNT-032
-- **Status:** BACKLOG
+- **Status:** BLOCKED
 - **Priority:** P1
 - **Epic:** EPIC 5 — Data Provider Bake-Off
 
@@ -113,3 +113,7 @@ that the desk research got wrong.
 
 ## Completion notes
 _Not started._
+
+**BLOCKED (2026-08-16):** awaiting owner sign-off on the QNT-028 recommendation (subscription
+purchase + licensing consequences documented in docs/DATA_PROVIDER_EVALUATION.md). Adapter
+skeletons can be built against recorded fixtures, but empirical bake-off runs need live keys.

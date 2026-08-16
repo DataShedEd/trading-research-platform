@@ -1,7 +1,7 @@
 # QNT-033 — Tiingo provider adapter
 
 - **Ticket ID:** QNT-033
-- **Status:** BACKLOG
+- **Status:** BLOCKED
 - **Priority:** P1
 - **Epic:** EPIC 5 — Data Provider Bake-Off
 
@@ -111,3 +111,6 @@ anything the implementation reveals that the desk research got wrong.
 
 ## Completion notes
 _Not started._
+
+**BLOCKED (2026-08-16):** Tiingo Starter is free but still requires an account/API key the owner
+must create. Per QNT-028, Tiingo serves as a US cross-check only (no LSE coverage); do not buy Power.
