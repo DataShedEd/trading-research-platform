@@ -141,8 +141,14 @@ invariants.
 
 ## Derived
 
-- **factors** — factor name + definition version, `security_id`, date, value, inputs' data
-  versions. Factor definitions are configuration, versioned; no permanent hard-coded composite.
+- **factors** (framework implemented: QNT-042, `trp.factors`) — definitions are immutable
+  JSON configuration under `config/factors/` (DEC-015): name, version, inputs, transform
+  identifier, parameters, and a content hash that detects in-place edits at load. Transforms
+  are a closed, enumerable registry of named Python implementations; `as_of` belongs to the
+  compute surface, not individual factors. Every persisted value is tagged
+  (`factor`, `factor_version`, `end`, `as_of`, input dataset versions) — untagged frames
+  cannot be written — and versions coexist under
+  `data/derived/factors/name=<n>/version=<v>/`. No permanent hard-coded composite.
 - **returns** (implemented: QNT-043, `trp.factors.returns`) — THE single definition of a
   return for factors, risk and backtests. Price returns are split-adjusted; total returns
   add dividends under the reinvestment convention (reinvested at ex-date price). Windows

@@ -1,7 +1,7 @@
 # QNT-042 — Versioned factor definition framework
 
 - **Ticket ID:** QNT-042
-- **Status:** IN_PROGRESS
+- **Status:** DONE
 - **Priority:** P2
 - **Epic:** EPIC 7 — Factor Engine
 
@@ -28,16 +28,16 @@ Concrete factor definitions (QNT-044, QNT-045, QNT-046); cross-sectional transfo
 composites (QNT-048); the point-in-time acceptance suite (QNT-049).
 
 ## Acceptance criteria
-- [ ] A factor is defined entirely in configuration — name, version, input datasets, transform
+- [x] A factor is defined entirely in configuration — name, version, input datasets, transform
       identifier, parameters — and loading the registry validates each definition against a schema
       with typed errors on failure.
-- [ ] Every computed factor value is persisted with its definition name, definition version, and
+- [x] Every computed factor value is persisted with its definition name, definition version, and
       the versions of its input datasets; a value with no version tag cannot be written.
-- [ ] Editing a published definition without incrementing its version is detected and rejected — a
+- [x] Editing a published definition without incrementing its version is detected and rejected — a
       test mutates a definition file and asserts the registry raises.
-- [ ] Computing the same factor twice over unchanged inputs produces identical values
+- [x] Computing the same factor twice over unchanged inputs produces identical values
       (deterministic), and two versions of the same factor can coexist in the derived store.
-- [ ] Transforms are registered by identifier rather than imported ad hoc, so the set of available
+- [x] Transforms are registered by identifier rather than imported ad hoc, so the set of available
       transforms is enumerable and a definition naming an unknown transform fails at load time.
 
 ## Technical notes
@@ -73,4 +73,17 @@ contract. A short authoring guide for adding a factor definition, and a `DECISIO
 the configuration format.
 
 ## Completion notes
-_Not started._
+2026-08-18. `src/trp/factors/{definition,registry,compute}.py` + `config/factors/README.md`
+(authoring guide) + DEC-015. Definitions are JSON with a declared content hash over the
+semantic body (description excluded as cosmetic — tested); an in-place edit fails at load
+with the expected hash in the error. Registry rejects duplicate versions and unknown
+transforms at load (validated against the enumerable transform registry). Compute surface:
+`ComputeContext` carries inputs + `as_of`; transforms are registered by identifier; the
+first registered transform is `window_total_return` over the QNT-043 returns engine (the
+momentum primitive QNT-044 will parameterise). Values are tagged
+factor/version/end/as_of/input-versions; the writer refuses untagged frames, refuses
+overwrites, and versions coexist (tested). Determinism tested. Timetravel test proves the
+surface propagates `as_of` (a September-published dividend invisible to an August
+computation). Deviation: definitions currently live only in tests — the shipped
+`config/factors/` holds the README; QNT-044 lands the real definitions. Tests:
+`tests/factors/test_framework.py` (12). Suite green.

@@ -142,3 +142,13 @@ Context: The QNT-091 backfill quantified EODHD's pre-2010 delisted gap — 48 of
 Alternatives: Patch the gap from another source (cost/effort unknown, deferred not rejected); keep the full span and per-date completeness checks (complex, still biased where incomplete).
 Reason: 15+ years (2010–present) with verified full constituent data coverage is ample for medium-term factor research, and an honestly bounded span beats a longer contaminated one (QUANT_PRINCIPLES §2, §5).
 Consequences: Backtests report their universe coverage start; results cannot claim pre-2010 UK evidence. Revisit if a source for pre-2010 delisted LSE data is ever acquired — the curated membership already extends to 2005, so only the price/fundamental gap would need filling.
+
+---
+
+DEC-015
+Date: 2026-08-18
+Decision: Factor definitions are JSON files under config/factors/, one file per immutable (name, version); in-place edits are detected by a declared content hash over the semantic body (description excluded); transforms are named Python implementations registered in trp.factors.compute — configuration parameterises them and can never express logic.
+Context: QNT-042 requires versioned, reproducible factor definitions; the risk named in the ticket is an over-general configuration language.
+Alternatives: YAML (adds a dependency and implicit typing quirks); Python modules as definitions (unhashable semantics, import-order coupling); a DSL (the trap itself).
+Reason: JSON is already the repo's curated-data format, hashes canonically, and the closed transform registry keeps all logic in typed, tested Python.
+Consequences: New transform kinds require code (deliberate friction); definition authors must recompute the hash on any semantic change, which is exactly the audit trail wanted. Stored values are tagged name@version + as_of + input dataset versions.
