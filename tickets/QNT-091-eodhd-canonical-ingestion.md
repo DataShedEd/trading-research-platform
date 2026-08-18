@@ -1,7 +1,7 @@
 # QNT-091 — EODHD canonical ingestion pipeline
 
 - **Ticket ID:** QNT-091
-- **Status:** IN_PROGRESS
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 3 — Market Data
 
@@ -29,17 +29,17 @@ EODHD's field names — its own piece of work); Tiingo/FMP transforms; daily inc
 refresh via `eod-bulk-last-day` (future ticket once backfill exists).
 
 ## Acceptance criteria
-- [ ] EODHD LSE price rows become `DailyBar`s with `currency="GBX"` (pence, as quoted) and
+- [x] EODHD LSE price rows become `DailyBar`s with `currency="GBX"` (pence, as quoted) and
       Decimal values taken from the JSON text without float round-tripping; the provider's
       `adjusted_close` lands in `provider_adjusted_close` only.
-- [ ] EODHD dividend rows preserve their stated `currency` verbatim (EODHD reports LSE
+- [x] EODHD dividend rows preserve their stated `currency` verbatim (EODHD reports LSE
       dividends in GBP while quoting prices in GBX — the unit trap must remain visible);
       split rows parse `"N/M"` ratio strings exactly.
-- [ ] Rows that fail domain validation are collected and reported per security with the
+- [x] Rows that fail domain validation are collected and reported per security with the
       offending values; a batch never silently shrinks.
-- [ ] The backfill runner is resumable (skips securities whose raw payloads already exist),
+- [x] The backfill runner is resumable (skips securities whose raw payloads already exist),
       raw-first (archive before transform), and paced under the provider's rate limits.
-- [ ] `make check` green; live FTSE-constituent backfill completes with a coverage report
+- [x] `make check` green; live FTSE-constituent backfill completes with a coverage report
       (bars per security, date spans, actions counts, rejects).
 
 ## Technical notes
@@ -64,4 +64,16 @@ DATA_MODEL/ARCHITECTURE note that EODHD is the first wired canonical source; cov
 report location documented in the ticket's completion notes.
 
 ## Completion notes
-_Not started._
+2026-08-18. `src/trp/canonical/ingest_eodhd.py` (transforms; `parse_float=Decimal` for
+exact numerics — tested that 14.27 stays 14.27) + the backfill/canonicalise/report steps
+of `src/trp/universe/ftse_build.py`. Live results over the QNT-039 FTSE constituent set:
+184 securities fetched (+8 already archived), **1,247,419 bars, 321 splits, 9,168
+dividends** canonicalised; 84 rejects, all legitimate provider errors (e.g. Cobham 2003
+bars with open > high) reported with evidence per row. GBX/GBP unit split preserved
+(prices in pence, dividends in pounds, both verbatim). Coverage: 192/240 securities have
+bars; the 48 without (HBOS, Scottish & Newcastle, Cadbury Schweppes, Xstrata, ICI, …)
+are the pre-2010 EODHD gap, now enumerated by name in the report step — adjudication of
+that gap belongs to QNT-041. Corporate actions persisted to
+`data/canonical/corporate_actions/eodhd_ftse100_{splits,dividends}.parquet` with explicit
+schemas; a proper partitioned corporate-action store mirroring QNT-018 is future work.
+Tests: `tests/canonical/test_ingest_eodhd.py`. All checks green.

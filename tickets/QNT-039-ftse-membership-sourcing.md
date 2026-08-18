@@ -165,3 +165,13 @@ unmatched exits are 2006–2010).
 notation) and the 6 "still listed" exits (secondary listings/miscategorised reasons);
 resolve ticker spells to security_ids (needs the master populated from EODHD LSE symbol
 lists); write membership spells via QNT-037 storage; hand the real-data gate to QNT-041.
+
+**Progress (2026-08-18):** the curated history is now LIVE end to end. Security master
+built (240 securities; rename chains + ISIN-equality merges — the latter caught Sports
+Direct→Frasers and Alliance Trust→Alliance Witan renaming outside the index); membership
+written through QNT-037; `members("FTSE100", 2012-08-15)` returns exactly 100, and the
+August 2007 index contains Northern Rock, HBOS and Alliance & Leicester. Data backfilled
+via QNT-091: 1.25m bars across 192/240 securities. Remaining before DONE: hand QNT-041
+the 48 no-data securities and the 8 unmatched post-2010 exits for adjudication, and
+decide (with the owner) whether pre-2010 membership stays queryable-but-flagged or the
+universe coverage start is declared as 2010.
