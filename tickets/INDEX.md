@@ -104,8 +104,8 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-052](QNT-052-rebalancing-weighting.md) | Rebalancing and weighting schemes | P2 | DONE |
 | [QNT-053](QNT-053-costs-slippage.md) | Transaction costs and slippage | P2 | DONE |
 | [QNT-054](QNT-054-performance-metrics.md) | Performance metrics suite | P2 | DONE |
-| [QNT-055](QNT-055-benchmark-relative.md) | Benchmark and relative performance | P2 | BACKLOG |
-| [QNT-056](QNT-056-rolling-statistics.md) | Rolling statistics | P2 | BACKLOG |
+| [QNT-055](QNT-055-benchmark-relative.md) | Benchmark and relative performance | P2 | DONE |
+| [QNT-056](QNT-056-rolling-statistics.md) | Rolling statistics | P2 | DONE |
 | [QNT-057](QNT-057-backtest-leakage-tests.md) | Backtest correctness and leakage regression suite | P2 | BACKLOG |
 
 ## EPIC 9 — Risk Engine

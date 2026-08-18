@@ -14,8 +14,8 @@ rules 3 and 7 apply before any claim is made from one configuration).
 | Selection / weighting | top 20, equal |
 | Initial capital | 100,000,000 GBX (£1,000,000) |
 | Costs | 2 bps commission (min 500 GBX), 10 bps spread, 50 bps stamp (buys), impact 25 bps x participation |
-| Config hash | `08497ecd1eedde5a` |
-| Git commit | `b07fa6df44221c2d41788d1fd5cbd9c9f092fac7` |
+| Config hash | `97af396dccde9fd7` |
+| Git commit | `e9571e7e4a58ca743b3ff731fbbb799931490ba6` |
 | Run record | `data/derived/backtests/momentum-12-1-ftse100-monthly-to-2026-08-17` |
 
 ## Headline metrics
@@ -35,6 +35,18 @@ rules 3 and 7 apply before any claim is made from one configuration).
 | Total costs paid | 103,814,865 GBX (£1,038,149) |
 | Mean one-way turnover per rebalance | 25.9% |
 | Rebalances / trades | 200 / 4818 |
+
+## Relative to benchmark
+
+Benchmark: **isf-xlon-tr** — etf_total_return (distributing share class, dividends reinvested at ex-date close).
+
+| Metric | Value |
+|---|---|
+| Benchmark total return | +251.71% |
+| Benchmark CAGR | +7.84% |
+| Excess CAGR (geometric) | +2.86% |
+| Tracking error | 12.20% |
+| Information ratio | 0.28 |
 
 ## Annual returns
 
@@ -58,6 +70,15 @@ rules 3 and 7 apply before any claim is made from one configuration).
 | 2025 | +58.40% |
 | 2026 | +8.28% |
 
+## Rolling windows (regime dependence)
+
+| Window | Worst return | Median | Best | Sharpe min/max |
+|---|---|---|---|---|
+| 12m | -25.6% (to 2020-03-23) | +9.8% | +69.5% (to 2026-04-09) | -1.18 / 3.60 |
+| 36m | -25.4% (to 2020-03-23) | +38.9% | +107.0% (to 2026-06-01) | -0.49 / 1.76 |
+
+Full series: `rolling.parquet` in the run record. All configured windows are reported together (QNT-056).
+
 ## Flags
 
 - none
@@ -70,7 +91,7 @@ rules 3 and 7 apply before any claim is made from one configuration).
 - Decisions use the previous session's knowledge; fills at the rebalance close; dividends
   credit on ex-date; unknown delistings write off (DEC-017).
 - No delisting/merger records are canonicalised yet, so departures exit via DEC-019 forced
-  exits at the last traded close (10 of them; 287 warnings total).
+  exits at the last traded close (10 of them; 288 warnings total).
 - Risk-free rate assumed zero — Sharpe is overstated until a gilt/SONIA series is ingested.
 - Position construction rules per DEC-018.
 - Prices/dividends/splits are the DEC-020 unit-repaired datasets (EODHD's GBX/GBP

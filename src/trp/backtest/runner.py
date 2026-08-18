@@ -22,10 +22,19 @@ from pathlib import Path
 
 import polars as pl
 
+from trp.backtest.benchmark import (
+    BenchmarkSeries,
+    RelativeRecord,
+    align,
+    check_suitability,
+    load_benchmark,
+    relative_metrics,
+)
 from trp.backtest.config import BacktestConfig
 from trp.backtest.engine import BacktestEngine, MarketData, RunResult, write_run
 from trp.backtest.metrics import MetricsRecord, compute_metrics, write_metrics
 from trp.backtest.rebalance import factor_strategy
+from trp.backtest.rolling import RollingSpec, rolling_report
 from trp.canonical.price_store import read_bars
 from trp.canonical.unit_repair import REPAIRED_SOURCE
 from trp.config import load_settings
@@ -87,12 +96,27 @@ def default_ftse100_momentum_config(end: date) -> BacktestConfig:
         factor_version=1,
         top_n=20,
         initial_cash=Decimal("100000000"),  # 100m GBX = £1m
-        benchmark=None,
+        benchmark="isf-xlon-tr",
         data_versions={},
     )
 
 
-def run(config: BacktestConfig) -> tuple[RunResult, MetricsRecord, Path]:
+# min_observations at ~80% of the window's expected sessions: a "36-month" statistic
+# computed from twenty early observations would be a partial-window lie with a long label.
+ROLLING_WINDOWS = (
+    RollingSpec(calendar_months=12, min_observations=200),
+    RollingSpec(calendar_months=36, min_observations=600),
+)
+"""Reported together (QNT-056): a favourable window is visibly a selection from the set."""
+
+
+def run(
+    config: BacktestConfig,
+) -> tuple[RunResult, MetricsRecord, RelativeRecord | None, pl.DataFrame, Path]:
+    from dataclasses import replace
+
+    from trp.backtest.metrics import daily_returns
+
     settings = load_settings()
     market = load_market(config)
     universe_query = UniverseQuery(settings.canonical_dir / "universes")
@@ -100,6 +124,45 @@ def run(config: BacktestConfig) -> tuple[RunResult, MetricsRecord, Path]:
     engine = BacktestEngine(config, market, universe_query)
     logger.info("running %s (%s)", config.name, config.config_hash())
     result = engine.run(strategy)
+
+    strategy_returns = daily_returns(result.daily.select("date", "value"))
+    benchmark: BenchmarkSeries | None = None
+    relative: RelativeRecord | None = None
+    benchmark_aligned: pl.DataFrame | None = None
+    returns_for_rolling = strategy_returns
+    if config.benchmark is not None:
+        from datetime import UTC, datetime, time
+
+        as_of = datetime.combine(config.end, time(23, 59, 59), tzinfo=UTC)
+        benchmark = load_benchmark(
+            config.benchmark, settings.canonical_dir / "benchmarks", as_of=as_of
+        )
+        result.warnings.extend(check_suitability(config, benchmark, result.daily["date"].to_list()))
+        aligned_strategy, benchmark_aligned, dropped = align(
+            strategy_returns,
+            benchmark.returns.filter(
+                (pl.col("date") >= config.start) & (pl.col("date") <= config.end)
+            ),
+        )
+        if dropped:
+            result.warnings.append(
+                f"benchmark alignment dropped {len(dropped)} dates "
+                f"({dropped[0]}..{dropped[-1]}) from the comparison"
+            )
+        relative = replace(
+            relative_metrics(aligned_strategy, replace(benchmark, returns=benchmark_aligned)),
+            dropped_dates=tuple(d.isoformat() for d in dropped[:50]),
+        )
+        returns_for_rolling = aligned_strategy
+
+    rolling = rolling_report(
+        returns_for_rolling,
+        ROLLING_WINDOWS,
+        periods_per_year=252,
+        risk_free_rate=0.0,
+        benchmark_returns=benchmark_aligned,
+    )
+
     directory = write_run(result, settings.derived_dir / "backtests")
     record = compute_metrics(
         result.daily.select("date", "value"),
@@ -109,11 +172,20 @@ def run(config: BacktestConfig) -> tuple[RunResult, MetricsRecord, Path]:
         risk_free_source="assumed zero (no risk-free series ingested yet; overstates Sharpe)",
     )
     write_metrics(record, directory)
+    if relative is not None:
+        (directory / "relative.json").write_text(relative.to_json())
+    rolling.write_parquet(directory / "rolling.parquet")
     logger.info("run record written to %s", directory)
-    return result, record, directory
+    return result, record, relative, rolling, directory
 
 
-def render_tearsheet(result: RunResult, record: MetricsRecord, directory: Path) -> str:
+def render_tearsheet(
+    result: RunResult,
+    record: MetricsRecord,
+    directory: Path,
+    relative: RelativeRecord | None = None,
+    rolling: pl.DataFrame | None = None,
+) -> str:
     config = result.config
 
     def pct(x: float | None) -> str:
@@ -134,6 +206,49 @@ def render_tearsheet(result: RunResult, record: MetricsRecord, directory: Path) 
         f"| {year} | {pct(value)} |" for year, value in sorted(record.annual_returns.items())
     )
     flags = "\n".join(f"- {flag}" for flag in record.flags) or "- none"
+    relative_section = ""
+    if relative is not None:
+        benchmark_cagr = (1 + relative.benchmark_total_return) ** (252 / relative.periods) - 1
+        information = f"{relative.information_ratio:.2f}" if relative.information_ratio else "n/a"
+        relative_section = f"""## Relative to benchmark
+
+Benchmark: **{relative.benchmark}** — {relative.benchmark_kind}.
+
+| Metric | Value |
+|---|---|
+| Benchmark total return | {relative.benchmark_total_return:+.2%} |
+| Benchmark CAGR | {benchmark_cagr:+.2%} |
+| Excess CAGR (geometric) | {relative.excess_cagr:+.2%} |
+| Tracking error | {relative.tracking_error:.2%} |
+| Information ratio | {information} |
+
+"""
+    rolling_section = ""
+    if rolling is not None and rolling.height:
+        lines = []
+        for window in rolling["window"].unique(maintain_order=True):
+            sub = rolling.filter((pl.col("window") == window) & pl.col("ret").is_not_null())
+            if not sub.height:
+                continue
+            worst = sub.sort("ret").head(1)
+            best = sub.sort("ret", descending=True).head(1)
+            median_ret = sub["ret"].median()
+            sharpe_low, sharpe_high = sub["sharpe"].min(), sub["sharpe"].max()
+            assert isinstance(median_ret, float)
+            assert isinstance(sharpe_low, float) and isinstance(sharpe_high, float)
+            lines.append(
+                f"| {window} | {worst['ret'][0]:+.1%} (to {worst['date'][0]}) "
+                f"| {median_ret:+.1%} "
+                f"| {best['ret'][0]:+.1%} (to {best['date'][0]}) "
+                f"| {sharpe_low:.2f} / {sharpe_high:.2f} |"
+            )
+        rolling_section = (
+            "## Rolling windows (regime dependence)\n\n"
+            "| Window | Worst return | Median | Best | Sharpe min/max |\n|---|---|---|---|---|\n"
+            + "\n".join(lines)
+            + "\n\nFull series: `rolling.parquet` in the run record. All configured windows "
+            "are reported together (QNT-056).\n"
+        )
     warning_count = len(result.warnings)
     forced_exits = sum(1 for w in result.warnings if "forced exit" in w)
 
@@ -177,12 +292,13 @@ impact {config.impact_coefficient_bps} bps x participation |
 | Mean one-way turnover per rebalance | {mean_turnover:.1%} |
 | Rebalances / trades | {rebalances.height} / {int(rebalances["trades"].sum())} |
 
-## Annual returns
+{relative_section}## Annual returns
 
 | Year | Return |
 |---|---|
 {annual_lines}
 
+{rolling_section}
 ## Flags
 
 {flags}
@@ -213,8 +329,8 @@ def main() -> None:
     newest = trade_dates["trade_date"].max()
     assert isinstance(newest, date)
     config = default_ftse100_momentum_config(newest)
-    result, record, directory = run(config)
-    tearsheet = render_tearsheet(result, record, directory)
+    result, record, relative, rolling, directory = run(config)
+    tearsheet = render_tearsheet(result, record, directory, relative, rolling)
     target = Path("docs/tearsheets") / f"{config.name}.md"
     target.parent.mkdir(parents=True, exist_ok=True)
     if target.exists():
