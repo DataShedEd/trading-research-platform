@@ -1,7 +1,7 @@
 # QNT-050 — Backtest engine core and PIT data access
 
 - **Ticket ID:** QNT-050
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P2
 - **Epic:** EPIC 8 — Backtesting Engine
 
@@ -78,3 +78,23 @@ reproducibility artefact.
 
 ## Completion notes
 _Not started._
+
+## Completion notes
+2026-08-18. `src/trp/backtest/`: `config.py` — frozen, fully serialisable `BacktestConfig`
+(name/dates/universe/factor@version/rebalance/weighting/top-N/initial cash in GBX/cost bps/
+seed/data_versions) with `config_hash()`; any single-field change changes the hash
+(parametrised over every field). `context.py` — clock-bound `BacktestContext`, the ONLY
+data surface strategies get: as_of binds at construction, `members()`/`price()` (15-day
+staleness cap)/`factor_values()` all filter to the clock; reading the future is not
+expressible. `engine.py` — `MarketData` (bisect close lookups), daily loop over
+`get_trading_calendar(mic)` sessions, monthly/quarterly rebalance on the first session
+with the decision clock on the PREVIOUS session (even on day one, via
+`previous_trading_day`), corporate actions applied on max(ex_date, knowledge date),
+per-session accounting-identity assertion via event-log replay, and `write_run` records
+(config + hash + git commit + daily parquet + event parquet, never overwritten). Timing
+and knowledge conventions are DEC-017. Tests: `tests/backtest/test_config.py`,
+`test_engine.py` (calendar walk, rebalance scheduling, determinism, costs, dividend/split/
+merger/delisting paths, missing-print order skip, affordability clamp, run records);
+`tests/timetravel/test_backtest_context.py` incl. the flagship full-run invariance test —
+future bars and late-announced actions leave daily values and the event log bit-identical.
+659 tests green.

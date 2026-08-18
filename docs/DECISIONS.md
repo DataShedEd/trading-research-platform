@@ -162,3 +162,13 @@ Context: Adjudication of the gate's findings (curated-history fixes v2026-08-16.
 Alternatives: Shrink coverage start to ~2016 (loses too much usable history); source the sixteen from another vendor now (deferred, not rejected — the list is the shopping list if ever pursued).
 Reason: A quantified, enumerated 2.5% gap with per-name justification is honest and workable; backtests inherit a small, known, conservative-direction bias (missing names are mostly acquisition exits, whose absent final run-ups would generally have HELPED momentum strategies).
 Consequences: Backtest reports must cite DEC-016; the exclusion list may only shrink; QNT-041's gate is green under this policy and re-red on any new gap.
+
+---
+
+DEC-017
+Date: 2026-08-18
+Decision: Backtest simulation conventions (QNT-050/051). Timing: on a rebalance day the strategy's knowledge instant is the END of the PREVIOUS session (its as_of binds at context construction; no method takes a caller-chosen date) and orders fill at the rebalance day's close. Accounting: whole shares only; raw as-traded marks (actions are ledger events — adjusted marks would double-count); dividends credit on the ex-date for the quantity held; split fractions pay cash in lieu at the ex-date mark; a delisting with unknown terms is a conservative write-off to zero. Knowledge: a corporate action applies on max(ex_date, available_at date) — late vendor knowledge acts on the knowledge date, never retroactively.
+Context: These are the places a backtest silently flatters itself: same-day information, retroactive action application, adjusted-price marking, vanished delistings.
+Alternatives: Fill at next-day open (more conservative timing, needs reliable opens — revisit with QNT-053's slippage work); pay-date dividend crediting (correct but pay-date data quality is unverified; ex-date is documented as slightly favourable on reinvestment timing, weeks at most).
+Reason: Each convention picks the honest or conservative side of the ambiguity and is stated in code (BacktestConfig/Portfolio docstrings) and tested, including the flagship invariance test: a run over data extended with future bars and late-announced actions is bit-identical to a run without them.
+Consequences: Results are mildly optimistic on execution (close fill with prior-day information) — the QNT-053 cost model is where that optimism is paid for. The daily accounting identity is asserted every session by independent event-log replay; a broken ledger halts the run rather than producing a number.
