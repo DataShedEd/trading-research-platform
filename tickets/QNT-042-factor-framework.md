@@ -1,7 +1,7 @@
 # QNT-042 — Versioned factor definition framework
 
 - **Ticket ID:** QNT-042
-- **Status:** BACKLOG
+- **Status:** IN_PROGRESS
 - **Priority:** P2
 - **Epic:** EPIC 7 — Factor Engine
 

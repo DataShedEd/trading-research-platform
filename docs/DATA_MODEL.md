@@ -143,6 +143,17 @@ invariants.
 
 - **factors** — factor name + definition version, `security_id`, date, value, inputs' data
   versions. Factor definitions are configuration, versioned; no permanent hard-coded composite.
-- **returns** — price and total returns per security/date, flagged with adjustment provenance.
+- **returns** (implemented: QNT-043, `trp.factors.returns`) — THE single definition of a
+  return for factors, risk and backtests. Price returns are split-adjusted; total returns
+  add dividends under the reinvestment convention (reinvested at ex-date price). Windows
+  are calendar months with a skip (`WindowSpec(12, 1)` = 12-1 momentum), endpoints resolved
+  to the last bar on-or-before each date within a staleness cap. Explicit typed statuses:
+  `insufficient_data` below a session-coverage threshold (never a silently wrong number,
+  never forward-filled across a delisting), `delisted_no_proceeds` where an exit's value is
+  unknowable; failures return −100%, cash acquisitions return through proceeds converted
+  exactly to the quote unit. Dividends are unit-aligned to the bar's quote currency before
+  factor computation (the GBP-dividend-on-GBX-price 100× trap, tested); non-sterling
+  dividends are excluded with a warning pending QNT-023 FX wiring. Every computation takes
+  `as_of`: actions published later cannot change earlier results (timetravel-tested).
 - **experiments** — hypothesis, full parameterisation, data/code versions, results, conclusion
   (Epic 10; schema defined in its tickets).

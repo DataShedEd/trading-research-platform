@@ -82,8 +82,8 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 
 | ID | Title | Priority | Status |
 |---|---|---|---|
-| [QNT-042](QNT-042-factor-framework.md) | Versioned factor definition framework | P2 | BACKLOG |
-| [QNT-043](QNT-043-returns-library.md) | Returns library | P2 | BACKLOG |
+| [QNT-042](QNT-042-factor-framework.md) | Versioned factor definition framework | P2 | IN_PROGRESS |
+| [QNT-043](QNT-043-returns-library.md) | Returns library | P2 | DONE |
 | [QNT-044](QNT-044-momentum-factors.md) | Momentum factor set | P2 | BACKLOG |
 | [QNT-045](QNT-045-quality-factors.md) | Quality factor set | P2 | BACKLOG |
 | [QNT-046](QNT-046-value-factors.md) | Value factor set | P2 | BACKLOG |

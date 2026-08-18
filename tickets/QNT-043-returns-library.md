@@ -1,7 +1,7 @@
 # QNT-043 — Returns library
 
 - **Ticket ID:** QNT-043
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P2
 - **Epic:** EPIC 7 — Factor Engine
 
@@ -28,23 +28,23 @@ Adjustment factor derivation (upstream, QNT-015); momentum factor definitions (Q
 performance statistics (QNT-056); risk models.
 
 ## Acceptance criteria
-- [ ] Price and total returns over a window are computed from adjusted data, and total returns
+- [x] Price and total returns over a window are computed from adjusted data, and total returns
       include ordinary and special dividends; each returned series is flagged with its adjustment
       provenance.
-- [ ] Window specifications support skip periods (for example 12 months ending one month ago) and
+- [x] Window specifications support skip periods (for example 12 months ending one month ago) and
       the convention — inclusive/exclusive endpoints, calendar versus trading days — is documented
       and asserted in tests.
-- [ ] Missing observations are handled by a single documented policy (for example requiring a
+- [x] Missing observations are handled by a single documented policy (for example requiring a
       minimum proportion of expected trading days, returning a typed "insufficient data" result
       rather than a silently wrong number), and no code path forward-fills a price across a
       delisting.
-- [ ] A security that delists mid-window yields a return through the delisting event using
+- [x] A security that delists mid-window yields a return through the delisting event using
       delisting proceeds where known, or an explicit typed result where not — never a silent
       truncation to the last observed price.
-- [ ] Returns for securities quoted in `GBX` or a non-`GBP` currency are converted using rates dated
+- [x] Returns for securities quoted in `GBX` or a non-`GBP` currency are converted using rates dated
       at or before the observation date, and a test asserts the pence/pounds distinction cannot
       inflate a return by a factor of one hundred.
-- [ ] Values are validated against hand-computed fixtures covering a split, a dividend, and a plain
+- [x] Values are validated against hand-computed fixtures covering a split, a dividend, and a plain
       price move.
 
 ## Technical notes
@@ -77,4 +77,19 @@ later must not alter a return computed before it.
 missing-data policy, and delisting treatment.
 
 ## Completion notes
-_Not started._
+2026-08-18. `src/trp/factors/returns.py`: `ReturnsEngine` over canonical bars + corporate
+actions via the QNT-015 adjustment engine (exact factors; floats only at this derived
+layer). Delivered per acceptance: price/total bases with reinvestment convention
+(documented after the hand fixtures caught the naive-vs-reinvested 5.00% vs 5.26%
+distinction); calendar-month windows with skip (12-1 tested to exclude the final month);
+explicit missing-data policy (session coverage vs the QNT-016 XLON calendar, typed
+INSUFFICIENT_DATA); delisting handling (failure → −100%, cash acquisition → proceeds
+converted exactly GBP→GBX via QNT-017 reference data, unknown → typed status — never
+silent truncation); dividend unit alignment killing the 100× GBP/GBX trap (tested
+bluntly); `as_of` throughout with timetravel tests (late-published dividend and
+late-recorded delisting cannot change earlier results — the latter honestly reads
+INSUFFICIENT before knowledge). Deviations: log returns omitted (add when a consumer
+needs them); persistence is a minimal never-overwrite writer pending real usage patterns;
+cross-sectional form is `cross_section()` returning a frame of typed results. Tests:
+`tests/factors/test_returns.py` (10 hand-derived fixtures),
+`tests/timetravel/test_returns.py`. 584 tests green.
