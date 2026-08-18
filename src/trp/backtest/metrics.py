@@ -70,6 +70,43 @@ class MetricsRecord:
         return json.dumps(payload, indent=2)
 
 
+def compound(returns: list[float]) -> float:
+    """Total return from compounding per-period simple returns."""
+    total = 1.0
+    for r in returns:
+        total *= 1 + r
+    return total - 1
+
+
+def annualised_volatility(returns: list[float], periods_per_year: int) -> float | None:
+    """Sample stdev of per-period returns, annualised by sqrt(periods_per_year).
+    None below two observations."""
+    n = len(returns)
+    if n < 2:
+        return None
+    mean = sum(returns) / n
+    variance = sum((r - mean) ** 2 for r in returns) / (n - 1)
+    return math.sqrt(variance) * math.sqrt(periods_per_year)
+
+
+def sharpe_ratio(
+    returns: list[float], periods_per_year: int, risk_free_rate: float
+) -> float | None:
+    """Mean excess per-period return over sample stdev, annualised. The ONE Sharpe
+    implementation — full-sample and rolling both call it, so they cannot diverge.
+    None for zero volatility or fewer than two observations."""
+    n = len(returns)
+    if n < 2:
+        return None
+    per_period_rf = (1 + risk_free_rate) ** (1 / periods_per_year) - 1
+    mean = sum(returns) / n
+    variance = sum((r - mean) ** 2 for r in returns) / (n - 1)
+    stdev = math.sqrt(variance)
+    if stdev == 0:
+        return None
+    return float((mean - per_period_rf) / stdev * math.sqrt(periods_per_year))
+
+
 def daily_returns(equity: pl.DataFrame) -> pl.DataFrame:
     """The canonical (date, ret) series: simple returns of consecutive equity values."""
     _require_columns(equity, {"date", "value"}, "equity curve")
@@ -158,21 +195,14 @@ def compute_metrics(
     elif last <= 0:
         flags.append("total_loss: equity reached zero — CAGR undefined")
 
-    per_period_rf = (1 + risk_free_rate) ** (1 / periods_per_year) - 1
     mar = minimum_acceptable_return if minimum_acceptable_return is not None else risk_free_rate
     per_period_mar = (1 + mar) ** (1 / periods_per_year) - 1
 
     mean = sum(returns) / n
-    volatility: float | None = None
-    sharpe: float | None = None
-    if n >= 2:
-        variance = sum((r - mean) ** 2 for r in returns) / (n - 1)
-        stdev = math.sqrt(variance)
-        volatility = stdev * math.sqrt(periods_per_year)
-        if stdev > 0:
-            sharpe = (mean - per_period_rf) / stdev * math.sqrt(periods_per_year)
-        else:
-            flags.append("zero_volatility: Sharpe and Sortino undefined")
+    volatility = annualised_volatility(returns, periods_per_year)
+    sharpe = sharpe_ratio(returns, periods_per_year, risk_free_rate)
+    if volatility == 0:
+        flags.append("zero_volatility: Sharpe and Sortino undefined")
 
     sortino: float | None = None
     downside = [min(0.0, r - per_period_mar) for r in returns]

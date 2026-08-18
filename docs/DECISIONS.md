@@ -202,3 +202,13 @@ Context: The first real backtest (QNT-092) produced a fantasy +28% CAGR. Root ca
 Alternatives: Repair inside the backtest (hides a data defect from every other consumer); switch vendors (same class of warts elsewhere, and the raw archive is already licensed and local); manual per-security fixes (unauditable).
 Reason: Detection rules are mechanical, evidence for every change is persisted in unit_repair_report.json, everything unresolvable fails loudly, and the append-only store keeps the original rows for audit.
 Consequences: Research code must read source="eodhd-gbx" and the *_gbx action files. 48 genuine high-yield dividend records and ~19 residual >20% security-year dividend totals are enumerated in the report for future adjudication (bounded, direction favourable-to-strategy if wrong). The repair reruns after any re-ingestion; the report may only shrink.
+
+---
+
+DEC-021
+Date: 2026-08-18
+Decision: FTSE 100 strategies benchmark against the iShares Core FTSE 100 UCITS ETF: ISF.LSE (distributing) with its own dividends reinvested at the ex-date close, giving total-return coverage from May 2000. The accumulating class CUKX.LSE is ingested as an independent cross-check, not a benchmark (its pre-2016 EODHD data misses ~30% of sessions). Both flow through the standard raw-first EODHD pipeline into data/canonical/benchmarks/.
+Context: QNT-055 requires a total-return benchmark. EODHD's All-In-One plan returns empty series for index endpoints (FTSE.INDX etc.), and licensed index series (FTSE Russell TR) are a separate purchase.
+Alternatives: License the official index (cost, and not investable anyway); use the price index + assumed yield (fabrication); construct a cap-weighted series from our own universe (no shares-outstanding data, and it would share every defect of our universe — kept as a possible future addition, clearly labelled).
+Reason: An ETF is investable, GBX-denominated, carries genuine fund costs, and its reinvestment construction is validated against CUKX to within 3bp/yr on the 2016+ overlap (gate-tested). Comparing an investable strategy to an investable benchmark is the honest comparison.
+Consequences: The benchmark embeds ISF's TER (~0.07%), slightly flattering strategy excess returns by that amount — documented rather than adjusted. Pre-2000 backtests would need a different series. The benchmark shares EODHD provenance with strategy data; an index from a second vendor would be a stronger independent check if ever licensed.

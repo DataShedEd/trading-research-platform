@@ -40,7 +40,11 @@ Keep these distinct and never conflate them:
    exists). A test pins the shipped defaults to this floor; every parameter lives in
    `BacktestConfig` and therefore in the config hash and the experiment record.
 6. Benchmark must match the universe (UK mid-cap strategy → FTSE 250-type benchmark, total
-   return, same currency).
+   return, same currency). Implemented as `trp.backtest.benchmark` (QNT-055): the FTSE 100
+   benchmark is the ISF ETF with its own dividends reinvested (a sourced total-return series,
+   validated against the accumulating share class CUKX to within 3bp/yr in the gate suite), and
+   `check_suitability` runs with every benchmarked backtest — universe, currency and coverage
+   mismatches land in the run's recorded warnings.
 7. Report regime dependence: results shown per sub-period, not just full-sample. A strategy
    that worked only 2009–2014 is a regime observation, not a discovery.
 8. When a methodological choice could flatter results (universe tweak, exclusion, date range,
