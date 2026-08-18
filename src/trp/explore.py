@@ -5,6 +5,8 @@ without going through any platform code path::
 
     uv run python -m trp.explore                          # interactive SQL prompt
     uv run python -m trp.explore "SELECT ... FROM prices" # one-shot query
+    uv run python -m trp.explore --build-db               # (re)build data/trp.duckdb for
+                                                          # DataGrip/DBeaver/JDBC clients
 
 Views (see ``docs/QUERYING.md`` for a cookbook):
 
@@ -23,17 +25,20 @@ here mutates a store.
 """
 
 import sys
+from pathlib import Path
 
 import duckdb
 
 from trp.config import load_settings
 
 
-def open_console() -> duckdb.DuckDBPyConnection:
+def open_console(database: str = ":memory:") -> duckdb.DuckDBPyConnection:
     settings = load_settings()
-    canonical = settings.canonical_dir
-    derived = settings.derived_dir
-    con = duckdb.connect()
+    # Absolute paths: the view definitions are persisted into data/trp.duckdb, where an
+    # IDE opens them from an arbitrary working directory.
+    canonical = settings.canonical_dir.resolve()
+    derived = settings.derived_dir.resolve()
+    con = duckdb.connect(database)
 
     def view(name: str, sql: str) -> None:
         con.sql(f"CREATE OR REPLACE VIEW {name} AS {sql}")
@@ -103,7 +108,21 @@ def repl(con: duckdb.DuckDBPyConnection) -> None:
             print(error)
 
 
+def build_database() -> Path:
+    """(Re)create ``data/trp.duckdb`` holding all the views, for IDE/JDBC clients
+    (DataGrip, DBeaver, ...). The file contains only view definitions over the Parquet
+    stores — no data is copied, so it is always current and safe to rebuild. Connect
+    read-only from the IDE so an open session never blocks this rebuild."""
+    settings = load_settings()
+    target = settings.data_dir.resolve() / "trp.duckdb"
+    open_console(str(target)).close()
+    return target
+
+
 def main() -> None:
+    if "--build-db" in sys.argv:
+        print(f"database ready: {build_database()}")
+        return
     con = open_console()
     if len(sys.argv) > 1:
         con.sql(" ".join(sys.argv[1:])).show(max_rows=100)

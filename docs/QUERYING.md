@@ -105,5 +105,34 @@ only.
 | `data/derived/backtests/<run>/` | Immutable run records: config.json, meta.json (config hash + git commit), daily/events/rebalances parquet, metrics.json |
 | `docs/tearsheets/` | Human-readable run summaries |
 
-For an interactive native shell instead of the Python console: `brew install duckdb`,
-then the same `read_parquet` globs work directly.
+## Notebooks
+
+```sh
+make lab        # JupyterLab, opening in notebooks/
+```
+
+`notebooks/explore.ipynb` is a worked starter: SQL-to-Polars, the momentum run's equity
+curve, the survivorship check, and a point-in-time query. JupyterLab and matplotlib are
+dev dependencies (`uv sync` installs them).
+
+## DataGrip / DBeaver / any JDBC client
+
+```sh
+make db         # (re)builds data/trp.duckdb
+```
+
+That file contains only VIEW definitions over the Parquet stores — no data is copied, so
+it is always current and cheap to rebuild after new ingestions. Connect from the IDE:
+
+1. New data source -> **DuckDB** (DataGrip and DBeaver bundle the driver; if yours is
+   older than the local duckdb 1.5.x it may refuse the file — update the driver from the
+   IDE's driver settings).
+2. Path: `<repo>/data/trp.duckdb`.
+3. Set the connection **read-only** (driver property `duckdb.read_only = true`). DuckDB
+   files take an exclusive lock for writers, so a read-only IDE session never collides
+   with `make db` or anything else.
+
+All the same views are there: `prices`, `membership`, `backtest_events`, and so on.
+
+For an interactive native shell instead: `brew install duckdb`, then either open
+`data/trp.duckdb` or use the same `read_parquet` globs directly.

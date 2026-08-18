@@ -15,3 +15,9 @@ fmt:
 	uv run ruff check --fix src tests
 
 check: lint typecheck test
+
+lab:
+	uv run jupyter lab --notebook-dir=notebooks
+
+db:
+	uv run python -m trp.explore --build-db
