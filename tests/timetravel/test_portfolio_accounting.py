@@ -68,14 +68,14 @@ def test_late_knowledge_applies_on_the_knowledge_date_not_the_ex_date() -> None:
 
 def test_delisting_learned_later_does_not_rewrite_earlier_valuations() -> None:
     sid = new_security_id()
-    bars = daily_bars(sid, date(2020, 11, 2), date(2021, 3, 31), "100")
+    bars = daily_bars(sid, date(2020, 11, 2), date(2021, 5, 20), "100")
     late_delisting = DelistingAction(
         security_id=sid,
-        ex_date=date(2021, 4, 1),
+        ex_date=date(2021, 5, 21),
         source="t",
-        available_at=datetime(2021, 6, 1, tzinfo=UTC),  # we learn two months later
+        available_at=datetime(2021, 6, 1, tzinfo=UTC),  # we learn ten days later
         reason=DelistingReason.FAILURE,
-        last_trading_date=date(2021, 3, 31),
+        last_trading_date=date(2021, 5, 20),
     )
     with_action = run_engine(make_config(), make_market(bars, [late_delisting]), hold(sid))
     without = run_engine(make_config(), make_market(bars, []), hold(sid))
@@ -86,4 +86,7 @@ def test_delisting_learned_later_does_not_rewrite_earlier_valuations() -> None:
         if day < knowledge_day:
             assert with_value == without_value  # history identical before knowledge
         else:
-            assert with_value == without_value - 10000.0  # write-off exactly at knowledge
+            # The write-off lands exactly at knowledge. (In the record-free run the
+            # DEC-019 forced exit eventually fires instead — value-neutral by design,
+            # so the 10000 gap persists.)
+            assert with_value == without_value - 10000.0

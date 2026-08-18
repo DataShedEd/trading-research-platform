@@ -219,11 +219,42 @@ def test_order_without_same_day_print_is_skipped_with_warning() -> None:
     def buy_late(context: BacktestContext, positions: dict, value: Decimal) -> dict:  # type: ignore[type-arg]
         return {A: 10} if context.today.month >= 5 else {}
 
-    result = run_engine(make_config(), make_market(bars, []))
-    assert not result.warnings  # hold_a buys in January while A still prints
     late = run_engine(make_config(), make_market(bars, []), buy_late)
     assert any("no same-day print" in w for w in late.warnings)
     assert late.daily["positions"].to_list()[-1] == 0
+
+
+def test_stale_holding_force_exits_at_last_close() -> None:
+    """DEC-019: no prints for >15 days and no delisting record -> value-neutral exit at
+    the last traded close, warned; later rebalances cannot silently rebuy a dead name."""
+    bars = daily_bars(A, date(2020, 11, 2), date(2021, 2, 26), "100")
+    result = run_engine(make_config(), make_market(bars, []))  # hold_a holds through the gap
+    exits = result.events.filter(result.events["kind"] == "delisting_proceeds")
+    assert exits["note"].to_list() == [
+        "forced exit: no prints since 2021-02-26, no delisting record"
+    ]
+    assert exits["on"].to_list() == ["2021-03-15"]  # first session > 15 days after the last print
+    assert any("forced exit" in w for w in result.warnings)
+    # Value-neutral: 100 shares at the 100 mark become 10000 cash on the exit day.
+    assert set(result.daily["value"].to_list()) == {1000000.0}
+
+
+def test_knowable_delisting_record_takes_precedence_over_forced_exit() -> None:
+    ex = date(2021, 3, 1)  # within 15 days of the last print, so the record acts first
+    delisting = DelistingAction(
+        security_id=A,
+        ex_date=ex,
+        source="t",
+        available_at=KNOWN,
+        reason=DelistingReason.FAILURE,
+        last_trading_date=date(2021, 2, 26),
+    )
+    bars = daily_bars(A, date(2020, 11, 2), date(2021, 2, 26), "100")
+    result = run_engine(make_config(), make_market(bars, [delisting]))
+    notes = result.events.filter(result.events["kind"] == "delisting_proceeds")["note"].to_list()
+    assert notes == ["delisting (failure)"]  # the record acted; the forced exit never fired
+    assert not any("forced exit" in w for w in result.warnings)
+    assert result.daily["value"].to_list()[-1] == 990000.0  # a real total loss, not an exit
 
 
 def test_unaffordable_buy_is_clamped_to_whole_shares() -> None:

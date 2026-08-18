@@ -17,7 +17,7 @@ tested property, not an aspiration.
 
 import json
 import subprocess
-from bisect import bisect_right
+from bisect import bisect_left, bisect_right
 from collections import defaultdict
 from collections.abc import Callable, Sequence
 from dataclasses import dataclass, field
@@ -56,6 +56,10 @@ from trp.universe.query import UniverseQuery
 Strategy = Callable[[BacktestContext, dict[SecurityId, int], Decimal], dict[SecurityId, int]]
 """(context, current positions, portfolio value) -> target share counts per security."""
 
+STALE_EXIT_DAYS = 15
+"""Calendar days without a print before a holding is force-exited (DEC-019). Matches the
+context's mark-staleness cap."""
+
 
 class MarketData:
     """The engine's full dataset. Only the context and the engine read it; the context
@@ -85,6 +89,14 @@ class MarketData:
         for sid, series2 in by_sid.items():
             series2.sort()
             self._traded[sid] = [value for _, value in series2]
+        self._bars_by_sid: dict[SecurityId, list[DailyBar]] = defaultdict(list)
+        for bar in bars:
+            self._bars_by_sid[bar.security_id].append(bar)
+        for bar_list in self._bars_by_sid.values():
+            bar_list.sort(key=lambda b: b.trade_date)
+        self._actions_by_sid: dict[SecurityId, list[CorporateAction]] = defaultdict(list)
+        for action in actions:
+            self._actions_by_sid[action.security_id].append(action)
 
     def close_on_or_before(self, security_id: SecurityId, day: date) -> tuple[date, Decimal] | None:
         dates = self._dates.get(security_id)
@@ -94,6 +106,26 @@ class MarketData:
         if index == 0:
             return None
         return self._closes[security_id][index - 1]
+
+    def bars_for(
+        self, security_ids: frozenset[SecurityId], start: date, end: date
+    ) -> list[DailyBar]:
+        """Per-security date slices — what lets factor computation at a rebalance touch a
+        lookback window of member bars instead of the full multi-decade panel."""
+        out: list[DailyBar] = []
+        for security_id in sorted(security_ids):
+            series = self._bars_by_sid.get(security_id, [])
+            dates = self._dates.get(security_id, [])
+            left = bisect_left(dates, start)
+            right = bisect_right(dates, end)
+            out.extend(series[left:right])
+        return out
+
+    def actions_for(self, security_ids: frozenset[SecurityId]) -> list[CorporateAction]:
+        out: list[CorporateAction] = []
+        for security_id in sorted(security_ids):
+            out.extend(self._actions_by_sid.get(security_id, ()))
+        return out
 
     def median_traded_value(
         self, security_id: SecurityId, day: date, window: int = IMPACT_WINDOW_SESSIONS
@@ -201,6 +233,28 @@ class BacktestEngine:
                     note=f"delisting ({action.reason.value})",
                 )
 
+    def _force_exit_stale(self, portfolio: Portfolio, day: date) -> None:
+        """DEC-019: a holding with no print for more than STALE_EXIT_DAYS and no delisting
+        record exits at its last traded close (value-neutral). Without this, securities
+        whose delisting the vendor never recorded would be held as phantom positions at a
+        frozen mark forever."""
+        for security_id in list(portfolio.positions()):
+            found = self._market.close_on_or_before(security_id, day)
+            if found is None:  # pragma: no cover - a fill implies at least one print
+                continue
+            last_date, last_close = found
+            if (day - last_date).days > STALE_EXIT_DAYS:
+                portfolio.resolve_delisting(
+                    security_id,
+                    last_close,
+                    day,
+                    note=f"forced exit: no prints since {last_date}, no delisting record",
+                )
+                self._warnings.append(
+                    f"{day}: forced exit of {security_id} at {last_close} "
+                    f"(stale since {last_date}, no delisting record)"
+                )
+
     def _marks(self, portfolio: Portfolio, day: date) -> dict[SecurityId, Decimal]:
         marks: dict[SecurityId, Decimal] = {}
         for security_id in portfolio.positions():
@@ -223,6 +277,7 @@ class BacktestEngine:
 
         for index, day in enumerate(sessions):
             self._apply_actions(portfolio, day)
+            self._force_exit_stale(portfolio, day)
 
             if day in rebalance_days:
                 # Decision clock is the PREVIOUS session even on the run's first day —
