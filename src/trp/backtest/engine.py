@@ -255,6 +255,14 @@ class BacktestEngine:
                     f"(stale since {last_date}, no delisting record)"
                 )
 
+    def _decision_clock(self, sessions: Sequence[date], index: int) -> date:
+        """The PREVIOUS session, even on the run's first day — a same-day clock would let
+        the strategy see the fill-day close. Overridden ONLY by the QNT-057 negative
+        control, which proves the leakage suite catches an engine that cheats here."""
+        if index > 0:
+            return sessions[index - 1]
+        return self._calendar.previous_trading_day(sessions[index])
+
     def _marks(self, portfolio: Portfolio, day: date) -> dict[SecurityId, Decimal]:
         marks: dict[SecurityId, Decimal] = {}
         for security_id in portfolio.positions():
@@ -280,11 +288,7 @@ class BacktestEngine:
             self._force_exit_stale(portfolio, day)
 
             if day in rebalance_days:
-                # Decision clock is the PREVIOUS session even on the run's first day —
-                # a same-day clock would let the strategy see the fill-day close.
-                decision_clock = (
-                    sessions[index - 1] if index > 0 else self._calendar.previous_trading_day(day)
-                )
+                decision_clock = self._decision_clock(sessions, index)
                 context = BacktestContext(
                     clock=decision_clock,
                     market=self._market,

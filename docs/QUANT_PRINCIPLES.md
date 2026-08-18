@@ -17,6 +17,8 @@ Historical research may only access information actually available at the simula
 - `tests/timetravel/` holds tests (pytest marker `timetravel`) that fail if future information
   becomes visible; every data-access feature ships with one.
 
+Backtest-layer enforcement: the QNT-057 leakage suite (tests/timetravel/test_backtest_leakage.py) proves as-of monotonicity differentially — a store extended with later-dated data reproduces every run byte-identically — and its negative control shows a same-day-clock engine is caught by the scenarios.
+
 ## 2. Survivorship bias
 
 Historical universes are never constructed from current index membership or currently listed
@@ -38,6 +40,8 @@ Prices and returns must correctly handle splits, dividends, special dividends, r
   price history.
 - Total returns include dividends; delisting proceeds (or zero on failure) flow into backtest
   accounting rather than the position silently vanishing.
+
+Backtest-layer enforcement: QNT-057's hand-computed scenarios (tests/backtest/test_scenarios.py) assert dividends credit once at ex-date, splits move nothing, and delistings resolve to proceeds or a write-off, with costs reconciling exactly against the ledger in every scenario.
 
 ## 4. Reproducibility
 

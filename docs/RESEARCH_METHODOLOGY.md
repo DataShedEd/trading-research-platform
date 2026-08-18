@@ -25,6 +25,9 @@ Keep these distinct and never conflate them:
 1. Write the hypothesis and the experiment design down before running it. Post-hoc hypotheses
    are labelled as exploratory, not confirmatory.
 2. Every experiment is reproducible from its record alone (see `QUANT_PRINCIPLES.md` §4).
+   No experiment may be recorded from a backtest configuration whose behaviour is not covered
+   by the QNT-057 scenario and leakage suite; Epic 8 is gated on that suite passing, and the
+   real-data reproduction gate re-runs the latest persisted record from its config alone.
 3. Count your shots: the registry tracks how many variants of a hypothesis were tried.
    Many-variant searches require out-of-sample or holdout confirmation before any conclusion
    stronger than "worth a confirmatory test". Be honest about multiple-hypothesis testing —
