@@ -42,6 +42,8 @@ def test_hash_is_deterministic() -> None:
         ("top_n", 10),
         ("initial_cash", Decimal("20000000")),
         ("commission_bps", Decimal("5")),
+        ("commission_min", Decimal("0")),
+        ("impact_coefficient_bps", Decimal("50")),
         ("spread_bps", Decimal("20")),
         ("stamp_duty_bps", Decimal("0")),
         ("benchmark", "FTSE100"),

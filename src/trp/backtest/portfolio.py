@@ -50,6 +50,7 @@ class LedgerEvent(FrozenModel):
     quantity_delta: int = 0
     cash_delta: Decimal = Decimal(0)
     price: Decimal | None = None
+    costs: Decimal = Field(default=Decimal(0), ge=0, description="explicit, reconcilable")
     note: str = Field(default="", max_length=300)
 
 
@@ -120,7 +121,7 @@ class Portfolio:
                 quantity_delta=shares,
                 cash_delta=-(price * shares + costs),
                 price=price,
-                note=f"costs={costs}",
+                costs=costs,
             )
         )
 
@@ -137,7 +138,7 @@ class Portfolio:
                 quantity_delta=-shares,
                 cash_delta=price * shares - costs,
                 price=price,
-                note=f"costs={costs}",
+                costs=costs,
             )
         )
 

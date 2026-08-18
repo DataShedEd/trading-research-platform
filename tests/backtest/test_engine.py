@@ -53,8 +53,10 @@ def make_config(**overrides: object) -> BacktestConfig:
         "top_n": 3,
         "initial_cash": Decimal("1000000"),
         "commission_bps": Decimal(0),
+        "commission_min": Decimal(0),
         "spread_bps": Decimal(0),
         "stamp_duty_bps": Decimal(0),
+        "impact_coefficient_bps": Decimal(0),
     }
     values.update(overrides)
     return BacktestConfig(**values)  # type: ignore[arg-type]

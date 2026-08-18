@@ -80,9 +80,22 @@ class BacktestConfig(FrozenModel):
     min_weight: Decimal | None = Field(default=None, gt=0, le=1)
     invested_proportion: Decimal = Field(default=Decimal(1), gt=0, le=1)
     initial_cash: Decimal = Field(gt=0, description="in the exchange quote unit (GBX for XLON)")
+    # Cost model (QNT-053). Defaults are deliberately pessimistic — RESEARCH_METHODOLOGY
+    # rule 5 — and a test pins them to the documented floor.
     commission_bps: Decimal = Field(default=Decimal("2"), ge=0)
-    spread_bps: Decimal = Field(default=Decimal("10"), ge=0)
+    commission_min: Decimal = Field(
+        default=Decimal("500"), ge=0, description="per-trade minimum, quote units (500 GBX = £5)"
+    )
+    spread_bps: Decimal = Field(
+        default=Decimal("10"), ge=0, description="full spread; half is charged per side"
+    )
     stamp_duty_bps: Decimal = Field(default=Decimal("50"), ge=0, description="UK: buys only")
+    impact_coefficient_bps: Decimal = Field(
+        default=Decimal("25"),
+        ge=0,
+        description="market impact in bps per unit participation "
+        "(order value / trailing median daily traded value)",
+    )
     benchmark: str | None = None
     seed: int = 0
     data_versions: dict[str, str] = Field(default_factory=dict)

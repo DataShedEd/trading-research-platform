@@ -33,7 +33,12 @@ Keep these distinct and never conflate them:
    sensitivity (does performance survive ±50% perturbation?).
 5. Costs are part of the strategy. Default assumptions err pessimistic (UK: stamp duty 0.5% on
    purchases, plus spread and commission); an experiment that only works with optimistic costs
-   has failed.
+   has failed. Implemented as `trp.backtest.costs.CostModel` (QNT-053): commission 2 bps with a
+   £5-per-trade minimum, half of a 10 bps spread per side, stamp duty 50 bps on purchases
+   (nothing exempt by default), and market impact of 25 bps × participation against the trailing
+   60-session median daily traded value (participation assumed 1 where no volume history
+   exists). A test pins the shipped defaults to this floor; every parameter lives in
+   `BacktestConfig` and therefore in the config hash and the experiment record.
 6. Benchmark must match the universe (UK mid-cap strategy → FTSE 250-type benchmark, total
    return, same currency).
 7. Report regime dependence: results shown per sub-period, not just full-sample. A strategy

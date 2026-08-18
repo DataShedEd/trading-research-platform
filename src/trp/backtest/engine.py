@@ -24,11 +24,19 @@ from dataclasses import dataclass, field
 from datetime import UTC, date, datetime
 from decimal import Decimal
 from pathlib import Path
+from statistics import median
 
 import polars as pl
 
 from trp.backtest.config import BacktestConfig
 from trp.backtest.context import BacktestContext
+from trp.backtest.costs import (
+    IMPACT_WINDOW_SESSIONS,
+    CostModel,
+    Side,
+    StampExemption,
+    no_exemptions,
+)
 from trp.backtest.portfolio import EventKind, LedgerError, Portfolio, replay
 from trp.backtest.rebalance import one_way_turnover, rebalance_sessions
 from trp.canonical.calendars import get_trading_calendar
@@ -70,6 +78,13 @@ class MarketData:
         self._dates: dict[SecurityId, list[date]] = {
             sid: [d for d, _ in series] for sid, series in self._closes.items()
         }
+        self._traded: dict[SecurityId, list[Decimal]] = defaultdict(list)
+        by_sid: dict[SecurityId, list[tuple[date, Decimal]]] = defaultdict(list)
+        for bar in bars:
+            by_sid[bar.security_id].append((bar.trade_date, bar.close * bar.volume))
+        for sid, series2 in by_sid.items():
+            series2.sort()
+            self._traded[sid] = [value for _, value in series2]
 
     def close_on_or_before(self, security_id: SecurityId, day: date) -> tuple[date, Decimal] | None:
         dates = self._dates.get(security_id)
@@ -80,13 +95,27 @@ class MarketData:
             return None
         return self._closes[security_id][index - 1]
 
+    def median_traded_value(
+        self, security_id: SecurityId, day: date, window: int = IMPACT_WINDOW_SESSIONS
+    ) -> Decimal | None:
+        """Median close x volume over the trailing window of bars ON OR BEFORE ``day`` —
+        the point-in-time liquidity input to the market-impact term. None with no bars."""
+        dates = self._dates.get(security_id)
+        if not dates:
+            return None
+        index = bisect_right(dates, day)
+        if index == 0:
+            return None
+        values = self._traded[security_id][max(0, index - window) : index]
+        return Decimal(median(values))
+
 
 @dataclass
 class RunResult:
     config: BacktestConfig
     daily: pl.DataFrame  # date, value, cash, positions
     events: pl.DataFrame
-    rebalances: pl.DataFrame  # date, trades, traded_value, turnover
+    rebalances: pl.DataFrame  # date, trades, traded_value, turnover, costs
     git_commit: str
     started_at: datetime
     warnings: list[str] = field(default_factory=list)
@@ -107,10 +136,12 @@ class BacktestEngine:
         config: BacktestConfig,
         market: MarketData,
         universe_query: UniverseQuery,
+        is_stamp_exempt: StampExemption = no_exemptions,
     ) -> None:
         self._config = config
         self._market = market
         self._universe_query = universe_query
+        self._costs = CostModel(config, is_stamp_exempt)
         self._calendar = get_trading_calendar(config.mic)
         self._warnings: list[str] = []
         self._reference = default_reference_data()
@@ -210,11 +241,12 @@ class BacktestEngine:
                 targets = strategy(context, portfolio.positions(), pre_trade_value)
                 events_before = len(portfolio.events())
                 self._execute(portfolio, targets, day)
-                fills = [
-                    (e.quantity_delta, e.price)
+                trade_events = [
+                    e
                     for e in portfolio.events()[events_before:]
                     if e.kind in (EventKind.BUY, EventKind.SELL) and e.price is not None
                 ]
+                fills = [(e.quantity_delta, e.price) for e in trade_events if e.price is not None]
                 rebalance_rows.append(
                     {
                         "date": day,
@@ -223,6 +255,7 @@ class BacktestEngine:
                             sum((abs(q) * p for q, p in fills), start=Decimal(0))
                         ),
                         "turnover": one_way_turnover(fills, pre_trade_value),
+                        "costs": float(sum((e.costs for e in trade_events), start=Decimal(0))),
                     }
                 )
 
@@ -251,6 +284,7 @@ class BacktestEngine:
                 "trades": pl.Int64,
                 "traded_value": pl.Float64,
                 "turnover": pl.Float64,
+                "costs": pl.Float64,
             },
         )
         return RunResult(
@@ -266,13 +300,10 @@ class BacktestEngine:
     def _execute(self, portfolio: Portfolio, targets: dict[SecurityId, int], day: date) -> None:
         """Execute to target share counts at the day's close. Sells first (frees cash).
 
-        Costs (QNT-053 parameters, applied here): commission + half-spread on both sides,
-        stamp duty on purchases only."""
-        config = self._config
-        bps = Decimal("0.0001")
-        sell_cost = (config.commission_bps + config.spread_bps / 2) * bps
-        buy_cost = (config.commission_bps + config.spread_bps / 2 + config.stamp_duty_bps) * bps
-
+        Costs come from the QNT-053 ``CostModel`` — commission with a per-trade minimum,
+        half-spread on both sides, stamp duty on purchases, market impact against the
+        trailing median daily traded value at ``day`` — and are booked as the explicit
+        ``costs`` field on each trade event."""
         current = portfolio.positions()
         orders = {
             sid: targets.get(sid, 0) - current.get(sid, 0) for sid in set(current) | set(targets)
@@ -289,19 +320,37 @@ class BacktestEngine:
                     )
                     continue
                 price = found[1]
+                liquidity = self._market.median_traded_value(security_id, day)
                 shares = abs(delta)
                 if delta < 0:
-                    portfolio.sell(security_id, shares, price, price * shares * sell_cost, day)
+                    costs = self._costs.cost(security_id, Side.SELL, price * shares, liquidity)
+                    portfolio.sell(security_id, shares, price, costs.total, day)
                 else:
-                    cost_rate = buy_cost
-                    notional = price * shares
-                    total = notional * (1 + cost_rate)
-                    if total > portfolio.cash:  # afford what we can, whole shares only
-                        shares = int(portfolio.cash / (price * (1 + cost_rate)))
-                        if shares <= 0:
-                            continue
-                        notional = price * shares
-                    portfolio.buy(security_id, shares, price, notional * cost_rate, day)
+                    shares = self._affordable_shares(
+                        portfolio.cash, security_id, shares, price, liquidity
+                    )
+                    if shares <= 0:
+                        continue
+                    costs = self._costs.cost(security_id, Side.BUY, price * shares, liquidity)
+                    portfolio.buy(security_id, shares, price, costs.total, day)
+
+    def _affordable_shares(
+        self,
+        cash: Decimal,
+        security_id: SecurityId,
+        shares: int,
+        price: Decimal,
+        liquidity: Decimal | None,
+    ) -> int:
+        """Largest whole-share count with notional + costs within cash. Costs are
+        monotonic in the share count, so proportional shrinking converges quickly."""
+        while shares > 0:
+            notional = price * shares
+            total = notional + self._costs.cost(security_id, Side.BUY, notional, liquidity).total
+            if total <= cash:
+                return shares
+            shares = min(shares - 1, int(shares * cash / total))
+        return 0
 
 
 def write_run(result: RunResult, root: Path) -> Path:
