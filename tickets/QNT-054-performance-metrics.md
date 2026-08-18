@@ -1,7 +1,7 @@
 # QNT-054 — Performance metrics suite
 
 - **Ticket ID:** QNT-054
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P2
 - **Epic:** EPIC 8 — Backtesting Engine
 
@@ -73,4 +73,20 @@ Backtest documentation recording each metric's formula, annualisation convention
 source, hit-rate definitions, and degenerate-input behaviour.
 
 ## Completion notes
-_Not started._
+2026-08-18. `metrics.py`: everything derives from ONE canonical daily simple-return series
+(`daily_returns`, which refuses unsorted or malformed curves), so no two metrics can
+disagree about the returns. Ten metrics in a frozen `MetricsRecord` that also carries its
+conventions as data: periods_per_year (annualisation), annual risk-free rate + source text
+(geometrically de-annualised), Sortino MAR (defaults to rf, recorded), flags. Hand-computed
+fixture (+10/-10/+10/0/+20 with periods_per_year=5) pins CAGR/vol/Sharpe (1.17669681)/
+Sortino (exactly 3.0)/max drawdown/Calmar/hit rate to paper-derived values. Max drawdown
+runs on the FULL-frequency curve with the trough date reported; the month-end
+understatement case is tested explicitly. Degenerates: <1yr flags annualised figures as
+extrapolations (still reported), zero volatility -> Sharpe/Sortino None + flag, all-negative
+paths report honest negative CAGR/Calmar, equity-to-zero flags total_loss. Beta demands
+identical date sets and same periodicity — partial overlap raises, zero-variance benchmark
+raises. Hit rate reported under BOTH definitions: positive periods, and profitable
+round-trip positions replayed from the ledger event log (dividends and delisting proceeds
+inside the cycle count; still-open positions excluded). Annual returns compound exactly to
+total return (tested). `write_metrics` joins the immutable run record (never overwrites).
+Tests: `tests/backtest/test_metrics.py` (16). 716 tests green.
