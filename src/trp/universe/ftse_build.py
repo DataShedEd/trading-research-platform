@@ -144,7 +144,20 @@ def build_master(
                 same_ticker = prev.ticker == spell.ticker
                 tokens_prev = set(_normalise_name(prev.name).split())
                 tokens_next = set(_normalise_name(spell.name).split())
-                if same_ticker and not contiguous and not (tokens_prev & tokens_next):
+                similar = (
+                    SequenceMatcher(
+                        None,
+                        "".join(sorted(tokens_prev)),
+                        "".join(sorted(tokens_next)),
+                    ).ratio()
+                    >= 0.75
+                )  # abrdn/aberdeen are one company; token sets miss it
+                if (
+                    same_ticker
+                    and not contiguous
+                    and not (tokens_prev & tokens_next)
+                    and not similar
+                ):
                     log.append(
                         f"ticker {spell.ticker!r}: gap + unrelated names "
                         f"({prev.name!r} -> {spell.name!r}) — treated as reuse, split"

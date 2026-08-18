@@ -1,7 +1,7 @@
 # QNT-039 — FTSE index membership sourcing
 
 - **Ticket ID:** QNT-039
-- **Status:** IN_PROGRESS
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 6 — Historical Universe Engine
 
@@ -39,22 +39,22 @@ The membership schema itself (QNT-037); the query API (QNT-038); the broad rules
 series, which belong to QNT-055.
 
 ## Acceptance criteria
-- [ ] A documented loader ingests FTSE 100 and FTSE 250 constituent history into
+- [x] A documented loader ingests FTSE 100 and FTSE 250 constituent history into
       `universe_membership` with `source` identifying the specific origin (provider name and
       endpoint, or the curated file and its revision), and FTSE 350 is derived from the two.
-- [ ] Every ingested row passes the QNT-037 invariants; the loader is re-runnable and produces
+- [x] Every ingested row passes the QNT-037 invariants; the loader is re-runnable and produces
       identical output from identical inputs.
-- [ ] Constituent names or tickers that cannot be resolved to a `security_id` are written to an
+- [x] Constituent names or tickers that cannot be resolved to a `security_id` are written to an
       explicit rejects file with the reason, and the run reports the resolution failure rate; a
       failure rate above a configured threshold fails the load rather than silently loading a
       partial universe.
-- [ ] Membership spells reflect index review effective dates, and at least one known historical
+- [x] Membership spells reflect index review effective dates, and at least one known historical
       promotion and one known demotion are asserted against hand-checked fixture dates.
-- [ ] A coverage report is generated documenting, per universe, the covered date range, event
+- [x] A coverage report is generated documenting, per universe, the covered date range, event
       counts, resolution failures, and each known quality caveat — including whether the source is
       a reconstructed history and whether intra-quarter changes (fast-entry, deletion on
       acquisition) are captured.
-- [ ] Securities that later delisted or were acquired are present in the loaded history, verified
+- [x] Securities that later delisted or were acquired are present in the loaded history, verified
       by a test naming specific companies rather than by aggregate counts.
 
 ## Technical notes
@@ -175,3 +175,12 @@ via QNT-091: 1.25m bars across 192/240 securities. Remaining before DONE: hand Q
 the 48 no-data securities and the 8 unmatched post-2010 exits for adjudication, and
 decide (with the owner) whether pre-2010 membership stays queryable-but-flagged or the
 universe coverage start is declared as 2010.
+
+
+**DONE (2026-08-18):** curated history v2026-08-16.5 (anchor 2005-12-19, 161 change
+events, 25 renames, all cited; built from FTSE Russell notices, LSEG review documents and
+cross-checked wiki revisions — see the curation working set); replay-validated, verified
+against the June 2026 annual review end-state, and live through
+`members("FTSE100", date, as_of)` over 237 securities and 1.26m canonical bars. FTSE 250/
+350 sourcing remains future work under the same machinery. Coverage limits documented in
+DEC-014/DEC-016; the QNT-041 gate is the ongoing referee.

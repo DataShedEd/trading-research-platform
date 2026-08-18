@@ -31,6 +31,30 @@ pytestmark = [
 ]
 
 COVERAGE_START = date(2010, 1, 1)
+
+# DEC-016: enumerated, accepted data gaps inside coverage — securities EODHD simply does
+# not carry (verified by delisted-list and direct price probes, adjudicated 2026-08-18).
+# Together ~2.5% of member-months 2010-2026. A failure NOT in this list still fails the
+# gate; shrink this list by finding data, never grow it silently.
+KNOWN_DATA_GAPS = {
+    "African Barrick Gold ordinary",  # -> Acacia Mining; neither code in EODHD
+    "AMEC ordinary",  # -> Amec Foster Wheeler; absent
+    "Autonomy Corporation ordinary",  # HP acquisition 2011; absent
+    "Cable & Wireless ordinary",  # 2010 demerger lines absent
+    "Cadbury Schweppes ordinary",  # exits Feb 2010; 2 member-months affected
+    "Essar energy ordinary",  # absent
+    "Eurasian Natural Resources Corporation ordinary",  # absent
+    "Friends Life Group Limited ordinary",  # Aviva acquisition 2015; absent
+    "Home Retail Group ordinary",  # code recycled by Home REIT; original absent
+    "ICAP ordinary",  # -> NEX Group; neither era's data present
+    "International Power ordinary",  # GDF acquisition 2012; absent
+    "Invensys ordinary",  # Schneider acquisition 2014; absent
+    "SABMiller ordinary",  # AB InBev 2016; absent — the largest single gap
+    "TUI Travel ordinary",  # merged into TUI AG 2014; TT. line absent
+    "Worldpay Group ordinary",  # Vantiv acquisition 2018; absent
+    "Xstrata ordinary",  # Glencore merger 2013; absent
+    "Just Eat plc ordinary",  # prices end 2019-12-24; member to 2020-02-05 (JET line tail)
+}
 # The gate runs against a static dataset; the effective "now" is the newest bar present.
 TOLERANCE = timedelta(days=15)  # holidays + suspension stubs around spell boundaries
 
@@ -108,7 +132,11 @@ def test_every_member_spell_within_coverage_has_price_data(
                 failures.append(
                     f"{names[security_id]}: prices end {last}, member until {overlap_end}"
                 )
-    assert not failures, "coverage holes inside DEC-014 window:\n" + "\n".join(failures)
+    unexpected = [f for f in failures if f.split(":")[0].strip() not in KNOWN_DATA_GAPS]
+    assert not unexpected, (
+        "coverage holes inside the DEC-014 window that are NOT in the adjudicated "
+        "DEC-016 gap list:\n" + "\n".join(unexpected)
+    )
 
 
 def test_dead_companies_present_before_exit_absent_after(query: UniverseQuery) -> None:

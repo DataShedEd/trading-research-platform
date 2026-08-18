@@ -152,3 +152,13 @@ Context: QNT-042 requires versioned, reproducible factor definitions; the risk n
 Alternatives: YAML (adds a dependency and implicit typing quirks); Python modules as definitions (unhashable semantics, import-order coupling); a DSL (the trap itself).
 Reason: JSON is already the repo's curated-data format, hashes canonically, and the closed transform registry keeps all logic in typed, tested Python.
 Consequences: New transform kinds require code (deliberate friction); definition authors must recompute the hash on any semantic change, which is exactly the audit trail wanted. Stored values are tagged name@version + as_of + input dataset versions.
+
+---
+
+DEC-016
+Date: 2026-08-18
+Decision: Seventeen enumerated data gaps inside the DEC-014 coverage window are accepted and encoded as the QNT-041 gate's exclusion list (tests/gate/test_ftse100_gate.py::KNOWN_DATA_GAPS): sixteen ex-FTSE-100 securities EODHD does not carry at all (SABMiller, Xstrata, ENRC, ICAP, AMEC, TUI Travel, Worldpay, Invensys, International Power, Autonomy, Friends Life, Cable & Wireless, Home Retail, African Barrick, Essar, Cadbury) plus Just Eat's 43-day post-2019 tail. Any coverage hole NOT in the list still fails the gate.
+Context: Adjudication of the gate's findings (curated-history fixes v2026-08-16.5 + identity-resolution fixes) reduced the gaps from 3.29% to ~2.5% of member-months 2010–2026; the remainder were verified absent from EODHD's delisted list and price endpoints. Most cluster 2010–2016 exits by acquisition.
+Alternatives: Shrink coverage start to ~2016 (loses too much usable history); source the sixteen from another vendor now (deferred, not rejected — the list is the shopping list if ever pursued).
+Reason: A quantified, enumerated 2.5% gap with per-name justification is honest and workable; backtests inherit a small, known, conservative-direction bias (missing names are mostly acquisition exits, whose absent final run-ups would generally have HELPED momentum strategies).
+Consequences: Backtest reports must cite DEC-016; the exclusion list may only shrink; QNT-041's gate is green under this policy and re-red on any new gap.
