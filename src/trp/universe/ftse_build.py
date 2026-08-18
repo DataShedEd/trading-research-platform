@@ -29,6 +29,7 @@ import sys
 import time
 from collections import defaultdict
 from datetime import UTC, date, datetime
+from difflib import SequenceMatcher
 from pathlib import Path
 
 import polars as pl
@@ -53,6 +54,13 @@ from trp.universe.sourcing import TickerSpell, replay_index_history
 from trp.universe.storage import write_universe
 
 HISTORY_PATH = Path(__file__).parent / "data" / "ftse100_history.json"
+
+# Codes adjudicated by hand as recycled by an unrelated company, where fuzzy name
+# matching cannot tell (Home Retail Group vs Home REIT scores 0.89). Add here with a
+# note, never by weakening the matcher.
+_ADJUDICATED_RECYCLED = {
+    "HOME",  # curated member: Home Retail Group (FTSE 100 to 2011); current holder: Home REIT
+}
 _HISTORY_START = date(1990, 1, 1)
 
 
@@ -110,6 +118,7 @@ def build_master(
     spells: list[TickerSpell],
     history: dict[str, object],
     reference: dict[str, dict[str, str]],
+    delisted_codes: set[str],
 ) -> tuple[SecurityMaster, dict[str, SecurityId], list[str]]:
     """One security per company; returns (master, ticker->security_id, build log)."""
     chains = _rename_chains(history)
@@ -163,8 +172,44 @@ def build_master(
     # Merge partitions whose reference ISINs are equal: an ISIN survives renames that
     # happen OUTSIDE the index (Sports Direct->Frasers, Alliance Trust->Alliance Witan),
     # which the curated in-index rename chains cannot see.
+    def _names_compatible(key: tuple[str, int]) -> bool:
+        """Is EODHD's reference row for this partition's code describing OUR company?
+
+        Three cases (the Home REIT / Aston Martin lesson vs the GSK / SSE lesson):
+        - the partition's last spell is OPEN — a current member owns its ticker: trust;
+        - the code is in the DELISTED list — dead data lines are not recycled: trust
+          (this also covers our member renamed-then-delisted, e.g. SPD -> Frasers);
+        - closed spell but the code is still LISTED — either our member relegated and
+          still trading (Renishaw) or an unrelated company recycled the code (Aston
+          Martin on Amlin's AML, Gusbourne on GUS): decide by fuzzy name similarity.
+        """
+        code = part_code[key]
+        if code not in reference:
+            return False
+        if code in _ADJUDICATED_RECYCLED:
+            return False
+        if any(s.valid_to is None for s in grouped[key]):
+            return True
+        if code in delisted_codes:
+            return True
+        row_name = reference[code].get("Name")
+        if not row_name:
+            return False
+
+        def squash(name: str) -> str:
+            text = "".join(_normalise_name(name).split())
+            for noise in ("group", "holdings", "international"):
+                text = text.replace(noise, "")
+            return text
+
+        squash_row = squash(row_name)
+        ratios = [SequenceMatcher(None, squash_row, squash(s.name)).ratio() for s in grouped[key]]
+        return max(ratios) >= 0.75
+
     def part_isin(key: tuple[str, int]) -> str | None:
         if holder_of_code.get(part_code[key]) != key:
+            return None
+        if not _names_compatible(key):
             return None
         isin = reference.get(part_code[key], {}).get("Isin")
         if not isin:
@@ -212,9 +257,10 @@ def build_master(
         entity_id, security_id = new_entity_id(), new_security_id()
         newest_part = parts[-1]
         newest_code = part_code[newest_part]
-        row = (
-            reference.get(newest_code, {}) if holder_of_code.get(newest_code) == newest_part else {}
+        is_holder = holder_of_code.get(newest_code) == newest_part and _names_compatible(
+            newest_part
         )
+        row = reference.get(newest_code, {}) if is_holder else {}
         display_name = row.get("Name") or all_spells[-1].name
 
         entities.append(Entity(entity_id=entity_id, name=display_name, country="GB"))
@@ -251,6 +297,13 @@ def build_master(
         for key in parts:
             code = part_code[key]
             if holder_of_code.get(code) != key or code not in reference:
+                continue
+            if not _names_compatible(key):
+                log.append(
+                    f"{code}: EODHD row name {reference[code].get('Name')!r} does not "
+                    f"match curated member {grouped[key][-1].name!r} — recycled code, "
+                    "NOT attached"
+                )
                 continue
             attached_any_code = True
             group = grouped[key]
@@ -329,26 +382,28 @@ def membership_records(
     return records
 
 
-def _eodhd_codes_by_security(master: SecurityMaster) -> dict[SecurityId, str]:
-    return {
-        r.security_id: r.value
+def _eodhd_code_pairs(master: SecurityMaster) -> list[tuple[SecurityId, str]]:
+    """Every (security, EODHD code) pair — a merged security carries several codes and
+    ALL of them must backfill (the Frasers lesson: SPD.LSE ends 2019, FRAS.LSE continues)."""
+    return sorted(
+        (r.security_id, r.value)
         for r in master.identifiers
         if r.kind is IdentifierKind.PROVIDER and r.provider == "eodhd"
-    }
+    )
 
 
 def backfill(settings: Settings, *, pace_seconds: float = 0.15) -> None:
     master = read_security_master(settings.canonical_dir / "securities")
     store = RawStore(settings.raw_dir)
     provider = EodhdProvider()
-    codes = _eodhd_codes_by_security(master)
+    pairs = _eodhd_code_pairs(master)
     end = datetime.now(UTC).date()
     already_archived = {
         store.read(m)[0].params.get("symbol")
         for m in store.records(provider="eodhd", dataset=Dataset.PRICES)
     }
     done = fetched = 0
-    for _security_id, code in sorted(codes.items(), key=lambda kv: kv[1]):
+    for _security_id, code in pairs:
         ticker = code.partition(".")[0]
         symbol = f"{ticker}:XLON"
         if symbol in already_archived:
@@ -362,14 +417,14 @@ def backfill(settings: Settings, *, pace_seconds: float = 0.15) -> None:
         time.sleep(pace_seconds)
         if fetched % 25 == 0:
             print(f"...fetched {fetched} securities", flush=True)
-    print(f"backfill: {fetched} fetched, {done} already archived, {len(codes)} total")
+    print(f"backfill: {fetched} fetched, {done} already archived, {len(pairs)} code-pairs")
 
 
 def canonicalise(settings: Settings) -> None:
     master = read_security_master(settings.canonical_dir / "securities")
     store = RawStore(settings.raw_dir)
-    codes = _eodhd_codes_by_security(master)
-    by_symbol = {f"{code.partition('.')[0]}:XLON": sid for sid, code in codes.items()}
+    pairs = _eodhd_code_pairs(master)
+    by_symbol = {f"{code.partition('.')[0]}:XLON": sid for sid, code in pairs}
     ingested_at = datetime.now(UTC)
 
     all_bars: list[DailyBar] = []
@@ -486,8 +541,8 @@ def main(argv: list[str] | None = None) -> int:
     if args.step == "master":
         history = json.loads(HISTORY_PATH.read_text())
         spells = replay_index_history(history)
-        reference, _delisted = load_reference_lists(RawStore(settings.raw_dir))
-        master, ticker_map, log = build_master(spells, history, reference)
+        reference, delisted_codes = load_reference_lists(RawStore(settings.raw_dir))
+        master, ticker_map, log = build_master(spells, history, reference, delisted_codes)
         write_security_master(master, settings.canonical_dir / "securities")
         (settings.canonical_dir / "securities" / "ftse100_ticker_map.json").write_text(
             json.dumps(ticker_map, indent=2, sort_keys=True)

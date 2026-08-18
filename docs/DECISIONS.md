@@ -132,3 +132,13 @@ Context: DATA_PROVIDER_EVALUATION.md recommended EODHD ALL-IN-ONE month-to-month
 Alternatives: Delay purchase; start with FMP.
 Reason: EODHD is the only in-budget candidate covering UK prices, corporate actions, delisted securities and fundamentals in one subscription; the live bake-off run the same day confirmed LSE delisted coverage (all four validation delistings present with matching ISINs).
 Consequences: The raw-payload archive is licensed, not owned — cancellation obliges deletion within one month, so the durable bake-off evidence is derived results, not raw payloads. Tier confirmed by the owner 2026-08-16: **ALL-IN-ONE Monthly Subscription, EUR 99.99/month** (month-to-month, as the QNT-028 recommendation advised — no annual commitment until the bake-off verdict is acted on). Live findings: EODHD UK fundamentals carry no usable publication timestamps (filing_date is a period-end default for ~99% of UK/EU rows), so DEC-007 imputation is confirmed load-bearing for UK point-in-time research; the pre-registered PIT veto (DEC-012) correctly marks both providers unsuitable *as PIT-fundamentals sources* while EODHD remains strong for prices/corporate actions/delisted coverage.
+
+---
+
+DEC-014
+Date: 2026-08-18
+Decision: FTSE 100 research coverage starts 2010-01-01. Membership remains queryable back to the curated anchor (2005-12-19) as event truth, but factor research and backtests must not extend before the coverage start; the universe registry exposes `research_coverage_start` and the QNT-041 gate enforces data completeness only within coverage.
+Context: The QNT-091 backfill quantified EODHD's pre-2010 delisted gap — 48 of 240 historical FTSE 100 members (HBOS, Cadbury Schweppes, Xstrata, ICI, …) have no price data, nearly all pre-2010 departures. A backtest over that period would silently exclude ~20% of the then-universe: survivorship bias by data gap.
+Alternatives: Patch the gap from another source (cost/effort unknown, deferred not rejected); keep the full span and per-date completeness checks (complex, still biased where incomplete).
+Reason: 15+ years (2010–present) with verified full constituent data coverage is ample for medium-term factor research, and an honestly bounded span beats a longer contaminated one (QUANT_PRINCIPLES §2, §5).
+Consequences: Backtests report their universe coverage start; results cannot claim pre-2010 UK evidence. Revisit if a source for pre-2010 delisted LSE data is ever acquired — the curated membership already extends to 2005, so only the price/fundamental gap would need filling.

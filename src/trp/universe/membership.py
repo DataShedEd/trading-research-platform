@@ -13,7 +13,7 @@ are registered centrally so a typo cannot create a silently empty universe.
 
 from collections import defaultdict
 from collections.abc import Iterable, Sequence
-from datetime import datetime
+from datetime import date, datetime
 from typing import Self
 
 from pydantic import Field, model_validator
@@ -29,6 +29,20 @@ _REGISTERED: set[str] = {
     "UK_ALL_ORDINARY",
     "SP500",
 }
+
+# Research coverage: the earliest date factor research and backtests may use each
+# universe from (DEC-014). Membership remains queryable earlier as event truth, but data
+# completeness is only guaranteed — and gated (QNT-041) — from these dates.
+_RESEARCH_COVERAGE_START: dict[str, date] = {
+    "FTSE100": date(2010, 1, 1),  # DEC-014: pre-2010 EODHD delisted gap
+}
+
+
+def research_coverage_start(universe: str) -> date | None:
+    """The DEC-014 research floor for a universe, or None if not yet declared."""
+    if universe not in _REGISTERED:
+        raise UnknownUniverseError(universe)
+    return _RESEARCH_COVERAGE_START.get(universe)
 
 
 class UnknownUniverseError(Exception):
