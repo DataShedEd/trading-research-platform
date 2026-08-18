@@ -58,7 +58,8 @@ warn_unreachable = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-q --strict-markers"
+addopts = "-q --strict-markers -m 'not gate'"
 markers = [
     "timetravel: tests that assert no future information leaks into historical queries",
+    "gate: acceptance gates over the real local dataset; run explicitly with -m gate",
 ]

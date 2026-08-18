@@ -6,7 +6,7 @@ These tests read `data/canonical/` and therefore skip wherever the dataset is ab
 rebalance date, every member with price data across its membership, dead companies
 present before their exits and absent after. Run explicitly with:
 
-    uv run pytest tests/gate -q
+    uv run pytest -m gate -q
 """
 
 from datetime import date, timedelta
@@ -26,6 +26,7 @@ DATA_PRESENT = (SETTINGS.canonical_dir / "universes" / "universe=FTSE100").exist
 
 pytestmark = [
     pytest.mark.skipif(not DATA_PRESENT, reason="real dataset not present on this machine"),
+    pytest.mark.gate,  # excluded from default runs; `uv run pytest -m gate` runs it
     pytest.mark.timetravel,
 ]
 
