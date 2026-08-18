@@ -8,15 +8,14 @@ this roadmap — this file states ordering and intent only.
 Question to answer: *can we reliably reconstruct historical UK equity data without survivorship
 bias or future information?*
 
-**Status 2026-08-16:** the machinery is code-complete and tested on fixtures — security
-master (bitemporal), market-data schemas + adjustment engine, PIT fundamentals chain,
-provider interface + raw store, validation universe, bake-off harness + pre-registered
-scoring, universe engine. What remains is data-dependent and **blocked on the owner's
-provider sign-off** (see DATA_PROVIDER_EVALUATION.md recommendation): adapters
-(QNT-031…033), FTSE membership sourcing and the real-data survivorship gate
-(QNT-039…041), and the empirical bake-off runs that produce the Results section.
-M1's question can only be answered affirmatively once real provider data has flowed
-through the whole chain.
+**Status 2026-08-18: MILESTONE 1 COMPLETE.** The survivorship gate (QNT-041,
+`uv run pytest -m gate`) is green on the real dataset: `members("FTSE100", date, as_of)`
+answers correctly on every monthly date 2010–2026 with delisted members intact, every
+member inside DEC-014 coverage has price data (DEC-016's 17 adjudicated gaps ≈2.5% of
+member-months excepted, list may only shrink), and 1.26m canonical bars + 9.6k corporate
+actions back the universe. Remaining under this milestone's epics: QNT-032 (FMP adapter,
+BLOCKED by choice — likely never needed) and FTSE 250/350 sourcing (future, same
+machinery). M1's question is answered: yes, from 2010 onwards, with enumerated exceptions.
 
 Critical path:
 
