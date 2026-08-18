@@ -37,7 +37,7 @@ class FactorRegistry:
 
             known_transforms = registered_transforms()
         definitions: list[FactorDefinition] = []
-        for path in sorted(directory.glob("*.json")):
+        for path in sorted(directory.rglob("*.json")):
             try:
                 definition = FactorDefinition.model_validate(json.loads(path.read_text()))
             except (json.JSONDecodeError, ValidationError) as exc:

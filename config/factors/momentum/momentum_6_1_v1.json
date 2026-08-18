@@ -1,0 +1,16 @@
+{
+  "name": "momentum_6_1",
+  "version": 1,
+  "description": "6-1 month total-return momentum: cumulative total return from 6 months to 1 month before the observation date.",
+  "inputs": [
+    "prices",
+    "corporate_actions"
+  ],
+  "transform": "window_total_return",
+  "parameters": {
+    "months": 6,
+    "skip_months": 1,
+    "basis": "total"
+  },
+  "content_hash": "256bf1bc52189c03"
+}

@@ -213,6 +213,15 @@ class ReturnsEngine:
             return None
         return bar_date, (price_basis if basis is ReturnBasis.PRICE else total_basis)
 
+    def adjusted_series(
+        self, security_id: SecurityId, basis: ReturnBasis
+    ) -> list[tuple[date, float]]:
+        """The (date, adjusted value) series a window return is computed from — public so
+        volatility-style transforms use the SAME series as the return itself."""
+        if basis is ReturnBasis.PRICE:
+            return [(d, price) for d, price, _total in self._series.get(security_id, [])]
+        return [(d, total) for d, _price, total in self._series.get(security_id, [])]
+
     def window_return(
         self,
         security_id: SecurityId,

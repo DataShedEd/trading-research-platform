@@ -1,7 +1,7 @@
 # QNT-044 — Momentum factor set
 
 - **Ticket ID:** QNT-044
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P2
 - **Epic:** EPIC 7 — Factor Engine
 
@@ -26,16 +26,16 @@ Cross-sectional standardisation and ranking (QNT-047); composites (QNT-048); the
 itself (QNT-043); alternative momentum measures such as residual or earnings momentum.
 
 ## Acceptance criteria
-- [ ] Four definitions exist as versioned configuration — 12-1, 6-1, 3-month, and
+- [x] Four definitions exist as versioned configuration — 12-1, 6-1, 3-month, and
       volatility-adjusted — each naming its window, skip period, and return type explicitly, with no
       window parameters hard-coded in Python.
-- [ ] Each factor's values match hand-computed fixtures to a documented tolerance, including a
+- [x] Each factor's values match hand-computed fixtures to a documented tolerance, including a
       fixture spanning a split and one spanning a dividend.
-- [ ] The skip period is honoured: a test asserts that a price move within the skipped month changes
+- [x] The skip period is honoured: a test asserts that a price move within the skipped month changes
       the 3-month factor but not the 12-1 factor.
-- [ ] Securities with insufficient price history at the computation date return the "insufficient
+- [x] Securities with insufficient price history at the computation date return the "insufficient
       data" result from QNT-043 rather than a value computed from a shorter window.
-- [ ] Volatility-adjusted momentum uses realised volatility computed over the same window from the
+- [x] Volatility-adjusted momentum uses realised volatility computed over the same window from the
       same return series, and its behaviour at near-zero volatility is defined and tested.
 
 ## Technical notes
@@ -67,4 +67,18 @@ A factor catalogue entry per variant recording its definition, window, skip, ret
 version history.
 
 ## Completion notes
-_Not started._
+2026-08-18. Four v1 definitions under `config/factors/momentum/` (12-1, 6-1, 3-0,
+12-1-vol-adjusted), every window/skip/basis in configuration with content hashes — no
+parameters in Python; catalogue in `CATALOGUE.md` with the deliberate-small-set rationale
+(RESEARCH_METHODOLOGY rule 3). New transform `window_return_over_volatility`: windowed
+return ÷ annualised realised vol (stdev of daily returns from the SAME adjusted series
+over the SAME window, √252 convention, ≥20 observations); near-zero volatility (<1e-6)
+yields the typed insufficient-data status with a warning, never an exploding ratio
+(tested on a flat series). `ReturnsEngine.adjusted_series` made public so vol uses the
+identical series as the return. Hand-derived fixtures: split-spanning 12-1 (+10%, split
+invisible), dividend-spanning 6-1 (reinvestment convention), skip separation (a December
+move alters 3-0 but not 12-1), insufficient history typed for 12-1 while 3-0 computes.
+Registry now loads definitions recursively (subdirectories). Timetravel: prices after t
+and actions announced after as_of both provably inert. Tolerance: pytest.approx rel 1e-6,
+documented. Tests: `tests/factors/test_momentum.py`,
+`tests/timetravel/test_momentum_factors.py`. 604 tests green.

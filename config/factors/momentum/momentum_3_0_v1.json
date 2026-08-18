@@ -1,0 +1,16 @@
+{
+  "name": "momentum_3_0",
+  "version": 1,
+  "description": "3-month total-return momentum with no skip: cumulative total return over the trailing 3 months.",
+  "inputs": [
+    "prices",
+    "corporate_actions"
+  ],
+  "transform": "window_total_return",
+  "parameters": {
+    "months": 3,
+    "skip_months": 0,
+    "basis": "total"
+  },
+  "content_hash": "022af45bc3cd40aa"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "momentum_12_1",
+  "version": 1,
+  "description": "Classic 12-1 month total-return momentum: cumulative total return from 12 months to 1 month before the observation date, skipping the final month's short-term reversal.",
+  "inputs": [
+    "prices",
+    "corporate_actions"
+  ],
+  "transform": "window_total_return",
+  "parameters": {
+    "months": 12,
+    "skip_months": 1,
+    "basis": "total"
+  },
+  "content_hash": "8ebf98e2a766cfd3"
+}

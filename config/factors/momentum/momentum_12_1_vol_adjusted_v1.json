@@ -1,0 +1,16 @@
+{
+  "name": "momentum_12_1_vol_adjusted",
+  "version": 1,
+  "description": "12-1 month total-return momentum divided by realised volatility (annualised stdev of daily returns over the same window, sqrt-252 convention). Near-zero volatility yields insufficient-data, never an exploding ratio.",
+  "inputs": [
+    "prices",
+    "corporate_actions"
+  ],
+  "transform": "window_return_over_volatility",
+  "parameters": {
+    "months": 12,
+    "skip_months": 1,
+    "basis": "total"
+  },
+  "content_hash": "803cd92b66e65cd5"
+}
