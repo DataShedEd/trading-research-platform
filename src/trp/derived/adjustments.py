@@ -41,7 +41,8 @@ from trp.domain.security import FrozenModel
 # A dividend's previous close must be within this many calendar days of the ex-date;
 # a larger gap means missing bars, and reaching further back would use a stale price.
 # Refined by the trading calendar in QNT-016.
-_MAX_PREV_CLOSE_GAP_DAYS = 7
+MAX_PREV_CLOSE_GAP_DAYS = 7
+"""Longest bar gap an action may reach back across to anchor a dividend yield."""
 
 _FACTOR_DECIMAL = pl.Decimal(precision=38, scale=18)
 _FACTOR_SCALE = Decimal(1).scaleb(-18)
@@ -191,7 +192,7 @@ def _previous_close_date(dates: list[date], ex_date: date, security_id: Security
             f"security {security_id}: no bar before ex-date {ex_date} to anchor the dividend yield"
         )
     prev = candidates[-1]
-    if (ex_date - prev).days > _MAX_PREV_CLOSE_GAP_DAYS:
+    if (ex_date - prev).days > MAX_PREV_CLOSE_GAP_DAYS:
         raise AdjustmentError(
             f"security {security_id}: previous close {prev} is {(ex_date - prev).days} days "
             f"before ex-date {ex_date} — bars are missing; refusing to reach further back"
