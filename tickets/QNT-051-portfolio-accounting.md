@@ -1,7 +1,7 @@
 # QNT-051 — Portfolio accounting
 
 - **Ticket ID:** QNT-051
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P2
 - **Epic:** EPIC 8 — Backtesting Engine
 
@@ -77,3 +77,19 @@ convention, the share-rounding convention, and the delisting resolution rules.
 
 ## Completion notes
 _Not started._
+
+## Completion notes
+2026-08-18. `src/trp/backtest/portfolio.py`: append-only `LedgerEvent` log (deposit, buy,
+sell, dividend, split, cash-in-lieu, delisting proceeds, delisting write-off); positions
+and cash are derived state, and module-level `replay(events)` reconstructs both from the
+log alone — the engine asserts this identity every session. Conventions (docstring +
+DEC-017): whole shares; no shorts, no negative cash (LedgerError); raw-price marks;
+ex-date dividend crediting for the held quantity; split fractions floor to whole shares
+with cash in lieu at the ex-date mark so value is preserved across the event
+(hand-computed 3:2-on-5 and 1:4-on-10 cases); delisting resolves to proceeds where terms
+are known, else a conservative write-off that says so. `value(marks)` refuses unmarked
+held positions. Timetravel (`tests/timetravel/test_portfolio_accounting.py`): an action
+knowable only after the window never touches the ledger; late knowledge applies on the
+knowledge date (dividend ex Feb/known May credits in May); a delisting learned later
+leaves every earlier valuation identical. Hand-computed cases in
+`tests/backtest/test_portfolio.py`. 659 tests green.
