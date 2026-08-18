@@ -1,7 +1,7 @@
 # QNT-052 — Rebalancing and weighting schemes
 
 - **Ticket ID:** QNT-052
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P2
 - **Epic:** EPIC 8 — Backtesting Engine
 
@@ -77,4 +77,23 @@ Backtest documentation recording the rebalance schedules, weighting schemes, neg
 position-limit redistribution rule, execution-price convention, and turnover definition.
 
 ## Completion notes
-_Not started._
+2026-08-18. `weighting.py`: deterministic ranking (score desc, id tiebreak); TOP_N /
+TOP_DECILE (ceil, minimum one) / THRESHOLD selection with max_holdings truncating the
+selection; equal, score-proportional (NegativeScorePolicy RANK/SHIFT/POSITIVE_ONLY, DEC-018)
+and inverse-realised-volatility weighting; position limits via iterative pro-rata cap
+redistribution + min-weight drop-and-redistribute, infeasible caps raise. `rebalance.py`:
+`rebalance_sessions` works in trading sessions (monthly/quarterly/annually + session
+offset), so holiday boundaries move forward by construction (tested on May 2021);
+`target_shares` (whole-share floor, unpriced names excluded so the diff exits them);
+`one_way_turnover` = (buys+sells)/2 over pre-trade value; `factor_strategy` composes
+members -> factor scores (status ok only) -> selection -> weighting -> limits -> targets,
+entirely through the clock-bound context. `BacktestContext.realised_volatility` (trailing
+126-session sample stdev from the SAME adjusted series as returns, >=21 obs). Engine
+reports trades/traded_value/turnover per rebalance (persisted in run records). Execution
+convention tested end-to-end: sized on the decision session's close, filled at the next
+session's close, affordability-clamped. Universe leavers drop out of targets and the diff
+sells them; intra-period delistings are QNT-051 ledger events. Sector caps deferred until
+sector reference data exists (no source wired yet). Config additions all hash-relevant.
+Tests: `tests/backtest/test_weighting.py`, `test_rebalance.py`,
+`tests/timetravel/test_rebalancing.py` (targets and the volatility estimate invariant to
+future bars and late-announced actions, all three weighting schemes). 687 tests green.

@@ -27,14 +27,35 @@ from trp.domain.security import FrozenModel
 
 
 class RebalanceSchedule(StrEnum):
-    MONTHLY = "monthly"  # first trading session of each calendar month
-    QUARTERLY = "quarterly"  # first trading session of Jan/Apr/Jul/Oct
+    """Rebalances land on the (1 + offset)-th trading session of each period, so a
+    period boundary falling on a weekend or holiday moves forward to the next session
+    by construction rather than being skipped."""
+
+    MONTHLY = "monthly"
+    QUARTERLY = "quarterly"  # Jan/Apr/Jul/Oct
+    ANNUALLY = "annually"  # January
 
 
 class Weighting(StrEnum):
     EQUAL = "equal"
     FACTOR_SCORE = "factor_score"
     INVERSE_VOLATILITY = "inverse_volatility"
+
+
+class Selection(StrEnum):
+    TOP_N = "top_n"
+    TOP_DECILE = "top_decile"
+    THRESHOLD = "threshold"  # score >= selection_threshold
+
+
+class NegativeScorePolicy(StrEnum):
+    """Score-proportional weighting is undefined for negative scores (standardised
+    composites produce them routinely) — the handling is configuration, never an
+    implicit clamp."""
+
+    RANK = "rank"  # weight by ascending rank position; sign-agnostic (default)
+    SHIFT = "shift"  # weight by score minus the minimum score (minimum gets zero)
+    POSITIVE_ONLY = "positive_only"  # drop non-positive scores entirely
 
 
 class BacktestConfig(FrozenModel):
@@ -46,8 +67,18 @@ class BacktestConfig(FrozenModel):
     factor: str
     factor_version: int = Field(ge=1)
     rebalance: RebalanceSchedule = RebalanceSchedule.MONTHLY
+    rebalance_offset: int = Field(
+        default=0, ge=0, description="trading sessions into the period (0 = first session)"
+    )
     weighting: Weighting = Weighting.EQUAL
+    selection: Selection = Selection.TOP_N
+    selection_threshold: Decimal | None = None
+    negative_scores: NegativeScorePolicy = NegativeScorePolicy.RANK
     top_n: int = Field(gt=0)
+    max_holdings: int | None = Field(default=None, gt=0)
+    max_weight: Decimal | None = Field(default=None, gt=0, le=1)
+    min_weight: Decimal | None = Field(default=None, gt=0, le=1)
+    invested_proportion: Decimal = Field(default=Decimal(1), gt=0, le=1)
     initial_cash: Decimal = Field(gt=0, description="in the exchange quote unit (GBX for XLON)")
     commission_bps: Decimal = Field(default=Decimal("2"), ge=0)
     spread_bps: Decimal = Field(default=Decimal("10"), ge=0)

@@ -27,9 +27,10 @@ from pathlib import Path
 
 import polars as pl
 
-from trp.backtest.config import BacktestConfig, RebalanceSchedule
+from trp.backtest.config import BacktestConfig
 from trp.backtest.context import BacktestContext
-from trp.backtest.portfolio import LedgerError, Portfolio, replay
+from trp.backtest.portfolio import EventKind, LedgerError, Portfolio, replay
+from trp.backtest.rebalance import one_way_turnover, rebalance_sessions
 from trp.canonical.calendars import get_trading_calendar
 from trp.domain.corporate_actions import (
     CorporateAction,
@@ -85,6 +86,7 @@ class RunResult:
     config: BacktestConfig
     daily: pl.DataFrame  # date, value, cash, positions
     events: pl.DataFrame
+    rebalances: pl.DataFrame  # date, trades, traded_value, turnover
     git_commit: str
     started_at: datetime
     warnings: list[str] = field(default_factory=list)
@@ -97,18 +99,6 @@ def _git_commit() -> str:
         ).stdout.strip()
     except (subprocess.CalledProcessError, FileNotFoundError):
         return "unknown"
-
-
-def _rebalance_days(config: BacktestConfig, sessions: Sequence[date]) -> set[date]:
-    months = {1, 4, 7, 10} if config.rebalance is RebalanceSchedule.QUARTERLY else set(range(1, 13))
-    days: set[date] = set()
-    seen: set[tuple[int, int]] = set()
-    for session in sessions:
-        key = (session.year, session.month)
-        if session.month in months and key not in seen:
-            seen.add(key)
-            days.add(session)
-    return days
 
 
 class BacktestEngine:
@@ -194,10 +184,11 @@ class BacktestEngine:
         config = self._config
         started = datetime.now(UTC)
         sessions = self._calendar.sessions_between(config.start, config.end)
-        rebalance_days = _rebalance_days(config, sessions)
+        rebalance_days = rebalance_sessions(sessions, config.rebalance, config.rebalance_offset)
 
         portfolio = Portfolio(config.initial_cash, config.start)
         daily_rows: list[dict[str, object]] = []
+        rebalance_rows: list[dict[str, object]] = []
 
         for index, day in enumerate(sessions):
             self._apply_actions(portfolio, day)
@@ -215,9 +206,25 @@ class BacktestEngine:
                     universe=config.universe,
                     mic=config.mic,
                 )
-                value = portfolio.value(self._marks(portfolio, day))
-                targets = strategy(context, portfolio.positions(), value)
+                pre_trade_value = portfolio.value(self._marks(portfolio, day))
+                targets = strategy(context, portfolio.positions(), pre_trade_value)
+                events_before = len(portfolio.events())
                 self._execute(portfolio, targets, day)
+                fills = [
+                    (e.quantity_delta, e.price)
+                    for e in portfolio.events()[events_before:]
+                    if e.kind in (EventKind.BUY, EventKind.SELL) and e.price is not None
+                ]
+                rebalance_rows.append(
+                    {
+                        "date": day,
+                        "trades": len(fills),
+                        "traded_value": float(
+                            sum((abs(q) * p for q, p in fills), start=Decimal(0))
+                        ),
+                        "turnover": one_way_turnover(fills, pre_trade_value),
+                    }
+                )
 
             marks = self._marks(portfolio, day)
             value = portfolio.value(marks)
@@ -237,10 +244,20 @@ class BacktestEngine:
             [e.model_dump(mode="json") for e in portfolio.events()],
         )
         daily = pl.DataFrame(daily_rows)
+        rebalances = pl.DataFrame(
+            rebalance_rows,
+            schema={
+                "date": pl.Date,
+                "trades": pl.Int64,
+                "traded_value": pl.Float64,
+                "turnover": pl.Float64,
+            },
+        )
         return RunResult(
             config=config,
             daily=daily,
             events=events,
+            rebalances=rebalances,
             git_commit=_git_commit(),
             started_at=started,
             warnings=list(self._warnings),
@@ -306,4 +323,5 @@ def write_run(result: RunResult, root: Path) -> Path:
     )
     result.daily.write_parquet(directory / "daily.parquet")
     result.events.write_parquet(directory / "events.parquet")
+    result.rebalances.write_parquet(directory / "rebalances.parquet")
     return directory

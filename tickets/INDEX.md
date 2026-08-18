@@ -97,7 +97,7 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 |---|---|---|---|
 | [QNT-050](QNT-050-backtest-core.md) | Backtest engine core and PIT data access | P2 | DONE |
 | [QNT-051](QNT-051-portfolio-accounting.md) | Portfolio accounting | P2 | DONE |
-| [QNT-052](QNT-052-rebalancing-weighting.md) | Rebalancing and weighting schemes | P2 | BACKLOG |
+| [QNT-052](QNT-052-rebalancing-weighting.md) | Rebalancing and weighting schemes | P2 | DONE |
 | [QNT-053](QNT-053-costs-slippage.md) | Transaction costs and slippage | P2 | BACKLOG |
 | [QNT-054](QNT-054-performance-metrics.md) | Performance metrics suite | P2 | BACKLOG |
 | [QNT-055](QNT-055-benchmark-relative.md) | Benchmark and relative performance | P2 | BACKLOG |

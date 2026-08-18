@@ -172,3 +172,13 @@ Context: These are the places a backtest silently flatters itself: same-day info
 Alternatives: Fill at next-day open (more conservative timing, needs reliable opens — revisit with QNT-053's slippage work); pay-date dividend crediting (correct but pay-date data quality is unverified; ex-date is documented as slightly favourable on reinvestment timing, weeks at most).
 Reason: Each convention picks the honest or conservative side of the ambiguity and is stated in code (BacktestConfig/Portfolio docstrings) and tested, including the flagship invariance test: a run over data extended with future bars and late-announced actions is bit-identical to a run without them.
 Consequences: Results are mildly optimistic on execution (close fill with prior-day information) — the QNT-053 cost model is where that optimism is paid for. The daily accounting identity is asserted every session by independent event-log replay; a broken ledger halts the run rather than producing a number.
+
+---
+
+DEC-018
+Date: 2026-08-18
+Decision: Portfolio-construction rules (QNT-052). Negative scores under score-proportional weighting follow a configured NegativeScorePolicy — RANK (default: weight by ascending rank position, sign-agnostic), SHIFT (score minus minimum), or POSITIVE_ONLY — never an implicit clamp. max_weight capping redistributes excess pro-rata across uncapped names iteratively (water-filling); an infeasible cap (n x max_weight < invested proportion) raises rather than silently under-investing. min_weight then drops below-floor names and redistributes to survivors, re-applying the cap to a fixed point. max_holdings truncates the selection (best scores kept) before weighting. Turnover is one-way: (buy value + sell value) / 2 over pre-trade portfolio value, reported per rebalance.
+Context: Score-proportional weighting is undefined for negative scores, which standardised composites produce routinely; capping and flooring interact and need one documented order of operations.
+Alternatives: Clamp negatives to zero (silent, distorts the cross-section); long-short weighting (out of scope until shorting exists); optimiser-based construction (deliberately deferred to EPIC 11).
+Reason: Every rule is configuration captured in BacktestConfig (and therefore in the config hash and the experiment record); RANK is the default because it is defined for any score distribution and robust to outliers.
+Consequences: Sector caps await sector reference data (deferred, noted in QNT-052). Changing any construction rule changes the config hash, so results are never silently comparable across different rules.
