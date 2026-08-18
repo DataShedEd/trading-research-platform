@@ -59,3 +59,13 @@ def test_reinvested_distributing_class_tracks_the_accumulating_class(isf, cukx) 
     years = a.height / 252
     annual_gap = (total_a / total_b) ** (1 / years) - 1
     assert abs(annual_gap) < 0.003  # within 30bp/yr: the construction is sound
+
+
+def test_risk_free_series_matches_known_rate_regimes() -> None:
+    from trp.backtest.riskfree import load_risk_free, window_mean_rate
+
+    series = load_risk_free(SETTINGS.canonical_dir / "riskfree")
+    zirp, _ = window_mean_rate(series, date(2015, 1, 1), date(2015, 12, 31))
+    assert 0.0 < zirp < 0.01  # UK short rates were near zero in 2015
+    tightening, _ = window_mean_rate(series, date(2023, 1, 1), date(2023, 12, 31))
+    assert 0.035 < tightening < 0.06  # and 4-5% through 2023

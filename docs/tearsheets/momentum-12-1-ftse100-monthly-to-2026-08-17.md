@@ -15,7 +15,7 @@ rules 3 and 7 apply before any claim is made from one configuration).
 | Initial capital | 100,000,000 GBX (£1,000,000) |
 | Costs | 2 bps commission (min 500 GBX), 10 bps spread, 50 bps stamp (buys), impact 25 bps x participation |
 | Config hash | `97af396dccde9fd7` |
-| Git commit | `e9571e7e4a58ca743b3ff731fbbb799931490ba6` |
+| Git commit | `710f3d060c225a3f586ff672238fb319824c22df` |
 | Run record | `data/derived/backtests/momentum-12-1-ftse100-monthly-to-2026-08-17` |
 
 ## Headline metrics
@@ -25,8 +25,8 @@ rules 3 and 7 apply before any claim is made from one configuration).
 | Total return | +460.20% |
 | CAGR | +10.90% |
 | Annualised volatility | +19.20% |
-| Sharpe (rf = 0) | 0.63 |
-| Sortino | 0.95 |
+| Sharpe (rf = 1.37%) | 0.56 |
+| Sortino | 0.84 |
 | Max drawdown | -37.80% (trough 2020-03-23) |
 | Calmar | 0.29 |
 | Hit rate (days) | +53.88% |
@@ -74,8 +74,8 @@ Benchmark: **isf-xlon-tr** — etf_total_return (distributing share class, divid
 
 | Window | Worst return | Median | Best | Sharpe min/max |
 |---|---|---|---|---|
-| 12m | -25.6% (to 2020-03-23) | +9.8% | +69.5% (to 2026-04-09) | -1.18 / 3.60 |
-| 36m | -25.4% (to 2020-03-23) | +38.9% | +107.0% (to 2026-06-01) | -0.49 / 1.76 |
+| 12m | -25.6% (to 2020-03-23) | +9.8% | +69.5% (to 2026-04-09) | -1.24 / 3.51 |
+| 36m | -25.4% (to 2020-03-23) | +38.9% | +107.0% (to 2026-06-01) | -0.57 / 1.66 |
 
 Full series: `rolling.parquet` in the run record. All configured windows are reported together (QNT-056).
 
@@ -92,7 +92,7 @@ Full series: `rolling.parquet` in the run record. All configured windows are rep
   credit on ex-date; unknown delistings write off (DEC-017).
 - No delisting/merger records are canonicalised yet, so departures exit via DEC-019 forced
   exits at the last traded close (10 of them; 288 warnings total).
-- Risk-free rate assumed zero — Sharpe is overstated until a gilt/SONIA series is ingested.
+- Risk-free rate: mean UK 3-month gilt yield 2010-01-01..2026-08-17 (UK3M.GBOND, EODHD), 4382 observations; window-mean constant is a documented approximation.
 - Position construction rules per DEC-018.
 - Prices/dividends/splits are the DEC-020 unit-repaired datasets (EODHD's GBX/GBP
   inconsistencies detected and normalised; evidence in unit_repair_report.json).

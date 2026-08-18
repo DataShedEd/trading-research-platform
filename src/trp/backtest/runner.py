@@ -34,6 +34,7 @@ from trp.backtest.config import BacktestConfig
 from trp.backtest.engine import BacktestEngine, MarketData, RunResult, write_run
 from trp.backtest.metrics import MetricsRecord, compute_metrics, write_metrics
 from trp.backtest.rebalance import factor_strategy
+from trp.backtest.riskfree import load_risk_free, window_mean_rate
 from trp.backtest.rolling import RollingSpec, rolling_report
 from trp.canonical.price_store import read_bars
 from trp.canonical.unit_repair import REPAIRED_SOURCE
@@ -126,6 +127,9 @@ def run(
     result = engine.run(strategy)
 
     strategy_returns = daily_returns(result.daily.select("date", "value"))
+    risk_free_rate, risk_free_source = window_mean_rate(
+        load_risk_free(settings.canonical_dir / "riskfree"), config.start, config.end
+    )
     benchmark: BenchmarkSeries | None = None
     relative: RelativeRecord | None = None
     benchmark_aligned: pl.DataFrame | None = None
@@ -159,7 +163,7 @@ def run(
         returns_for_rolling,
         ROLLING_WINDOWS,
         periods_per_year=252,
-        risk_free_rate=0.0,
+        risk_free_rate=risk_free_rate,
         benchmark_returns=benchmark_aligned,
     )
 
@@ -168,8 +172,8 @@ def run(
         result.daily.select("date", "value"),
         result.events,
         periods_per_year=252,
-        risk_free_rate=0.0,
-        risk_free_source="assumed zero (no risk-free series ingested yet; overstates Sharpe)",
+        risk_free_rate=risk_free_rate,
+        risk_free_source=risk_free_source,
     )
     write_metrics(record, directory)
     if relative is not None:
@@ -281,7 +285,7 @@ impact {config.impact_coefficient_bps} bps x participation |
 | Total return | {pct(record.total_return)} |
 | CAGR | {pct(record.cagr)} |
 | Annualised volatility | {pct(record.annualised_volatility)} |
-| Sharpe (rf = 0) | {num(record.sharpe)} |
+| Sharpe (rf = {record.risk_free_rate:.2%}) | {num(record.sharpe)} |
 | Sortino | {num(record.sortino)} |
 | Max drawdown | {pct(record.max_drawdown)} (trough {record.max_drawdown_trough}) |
 | Calmar | {num(record.calmar)} |
@@ -312,7 +316,7 @@ impact {config.impact_coefficient_bps} bps x participation |
   credit on ex-date; unknown delistings write off (DEC-017).
 - No delisting/merger records are canonicalised yet, so departures exit via DEC-019 forced
   exits at the last traded close ({forced_exits} of them; {warning_count} warnings total).
-- Risk-free rate assumed zero — Sharpe is overstated until a gilt/SONIA series is ingested.
+- Risk-free rate: {record.risk_free_source}.
 - Position construction rules per DEC-018.
 - Prices/dividends/splits are the DEC-020 unit-repaired datasets (EODHD's GBX/GBP
   inconsistencies detected and normalised; evidence in unit_repair_report.json).
