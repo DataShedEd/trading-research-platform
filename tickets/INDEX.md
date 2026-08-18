@@ -42,6 +42,7 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-091](QNT-091-eodhd-canonical-ingestion.md) | EODHD canonical ingestion pipeline | P1 | DONE |
 | [QNT-092](QNT-092-first-momentum-tearsheet.md) | First real backtest: momentum tearsheet | P1 | DONE |
 | [QNT-093](QNT-093-price-unit-normalisation.md) | GBX/GBP unit normalisation (prices, dividends) | P1 | DONE |
+| [QNT-094](QNT-094-data-exploration-surface.md) | Ad-hoc data exploration surface | P2 | DONE |
 
 ## EPIC 4 — Fundamental Data
 
