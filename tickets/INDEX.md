@@ -39,6 +39,7 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-017](QNT-017-exchange-currency-metadata.md) | Exchange and currency metadata | P1 | DONE |
 | [QNT-018](QNT-018-price-storage-partitioning.md) | Price storage layout and partitioning | P1 | DONE |
 | [QNT-019](QNT-019-market-data-validation.md) | Market data validation checks | P1 | DONE |
+| [QNT-091](QNT-091-eodhd-canonical-ingestion.md) | EODHD canonical ingestion pipeline | P1 | IN_PROGRESS |
 
 ## EPIC 4 — Fundamental Data
 
