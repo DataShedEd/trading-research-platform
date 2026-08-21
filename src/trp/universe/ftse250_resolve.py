@@ -86,10 +86,15 @@ def resolve() -> None:
     overrides = json.load(open(overrides_path)) if overrides_path.exists() else {}
     override_map = {matcher.canon(k): v for k, v in overrides.items() if not k.startswith("_")}
 
-    # 1. existing master by canonical name
+    # 1. existing master by canonical name. When several securities share a canon
+    # (rename chains, old no-data shells), prefer one that actually carries an EODHD
+    # provider code — membership must land where the data lives.
     master = read_security_master(settings.canonical_dir / "securities")
+    coded = {
+        str(r.security_id) for r in master.identifiers if getattr(r, "provider", None) == "eodhd"
+    }
     master_by_canon: dict[str, str] = {}
-    for security in master.securities:
+    for security in sorted(master.securities, key=lambda s: str(s.security_id) not in coded):
         master_by_canon.setdefault(matcher.canon(security.name), str(security.security_id))
 
     # 2/3. EODHD corpus
@@ -150,6 +155,18 @@ def resolve() -> None:
     for canon_key, spell_list in draft["spells"].items():
         display = draft["display"].get(canon_key, canon_key)
         entry: dict[str, Any] = {"display": display, "spells": spell_list}
+        variant_keys = [matcher.canon(v) for v in name_variants(display)]
+        master_hit = next((k for k in variant_keys if k in master_by_canon), None)
+        if master_hit is not None:
+            entry.update(matched_via="ftse100-master", security_id=master_by_canon[master_hit])
+            # still record a provider code for reference consumers (lifecycle evidence)
+            reference_ticker = wiki_tickers.get(canon_key)
+            if reference_ticker and (
+                eodhd_by_code.get(reference_ticker) or eodhd_by_code.get(reference_ticker + ".")
+            ):
+                entry.setdefault("eodhd_code", reference_ticker)
+            resolution[canon_key] = entry
+            continue
         if canon_key in override_map:
             override = override_map[canon_key]
             if override is None:
@@ -175,12 +192,6 @@ def resolve() -> None:
                 resolution[canon_key] = entry
                 continue
             entry.update(matched_via="override", eodhd_code=hit["code"], isin=hit["isin"])
-            resolution[canon_key] = entry
-            continue
-        variant_keys = [matcher.canon(v) for v in name_variants(display)]
-        master_hit = next((k for k in variant_keys if k in master_by_canon), None)
-        if master_hit is not None:
-            entry.update(matched_via="ftse100-master", security_id=master_by_canon[master_hit])
             resolution[canon_key] = entry
             continue
         ticker = wiki_tickers.get(canon_key)

@@ -72,12 +72,12 @@ GOLDEN_DATES = [
 
 
 # --------------------------------------------------------------------- production path
-def production_cross_section(end: date) -> pl.DataFrame:
+def production_cross_section(end: date, universe: str = "FTSE100") -> pl.DataFrame:
     """Exactly the materialise/backtest assembly: PIT members, repaired bars over the
     lookback, the computable slice of repaired actions, the registered definition."""
     as_of = datetime.combine(end, time(23, 59, 59), tzinfo=UTC)
     members = UniverseQuery(SETTINGS.canonical_dir / "universes").members(
-        "FTSE100", end, as_of=as_of
+        universe, end, as_of=as_of
     )
     bars = read_bars(
         SETTINGS.canonical_dir / "prices",

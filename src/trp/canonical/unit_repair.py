@@ -43,14 +43,19 @@ import polars as pl
 logger = logging.getLogger(__name__)
 
 ORIGINAL_SOURCE = "eodhd"
-REPAIRED_SOURCE = "eodhd-gbx2"
+REPAIRED_SOURCE = "eodhd-gbx3"
 """Bumped when adjudications change the repaired values: the store is append-only, so a
 re-adjudication is a NEW full dataset under a new source, never an edit. gbx (v1) had
-Melrose's whole series x100; gbx2 adds the segment adjudication below."""
+Melrose's whole series x100; gbx2 added the segment adjudication below; gbx3
+(2026-08-21, DEC-028) is the QNT-111/112 generic-defect release: windowed multi-code
+attribution (the arbitrary ATST/ALW and SPD/FRAS payload blends were a defect),
+single-bar vendor-spike filtering, sentinel-bar removal, and the FTSE 250 extension
+adjudications. The FTSE 100 canonical baseline was RE-RUN under gbx3 per the frozen
+directive's defect protocol; prior run records are preserved."""
 
-DIVIDENDS_FILE = "eodhd_ftse100_dividends_gbx2.parquet"
-SPLITS_FILE = "eodhd_ftse100_splits_gbx2.parquet"
-REPORT_FILE = "unit_repair_report_gbx2.json"
+DIVIDENDS_FILE = "eodhd_ftse100_dividends_gbx3.parquet"
+SPLITS_FILE = "eodhd_ftse100_splits_gbx3.parquet"
+REPORT_FILE = "unit_repair_report_gbx3.json"
 
 ADJUDICATED_SEGMENT_SCALES: dict[str, list[tuple[str, int]]] = {
     # Melrose: vendor basis changes at the April 2023 Dowlais demerger + consolidation.
@@ -130,6 +135,22 @@ ADJUDICATED_BAR_EXCLUSIONS: dict[str, tuple[str, str]] = {
         "10-for-1 subdivision and GBX line switch; pre-switch bars are in a different "
         "currency regime and are excluded rather than mis-adjusted",
     ),
+    "SEC-75afce23-86bb-440c-9233-7292574fff6e": (
+        "2010-01-04",
+        "Bankers Investment Trust: a 10-for-1 subdivision took effect on the first "
+        "session of 2010 (3650p -> 369p) but EODHD carries no split record for it; "
+        "rather than fabricate one, pre-subdivision bars are excluded — windows never "
+        "span the boundary and Bankers is INSUFFICIENT_DATA until January 2011, the "
+        "conservative outcome",
+    ),
+    "SEC-51cfae69-e197-44a6-8dee-f158315f45f1": (
+        "2020-05-28",
+        "Hyve Group: the May 2020 rights-issue + 10:1 consolidation boundary cannot "
+        "be adjusted honestly (see the split exclusion); pre-boundary bars are "
+        "excluded so momentum windows never span the artificial jump — Hyve then has "
+        "insufficient history until mid-2021 and is INSUFFICIENT_DATA, the "
+        "conservative outcome",
+    ),
 }
 
 ADJUDICATED_DIVIDEND_EXCLUSIONS: dict[tuple[str, str], str] = {
@@ -140,6 +161,46 @@ ADJUDICATED_DIVIDEND_EXCLUSIONS: dict[tuple[str, str], str] = {
         "distribution exists)"
     ),
 }
+
+
+SPIKE_RATIO = 8
+"""A close that jumps by more than this AND reverts within two bars is a vendor
+artefact (e.g. EODHD's 2012-05-28 sentinel day: literal 1,000,000.0 closes across
+several investment trusts), never a market move or a corporate action — real
+consolidations do not revert. Dropped from the repaired dataset with a log line."""
+
+
+def drop_single_bar_spikes(original: pl.DataFrame) -> tuple[pl.DataFrame, list[str]]:
+    """Remove single-bar price spikes that revert immediately (vendor artefacts)."""
+    log: list[str] = []
+    drop_keys: list[tuple[str, object]] = []
+    for (sid,), group in original.group_by("security_id"):
+        g = group.sort("trade_date")
+        closes = [float(v) for v in g["close"].to_list()]
+        dates = g["trade_date"].to_list()
+        for i in range(1, len(closes) - 1):
+            prev_close, this_close = closes[i - 1], closes[i]
+            if prev_close <= 0 or this_close <= 0:
+                continue
+            ratio = this_close / prev_close
+            if ratio > SPIKE_RATIO or ratio < 1 / SPIKE_RATIO:
+                after = closes[i + 1]
+                if after > 0 and 0.5 < after / prev_close < 2.0:
+                    drop_keys.append((str(sid), dates[i]))
+                    log.append(
+                        f"{sid} {dates[i]}: single-bar spike {this_close} between "
+                        f"{prev_close} and {after} — vendor artefact dropped"
+                    )
+    if not drop_keys:
+        return original, log
+    keys = pl.DataFrame(
+        {
+            "security_id": [k[0] for k in drop_keys],
+            "trade_date": [k[1] for k in drop_keys],
+        },
+        schema={"security_id": pl.Utf8, "trade_date": pl.Date},
+    )
+    return original.join(keys, on=["security_id", "trade_date"], how="anti"), log
 
 
 class UnitRepairError(Exception):
@@ -393,6 +454,39 @@ ADJUDICATED_SPLIT_EXCLUSIONS: dict[tuple[str, str], str] = {
         "USD/GBP). Pre-2009-11-02 bars are excluded (see ADJUDICATED_BAR_EXCLUSIONS), "
         "so no split adjustment is needed at the series boundary."
     ),
+    ("SEC-31459bb7-b11b-4601-bf31-247f711fa0e1", "2000-10-02"): (
+        "Coats October 2000: recorded 20:1 vs observed 12.7x — consolidation entangled "
+        "with a corporate event in the pre-coverage era. No research window spans "
+        "October 2000 (coverage starts 2009+; Coats' modern membership era begins "
+        "2015), so the residual jump is outside every momentum lookback. Excluded."
+    ),
+    ("SEC-51cfae69-e197-44a6-8dee-f158315f45f1", "2020-05-28"): (
+        "Hyve May 2020: 10:1 consolidation simultaneous with the deeply discounted "
+        "COVID rights issue (observed 5.9x matches neither reading — the Wolseley "
+        "class). Excluded; Hyve's pre-consolidation bars are also excluded (see "
+        "ADJUDICATED_BAR_EXCLUSIONS) so no window spans the artificial boundary."
+    ),
+    ("SEC-636ce1b1-7eba-466e-91fc-562300dc3814", "2019-06-07"): (
+        "PV Crystalox June 2019: recorded 22:1 vs observed 2.3x (return of capital + "
+        "consolidation). The company left the FTSE 250 in 2011; no member-window "
+        "computation ever reads bars spanning this date. Excluded."
+    ),
+    ("SEC-89b0b8af-b88f-41cd-8c15-62c83d9924c8", "2000-08-18"): (
+        "Mothercare August 2000: recorded 5:1 vs observed 3.0x (demerger-era event, "
+        "pre-coverage). No research window spans August 2000. Excluded."
+    ),
+    ("SEC-ce5da080-f4ca-47ec-ad50-0ca836a72686", "2024-04-23"): (
+        "Pinewood Technologies (ex-Pendragon) April 2024: 20:1 consolidation "
+        "simultaneous with the motor-business disposal capital return (observed 8x). "
+        "Pinewood's FTSE 250 membership starts September 2025; 12-1 windows from then "
+        "reach back to September 2024, after this event. Excluded."
+    ),
+    ("SEC-156d483f-0249-4e65-b965-7542685d0aea", "2018-08-02"): (
+        "Countrywide August 2018: EODHD records the firm placing/open offer (502:283) "
+        "as a split; the 2.69x price fall is genuine dilution from the ~10p capital "
+        "raising, not a share subdivision. Capital events are not adjusted (DEC-009) — "
+        "excluded. The separate 1-for-50 consolidation (2019-12-30) is real and kept."
+    ),
     ("SEC-69669830-3371-47e7-b40a-fb8c865bf020", "2009-05-20"): (
         "Lloyds May 2009: EODHD records the HMG open offer as a 1.3096 'split'; the raw "
         "series shows a 1.86x move confounded by the capital raising. Open offers are "
@@ -458,15 +552,17 @@ def repair_splits(
     UNCLEAR records without an adjudication entry raise."""
     audit = audit_splits(splits, repaired_prices)
     drop: set[tuple[str, str]] = set(ADJUDICATED_SPLIT_EXCLUSIONS)
+    unclear: list[str] = []
     for row in audit.iter_rows(named=True):
         key = (row["security_id"], row["ex_date"].isoformat())
         if row["verdict"] == "PRE_APPLIED":
             drop.add(key)
         elif row["verdict"] == "UNCLEAR" and key not in drop:
-            raise UnitRepairError(
-                f"split {key} is UNCLEAR (implied {row['implied']:.3f} vs ratio "
-                f"{row['ratio']:.3f}) and has no adjudication entry"
-            )
+            unclear.append(f"{key} implied {row['implied']:.3f} vs ratio {row['ratio']:.3f}")
+    if unclear:
+        raise UnitRepairError(
+            "splits UNCLEAR with no adjudication entry (ALL listed):\n  " + "\n  ".join(unclear)
+        )
     keys = pl.DataFrame(
         {
             "security_id": [k[0] for k in drop],
@@ -496,15 +592,17 @@ def run_repair(*, write: bool) -> RepairReport:
         excluded = original.filter(
             (pl.col("security_id") == sid) & (pl.col("trade_date") < cut)
         ).height
-        original = original.filter(
-            (pl.col("security_id") != sid) | (pl.col("trade_date") >= cut)
+        original = original.filter((pl.col("security_id") != sid) | (pl.col("trade_date") >= cut))
+        logger.info(
+            "bar exclusion %s: %d rows before %s dropped (adjudicated)", sid, excluded, before
         )
-        logger.info("bar exclusion %s: %d rows before %s dropped (adjudicated)", sid, excluded, before)
+    original, spike_log = drop_single_bar_spikes(original)
+    for line in spike_log:
+        logger.info("spike filter: %s", line)
     dividends = pl.read_parquet(actions_dir / "eodhd_ftse100_dividends.parquet")
     for (sid, ex_date), _reason in ADJUDICATED_DIVIDEND_EXCLUSIONS.items():
         dividends = dividends.filter(
-            (pl.col("security_id") != sid)
-            | (pl.col("ex_date") != pl.lit(ex_date).str.to_date())
+            (pl.col("security_id") != sid) | (pl.col("ex_date") != pl.lit(ex_date).str.to_date())
         )
     splits = pl.read_parquet(actions_dir / "eodhd_ftse100_splits.parquet")
 
@@ -530,9 +628,28 @@ def run_repair(*, write: bool) -> RepairReport:
     report_path = actions_dir / REPORT_FILE
     dividends_path = actions_dir / DIVIDENDS_FILE
     splits_path = actions_dir / SPLITS_FILE
-    for path in (report_path, dividends_path, splits_path):
+    # Never overwrite a repaired dataset — but a pure EXTENSION (new securities added,
+    # every pre-existing row byte-identical) keeps the same version: values for
+    # existing consumers cannot change, which is the property the version protects.
+    # Any difference in the pre-existing subset still refuses (bump the source).
+    for path, new_frame in (
+        (dividends_path, repaired_dividends),
+        (splits_path, kept_splits),
+    ):
         if path.exists():
-            raise UnitRepairError(f"{path} exists; repairs are never overwritten")
+            old = pl.read_parquet(path)
+
+            def _comparable(frame: pl.DataFrame, columns: list[str]) -> pl.DataFrame:
+                return frame.select([pl.col(c).cast(pl.Utf8).fill_null("<null>") for c in columns])
+
+            merged = _comparable(old, old.columns).join(
+                _comparable(new_frame, old.columns), on=old.columns, how="inner"
+            )
+            if merged.height < old.height:
+                raise UnitRepairError(
+                    f"{path}: {old.height - merged.height} pre-existing rows would "
+                    "change — that is a re-adjudication, bump REPAIRED_SOURCE instead"
+                )
 
     now = datetime.now(UTC)
     bars = frame_to_bars(

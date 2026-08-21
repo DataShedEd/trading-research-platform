@@ -121,6 +121,7 @@ def write_prices(bars: Sequence[DailyBar], root: Path, *, source: str) -> int:
     if not bars:
         return 0
     incoming = bars_to_frame(list(bars))
+    incoming = incoming.unique(subset=list(PRICE_ROW_KEY), keep="first")
     years = incoming.get_column("trade_date").dt.year().unique().to_list()
     existing = _existing_keys(root, years)
     if existing is not None:

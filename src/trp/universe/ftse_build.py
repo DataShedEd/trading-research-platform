@@ -437,7 +437,24 @@ def canonicalise(settings: Settings) -> None:
     master = read_security_master(settings.canonical_dir / "securities")
     store = RawStore(settings.raw_dir)
     pairs = _eodhd_code_pairs(master)
-    by_symbol = {f"{code.partition('.')[0]}:XLON": sid for sid, code in pairs}
+    # A security can carry several provider codes over its life (Frasers SPD->FRAS,
+    # F&C IT FRCL->FCIT). Each code's bars are attributed ONLY inside its identifier
+    # validity window, so overlapping payload histories cannot double-write a day.
+    windows = {
+        (str(r.security_id), r.value): (r.valid_from, r.valid_to)
+        for r in master.identifiers
+        if r.kind is IdentifierKind.PROVIDER and r.provider == "eodhd"
+    }
+    codes_per_sid: dict[str, int] = {}
+    for sid, _code in pairs:
+        codes_per_sid[str(sid)] = codes_per_sid.get(str(sid), 0) + 1
+    by_symbol = {}
+    for sid, code in pairs:
+        if codes_per_sid[str(sid)] > 1:
+            window = windows.get((str(sid), code), (None, None))
+        else:
+            window = (None, None)  # single-code securities take their full payload
+        by_symbol[f"{code.partition('.')[0]}:XLON"] = (sid, window[0], window[1])
     ingested_at = datetime.now(UTC)
 
     all_bars: list[DailyBar] = []
@@ -447,13 +464,18 @@ def canonicalise(settings: Settings) -> None:
         for meta in store.records(provider="eodhd", dataset=dataset):
             record, content = store.read(meta)
             symbol = record.params.get("symbol", "")
-            security_id = by_symbol.get(symbol)
-            if security_id is None or content is None:
+            mapping = by_symbol.get(symbol)
+            if mapping is None or content is None:
                 continue
+            security_id, window_from, window_to = mapping
             if dataset is Dataset.PRICES:
                 bars, rejects = bars_from_eodhd(
                     content, security_id, currency="GBX", ingested_at=ingested_at
                 )
+                if window_from is not None:
+                    bars = [b for b in bars if b.trade_date >= window_from]
+                if window_to is not None:
+                    bars = [b for b in bars if b.trade_date <= window_to]
                 all_bars.extend(bars)
             elif "/splits/" in record.endpoint:
                 new_splits, rejects = splits_from_eodhd(content, security_id)
