@@ -1,0 +1,18 @@
+{
+  "name": "ebitda_ev_yield",
+  "version": 1,
+  "description": "EBITDA (GBP, dated FX) over enterprise value. Yield form of EV/EBITDA; not meaningful when EV <= 0.",
+  "inputs": [
+    "fundamentals",
+    "prices",
+    "fx"
+  ],
+  "transform": "market_value_yield",
+  "parameters": {
+    "numerator": [
+      "ebitda"
+    ],
+    "denominator": "enterprise_value"
+  },
+  "content_hash": "5775b98edbc7eb76"
+}

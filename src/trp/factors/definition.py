@@ -21,7 +21,7 @@ from pydantic import Field, model_validator
 
 from trp.domain.security import FrozenModel
 
-KNOWN_INPUTS = frozenset({"prices", "corporate_actions", "fundamentals", "universe"})
+KNOWN_INPUTS = frozenset({"prices", "corporate_actions", "fundamentals", "universe", "fx"})
 
 
 class DefinitionError(Exception):

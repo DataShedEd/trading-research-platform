@@ -1,0 +1,18 @@
+{
+  "name": "ebit_ev_yield",
+  "version": 1,
+  "description": "EBIT (GBP, dated FX) over enterprise value (PIT market cap + net debt at the same rate). Yield form of EV/EBIT; not meaningful when EV <= 0.",
+  "inputs": [
+    "fundamentals",
+    "prices",
+    "fx"
+  ],
+  "transform": "market_value_yield",
+  "parameters": {
+    "numerator": [
+      "ebit"
+    ],
+    "denominator": "enterprise_value"
+  },
+  "content_hash": "c625b67ad860cf24"
+}

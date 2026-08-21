@@ -1,0 +1,19 @@
+{
+  "name": "book_to_market",
+  "version": 1,
+  "description": "Period-end total equity (GBP, dated FX) over point-in-time market capitalisation. Not meaningful when book value is negative (the documented exclusion, never a silent number).",
+  "inputs": [
+    "fundamentals",
+    "prices",
+    "fx"
+  ],
+  "transform": "market_value_yield",
+  "parameters": {
+    "numerator": [
+      "total_equity"
+    ],
+    "denominator": "market_cap",
+    "not_meaningful_when_negative": "negative book value"
+  },
+  "content_hash": "986f9f2e66d2f5aa"
+}

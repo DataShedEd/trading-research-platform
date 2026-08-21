@@ -1,0 +1,20 @@
+{
+  "name": "shareholder_yield",
+  "version": 1,
+  "description": "Cash returned to shareholders over the latest reported year \u2014 dividends paid plus net buybacks (both outflow-negative, negated so positive = cash returned; net issuance is a negative yield) \u2014 over point-in-time market capitalisation.",
+  "inputs": [
+    "fundamentals",
+    "prices",
+    "fx"
+  ],
+  "transform": "market_value_yield",
+  "parameters": {
+    "numerator": [
+      "dividends_paid",
+      "share_buybacks"
+    ],
+    "denominator": "market_cap",
+    "negate": true
+  },
+  "content_hash": "809b7d80e8c7da5b"
+}

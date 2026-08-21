@@ -1,0 +1,18 @@
+{
+  "name": "fcf_yield",
+  "version": 1,
+  "description": "Free cash flow (GBP, dated FX) over point-in-time market capitalisation.",
+  "inputs": [
+    "fundamentals",
+    "prices",
+    "fx"
+  ],
+  "transform": "market_value_yield",
+  "parameters": {
+    "numerator": [
+      "free_cash_flow"
+    ],
+    "denominator": "market_cap"
+  },
+  "content_hash": "d90a5d0486ffdcec"
+}

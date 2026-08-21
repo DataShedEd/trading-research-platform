@@ -1,7 +1,7 @@
 # QNT-046 — Value factor set
 
 - **Ticket ID:** QNT-046
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P2
 - **Epic:** EPIC 7 — Factor Engine
 
@@ -28,19 +28,19 @@ Fundamentals ingestion (QNT-025); price adjustment (QNT-015); cross-sectional st
 (QNT-047); composites (QNT-048); dividend-forecast or analyst-estimate-based valuation.
 
 ## Acceptance criteria
-- [ ] Six definitions exist as versioned configuration, each naming its numerator line items,
+- [x] Six definitions exist as versioned configuration, each naming its numerator line items,
       denominator, and currency convention.
-- [ ] Market capitalisation and enterprise value use the price on or before the computation date and
+- [x] Market capitalisation and enterprise value use the price on or before the computation date and
       the shares outstanding available at that date; a test asserts that a later share-count
       restatement does not change a historical value.
-- [ ] Metrics are expressed as yields (earnings yield rather than P/E) wherever a negative or
+- [x] Metrics are expressed as yields (earnings yield rather than P/E) wherever a negative or
       near-zero denominator would otherwise produce an unrankable value, and the remaining
       multiple-form metrics have a documented not-meaningful rule that is tested.
-- [ ] Shareholder yield combines dividends and net buybacks over a trailing window from
+- [x] Shareholder yield combines dividends and net buybacks over a trailing window from
       point-in-time data, and its window and sign convention are stated in the definition.
-- [ ] Price-to-book is computed only where book value is meaningful, with the exclusion rule
+- [x] Price-to-book is computed only where book value is meaningful, with the exclusion rule
       documented rather than silently producing a number.
-- [ ] Values match hand-computed fixtures, including a `GBX`-quoted security and one with a
+- [x] Values match hand-computed fixtures, including a `GBX`-quoted security and one with a
       non-`GBP` reporting currency.
 
 ## Technical notes
@@ -74,4 +74,22 @@ Factor catalogue entries recording each metric's formula, currency convention, y
 form, and not-meaningful rules.
 
 ## Completion notes
-_Not started._
+2026-08-21. Six v1 definitions under config/factors/value/ via the `market_value_yield`
+transform: earnings_yield, fcf_yield, ebit_ev_yield, ebitda_ev_yield (yield forms — a
+negative numerator ranks naturally, EV <= 0 refuses), book_to_market (negative book value
+is a typed exclusion with the reason in warnings), shareholder_yield (dividends_paid +
+share_buybacks over the latest reported year, negated so positive = cash returned and net
+issuance is a negative yield). PIT on both sides: market cap = raw GBX close on or before
+t (DEC-020 source) / 100 x shares outstanding AVAILABLE at t (later share-count
+restatements provably inert); EV adds net_debt from the balance sheet available at t even
+when a newer one exists in the fixture (timetravel-tested, exactly the staleness the
+ticket demands). NEW dated-FX dataset for the currency trap: `trp.canonical.fx` ingests
+GBPUSD (2002->) and GBPEUR (1986->) raw-first into data/canonical/fx/ with sanity bands;
+conversion uses the last rate on or before t and REFUSES stale (>7 days) or missing rates
+as no_data with the reason — never an invented rate. Hand fixtures include a GBX-priced
+GBP reporter and a USD reporter at a fixed fixture rate; `fx` added to KNOWN_INPUTS.
+Real FTSE 100 cross-section (2020-06-30, gate-tested): 94-99/100 computable, medians
+earnings yield 5.2% (P/E ~19), book-to-market 0.44, EBITDA/EV 9.5%, shareholder yield
+4.8%. Backtest-runner wiring of fundamentals_root/fx_root arrives with the composite
+work (QNT-047/048), where a value strategy first runs end-to-end. 797 default + 21 gate
+green.
