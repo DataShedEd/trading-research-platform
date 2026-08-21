@@ -12,6 +12,7 @@ come out IDENTICAL. A reproduction that needs a tolerance is a reproduction that
 
 import json
 from collections.abc import Callable
+from pathlib import Path
 from typing import Any
 
 from trp.backtest.config import BacktestConfig
@@ -23,13 +24,17 @@ Executor = Callable[[BacktestConfig], tuple[dict[str, Any], str | None]]
 
 
 def default_executor(config: BacktestConfig) -> tuple[dict[str, Any], str | None]:
-    from trp.backtest.runner import run
+    from trp.backtest.runner import render_tearsheet, run
 
-    result, record, relative, _rolling, directory = run(config)
+    result, record, relative, rolling, directory = run(config)
     metrics: dict[str, Any] = json.loads(record.to_json())
     if relative is not None:
         metrics["relative"] = json.loads(relative.to_json())
     metrics["warnings_count"] = len(result.warnings)
+    tearsheet = Path("docs/tearsheets") / f"{config.name}.md"
+    tearsheet.parent.mkdir(parents=True, exist_ok=True)
+    if not tearsheet.exists():  # tearsheets are never overwritten
+        tearsheet.write_text(render_tearsheet(result, record, directory, relative, rolling))
     return metrics, str(directory)
 
 
