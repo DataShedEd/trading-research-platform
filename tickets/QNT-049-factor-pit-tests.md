@@ -1,7 +1,7 @@
 # QNT-049 — Factor point-in-time test suite
 
 - **Ticket ID:** QNT-049
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P2
 - **Epic:** EPIC 7 — Factor Engine
 
@@ -36,18 +36,18 @@ Universe survivorship testing (QNT-041); backtest-level leakage scenarios (QNT-0
 correctness of individual factors, which their own tickets cover.
 
 ## Acceptance criteria
-- [ ] For every shipped factor and composite definition, a test asserts values at date *t* are
+- [x] For every shipped factor and composite definition, a test asserts values at date *t* are
       unchanged when data dated after *t* is added to the fixture store.
-- [ ] A restatement fixture demonstrates that factor values before the restatement's `available_at`
+- [x] A restatement fixture demonstrates that factor values before the restatement's `available_at`
       use the original figures and values after it use the restated figures, for at least one
       quality and one value factor.
-- [ ] A boundary test asserts the availability-lag behaviour on the day before and the day after a
+- [x] A boundary test asserts the availability-lag behaviour on the day before and the day after a
       report's `available_at`.
-- [ ] A negative-control leaky implementation fails at least three assertions in the suite, proving
+- [x] A negative-control leaky implementation fails at least three assertions in the suite, proving
       the suite can detect look-ahead.
-- [ ] A cross-sectional test asserts that securities absent from the universe at *t* do not affect
+- [x] A cross-sectional test asserts that securities absent from the universe at *t* do not affect
       standardised values of securities present at *t*.
-- [ ] The suite runs under the `timetravel` marker in CI on every change to `trp.factors`, and Epic 7
+- [x] The suite runs under the `timetravel` marker in CI on every change to `trp.factors`, and Epic 7
       completion is recorded as gated on it passing.
 
 ## Technical notes
@@ -81,4 +81,18 @@ mechanism. A note in the factor authoring guide that any new definition must be 
 before use in an experiment.
 
 ## Completion notes
-_Not started._
+2026-08-21. `tests/timetravel/test_factor_point_in_time.py` — Epic 7's acceptance gate,
+now green and required. One synthetic world (three securities, five annual periods with
+payout items, dividends, distinct price paths, weekly FX): the DIFFERENTIAL panel test
+computes every one of the 20 shipped definitions (momentum x4, quality x9, value x6,
+composite x1) at t against the restricted store and against a store extended with future
+bars, a future filing, a post-t restatement and a late-published action — byte-identical,
+no expected values needed. Restatement boundary shown for roe AND earnings_yield (values
+flip exactly at the restatement's available_at, hand-checked both sides); availability-lag
+boundary the day before/after a filing becomes knowable; universe-consistency (a security
+whose data sits in the store but who is outside the passed cross-section cannot move
+anyone's standardised score). Negative control: a period-end-join fundamentals resolver
+(as_of pinned to 2099) breaks three assertions — future-filing invariance, the
+availability boundary, and restatement isolation — proving the suite bites. Runs under
+the timetravel marker in the default CI suite. EPIC 7 complete: QNT-042..049 all DONE,
+gated on this suite. 820 default + 21 gate tests green.

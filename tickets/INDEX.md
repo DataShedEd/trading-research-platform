@@ -95,7 +95,7 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-046](QNT-046-value-factors.md) | Value factor set | P2 | DONE |
 | [QNT-047](QNT-047-cross-sectional-transforms.md) | Cross-sectional transforms | P2 | DONE |
 | [QNT-048](QNT-048-composite-scoring.md) | Composite factor scoring | P2 | DONE |
-| [QNT-049](QNT-049-factor-pit-tests.md) | Factor point-in-time test suite | P2 | BACKLOG |
+| [QNT-049](QNT-049-factor-pit-tests.md) | Factor point-in-time test suite | P2 | DONE |
 
 ## EPIC 8 — Backtesting Engine
 
