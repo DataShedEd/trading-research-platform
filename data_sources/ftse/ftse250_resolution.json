@@ -1,6 +1,6 @@
 {
- "companies": 664,
- "matched_master": 616,
+ "companies": 663,
+ "matched_master": 615,
  "matched_wiki_ticker": 1,
  "matched_eodhd": 1,
  "overrides": 0,
@@ -1076,9 +1076,9 @@
      "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 26"
     },
     {
-     "from": "2026-08-20",
+     "from": "2026-08-04",
      "to": null,
-     "entry_source": "RECONCILED-IN at checkpoint 2026-08-20 (no explaining event; uncertainty back to previous checkpoint)"
+     "entry_source": "Investegate RNS 9696924; effective 4 August 2026."
     }
    ],
    "matched_via": "ftse100-master",
@@ -2189,7 +2189,7 @@
    "matched_via": "ftse100-master",
    "security_id": "SEC-334ab468-b81f-46b0-b3fc-925f95d0a8cc"
   },
-  "spirax sarco engineering": {
+  "spirax": {
    "display": "Spirax-Sarco Engineering",
    "spells": [
     {
@@ -4213,9 +4213,9 @@
     },
     {
      "from": "2025-10-16",
-     "to": "2026-08-20",
+     "to": "2026-08-04",
      "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 36",
-     "exit_source": "RECONCILED-OUT at checkpoint 2026-08-20 (no explaining event; uncertainty back to previous checkpoint)"
+     "exit_source": "Investegate RNS 9696925; effective 4 August 2026."
     }
    ],
    "matched_via": "ftse100-master",
@@ -8222,6 +8222,11 @@
      "to": "2021-09-20",
      "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 27",
      "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 30"
+    },
+    {
+     "from": "2025-06-06",
+     "to": null,
+     "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 35"
     }
    ],
    "matched_via": "ftse100-master",
@@ -8316,9 +8321,9 @@
      "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 31"
     },
     {
-     "from": "2026-08-20",
+     "from": "2026-05-06",
      "to": null,
-     "entry_source": "RECONCILED-IN at checkpoint 2026-08-20 (no explaining event; uncertainty back to previous checkpoint)"
+     "entry_source": "FTSE Russell notice research.ftserussell.com/products/index-notices/home/getnotice/?id=2619452 (28 April 2026), FTSE 250 effective 6 May 2026."
     }
    ],
    "matched_via": "ftse100-master",
@@ -8356,9 +8361,9 @@
    "spells": [
     {
      "from": "2020-06-22",
-     "to": "2026-08-20",
+     "to": "2026-05-06",
      "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 28",
-     "exit_source": "RECONCILED-OUT at checkpoint 2026-08-20 (no explaining event; uncertainty back to previous checkpoint)"
+     "exit_source": "FTSE Russell notice research.ftserussell.com/products/index-notices/home/getnotice/?id=2619452 (28 April 2026), FTSE 250 effective 6 May 2026."
     }
    ],
    "matched_via": "ftse100-master",
@@ -8570,7 +8575,7 @@
      "from": "2020-11-16",
      "to": "2026-08-20",
      "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 29",
-     "exit_source": "RECONCILED-OUT at checkpoint 2026-08-20 (no explaining event; uncertainty back to previous checkpoint)"
+     "exit_source": "FTSE Russell RNS 2026-08-17; effective 20 August 2026."
     }
    ],
    "matched_via": "ftse100-master",
@@ -8733,9 +8738,9 @@
      "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 35"
     },
     {
-     "from": "2026-08-20",
+     "from": "2026-08-04",
      "to": null,
-     "entry_source": "RECONCILED-IN at checkpoint 2026-08-20 (no explaining event; uncertainty back to previous checkpoint)"
+     "entry_source": "Investegate RNS 9696925; effective 4 August 2026."
     }
    ],
    "matched_via": "ftse100-master",
@@ -8881,9 +8886,9 @@
    "spells": [
     {
      "from": "2021-09-20",
-     "to": "2026-08-20",
+     "to": "2026-04-21",
      "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 30",
-     "exit_source": "RECONCILED-OUT at checkpoint 2026-08-20 (no explaining event; uncertainty back to previous checkpoint)"
+     "exit_source": "FTSE Russell index notice (via ftse250-sources research, 2026-08-21); effective 21 April 2026."
     }
    ],
    "matched_via": "ftse100-master",
@@ -9133,9 +9138,9 @@
    "spells": [
     {
      "from": "2022-09-19",
-     "to": "2026-08-20",
+     "to": "2026-08-04",
      "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 31",
-     "exit_source": "RECONCILED-OUT at checkpoint 2026-08-20 (no explaining event; uncertainty back to previous checkpoint)"
+     "exit_source": "Investegate RNS 9696924; effective 4 August 2026."
     }
    ],
    "matched_via": "ftse100-master",
@@ -9664,18 +9669,6 @@
    "matched_via": "ftse100-master",
    "security_id": "SEC-425c12c3-7648-49a9-a782-9e8f30de12d3"
   },
-  "avon technologies": {
-   "display": "Avon Technologies",
-   "spells": [
-    {
-     "from": "2025-06-06",
-     "to": null,
-     "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 35"
-    }
-   ],
-   "matched_via": "ftse100-master",
-   "security_id": "SEC-3bc972ab-71cf-435e-81af-3d4e9e598a4b"
-  },
   "ashoka india equity investment trust": {
    "display": "Ashoka India Equity Investment Trust",
    "spells": [
@@ -10007,6 +10000,19 @@
    "security_id": "SEC-5f181d4b-10bb-4fcd-b278-ae8e78f6405f",
    "eodhd_code": "HFEL"
   },
+  "jpmorgan claverhouse investment trust": {
+   "display": "JPMorgan Claverhouse Investment Trust",
+   "spells": [
+    {
+     "from": "2026-04-21",
+     "to": null,
+     "entry_source": "FTSE Russell index notice (via ftse250-sources research, 2026-08-21); effective 21 April 2026."
+    }
+   ],
+   "matched_via": "ftse100-master",
+   "security_id": "SEC-accfa2ae-740c-430f-9994-a35d3ffe611d",
+   "eodhd_code": "JCH"
+  },
   "cordiant digital infrastructure": {
    "display": "Cordiant Digital Infrastructure",
    "spells": [
@@ -10072,6 +10078,19 @@
    "security_id": "SEC-a034c12a-226b-4ea3-b766-3c07f0e07593",
    "eodhd_code": "SSIT"
   },
+  "north american income trust": {
+   "display": "North American Income Trust",
+   "spells": [
+    {
+     "from": "2026-08-20",
+     "to": null,
+     "entry_source": "FTSE Russell RNS 2026-08-17; effective 20 August 2026."
+    }
+   ],
+   "matched_via": "ftse100-master",
+   "security_id": "SEC-2baa7b26-01dd-4d83-a2d1-c13835218618",
+   "eodhd_code": "NAIT"
+  },
   "costain": {
    "display": "Costain Group",
    "spells": [
@@ -10084,32 +10103,6 @@
    "matched_via": "ftse100-master",
    "security_id": "SEC-995ac3d1-a3ee-469a-9bf7-cf271e38b1ff",
    "eodhd_code": "COST"
-  },
-  "jpmorgan claverhouse investment trust": {
-   "display": "JPMorgan Claverhouse Investment Trust",
-   "spells": [
-    {
-     "from": "2026-08-20",
-     "to": null,
-     "entry_source": "RECONCILED-IN at checkpoint 2026-08-20 (no explaining event; uncertainty back to previous checkpoint)"
-    }
-   ],
-   "matched_via": "ftse100-master",
-   "security_id": "SEC-accfa2ae-740c-430f-9994-a35d3ffe611d",
-   "eodhd_code": "JCH"
-  },
-  "north american income trust": {
-   "display": "North American Income Trust",
-   "spells": [
-    {
-     "from": "2026-08-20",
-     "to": null,
-     "entry_source": "RECONCILED-IN at checkpoint 2026-08-20 (no explaining event; uncertainty back to previous checkpoint)"
-    }
-   ],
-   "matched_via": "ftse100-master",
-   "security_id": "SEC-2baa7b26-01dd-4d83-a2d1-c13835218618",
-   "eodhd_code": "NAIT"
   }
  }
 }

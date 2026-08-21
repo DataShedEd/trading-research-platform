@@ -2,15 +2,75 @@
  {
   "effective": "2022-03-07",
   "added": [],
-  "deleted": ["Evraz", "Polymetal International"],
+  "deleted": [
+   "Evraz",
+   "Polymetal International"
+  ],
   "notes": "AD-HOC (curated): FTSE Russell removed Russia-exposed listings from FTSE UK indices following the March 2022 sanctions/suspension decisions; Evraz was suspended 2022-03-10 by the FCA. Dated at the FTSE Russell announcement window; both names' index exits are certain, the exact effective day is convention (needs_verification).",
   "source": "FTSE Russell statements on Russia-linked index removals, March 2022; FCA suspension notices."
  },
  {
   "effective": "2020-04-27",
   "added": [],
-  "deleted": ["NMC Health*"],
+  "deleted": [
+   "NMC Health*"
+  ],
   "notes": "AD-HOC (curated): NMC Health entered administration 2020-04-09 and was removed from FTSE indices in April 2020 while suspended. Dated to the index removal window (needs_verification on the exact session).",
   "source": "NMC Health administration (Abu Dhabi Commercial Bank petition, April 2020); FTSE Russell suspension-deletion policy."
+ },
+ {
+  "effective": "2026-04-21",
+  "added": [
+   "JPMorgan Claverhouse Investment Trust"
+  ],
+  "deleted": [
+   "Blackrock Throgmorton Trust"
+  ],
+  "notes": "AD-HOC: Throgmorton merged into BlackRock Smaller Companies Trust and delisted.",
+  "source": "FTSE Russell index notice (via ftse250-sources research, 2026-08-21); effective 21 April 2026."
+ },
+ {
+  "effective": "2026-05-06",
+  "added": [
+   "XP Power"
+  ],
+  "deleted": [
+   "Carnival"
+  ],
+  "notes": "AD-HOC: unification of Carnival's dual-listed structure with Carnival Corp (USA); LSE index line ends.",
+  "source": "FTSE Russell notice research.ftserussell.com/products/index-notices/home/getnotice/?id=2619452 (28 April 2026), FTSE 250 effective 6 May 2026."
+ },
+ {
+  "effective": "2026-08-04",
+  "added": [
+   "Auction Technology Group"
+  ],
+  "deleted": [
+   "International Personal Finance"
+  ],
+  "notes": "AD-HOC: cash acquisition of IPF by IPF Parent Holdings.",
+  "source": "Investegate RNS 9696925; effective 4 August 2026."
+ },
+ {
+  "effective": "2026-08-04",
+  "added": [
+   "Halfords"
+  ],
+  "deleted": [
+   "Bluefield Solar Income Fund"
+  ],
+  "notes": "AD-HOC: Bluefield Solar acquired by Drax Group.",
+  "source": "Investegate RNS 9696924; effective 4 August 2026."
+ },
+ {
+  "effective": "2026-08-20",
+  "added": [
+   "North American Income Trust"
+  ],
+  "deleted": [
+   "JTC"
+  ],
+  "notes": "AD-HOC: JTC scheme of arrangement, cash offer by Papilio Bidco.",
+  "source": "FTSE Russell RNS 2026-08-17; effective 20 August 2026."
  }
 ]
