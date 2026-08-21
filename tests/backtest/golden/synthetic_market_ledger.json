@@ -1,0 +1,35 @@
+{
+  "derivation": "Hand-derived BEFORE running the engine; see test_synthetic_market_gate.py docstring. s1..s5 = SEC-...0001..0005.",
+  "events": [
+    {"on": "2021-01-04", "kind": "buy", "security_id": "SEC-00000000-0000-4000-8000-000000000001", "quantity_delta": 3571, "costs": 499.94},
+    {"on": "2021-01-04", "kind": "buy", "security_id": "SEC-00000000-0000-4000-8000-000000000002", "quantity_delta": 4798, "costs": 498.992},
+    {"on": "2021-02-01", "kind": "sell", "security_id": "SEC-00000000-0000-4000-8000-000000000002", "quantity_delta": -733, "costs": 109.95},
+    {"on": "2021-02-01", "kind": "buy", "security_id": "SEC-00000000-0000-4000-8000-000000000001", "quantity_delta": 784, "costs": 109.76},
+    {"on": "2021-02-15", "kind": "dividend", "security_id": "SEC-00000000-0000-4000-8000-000000000001", "quantity_delta": 0, "costs": 0.0},
+    {"on": "2021-03-01", "kind": "sell", "security_id": "SEC-00000000-0000-4000-8000-000000000001", "quantity_delta": -4355, "costs": 609.7},
+    {"on": "2021-03-01", "kind": "buy", "security_id": "SEC-00000000-0000-4000-8000-000000000002", "quantity_delta": 101, "costs": 15.15},
+    {"on": "2021-03-01", "kind": "buy", "security_id": "SEC-00000000-0000-4000-8000-000000000005", "quantity_delta": 3898, "costs": 623.68},
+    {"on": "2021-03-15", "kind": "split", "security_id": "SEC-00000000-0000-4000-8000-000000000002", "quantity_delta": 4166, "costs": 0.0},
+    {"on": "2021-03-15", "kind": "delisting_proceeds", "security_id": "SEC-00000000-0000-4000-8000-000000000005", "quantity_delta": -3898, "costs": 0.0},
+    {"on": "2021-04-01", "kind": "sell", "security_id": "SEC-00000000-0000-4000-8000-000000000002", "quantity_delta": -4166, "costs": 312.45},
+    {"on": "2021-04-01", "kind": "buy", "security_id": "SEC-00000000-0000-4000-8000-000000000003", "quantity_delta": 2399, "costs": 311.87}
+  ],
+  "daily_checkpoints": [
+    {"date": "2021-01-04", "value": 999001.068, "cash": 69.068, "positions": 2},
+    {"date": "2021-01-29", "value": 1219709.068, "cash": 69.068, "positions": 2},
+    {"date": "2021-02-01", "value": 1219489.358, "cash": 39.358, "positions": 2},
+    {"date": "2021-02-15", "value": 1249974.358, "cash": 30524.358, "positions": 2},
+    {"date": "2021-03-01", "value": 1248725.828, "cash": 145.828, "positions": 2},
+    {"date": "2021-03-15", "value": 625045.828, "cash": 145.828, "positions": 1},
+    {"date": "2021-04-01", "value": 624421.508, "cash": 101.508, "positions": 2},
+    {"date": "2021-04-30", "value": 624421.508, "cash": 101.508, "positions": 2}
+  ],
+  "rebalances": [
+    {"date": "2021-01-04", "trades": 2, "costs": 998.932, "turnover": 0.499466},
+    {"date": "2021-02-01", "trades": 2, "costs": 219.71, "turnover": 0.09006656003642993},
+    {"date": "2021-03-01", "trades": 3, "costs": 1248.53, "turnover": 0.49942224494816395},
+    {"date": "2021-04-01", "trades": 2, "costs": 624.32, "turnover": 0.49941938017383264}
+  ],
+  "final_value": 624421.508,
+  "total_costs": 3091.492
+}
