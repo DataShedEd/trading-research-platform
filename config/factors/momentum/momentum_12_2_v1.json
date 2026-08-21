@@ -1,0 +1,16 @@
+{
+  "name": "momentum_12_2",
+  "version": 1,
+  "description": "Robustness diagnostic for the canonical 12-1 baseline (QNT-110 \u00a715): total-return momentum from 12 months to 2 months before the observation date, i.e. a longer short-term-reversal skip. Never a baseline candidate.",
+  "inputs": [
+    "prices",
+    "corporate_actions"
+  ],
+  "transform": "window_total_return",
+  "parameters": {
+    "months": 12,
+    "skip_months": 2,
+    "basis": "total"
+  },
+  "content_hash": "ab68a4a74a557a10"
+}
