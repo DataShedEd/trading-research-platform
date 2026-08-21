@@ -1,0 +1,39 @@
+{
+  "name": "qvm_equal",
+  "version": 1,
+  "description": "Quality-value-momentum, equal thirds: momentum_12_1, earnings_yield and gross_profitability, each winsorised at [1, 99] then robust-z-scored across the computation universe, renormalised over present components with at least two required. The deliberate first composite: three well-evidenced, weakly correlated premia with no tuned weights (RESEARCH_METHODOLOGY rules 3/4).",
+  "inputs": [
+    "prices",
+    "corporate_actions",
+    "fundamentals",
+    "fx"
+  ],
+  "transform": "composite",
+  "parameters": {
+    "components": [
+      {
+        "name": "momentum_12_1",
+        "version": 1,
+        "weight": 1.0
+      },
+      {
+        "name": "earnings_yield",
+        "version": 1,
+        "weight": 1.0
+      },
+      {
+        "name": "gross_profitability",
+        "version": 1,
+        "weight": 1.0
+      }
+    ],
+    "standardise": "zscore_robust",
+    "winsorise": {
+      "lower_percentile": 1,
+      "upper_percentile": 99
+    },
+    "missing_policy": "renormalise",
+    "min_components": 2
+  },
+  "content_hash": "cfdb961f05a3f512"
+}

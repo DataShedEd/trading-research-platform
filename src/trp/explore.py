@@ -19,6 +19,9 @@ Views (see ``docs/QUERYING.md`` for a cookbook):
 - ``securities``/``identifiers``/``listings``/``entities``   the security master
 - ``backtest_daily``/``backtest_events``/``backtest_rebalances``  every persisted run,
                          with a ``run`` column from the directory name
+- ``fundamentals``       point-in-time statement store (available_at is load-bearing)
+- ``fx_gbpusd``/``fx_gbpeur``/``risk_free``/``benchmark_bars``  the auxiliary series
+- ``factor_values``      materialised factor cross-sections (empty until first write)
 
 This is a read surface: the connection is opened read-only against the files, and nothing
 here mutates a store.
@@ -69,6 +72,29 @@ def open_console(database: str = ":memory:") -> duckdb.DuckDBPyConnection:
     )
     for table in ("securities", "identifiers", "listings", "entities"):
         view(table, f"SELECT * FROM read_parquet('{canonical}/securities/{table}.parquet')")
+    view(
+        "fundamentals",
+        f"SELECT * FROM read_parquet('{canonical}/fundamentals/*/part-*.parquet')",
+    )
+    view("fx_gbpusd", f"SELECT * FROM read_parquet('{canonical}/fx/gbpusd.parquet')")
+    view("fx_gbpeur", f"SELECT * FROM read_parquet('{canonical}/fx/gbpeur.parquet')")
+    view(
+        "risk_free",
+        f"SELECT * FROM read_parquet('{canonical}/riskfree/uk3m-gbond/series.parquet')",
+    )
+    view(
+        "benchmark_bars",
+        "SELECT parse_filename(parse_dirpath(filename)) AS benchmark, * EXCLUDE (filename) "
+        f"FROM read_parquet('{canonical}/benchmarks/*/bars.parquet', filename = true)",
+    )
+    # Factor values appear once materialised to the derived store (the QNT-048
+    # pipeline writes them); DuckDB refuses a view over an empty glob, so skip until then.
+    if any((derived / "factors").rglob("*.parquet")):
+        view(
+            "factor_values",
+            f"SELECT * FROM read_parquet('{derived}/factors/*/*/*.parquet', "
+            "union_by_name = true, hive_partitioning = true)",
+        )
     for name, filename in (
         ("backtest_daily", "daily.parquet"),
         ("backtest_events", "events.parquet"),

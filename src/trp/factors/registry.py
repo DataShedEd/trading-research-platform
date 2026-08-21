@@ -33,6 +33,7 @@ class FactorRegistry:
         cls, directory: Path = DEFAULT_CONFIG_DIR, *, known_transforms: frozenset[str] | None = None
     ) -> Self:
         if known_transforms is None:
+            import trp.factors.composite
             import trp.factors.fundamental  # noqa: F401 - registers its transforms
             from trp.factors.compute import registered_transforms
 
@@ -49,7 +50,13 @@ class FactorRegistry:
                     f"registered: {sorted(known_transforms)}"
                 )
             definitions.append(definition)
-        return cls(definitions)
+        registry = cls(definitions)
+        from trp.factors.composite import validate_composite
+
+        for definition in definitions:
+            if definition.transform == "composite":
+                validate_composite(definition, registry)
+        return registry
 
     def get(self, name: str, version: int | None = None) -> FactorDefinition:
         versions = self._by_name.get(name)
