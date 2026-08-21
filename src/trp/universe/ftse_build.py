@@ -458,6 +458,7 @@ def canonicalise(settings: Settings) -> None:
     ingested_at = datetime.now(UTC)
 
     all_bars: list[DailyBar] = []
+    multi_candidates: dict[tuple[str, object], list[tuple[bool, str, DailyBar]]] = {}
     all_actions: list[Split | Dividend] = []
     reject_log: list[str] = []
     for dataset in (Dataset.PRICES, Dataset.CORPORATE_ACTIONS):
@@ -472,11 +473,19 @@ def canonicalise(settings: Settings) -> None:
                 bars, rejects = bars_from_eodhd(
                     content, security_id, currency="GBX", ingested_at=ingested_at
                 )
-                if window_from is not None:
-                    bars = [b for b in bars if b.trade_date >= window_from]
-                if window_to is not None:
-                    bars = [b for b in bars if b.trade_date <= window_to]
-                all_bars.extend(bars)
+                # Multi-code securities: collect candidates per (sid, date); windows
+                # only break TIES between codes, never exclude sole coverage (identifier
+                # windows are membership-bounded, not listing-bounded).
+                if window_from is not None or window_to is not None:
+                    for bar in bars:
+                        in_window = (window_from is None or bar.trade_date >= window_from) and (
+                            window_to is None or bar.trade_date <= window_to
+                        )
+                        multi_candidates.setdefault((str(security_id), bar.trade_date), []).append(
+                            (in_window, symbol, bar)
+                        )
+                else:
+                    all_bars.extend(bars)
             elif "/splits/" in record.endpoint:
                 new_splits, rejects = splits_from_eodhd(content, security_id)
                 all_actions.extend(new_splits)
@@ -487,6 +496,12 @@ def canonicalise(settings: Settings) -> None:
                 continue
             reject_log.extend(f"{symbol}: {r}" for r in rejects)
 
+    for _key, candidates in multi_candidates.items():
+        windowed = [c for c in candidates if c[0]]
+        pool = windowed if windowed else candidates
+        # deterministic tie-break: symbol order
+        chosen = sorted(pool, key=lambda c: c[1])[0]
+        all_bars.append(chosen[2])
     written = write_prices(all_bars, settings.canonical_dir / "prices", source="eodhd")
     actions_dir = settings.canonical_dir / "corporate_actions"
     actions_dir.mkdir(parents=True, exist_ok=True)
