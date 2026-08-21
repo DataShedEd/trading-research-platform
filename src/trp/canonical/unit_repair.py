@@ -84,8 +84,62 @@ PENCE_SCALE_FLOOR = Decimal("2")
 normal range). A high GBP-reading yield with a sub-£2 amount is a genuine crash-era
 dividend (Segro April 2009), kept as GBP and reported, never shrunk."""
 
-ADJUDICATED_PRICE_UNITS: dict[str, tuple[int, str]] = {}
+ADJUDICATED_PRICE_UNITS: dict[str, tuple[int, str]] = {
+    # QNT-111 FTSE 250 extension — three series where yield evidence and price level
+    # are jointly inconclusive; adjudicated GBX-throughout (scale 1) against known
+    # trading ranges:
+    "SEC-0da28726-7cda-42bb-9912-7091e1b7b887": (
+        1,
+        "Pan African Resources: GBX throughout — sub-10p microcap era (2000s) through "
+        "~130p in the 2025-26 gold rally; £2.5bn at its Dec 2025 FTSE 250 entry is "
+        "consistent with the index boundary",
+    ),
+    "SEC-8edebc68-26be-499f-b05b-3f56ed31a5d3": (
+        1,
+        "Galliford Try: GBX throughout — pre-1998 single-digit-pence era is genuine "
+        "(pre-consolidation smallcap), ~600p current is the real trading range",
+    ),
+    "SEC-971b50c9-df35-4d7c-ba54-fe26759dc543": (
+        1,
+        "Amigo Holdings: GBX throughout — 286.5p at the 2018 IPO collapsing to "
+        "sub-penny is the real, notorious path",
+    ),
+    "SEC-52c3b129-0a43-4cb8-a29e-d2920a23b8af": (
+        100,
+        "Hastings Group Holdings: EODHD serves the post-IPO series in POUNDS "
+        "(0.75-3.3 vs the real 75-330p range); dividends are pence — scale x100 "
+        "(pre-IPO rows separately excluded, see ADJUDICATED_BAR_EXCLUSIONS)",
+    ),
+}
 """security_id -> (scale to apply after continuity, reason). Filled only by human review."""
+
+
+ADJUDICATED_BAR_EXCLUSIONS: dict[str, tuple[str, str]] = {
+    # security_id -> (exclude bars strictly BEFORE this ISO date, reason). Original
+    # rows are retained in the append-only store; the exclusion applies to the
+    # REPAIRED dataset research consumers read. May only shrink.
+    "SEC-52c3b129-0a43-4cb8-a29e-d2920a23b8af": (
+        "2015-10-01",
+        "Hastings Group Holdings IPO'd October 2015; EODHD's HSTG.LSE series carries "
+        "2001-2015 rows from an unrelated/garbage line (closes 0.0001-12) that would "
+        "poison momentum lookbacks",
+    ),
+    "SEC-1503bea0-6abf-4be9-9850-c18484b336e9": (
+        "2009-11-02",
+        "Genesis Emerging Markets Fund: quoted in USD before the November 2009 "
+        "10-for-1 subdivision and GBX line switch; pre-switch bars are in a different "
+        "currency regime and are excluded rather than mis-adjusted",
+    ),
+}
+
+ADJUDICATED_DIVIDEND_EXCLUSIONS: dict[tuple[str, str], str] = {
+    # (security_id, ex_date) -> reason. Dropped from the repaired dividends dataset.
+    ("SEC-7df3206e-54a5-4015-9b76-0b5231df7967", "2022-08-03"): (
+        "City of London Investment Trust: vendor records a 364.265p dividend against a "
+        "414.5p close — CTY pays ~5p quarterlies; the record is corrupt (no such "
+        "distribution exists)"
+    ),
+}
 
 
 class UnitRepairError(Exception):
@@ -333,6 +387,12 @@ def repair_dividends(
 
 
 ADJUDICATED_SPLIT_EXCLUSIONS: dict[tuple[str, str], str] = {
+    ("SEC-1503bea0-6abf-4be9-9850-c18484b336e9", "2009-11-02"): (
+        "Genesis Emerging Markets Fund November 2009: 10-for-1 subdivision simultaneous "
+        "with the quote line moving from USD to GBX (raw move 16.48x = 10 x ~1.65 "
+        "USD/GBP). Pre-2009-11-02 bars are excluded (see ADJUDICATED_BAR_EXCLUSIONS), "
+        "so no split adjustment is needed at the series boundary."
+    ),
     ("SEC-69669830-3371-47e7-b40a-fb8c865bf020", "2009-05-20"): (
         "Lloyds May 2009: EODHD records the HMG open offer as a 1.3096 'split'; the raw "
         "series shows a 1.86x move confounded by the capital raising. Open offers are "
@@ -431,7 +491,21 @@ def run_repair(*, write: bool) -> RepairReport:
     prices_root = settings.canonical_dir / "prices"
     prices = pl.concat([pl.read_parquet(f) for f in sorted(prices_root.rglob("part-*.parquet"))])
     original = prices.filter(pl.col("source") == ORIGINAL_SOURCE)
+    for sid, (before, _reason) in ADJUDICATED_BAR_EXCLUSIONS.items():
+        cut = pl.lit(before).str.to_date()
+        excluded = original.filter(
+            (pl.col("security_id") == sid) & (pl.col("trade_date") < cut)
+        ).height
+        original = original.filter(
+            (pl.col("security_id") != sid) | (pl.col("trade_date") >= cut)
+        )
+        logger.info("bar exclusion %s: %d rows before %s dropped (adjudicated)", sid, excluded, before)
     dividends = pl.read_parquet(actions_dir / "eodhd_ftse100_dividends.parquet")
+    for (sid, ex_date), _reason in ADJUDICATED_DIVIDEND_EXCLUSIONS.items():
+        dividends = dividends.filter(
+            (pl.col("security_id") != sid)
+            | (pl.col("ex_date") != pl.lit(ex_date).str.to_date())
+        )
     splits = pl.read_parquet(actions_dir / "eodhd_ftse100_splits.parquet")
 
     repaired, report = repair_prices(original, dividends)

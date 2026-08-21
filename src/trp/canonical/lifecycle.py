@@ -37,6 +37,9 @@ MATCH_WINDOW_DAYS = 400
 ADJUDICATED_REASONS: dict[str, tuple[DelistingReason, str]] = {
     "NMC": (DelistingReason.FAILURE, "NMC Health: administration April 2020"),
     "TCG": (DelistingReason.FAILURE, "Thomas Cook: compulsory liquidation Sept 2019"),
+    # FTSE 250 members (QNT-111 universe extension):
+    "CLLN": (DelistingReason.FAILURE, "Carillion: compulsory liquidation January 2018"),
+    "INTU": (DelistingReason.FAILURE, "Intu Properties: administration June 2020"),
     "IVZ": (DelistingReason.EXCHANGE_MOVE, "Invesco: primary listing moved to NYSE 2007"),
     "JET": (DelistingReason.EXCHANGE_MOVE, "Just Eat Takeaway: LSE line ended, AMS primary"),
     "FERG": (DelistingReason.EXCHANGE_MOVE, "Ferguson: primary listing moved to NYSE 2022"),
@@ -48,7 +51,9 @@ _ACQUISITION_REASONS = {"acquisition", "merger"}
 
 
 def _curated_removals() -> list[tuple[date, str, str]]:
-    """(effective, ticker, reason) for every curated removal carrying a reason."""
+    """(effective, ticker, reason) for every curated removal carrying a reason —
+    FTSE 100 curated history plus the FTSE 250 constituent-history corporate-event
+    rows (QNT-111), whose deleted names are mapped to tickers via the resolution file."""
     from importlib.resources import files
 
     doc = json.loads((files("trp.universe") / "data" / "ftse100_history.json").read_text("utf-8"))
@@ -59,6 +64,34 @@ def _curated_removals() -> list[tuple[date, str, str]]:
             reason = removed.get("reason")
             if reason:
                 out.append((effective, str(removed.get("ticker", "")), str(reason)))
+
+    ftse250_changes = Path("data_sources/ftse/ftse250_changes_raw.json")
+    ftse250_resolution = Path("data_sources/ftse/ftse250_resolution.json")
+    if ftse250_changes.exists() and ftse250_resolution.exists():
+        from trp.universe.ftse250_curate import NameMatcher
+
+        aliases = json.loads(Path("data_sources/ftse/ftse250_name_aliases.json").read_text())
+        matcher = NameMatcher(aliases)
+        resolution = json.loads(ftse250_resolution.read_text())["resolution"]
+        ticker_by_canon = {
+            canon: str(entry["eodhd_code"]).partition(".")[0]
+            for canon, entry in resolution.items()
+            if entry.get("eodhd_code")
+        }
+        for row in json.loads(ftse250_changes.read_text()):
+            notes = str(row.get("notes", "")).lower()
+            deleted = str(row.get("deleted", ""))
+            if not deleted or not notes:
+                continue
+            if "acquisition" in notes or "cash offer" in notes or "offer for" in notes:
+                reason = "acquisition"
+            elif "merger" in notes:
+                reason = "merger"
+            else:
+                continue
+            ticker = ticker_by_canon.get(matcher.canon(deleted))
+            if ticker:
+                out.append((date.fromisoformat(str(row["effective"])), ticker, reason))
     return out
 
 
