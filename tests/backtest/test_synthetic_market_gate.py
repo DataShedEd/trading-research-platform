@@ -220,3 +220,19 @@ def test_final_state_and_cost_identity(result, expected) -> None:  # type: ignor
 def test_no_warnings_everything_was_executable(result) -> None:  # type: ignore[no-untyped-def]
     """The scenario is designed so nothing is skipped, deferred or force-exited."""
     assert result.warnings == []
+
+
+def test_holdings_history_replays_the_ledger(result) -> None:  # type: ignore[no-untyped-def]
+    """The §13 holdings artefact reproduces the hand-derived book at each change day."""
+    from trp.backtest.engine import holdings_history
+
+    history = holdings_history(result.events)
+    by_day = {
+        day: {row["security_id"]: row["shares"] for row in group.to_dicts()}
+        for (day,), group in history.partition_by("date", as_dict=True).items()
+    }
+    assert by_day["2021-01-04"] == {str(S1): 3571, str(S2): 4798}
+    assert by_day["2021-02-01"] == {str(S1): 4355, str(S2): 4065}
+    assert by_day["2021-03-01"] == {str(S2): 4166, str(S5): 3898}
+    assert by_day["2021-03-15"] == {str(S2): 8332}
+    assert by_day["2021-04-01"] == {str(S2): 4166, str(S3): 2399}
