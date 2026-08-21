@@ -1,7 +1,7 @@
 # QNT-109 — Future-data invariance per data class
 
 - **Ticket ID:** QNT-109
-- **Status:** IN_PROGRESS
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 8 — Backtesting Engine
 - **Depends on:** QNT-057 (DONE)
@@ -27,9 +27,27 @@ level, permanent in the timetravel suite.
   strongest deterministic equivalence available.
 
 ## Acceptance criteria
-- [ ] Each of the five classes has a named test (or a documented pointer to the existing
+- [x] Each of the five classes has a named test (or a documented pointer to the existing
       test covering it) asserting bit-identical results through T.
-- [ ] Tests marked `timetravel`, running in the default suite.
+- [x] Tests marked `timetravel`, running in the default suite.
 
 ## Completion notes
-_In progress._
+`tests/timetravel/test_invariance_classes.py` — five per-class differential tests at the
+backtest level, each asserting polars frame equality over daily ledger + event log +
+rebalance record (the full persisted result):
+
+- future price bars only;
+- future corporate actions only (a future-dated split AND a late-published dividend);
+- later lifecycle/security-master knowledge (a DelistingAction with available_at after
+  T is inert — DEC-017's max(ex_date, knowable) rule);
+- future universe membership (real UniverseQuery + write_universe; a spell recorded
+  after T whose event-time covers the run is invisible; negative control verified —
+  moving recorded_at before T changes the result, so the test bites);
+- later fundamental observations (roe-scored strategy; a future filing and a
+  restatement of an in-window period published after T are both inert; store genuinely
+  drives selection — events non-empty asserted).
+
+Identifier-resolution knowledge (ticker reuse, renames) is enforced upstream of the
+engine and covered by tests/timetravel/test_security_master_pit.py and tests/lifecycle/;
+this is documented in the module docstring rather than duplicated. No legitimate
+bit-identity exceptions were needed — full frame equality holds for every class.

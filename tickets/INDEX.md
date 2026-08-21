@@ -120,7 +120,7 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-056](QNT-056-rolling-statistics.md) | Rolling statistics | P2 | DONE |
 | [QNT-057](QNT-057-backtest-leakage-tests.md) | Backtest correctness and leakage regression suite | P2 | DONE |
 | [QNT-108](QNT-108-synthetic-market-gate.md) | Synthetic-market hand-calculated backtest gate | P1 | IN_PROGRESS |
-| [QNT-109](QNT-109-future-data-invariance-classes.md) | Future-data invariance per data class | P1 | IN_PROGRESS |
+| [QNT-109](QNT-109-future-data-invariance-classes.md) | Future-data invariance per data class | P1 | DONE |
 
 ## EPIC 9 — Risk Engine
 
