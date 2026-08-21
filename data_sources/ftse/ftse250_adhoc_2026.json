@@ -1,0 +1,16 @@
+[
+ {
+  "effective": "2022-03-07",
+  "added": [],
+  "deleted": ["Evraz", "Polymetal International"],
+  "notes": "AD-HOC (curated): FTSE Russell removed Russia-exposed listings from FTSE UK indices following the March 2022 sanctions/suspension decisions; Evraz was suspended 2022-03-10 by the FCA. Dated at the FTSE Russell announcement window; both names' index exits are certain, the exact effective day is convention (needs_verification).",
+  "source": "FTSE Russell statements on Russia-linked index removals, March 2022; FCA suspension notices."
+ },
+ {
+  "effective": "2020-04-27",
+  "added": [],
+  "deleted": ["NMC Health*"],
+  "notes": "AD-HOC (curated): NMC Health entered administration 2020-04-09 and was removed from FTSE indices in April 2020 while suspended. Dated to the index removal window (needs_verification on the exact session).",
+  "source": "NMC Health administration (Abu Dhabi Commercial Bank petition, April 2020); FTSE Russell suspension-deletion policy."
+ }
+]

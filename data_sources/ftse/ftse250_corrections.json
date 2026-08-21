@@ -1,0 +1,49 @@
+[
+ {
+  "effective": "2017-09-18",
+  "match": {
+   "added": "Provident Financial",
+   "deleted": "Carillion"
+  },
+  "set": {
+   "added": "Royal Mail"
+  },
+  "reason": "FTSE Russell PDF erratum: the September 2017 review row lists 'Provident Financial' as added twice. The FTSE 100 side of the same review (our curated ftse100_history.json v2026-08-16.5, itself validated against LSEG review documents) removed Royal Mail AND Provident Financial from the FTSE 100 that day, so the FTSE 250 additions must be {Provident Financial, Royal Mail}. The second duplicate row is corrected to Royal Mail.",
+  "source": "Cross-reference: LSEG 'FTSE UK Index Series Review September 2017'; ftse100_history.json change 2017-09-18 (NMC Health & Berkeley added to FTSE 100; Royal Mail & Provident Financial removed)."
+ },
+ {
+  "effective": "2020-12-04",
+  "match": {
+   "added": "Hipgnosis Songs Fund",
+   "deleted": "Hipgnosis Songs Fund C"
+  },
+  "set": {
+   "added": ""
+  },
+  "reason": "The 04-Dec-20 row records the mandatory conversion of the C share line into the ordinary line. The ordinary line (added 23-Mar-20) was already an index member; recording it as added again would double-count. The event is a deletion of the C line only.",
+  "source": "FTSE Russell PDF row's own notes: 'mandatory conversion of Hipgnosis Songs Fund C into ...'"
+ },
+ {
+  "effective": "2020-01-17",
+  "match": {
+   "added": "Hyve Group (rank 322)"
+  },
+  "set": {
+   "added": "Hyve Group"
+  },
+  "reason": "Row text carries a rank annotation; the company is Hyve Group plc.",
+  "source": "FTSE Russell PDF, January 2020 fast-exit/entry row."
+ },
+ {
+  "effective": "2020-06-22",
+  "match": {
+   "added": "888 Holdings",
+   "deleted": "Hvve Group"
+  },
+  "set": {
+   "deleted": "Hyve Group"
+  },
+  "reason": "FTSE PDF typo 'Hvve Group'; Hyve Group plc left the index at the June 2020 review.",
+  "source": "FTSE Russell PDF page 28 (June 2020 review row)."
+ }
+]

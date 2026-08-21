@@ -1,0 +1,1006 @@
+{
+ "date": "2026-08-20",
+ "members": [
+  {
+   "ticker": "3IN",
+   "name": "3i Infrastructure"
+  },
+  {
+   "ticker": "FOUR",
+   "name": "4imprint"
+  },
+  {
+   "ticker": "AAS",
+   "name": "Aberdeen Asia Focus"
+  },
+  {
+   "ticker": "ASL",
+   "name": "Aberforth Smaller Companies Trust"
+  },
+  {
+   "ticker": "AEP",
+   "name": "AEP Plantations"
+  },
+  {
+   "ticker": "ALFA",
+   "name": "Alfa Financial Software"
+  },
+  {
+   "ticker": "ATT",
+   "name": "Allianz Technology Trust"
+  },
+  {
+   "ticker": "AO",
+   "name": "AO World"
+  },
+  {
+   "ticker": "APN",
+   "name": "Applied Nutrition"
+  },
+  {
+   "ticker": "ASHM",
+   "name": "Ashmore Group"
+  },
+  {
+   "ticker": "AIE",
+   "name": "Ashoka India Equity Investment Trust"
+  },
+  {
+   "ticker": "AML",
+   "name": "Aston Martin Lagonda"
+  },
+  {
+   "ticker": "ATYM",
+   "name": "Atalaya Mining"
+  },
+  {
+   "ticker": "ATG",
+   "name": "Auction Technology Group"
+  },
+  {
+   "ticker": "AGT",
+   "name": "AVI Global Trust"
+  },
+  {
+   "ticker": "AVON",
+   "name": "Avon Technologies"
+  },
+  {
+   "ticker": "BME",
+   "name": "B&M"
+  },
+  {
+   "ticker": "BGFD",
+   "name": "Baillie Gifford Japan Trust"
+  },
+  {
+   "ticker": "USA",
+   "name": "Baillie Gifford US Growth Trust"
+  },
+  {
+   "ticker": "BBY",
+   "name": "Balfour Beatty"
+  },
+  {
+   "ticker": "BCG",
+   "name": "Baltic Classifieds"
+  },
+  {
+   "ticker": "BNKR",
+   "name": "Bankers Investment Trust"
+  },
+  {
+   "ticker": "BAG",
+   "name": "A.G. Barr"
+  },
+  {
+   "ticker": "AJB",
+   "name": "AJ Bell"
+  },
+  {
+   "ticker": "BWY",
+   "name": "Bellway"
+  },
+  {
+   "ticker": "BKG",
+   "name": "Berkeley Group Holdings"
+  },
+  {
+   "ticker": "BHMG",
+   "name": "BH Macro"
+  },
+  {
+   "ticker": "BYG",
+   "name": "Big Yellow Group"
+  },
+  {
+   "ticker": "BPCR",
+   "name": "Biopharma Credit"
+  },
+  {
+   "ticker": "BRGE",
+   "name": "BlackRock Greater Europe Investment Trust"
+  },
+  {
+   "ticker": "BRSC",
+   "name": "BlackRock Smaller Companies Trust"
+  },
+  {
+   "ticker": "BRWM",
+   "name": "BlackRock World Mining Trust"
+  },
+  {
+   "ticker": "BMY",
+   "name": "Bloomsbury Publishing"
+  },
+  {
+   "ticker": "BOY",
+   "name": "Bodycote"
+  },
+  {
+   "ticker": "BREE",
+   "name": "Breedon Group"
+  },
+  {
+   "ticker": "BPT",
+   "name": "Bridgepoint Group"
+  },
+  {
+   "ticker": "BUT",
+   "name": "Brunner Investment Trust"
+  },
+  {
+   "ticker": "BYIT",
+   "name": "Bytes Technology Group"
+  },
+  {
+   "ticker": "CLDN",
+   "name": "Caledonia Investments"
+  },
+  {
+   "ticker": "CGT",
+   "name": "Capital Gearing Trust"
+  },
+  {
+   "ticker": "CWR",
+   "name": "Ceres Power"
+  },
+  {
+   "ticker": "CHG",
+   "name": "Chemring Group"
+  },
+  {
+   "ticker": "CSN",
+   "name": "Chesnara"
+  },
+  {
+   "ticker": "CTY",
+   "name": "City of London Investment Trust"
+  },
+  {
+   "ticker": "CKN",
+   "name": "Clarkson"
+  },
+  {
+   "ticker": "CBG",
+   "name": "Close Brothers Group"
+  },
+  {
+   "ticker": "CMCX",
+   "name": "CMC Markets"
+  },
+  {
+   "ticker": "COA",
+   "name": "Coats Group"
+  },
+  {
+   "ticker": "CORD",
+   "name": "Cordiant Digital Infrastructure"
+  },
+  {
+   "ticker": "COST",
+   "name": "Costain Group"
+  },
+  {
+   "ticker": "CWK",
+   "name": "Cranswick"
+  },
+  {
+   "ticker": "CURY",
+   "name": "Currys"
+  },
+  {
+   "ticker": "CVSG",
+   "name": "CVS Group"
+  },
+  {
+   "ticker": "DLN",
+   "name": "Derwent London"
+  },
+  {
+   "ticker": "DSCV",
+   "name": "discoverIE"
+  },
+  {
+   "ticker": "DOM",
+   "name": "Domino's Pizza"
+  },
+  {
+   "ticker": "DRX",
+   "name": "Drax Group"
+  },
+  {
+   "ticker": "DOCS",
+   "name": "Dr. Martens"
+  },
+  {
+   "ticker": "DNLM",
+   "name": "Dunelm Group"
+  },
+  {
+   "ticker": "EZJ",
+   "name": "EasyJet"
+  },
+  {
+   "ticker": "EDIN",
+   "name": "Edinburgh Investment Trust"
+  },
+  {
+   "ticker": "EWI",
+   "name": "Edinburgh Worldwide Investment Trust"
+  },
+  {
+   "ticker": "ELM",
+   "name": "Elementis"
+  },
+  {
+   "ticker": "ENOG",
+   "name": "Energean"
+  },
+  {
+   "ticker": "ESCT",
+   "name": "European Smaller Companies Trust"
+  },
+  {
+   "ticker": "EWG",
+   "name": "Eurowag"
+  },
+  {
+   "ticker": "FCSS",
+   "name": "Fidelity China Special Situations"
+  },
+  {
+   "ticker": "FEML",
+   "name": "Fidelity Emerging Markets"
+  },
+  {
+   "ticker": "FEV",
+   "name": "Fidelity European Trust"
+  },
+  {
+   "ticker": "FSV",
+   "name": "Fidelity Special Values"
+  },
+  {
+   "ticker": "FGT",
+   "name": "Finsbury Growth & Income Trust"
+  },
+  {
+   "ticker": "FGP",
+   "name": "FirstGroup"
+  },
+  {
+   "ticker": "FGEN",
+   "name": "Foresight Environmental Infrastructure"
+  },
+  {
+   "ticker": "FSG",
+   "name": "Foresight Group"
+  },
+  {
+   "ticker": "FRAS",
+   "name": "Frasers Group"
+  },
+  {
+   "ticker": "FCH",
+   "name": "Funding Circle"
+  },
+  {
+   "ticker": "GFRD",
+   "name": "Galliford Try"
+  },
+  {
+   "ticker": "GAMA",
+   "name": "Gamma Communications"
+  },
+  {
+   "ticker": "GBG",
+   "name": "GB Group"
+  },
+  {
+   "ticker": "GCP",
+   "name": "GCP Infrastructure Investments"
+  },
+  {
+   "ticker": "GEN",
+   "name": "Genuit Group"
+  },
+  {
+   "ticker": "GNS",
+   "name": "Genus"
+  },
+  {
+   "ticker": "DATA",
+   "name": "GlobalData"
+  },
+  {
+   "ticker": "GSCT",
+   "name": "Global Smaller Companies Trust"
+  },
+  {
+   "ticker": "GDWN",
+   "name": "Goodwin"
+  },
+  {
+   "ticker": "GFTU",
+   "name": "Grafton Group"
+  },
+  {
+   "ticker": "GRI",
+   "name": "Grainger"
+  },
+  {
+   "ticker": "GPE",
+   "name": "Great Portland Estates"
+  },
+  {
+   "ticker": "UKW",
+   "name": "Greencoat UK Wind"
+  },
+  {
+   "ticker": "GNC",
+   "name": "Greencore"
+  },
+  {
+   "ticker": "GRG",
+   "name": "Greggs"
+  },
+  {
+   "ticker": "HFD",
+   "name": "Halfords"
+  },
+  {
+   "ticker": "HMSO",
+   "name": "Hammerson"
+  },
+  {
+   "ticker": "HANA",
+   "name": "Hansa Investment Company"
+  },
+  {
+   "ticker": "HBR",
+   "name": "Harbour Energy"
+  },
+  {
+   "ticker": "HVPE",
+   "name": "HarbourVest Global Private Equity"
+  },
+  {
+   "ticker": "HWG",
+   "name": "Harworth Group"
+  },
+  {
+   "ticker": "HAS",
+   "name": "Hays"
+  },
+  {
+   "ticker": "HTWS",
+   "name": "Helios Towers"
+  },
+  {
+   "ticker": "HFEL",
+   "name": "Henderson Far East Income"
+  },
+  {
+   "ticker": "HSL",
+   "name": "Henderson Smaller Companies Investment Trust"
+  },
+  {
+   "ticker": "HRI",
+   "name": "Herald Investment Trust"
+  },
+  {
+   "ticker": "HGT",
+   "name": "Hg Capital Trust"
+  },
+  {
+   "ticker": "HICL",
+   "name": "HICL Infrastructure Company"
+  },
+  {
+   "ticker": "HIK",
+   "name": "Hikma Pharmaceuticals"
+  },
+  {
+   "ticker": "HILS",
+   "name": "Hill & Smith"
+  },
+  {
+   "ticker": "HFG",
+   "name": "Hilton Food Group"
+  },
+  {
+   "ticker": "HOC",
+   "name": "Hochschild Mining"
+  },
+  {
+   "ticker": "BOWL",
+   "name": "Hollywood Bowl Group"
+  },
+  {
+   "ticker": "HTG",
+   "name": "Hunting"
+  },
+  {
+   "ticker": "ICGT",
+   "name": "ICG Enterprise Trust"
+  },
+  {
+   "ticker": "INCH",
+   "name": "Inchcape"
+  },
+  {
+   "ticker": "IHP",
+   "name": "IntegraFin Holdings"
+  },
+  {
+   "ticker": "INPP",
+   "name": "International Public Partnerships"
+  },
+  {
+   "ticker": "IWG",
+   "name": "International Workplace Group"
+  },
+  {
+   "ticker": "IAD",
+   "name": "Invesco Asia Dragon Trust"
+  },
+  {
+   "ticker": "IPO",
+   "name": "IP Group"
+  },
+  {
+   "ticker": "ITH",
+   "name": "Ithaca Energy"
+  },
+  {
+   "ticker": "ITV",
+   "name": "ITV"
+  },
+  {
+   "ticker": "JMAT",
+   "name": "Johnson Matthey"
+  },
+  {
+   "ticker": "JSG",
+   "name": "Johnson Service Group"
+  },
+  {
+   "ticker": "JAM",
+   "name": "JPMorgan American Investment Trust"
+  },
+  {
+   "ticker": "JCH",
+   "name": "JPMorgan Claverhouse Investment Trust"
+  },
+  {
+   "ticker": "JEMI",
+   "name": "JPMorgan Emerging Markets Dividend Income"
+  },
+  {
+   "ticker": "JMGI",
+   "name": "JPMorgan Emerging Markets Growth & Income"
+  },
+  {
+   "ticker": "JEDT",
+   "name": "JPMorgan European Discovery"
+  },
+  {
+   "ticker": "JEGI",
+   "name": "JPMorgan European Growth & Income"
+  },
+  {
+   "ticker": "JGGI",
+   "name": "JPMorgan Global Growth & Income"
+  },
+  {
+   "ticker": "JFJ",
+   "name": "JPMorgan Japanese Investment Trust"
+  },
+  {
+   "ticker": "JUP",
+   "name": "Jupiter Fund Management"
+  },
+  {
+   "ticker": "KNOS",
+   "name": "Kainos"
+  },
+  {
+   "ticker": "KLR",
+   "name": "Keller Group"
+  },
+  {
+   "ticker": "KIE",
+   "name": "Kier Group"
+  },
+  {
+   "ticker": "LRE",
+   "name": "Lancashire Holdings"
+  },
+  {
+   "ticker": "LWDB",
+   "name": "Law Debenture"
+  },
+  {
+   "ticker": "EMG",
+   "name": "Man Group"
+  },
+  {
+   "ticker": "MEGP",
+   "name": "ME Group International"
+  },
+  {
+   "ticker": "MRC",
+   "name": "Mercantile Investment Trust"
+  },
+  {
+   "ticker": "MRCH",
+   "name": "Merchants Trust"
+  },
+  {
+   "ticker": "MTRO",
+   "name": "Metro Bank"
+  },
+  {
+   "ticker": "MAB",
+   "name": "Mitchells & Butlers"
+  },
+  {
+   "ticker": "MTO",
+   "name": "Mitie"
+  },
+  {
+   "ticker": "GROW",
+   "name": "Molten Ventures"
+  },
+  {
+   "ticker": "MNDI",
+   "name": "Mondi"
+  },
+  {
+   "ticker": "MNKS",
+   "name": "Monks Investment Trust"
+  },
+  {
+   "ticker": "MONY",
+   "name": "MONY Group"
+  },
+  {
+   "ticker": "MOON",
+   "name": "Moonpig"
+  },
+  {
+   "ticker": "MGAM",
+   "name": "Morgan Advanced Materials"
+  },
+  {
+   "ticker": "MGNS",
+   "name": "Morgan Sindall Group"
+  },
+  {
+   "ticker": "MUT",
+   "name": "Murray Income Trust"
+  },
+  {
+   "ticker": "MYI",
+   "name": "Murray International Trust"
+  },
+  {
+   "ticker": "NBPE",
+   "name": "NB Private Equity Partners"
+  },
+  {
+   "ticker": "NCC",
+   "name": "NCC Group"
+  },
+  {
+   "ticker": "N91",
+   "name": "Ninety One"
+  },
+  {
+   "ticker": "NAIT",
+   "name": "North American Income Trust"
+  },
+  {
+   "ticker": "NAS",
+   "name": "North Atlantic Smaller Companies Investment Trust"
+  },
+  {
+   "ticker": "OCI",
+   "name": "Oakley Capital Investments"
+  },
+  {
+   "ticker": "OCDO",
+   "name": "Ocado Group"
+  },
+  {
+   "ticker": "OSB",
+   "name": "OSB Group"
+  },
+  {
+   "ticker": "OXB",
+   "name": "Oxford Biomedica"
+  },
+  {
+   "ticker": "OXIG",
+   "name": "Oxford Instruments"
+  },
+  {
+   "ticker": "ONT",
+   "name": "Oxford Nanopore Technologies"
+  },
+  {
+   "ticker": "PHI",
+   "name": "Pacific Horizon Investment Trust"
+  },
+  {
+   "ticker": "PAGE",
+   "name": "PageGroup"
+  },
+  {
+   "ticker": "PAF",
+   "name": "Pan African Resources"
+  },
+  {
+   "ticker": "PINT",
+   "name": "Pantheon Infrastructure"
+  },
+  {
+   "ticker": "PIN",
+   "name": "Pantheon International"
+  },
+  {
+   "ticker": "PAG",
+   "name": "Paragon Banking Group"
+  },
+  {
+   "ticker": "PEY",
+   "name": "Partners Group Private Equity"
+  },
+  {
+   "ticker": "PPET",
+   "name": "Patria Private Equity Trust"
+  },
+  {
+   "ticker": "PNN",
+   "name": "Pennon Group"
+  },
+  {
+   "ticker": "PNL",
+   "name": "Personal Assets Trust"
+  },
+  {
+   "ticker": "PETS",
+   "name": "Pets at Home"
+  },
+  {
+   "ticker": "PTEC",
+   "name": "Playtech"
+  },
+  {
+   "ticker": "PLUS",
+   "name": "Plus500"
+  },
+  {
+   "ticker": "PCGH",
+   "name": "Polar Capital Global Healthcare Trust"
+  },
+  {
+   "ticker": "POLN",
+   "name": "Pollen Street Group"
+  },
+  {
+   "ticker": "PPH",
+   "name": "PPHE Hotel Group"
+  },
+  {
+   "ticker": "PFD",
+   "name": "Premier Foods"
+  },
+  {
+   "ticker": "PHP",
+   "name": "Primary Health Properties"
+  },
+  {
+   "ticker": "PRN",
+   "name": "Princes Group"
+  },
+  {
+   "ticker": "QQ",
+   "name": "Qinetiq"
+  },
+  {
+   "ticker": "QLT",
+   "name": "Quilter"
+  },
+  {
+   "ticker": "RNK",
+   "name": "Rank Group"
+  },
+  {
+   "ticker": "RPI",
+   "name": "Raspberry Pi Holdings"
+  },
+  {
+   "ticker": "RAT",
+   "name": "Rathbones"
+  },
+  {
+   "ticker": "RSW",
+   "name": "Renishaw"
+  },
+  {
+   "ticker": "RHIM",
+   "name": "RHI Magnesita"
+  },
+  {
+   "ticker": "RMV",
+   "name": "Rightmove"
+  },
+  {
+   "ticker": "RCP",
+   "name": "RIT Capital Partners"
+  },
+  {
+   "ticker": "ROSE",
+   "name": "Rosebank Industries"
+  },
+  {
+   "ticker": "ROR",
+   "name": "Rotork"
+  },
+  {
+   "ticker": "RS1",
+   "name": "RS Group"
+  },
+  {
+   "ticker": "RTW",
+   "name": "RTW Biotech Opportunities"
+  },
+  {
+   "ticker": "RICA",
+   "name": "Ruffer Investment Company"
+  },
+  {
+   "ticker": "SAFE",
+   "name": "Safestore"
+  },
+  {
+   "ticker": "SAGA",
+   "name": "Saga"
+  },
+  {
+   "ticker": "SVS",
+   "name": "Savills"
+  },
+  {
+   "ticker": "MNTN",
+   "name": "Schiehallion Fund"
+  },
+  {
+   "ticker": "ATR",
+   "name": "Schroder Asian Total Return Investment Company"
+  },
+  {
+   "ticker": "SDP",
+   "name": "Schroder AsiaPacific Fund"
+  },
+  {
+   "ticker": "SOI",
+   "name": "Schroder Oriental Income Fund"
+  },
+  {
+   "ticker": "SAIN",
+   "name": "Scottish American Investment Company"
+  },
+  {
+   "ticker": "SEIT",
+   "name": "SDCL Efficiency Income Trust"
+  },
+  {
+   "ticker": "SNR",
+   "name": "Senior"
+  },
+  {
+   "ticker": "SEQI",
+   "name": "Sequoia Economic Infrastructure Income Fund"
+  },
+  {
+   "ticker": "SSIT",
+   "name": "Seraphim Space Investment Trust"
+  },
+  {
+   "ticker": "SRP",
+   "name": "Serco"
+  },
+  {
+   "ticker": "SHC",
+   "name": "Shaftesbury Capital"
+  },
+  {
+   "ticker": "SHAW",
+   "name": "Shawbrook Bank"
+  },
+  {
+   "ticker": "SRE",
+   "name": "Sirius Real Estate"
+  },
+  {
+   "ticker": "SCT",
+   "name": "Softcat"
+  },
+  {
+   "ticker": "SPI",
+   "name": "Spire Healthcare"
+  },
+  {
+   "ticker": "SSPG",
+   "name": "SSP Group"
+  },
+  {
+   "ticker": "SUPR",
+   "name": "Supermarket Income REIT"
+  },
+  {
+   "ticker": "SYNC",
+   "name": "Syncona"
+  },
+  {
+   "ticker": "THRL",
+   "name": "Target Healthcare REIT"
+  },
+  {
+   "ticker": "TATE",
+   "name": "Tate & Lyle"
+  },
+  {
+   "ticker": "TW",
+   "name": "Taylor Wimpey"
+  },
+  {
+   "ticker": "TBCG",
+   "name": "TBC Bank"
+  },
+  {
+   "ticker": "TEP",
+   "name": "Telecom Plus"
+  },
+  {
+   "ticker": "TMPL",
+   "name": "Temple Bar Investment Trust"
+  },
+  {
+   "ticker": "TEM",
+   "name": "Templeton Emerging Markets Investment Trust"
+  },
+  {
+   "ticker": "TRIG",
+   "name": "The Renewables Infrastructure Group"
+  },
+  {
+   "ticker": "THG",
+   "name": "THG"
+  },
+  {
+   "ticker": "TCAP",
+   "name": "TP ICAP"
+  },
+  {
+   "ticker": "TRN",
+   "name": "Trainline"
+  },
+  {
+   "ticker": "TPK",
+   "name": "Travis Perkins"
+  },
+  {
+   "ticker": "TRY",
+   "name": "TR Property Investment Trust"
+  },
+  {
+   "ticker": "TRST",
+   "name": "Trustpilot"
+  },
+  {
+   "ticker": "TFIF",
+   "name": "Twentyfour Income Fund"
+  },
+  {
+   "ticker": "UTG",
+   "name": "Unite Group"
+  },
+  {
+   "ticker": "UEM",
+   "name": "Utilico Emerging Markets"
+  },
+  {
+   "ticker": "VSVS",
+   "name": "Vesuvius"
+  },
+  {
+   "ticker": "VCT",
+   "name": "Victrex"
+  },
+  {
+   "ticker": "VEIL",
+   "name": "Vietnam Enterprise Investments"
+  },
+  {
+   "ticker": "VOF",
+   "name": "VinaCapital Vietnam Opportunity Fund"
+  },
+  {
+   "ticker": "VTY",
+   "name": "Vistry Group"
+  },
+  {
+   "ticker": "FAN",
+   "name": "Volution Group"
+  },
+  {
+   "ticker": "WOSG",
+   "name": "Watches of Switzerland"
+  },
+  {
+   "ticker": "JDW",
+   "name": "Wetherspoons"
+  },
+  {
+   "ticker": "SMWH",
+   "name": "WHSmith"
+  },
+  {
+   "ticker": "WIX",
+   "name": "Wickes"
+  },
+  {
+   "ticker": "WIZZ",
+   "name": "Wizz Air"
+  },
+  {
+   "ticker": "WKP",
+   "name": "Workspace Group"
+  },
+  {
+   "ticker": "WWH",
+   "name": "Worldwide Healthcare Trust"
+  },
+  {
+   "ticker": "WPP",
+   "name": "WPP"
+  },
+  {
+   "ticker": "XPP",
+   "name": "XP Power"
+  },
+  {
+   "ticker": "XPS",
+   "name": "XPS Pensions"
+  },
+  {
+   "ticker": "ZIG",
+   "name": "Zigup"
+  }
+ ],
+ "source": "Wikipedia 'FTSE 250 Index' constituent table, revision dated 2026-08-20 (https://en.wikipedia.org/wiki/FTSE_250_Index), cross-validated against the FTSE Russell June 2026 annual review press release: all nine June additions present, all nine June deletions absent. EODHD FTMC.INDX components were REJECTED as an anchor: the 2026-08-16 snapshot is internally inconsistent (contains June deletions Computacenter/Investec/C&C/Ibstock/Impax/Marshalls while missing June additions Berkeley/Mondi/Rightmove/Chrysalis-era state), consistent with the staleness recorded in QNT-039/DATA_PROVIDER_EVALUATION."
+}

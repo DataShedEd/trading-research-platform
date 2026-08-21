@@ -1,0 +1,27 @@
+{
+ "effective": "2026-06-22",
+ "review": "annual",
+ "added": [
+  "Berkeley Group Holdings",
+  "Bloomsbury Publishing",
+  "Cordiant Digital Infrastructure",
+  "Globaldata",
+  "Hansa Investment Company",
+  "Mondi",
+  "Rightmove",
+  "Rosebank Industries",
+  "Seraphim Space Investment Trust"
+ ],
+ "deleted": [
+  "Aberdeen Group",
+  "C&C Group",
+  "Chrysalis Investments",
+  "Computacenter",
+  "Ibstock",
+  "Impax Environmental Markets",
+  "Investec",
+  "JPMorgan India Growth & Income",
+  "Marshalls"
+ ],
+ "source": "FTSE Russell, 'FTSE UK Index Series - Annual Review June 2026', 3 June 2026 (https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2026/ftse-uk-index-series-review-june-2026); implemented at close 19 June 2026, effective start of trading Monday 22 June 2026. Two-column table de-interleaved and verified 9-in/9-out ('Nine changes to the FTSE 250 Index')."
+}

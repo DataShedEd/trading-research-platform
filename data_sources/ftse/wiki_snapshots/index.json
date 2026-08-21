@@ -1,0 +1,206 @@
+{
+ "2009-01-15": {
+  "revid": 263164155,
+  "timestamp": "2009-01-10T12:20:30Z",
+  "count": 2,
+  "usable": false
+ },
+ "2009-07-15": {
+  "revid": 301262284,
+  "timestamp": "2009-07-09T21:35:14Z",
+  "count": 2,
+  "usable": false
+ },
+ "2010-01-15": {
+  "revid": 333107530,
+  "timestamp": "2009-12-21T19:24:21Z",
+  "count": 2,
+  "usable": false
+ },
+ "2010-07-15": {
+  "revid": 371509653,
+  "timestamp": "2010-07-03T07:40:04Z",
+  "count": 2,
+  "usable": false
+ },
+ "2011-01-15": {
+  "revid": 403051372,
+  "timestamp": "2010-12-18T18:40:13Z",
+  "count": 2,
+  "usable": false
+ },
+ "2011-07-15": {
+  "revid": 435166162,
+  "timestamp": "2011-06-19T22:04:28Z",
+  "count": 2,
+  "usable": false
+ },
+ "2012-01-15": {
+  "revid": 466555272,
+  "timestamp": "2011-12-18T18:07:59Z",
+  "count": 2,
+  "usable": false
+ },
+ "2012-07-15": {
+  "revid": 501564285,
+  "timestamp": "2012-07-10T14:18:41Z",
+  "count": 2,
+  "usable": false
+ },
+ "2013-01-15": {
+  "revid": 529188969,
+  "timestamp": "2012-12-21T23:40:22Z",
+  "count": 251,
+  "usable": true
+ },
+ "2013-07-15": {
+  "revid": 562116804,
+  "timestamp": "2013-06-29T14:30:53Z",
+  "count": 250,
+  "usable": true
+ },
+ "2014-01-15": {
+  "revid": 590578659,
+  "timestamp": "2014-01-13T22:39:31Z",
+  "count": 250,
+  "usable": true
+ },
+ "2014-07-15": {
+  "revid": 614569563,
+  "timestamp": "2014-06-26T23:45:10Z",
+  "count": 250,
+  "usable": true
+ },
+ "2015-01-15": {
+  "revid": 639058099,
+  "timestamp": "2014-12-21T16:10:57Z",
+  "count": 252,
+  "usable": true
+ },
+ "2015-07-15": {
+  "revid": 668203339,
+  "timestamp": "2015-06-22T22:38:13Z",
+  "count": 251,
+  "usable": true
+ },
+ "2016-01-15": {
+  "revid": 699939887,
+  "timestamp": "2016-01-15T10:49:27Z",
+  "count": 253,
+  "usable": true
+ },
+ "2016-07-15": {
+  "revid": 725903249,
+  "timestamp": "2016-06-18T16:42:14Z",
+  "count": 252,
+  "usable": true
+ },
+ "2017-01-15": {
+  "revid": 758190267,
+  "timestamp": "2017-01-04T00:21:20Z",
+  "count": 250,
+  "usable": true
+ },
+ "2017-07-15": {
+  "revid": 789182481,
+  "timestamp": "2017-07-05T21:22:10Z",
+  "count": 248,
+  "usable": true
+ },
+ "2018-01-15": {
+  "revid": 816530534,
+  "timestamp": "2017-12-21T22:56:21Z",
+  "count": 251,
+  "usable": true
+ },
+ "2018-07-15": {
+  "revid": 848570449,
+  "timestamp": "2018-07-02T20:00:53Z",
+  "count": 250,
+  "usable": true
+ },
+ "2019-01-15": {
+  "revid": 876180956,
+  "timestamp": "2018-12-31T17:57:45Z",
+  "count": 250,
+  "usable": true
+ },
+ "2019-07-15": {
+  "revid": 903939967,
+  "timestamp": "2019-06-28T22:51:44Z",
+  "count": 250,
+  "usable": true
+ },
+ "2020-01-15": {
+  "revid": 934436078,
+  "timestamp": "2020-01-06T14:34:46Z",
+  "count": 250,
+  "usable": true
+ },
+ "2020-07-15": {
+  "revid": 965131262,
+  "timestamp": "2020-06-29T15:56:27Z",
+  "count": 250,
+  "usable": true
+ },
+ "2021-01-15": {
+  "revid": 998435310,
+  "timestamp": "2021-01-05T10:43:27Z",
+  "count": 250,
+  "usable": true
+ },
+ "2021-07-15": {
+  "revid": 1029665949,
+  "timestamp": "2021-06-21T09:38:23Z",
+  "count": 250,
+  "usable": true
+ },
+ "2022-01-15": {
+  "revid": 1064116892,
+  "timestamp": "2022-01-06T17:19:31Z",
+  "count": 250,
+  "usable": true
+ },
+ "2022-07-15": {
+  "revid": 1093608202,
+  "timestamp": "2022-06-17T18:04:45Z",
+  "count": 250,
+  "usable": true
+ },
+ "2023-01-15": {
+  "revid": 1133107625,
+  "timestamp": "2023-01-12T08:25:14Z",
+  "count": 250,
+  "usable": true
+ },
+ "2023-07-15": {
+  "revid": 1163169127,
+  "timestamp": "2023-07-03T09:49:40Z",
+  "count": 250,
+  "usable": true
+ },
+ "2024-01-15": {
+  "revid": 1195871012,
+  "timestamp": "2024-01-15T18:00:07Z",
+  "count": 250,
+  "usable": true
+ },
+ "2024-07-15": {
+  "revid": 1234344131,
+  "timestamp": "2024-07-13T21:42:17Z",
+  "count": 250,
+  "usable": true
+ },
+ "2025-01-15": {
+  "revid": 1264135954,
+  "timestamp": "2024-12-20T18:00:17Z",
+  "count": 249,
+  "usable": true
+ },
+ "2025-07-15": {
+  "revid": 1300428696,
+  "timestamp": "2025-07-14T07:44:02Z",
+  "count": 250,
+  "usable": true
+ }
+}

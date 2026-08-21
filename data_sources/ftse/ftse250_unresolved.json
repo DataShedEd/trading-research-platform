@@ -1,0 +1,534 @@
+[
+ {
+  "event_name": "International Personal Finance",
+  "normalised": "international personal finance",
+  "context": "reverse-remove @2025-10-16",
+  "best_candidates": [
+   [
+    0.61,
+    "international workplace group"
+   ],
+   [
+    0.603,
+    "international public partnerships"
+   ],
+   [
+    0.571,
+    "murray international trust"
+   ]
+  ]
+ },
+ {
+  "event_name": "Wood Group (John)",
+  "normalised": "wood group john",
+  "context": "reverse-remove @2025-03-24",
+  "best_candidates": [
+   [
+    0.615,
+    "ocado group"
+   ],
+   [
+    0.593,
+    "mobico group"
+   ],
+   [
+    0.583,
+    "osb group"
+   ]
+  ]
+ },
+ {
+  "event_name": "SThree",
+  "normalised": "sthree",
+  "context": "reverse-remove @2025-03-24",
+  "best_candidates": [
+   [
+    0.533,
+    "safestore"
+   ],
+   [
+    0.5,
+    "renewi"
+   ],
+   [
+    0.5,
+    "future"
+   ]
+  ]
+ },
+ {
+  "event_name": "Essentra",
+  "normalised": "essentra",
+  "context": "reverse-remove @2025-03-24",
+  "best_candidates": [
+   [
+    0.571,
+    "senior"
+   ],
+   [
+    0.571,
+    "assura"
+   ],
+   [
+    0.5,
+    "energean"
+   ]
+  ]
+ },
+ {
+  "event_name": "Chrysalis Investments",
+  "normalised": "chrysalis investments",
+  "context": "reverse-remove @2024-10-09",
+  "best_candidates": [
+   [
+    0.762,
+    "caledonia investments"
+   ],
+   [
+    0.727,
+    "herald investment trust"
+   ],
+   [
+    0.632,
+    "ruffer investment"
+   ]
+  ]
+ },
+ {
+  "event_name": "SThree",
+  "normalised": "sthree",
+  "context": "reverse-remove @2023-03-06",
+  "best_candidates": [
+   [
+    0.533,
+    "synthomer"
+   ],
+   [
+    0.533,
+    "safestore"
+   ],
+   [
+    0.5,
+    "future"
+   ]
+  ]
+ },
+ {
+  "event_name": "Bluefield Solar Income Fund",
+  "normalised": "bluefield solar income fund",
+  "context": "reverse-remove @2022-09-19",
+  "best_candidates": [
+   [
+    0.571,
+    "schroder oriental income fund"
+   ],
+   [
+    0.553,
+    "foresight solar fund"
+   ],
+   [
+    0.509,
+    "sdcl efficiency income trust"
+   ]
+  ]
+ },
+ {
+  "event_name": "Blackrock Throgmorton Trust",
+  "normalised": "blackrock throgmorton trust",
+  "context": "reverse-remove @2021-09-20",
+  "best_candidates": [
+   [
+    0.691,
+    "blackrock world mining trust"
+   ],
+   [
+    0.667,
+    "blackrock smaller companies trust"
+   ],
+   [
+    0.549,
+    "bankers investment trust"
+   ]
+  ]
+ },
+ {
+  "event_name": "Homeserve",
+  "normalised": "homeserve",
+  "context": "reverse-remove @2020-12-21",
+  "best_candidates": [
+   [
+    0.556,
+    "synthomer"
+   ],
+   [
+    0.471,
+    "energean"
+   ],
+   [
+    0.455,
+    "helios towers"
+   ]
+  ]
+ },
+ {
+  "event_name": "JTC",
+  "normalised": "jtc",
+  "context": "reverse-remove @2020-11-16",
+  "best_candidates": [
+   [
+    0.4,
+    "tp icap"
+   ],
+   [
+    0.4,
+    "softcat"
+   ],
+   [
+    0.4,
+    "ibstock"
+   ]
+  ]
+ },
+ {
+  "event_name": "Carnival",
+  "normalised": "carnival",
+  "context": "reverse-remove @2020-06-22",
+  "best_candidates": [
+   [
+    0.588,
+    "ascential"
+   ],
+   [
+    0.571,
+    "capita"
+   ],
+   [
+    0.5,
+    "renishaw"
+   ]
+  ]
+ },
+ {
+  "event_name": "NMC Health*",
+  "normalised": "nmc health",
+  "context": "reverse-remove @2020-03-23",
+  "best_candidates": [
+   [
+    0.64,
+    "puretech health"
+   ],
+   [
+    0.583,
+    "udg healthcare"
+   ],
+   [
+    0.457,
+    "primary health properties"
+   ]
+  ]
+ },
+ {
+  "event_name": "Pollen Street Secured Lending",
+  "normalised": "pollen street secured lending",
+  "context": "reverse-remove @2019-11-06",
+  "best_candidates": [
+   [
+    0.468,
+    "gcp student living"
+   ],
+   [
+    0.417,
+    "sequoia economic infrastructure income fund"
+   ],
+   [
+    0.407,
+    "gcp infrastructure investments"
+   ]
+  ]
+ },
+ {
+  "event_name": "Wood Group (John)",
+  "normalised": "wood group john",
+  "context": "reverse-remove @2019-03-18",
+  "best_candidates": [
+   [
+    0.606,
+    "fdm group holdings"
+   ],
+   [
+    0.6,
+    "cineworld group"
+   ],
+   [
+    0.593,
+    "sophos group"
+   ]
+  ]
+ },
+ {
+  "event_name": "Hikma Pharmaceuticals",
+  "normalised": "hikma pharmaceuticals",
+  "context": "reverse-remove @2018-12-24",
+  "best_candidates": [
+   [
+    0.837,
+    "dechra pharmaceuticals"
+   ],
+   [
+    0.467,
+    "ascential"
+   ],
+   [
+    0.444,
+    "intu properties"
+   ]
+  ]
+ },
+ {
+  "event_name": "Woodford Patient Capital Trust",
+  "normalised": "woodford patient capital trust",
+  "context": "reverse-remove @2018-11-13",
+  "best_candidates": [
+   [
+    0.609,
+    "hg capital trust"
+   ],
+   [
+    0.6,
+    "rit capital partners"
+   ],
+   [
+    0.536,
+    "worldwide healthcare trust"
+   ]
+  ]
+ },
+ {
+  "event_name": "NEX Group",
+  "normalised": "nex group",
+  "context": "reverse-remove @2018-11-02",
+  "best_candidates": [
+   [
+    0.824,
+    "ei group"
+   ],
+   [
+    0.8,
+    "unite group"
+   ],
+   [
+    0.8,
+    "sanne group"
+   ]
+  ]
+ },
+ {
+  "event_name": "Wood Group (John)",
+  "normalised": "wood group john",
+  "context": "reverse-remove @2018-10-12",
+  "best_candidates": [
+   [
+    0.606,
+    "fdm group holdings"
+   ],
+   [
+    0.6,
+    "cineworld group"
+   ],
+   [
+    0.593,
+    "sophos group"
+   ]
+  ]
+ },
+ {
+  "event_name": "Babcock International Group",
+  "normalised": "babcock international group",
+  "context": "reverse-remove @2017-12-18",
+  "best_candidates": [
+   [
+    0.679,
+    "murray international trust"
+   ],
+   [
+    0.679,
+    "international workplace group"
+   ],
+   [
+    0.604,
+    "intermediate capital group"
+   ]
+  ]
+ },
+ {
+  "event_name": "Hikma Pharmaceuticals",
+  "normalised": "hikma pharmaceuticals",
+  "context": "reverse-remove @2017-06-19",
+  "best_candidates": [
+   [
+    0.837,
+    "dechra pharmaceuticals"
+   ],
+   [
+    0.467,
+    "ascential"
+   ],
+   [
+    0.4,
+    "marshalls"
+   ]
+  ]
+ },
+ {
+  "event_name": "Sports Direct International",
+  "normalised": "frasers group",
+  "context": "reverse-remove @2016-03-21",
+  "best_candidates": [
+   [
+    0.727,
+    "ssp group"
+   ],
+   [
+    0.696,
+    "rank group"
+   ],
+   [
+    0.696,
+    "kier group"
+   ]
+  ]
+ },
+ {
+  "event_name": "Auto Trader Group",
+  "normalised": "auto trader group",
+  "context": "reverse-remove @2015-06-22",
+  "best_candidates": [
+   [
+    0.667,
+    "ashmore group"
+   ],
+   [
+    0.645,
+    "halfords group"
+   ],
+   [
+    0.645,
+    "go ahead group"
+   ]
+  ]
+ },
+ {
+  "event_name": "Tritax Big Box REIT",
+  "normalised": "tritax big box reit",
+  "context": "reverse-remove @2015-06-08",
+  "best_candidates": [
+   [
+    0.519,
+    "rdi reit"
+   ],
+   [
+    0.444,
+    "a g barr"
+   ],
+   [
+    0.414,
+    "drax group"
+   ]
+  ]
+ },
+ {
+  "event_name": "Carphone Warehouse Group",
+  "normalised": "dixons carphone",
+  "context": "reverse-remove @2013-12-23",
+  "best_candidates": [
+   [
+    0.571,
+    "dixons retail"
+   ],
+   [
+    0.522,
+    "inchcape"
+   ],
+   [
+    0.48,
+    "ninety one"
+   ]
+  ]
+ },
+ {
+  "event_name": "Wood Group (John)",
+  "normalised": "wood group john",
+  "context": "reverse-remove @2013-09-23",
+  "best_candidates": [
+   [
+    0.615,
+    "ocado group"
+   ],
+   [
+    0.593,
+    "mobico group"
+   ],
+   [
+    0.593,
+    "booker group"
+   ]
+  ]
+ },
+ {
+  "event_name": "Bank of Georgia Holdings",
+  "normalised": "bank georgia group",
+  "context": "reverse-remove @2012-06-18",
+  "best_candidates": [
+   [
+    0.667,
+    "booker group"
+   ],
+   [
+    0.647,
+    "stagecoach group"
+   ],
+   [
+    0.643,
+    "rank group"
+   ]
+  ]
+ },
+ {
+  "event_name": "Man Group",
+  "normalised": "man group",
+  "context": "reverse-remove @2012-06-18",
+  "best_candidates": [
+   [
+    0.842,
+    "rank group"
+   ],
+   [
+    0.842,
+    "mony group"
+   ],
+   [
+    0.762,
+    "shanks group"
+   ]
+  ]
+ },
+ {
+  "event_name": "Avis Europe",
+  "normalised": "avis europe",
+  "context": "reverse-remove @2010-08-10",
+  "best_candidates": [
+   [
+    0.609,
+    "vistry group"
+   ],
+   [
+    0.56,
+    "travis perkins"
+   ],
+   [
+    0.545,
+    "aveva group"
+   ]
+  ]
+ }
+]
