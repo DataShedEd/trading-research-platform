@@ -1,7 +1,7 @@
 # QNT-115 — FTSE 250 cross-universe holdout replication
 
 - **Ticket ID:** QNT-115
-- **Status:** IN_PROGRESS
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 10 — Research Experiment Registry
 - **Depends on:** QNT-111..114
@@ -45,7 +45,27 @@ UK market, overlapping regimes). Terminology is part of the deliverable.
 6. Report with §16 terminology; §17 next-holdout recommendation (not executed).
 
 ## Acceptance criteria
-- [ ] All 12 completion requirements of the 2026-08-21 holdout directive satisfied.
+- [x] All 12 completion requirements of the 2026-08-21 holdout directive satisfied.
 
 ## Completion notes
-_In progress — hypothesis registration first._
+- Sequence held: hypothesis + bands committed (72d6deb) before ANY FTSE 250 data
+  existed; dataset frozen behind 46 green gates; EXACTLY ONE canonical run
+  (momentum-ftse250-holdout-r1); reproduced exactly from its manifest (r2 identical on
+  every metric); conclusion frozen BEFORE diagnostics.
+- RESULT: IR 0.439 (pre-registered primary; supportive-replication band cleared 4x),
+  excess +4.63%/yr (CAGR 10.90% vs MIDD ~5.8%), Sharpe 0.552, maxDD -42.1%, 7/11 years.
+  Concluded SUPPORTED with six recorded weaknesses; §16 terminology throughout
+  (cross-universe holdout replication, NOT independent temporal/geographic proof).
+- Common-period comparison (2016+): FTSE 100 IR just 0.056 vs FTSE 250 0.439 — the
+  holdout succeeded precisely where the development universe's edge faded, arguing
+  against pure regime double-counting; full tables persisted in the run record
+  (comparison_f100_f250.json).
+- Breadth (§13): 308 names; top-1 11.8% / top-5 43.6% of P&L; CAGR ex-top-5 7.3% still
+  beats the 5.8% benchmark. Boundary (§14): 78% of P&L from names never near the
+  FTSE 100 (267 of 308); recently-demoted names NEGATIVE (-11%) — replication is not
+  FTSE-100-adjacency.
+- Costs (§15): 2x -> IR 0.201 (survives; more cost-resilient than the FTSE 100's 2x
+  result), 3x -> IR -0.03 (dies). Monetary turnover: <=0.8% of median-name ADV up to
+  £1m portfolios; at £5m the thin tail reaches ~16% of 10th-pct ADV — impact flagged
+  as material there (turnover_liquidity.json). Coverage slice >=2018: IR 0.306.
+- All diagnostics exploratory + tagged robustness-diagnostic; nothing promoted.

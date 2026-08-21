@@ -124,7 +124,7 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-108](QNT-108-synthetic-market-gate.md) | Synthetic-market hand-calculated backtest gate | P1 | DONE |
 | [QNT-109](QNT-109-future-data-invariance-classes.md) | Future-data invariance per data class | P1 | DONE |
 | [QNT-113](QNT-113-ftse250-benchmark.md) | FTSE 250 total-return benchmark | P1 | BACKLOG |
-| [QNT-114](QNT-114-ftse250-gates-goldens.md) | FTSE 250 data-quality gates + golden observations | P1 | BACKLOG |
+| [QNT-114](QNT-114-ftse250-gates-goldens.md) | FTSE 250 data-quality gates + golden observations | P1 | DONE |
 
 ## EPIC 9 — Risk Engine
 
@@ -145,7 +145,7 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-065](QNT-065-results-persistence.md) | Results persistence and retrieval | P2 | DONE |
 | [QNT-066](QNT-066-hypothesis-workflow.md) | Hypothesis–experiment–evidence–conclusion workflow | P2 | DONE |
 | [QNT-110](QNT-110-canonical-momentum-baseline.md) | Canonical momentum baseline: report + diagnostics | P1 | DONE |
-| [QNT-115](QNT-115-ftse250-holdout.md) | FTSE 250 cross-universe holdout replication | P1 | IN_PROGRESS |
+| [QNT-115](QNT-115-ftse250-holdout.md) | FTSE 250 cross-universe holdout replication | P1 | DONE |
 
 ## EPIC 11 — Portfolio Construction
 
