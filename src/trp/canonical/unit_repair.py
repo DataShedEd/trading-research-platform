@@ -84,6 +84,7 @@ SINGLE_PAYMENT_YIELD_CEILING = 0.25
 """A single dividend above 25% of price under the GBP reading is suspect."""
 
 PENCE_SCALE_FLOOR = Decimal("2")
+OUT_OF_FAMILY_SCALE = 20
 """Relabel GBP -> GBX only when the amount is also implausibly large for pounds
 (UK single payments above £2/share are essentially unheard of, while 2-60 pence is the
 normal range). A high GBP-reading yield with a sub-£2 amount is a genuine crash-era
@@ -406,6 +407,18 @@ def repair_dividends(
     """Relabel GBX-stated dividend records (against repaired GBX prices). Returns the
     full dividend frame with corrected ``currency`` and a report."""
     report = RepairReport()
+    # Per-security median GBP-labelled amount: an amount >= OUT_OF_FAMILY_SCALE x the
+    # security's own median with a >25% implied yield is a per-record 100x mis-scale
+    # (UK Commercial Property Trust prints 0.92 GBP for eleven quarters where its real
+    # dividend is 0.92p) — distinct from a genuine one-off crash-era yield (Segro 2009),
+    # whose amount sits INSIDE the security's normal family.
+    family_median = {
+        row["security_id"]: float(row["median"])
+        for row in dividends.filter(pl.col("currency") == "GBP")
+        .group_by("security_id")
+        .agg(pl.col("amount").cast(pl.Float64).median().alias("median"))
+        .iter_rows(named=True)
+    }
     closes = repaired_prices.sort(["security_id", "trade_date"]).select(
         "security_id", "trade_date", "close"
     )
@@ -427,7 +440,11 @@ def repair_dividends(
         close_f = float(close)
         gbp_yield = amount * 100 / close_f
         gbx_yield = amount / close_f
-        if gbp_yield > SINGLE_PAYMENT_YIELD_CEILING and amount >= float(PENCE_SCALE_FLOOR):
+        median = family_median.get(row["security_id"], 0.0)
+        out_of_family = median > 0 and amount >= OUT_OF_FAMILY_SCALE * median
+        if gbp_yield > SINGLE_PAYMENT_YIELD_CEILING and (
+            amount >= float(PENCE_SCALE_FLOOR) or out_of_family
+        ):
             if gbx_yield <= SINGLE_PAYMENT_YIELD_CEILING:
                 currencies.append("GBX")
                 report.dividends_relabelled_gbx += 1
