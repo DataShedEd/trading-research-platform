@@ -299,3 +299,22 @@ def test_non_failure_delisting_without_terms_resolves_at_last_close() -> None:
     assert exits["price"].to_list() == ["120"]  # the last close, not zero
     assert result.daily["value"].to_list()[-1] == 1002000.0  # 100 shares: +20 each
     assert not any("forced exit" in w for w in result.warnings)
+
+
+def test_dust_sale_costing_more_than_it_raises_cannot_crash_a_full_book() -> None:
+    """A 1-share position whose minimum commission exceeds its proceeds must be absorbed
+    by the cash other sells raise — and skipped with a warning if it still cannot be."""
+    bars = daily_bars(A, date(2020, 11, 2), END, "100") + daily_bars(
+        B, date(2020, 11, 2), END, "10"
+    )
+    config = make_config(commission_min=Decimal("500"))
+
+    def then_exit(context: BacktestContext, positions: dict, value: Decimal) -> dict:  # type: ignore[type-arg]
+        if not positions:
+            return {A: 9990, B: 1}  # near-fully invested plus one dust share
+        return {}  # exit everything next month: the dust sell nets -490
+
+    result = run_engine(config, make_market(bars, []), then_exit)
+    # The book survives: A's sale raises ample cash before B's net-negative dust sale.
+    assert result.daily["positions"].to_list()[-1] == 0
+    assert result.daily["value"].to_list()[-1] > 0

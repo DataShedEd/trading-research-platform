@@ -383,11 +383,29 @@ class BacktestEngine:
         orders = {
             sid: targets.get(sid, 0) - current.get(sid, 0) for sid in set(current) | set(targets)
         }
-        for phase in ("sell", "buy"):
-            for security_id in sorted(orders):
+        # Sells first (they free cash), and within sells the net-POSITIVE ones first: a
+        # dust position whose minimum commission exceeds its proceeds must be absorbed by
+        # the cash the other sells raise, not crash a fully-invested book. A dust sell
+        # that still cannot be afforded is skipped with a warning and exits later.
+        sell_ids = sorted(sid for sid, delta in orders.items() if delta < 0)
+
+        def sell_net(security_id: SecurityId) -> Decimal:
+            found = self._market.close_on_or_before(security_id, day)
+            if found is None or found[0] != day:
+                return Decimal(0)
+            price = found[1]
+            shares = -orders[security_id]
+            liquidity = self._market.median_traded_value(security_id, day)
+            return (
+                price * shares
+                - self._costs.cost(security_id, Side.SELL, price * shares, liquidity).total
+            )
+
+        ordered_sells = sorted(sell_ids, key=lambda sid: (-sell_net(sid), sid))
+        buy_ids = sorted(sid for sid, delta in orders.items() if delta > 0)
+        for _phase, phase_ids in (("sell", ordered_sells), ("buy", buy_ids)):
+            for security_id in phase_ids:
                 delta = orders[security_id]
-                if (phase == "sell" and delta >= 0) or (phase == "buy" and delta <= 0):
-                    continue
                 found = self._market.close_on_or_before(security_id, day)
                 if found is None or found[0] != day:
                     self._warnings.append(
@@ -399,6 +417,12 @@ class BacktestEngine:
                 shares = abs(delta)
                 if delta < 0:
                     costs = self._costs.cost(security_id, Side.SELL, price * shares, liquidity)
+                    if portfolio.cash + price * shares - costs.total < 0:
+                        self._warnings.append(
+                            f"{day}: dust sale of {security_id} costs more than it raises "
+                            "and cash cannot absorb it; deferred"
+                        )
+                        continue
                     portfolio.sell(security_id, shares, price, costs.total, day)
                 else:
                     shares = self._affordable_shares(
