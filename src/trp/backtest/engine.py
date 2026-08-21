@@ -169,11 +169,17 @@ class BacktestEngine:
         market: MarketData,
         universe_query: UniverseQuery,
         is_stamp_exempt: StampExemption = no_exemptions,
+        fundamentals_root: Path | None = None,
+        fx_root: Path | None = None,
+        shares_root: Path | None = None,
     ) -> None:
         self._config = config
         self._market = market
         self._universe_query = universe_query
         self._costs = CostModel(config, is_stamp_exempt)
+        self._fundamentals_root = fundamentals_root
+        self._fx_root = fx_root
+        self._shares_root = shares_root
         self._calendar = get_trading_calendar(config.mic)
         self._warnings: list[str] = []
         self._reference = default_reference_data()
@@ -295,6 +301,9 @@ class BacktestEngine:
                     universe_query=self._universe_query,
                     universe=config.universe,
                     mic=config.mic,
+                    fundamentals_root=self._fundamentals_root,
+                    fx_root=self._fx_root,
+                    shares_root=self._shares_root,
                 )
                 pre_trade_value = portfolio.value(self._marks(portfolio, day))
                 targets = strategy(context, portfolio.positions(), pre_trade_value)

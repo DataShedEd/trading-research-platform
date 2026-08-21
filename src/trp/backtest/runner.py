@@ -121,8 +121,17 @@ def run(
     settings = load_settings()
     market = load_market(config)
     universe_query = UniverseQuery(settings.canonical_dir / "universes")
-    strategy = factor_strategy(FactorRegistry.load().get(config.factor), config)
-    engine = BacktestEngine(config, market, universe_query)
+    strategy = factor_strategy(
+        FactorRegistry.load().get(config.factor, version=config.factor_version), config
+    )
+    engine = BacktestEngine(
+        config,
+        market,
+        universe_query,
+        fundamentals_root=settings.canonical_dir / "fundamentals",
+        fx_root=settings.canonical_dir / "fx",
+        shares_root=settings.canonical_dir / "shares",
+    )
     logger.info("running %s (%s)", config.name, config.config_hash())
     result = engine.run(strategy)
 

@@ -13,6 +13,7 @@ adding future-dated data to the inputs cannot change any result.
 from bisect import bisect_left
 from datetime import UTC, date, datetime, time, timedelta
 from decimal import Decimal
+from pathlib import Path
 from typing import TYPE_CHECKING
 
 import polars as pl
@@ -42,6 +43,9 @@ class BacktestContext:
         universe: str,
         mic: str,
         factor_lookback_days: int = 450,
+        fundamentals_root: Path | None = None,
+        fx_root: Path | None = None,
+        shares_root: Path | None = None,
     ) -> None:
         self._clock = clock
         self._as_of = datetime.combine(clock, time(23, 59, 59), tzinfo=UTC)
@@ -53,6 +57,9 @@ class BacktestContext:
         # before the clock — enough for a 12-1 momentum window plus volatility estimation.
         # A factor needing deeper history must raise this, never silently compute short.
         self._factor_lookback_days = factor_lookback_days
+        self._fundamentals_root = fundamentals_root
+        self._fx_root = fx_root
+        self._shares_root = shares_root
         self._returns_by_sid: dict[SecurityId, ReturnsEngine] = {}
 
     @property
@@ -149,5 +156,8 @@ class BacktestContext:
             actions=actions,
             input_versions=self._market.input_versions,
             mic=self._mic,
+            fundamentals_root=self._fundamentals_root,
+            fx_root=self._fx_root,
+            shares_root=self._shares_root,
         )
         return compute_factor(definition, context)
