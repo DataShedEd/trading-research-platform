@@ -155,9 +155,7 @@ class Registry:
             experiment.model_dump_json(),
         )
         if insert:
-            self._connection.execute(
-                "INSERT INTO experiments VALUES (?, ?, ?, ?, ?, ?, ?)", values
-            )
+            self._connection.execute("INSERT INTO experiments VALUES (?, ?, ?, ?, ?, ?, ?)", values)
         else:
             self._connection.execute(
                 "UPDATE experiments SET hypothesis_id=?, name=?, status=?, "
@@ -178,17 +176,13 @@ class Registry:
 
     def start(self, experiment_id: str, *, at: datetime | None = None) -> Experiment:
         experiment = self.experiment(experiment_id)
-        updated = _evolve(
-            experiment, status=ExperimentStatus.RUNNING, started_at=at or _now()
-        )
+        updated = _evolve(experiment, status=ExperimentStatus.RUNNING, started_at=at or _now())
         self._transition(experiment, updated)
         return updated
 
     def complete(self, experiment_id: str, *, at: datetime | None = None) -> Experiment:
         experiment = self.experiment(experiment_id)
-        updated = _evolve(
-            experiment, status=ExperimentStatus.COMPLETED, completed_at=at or _now()
-        )
+        updated = _evolve(experiment, status=ExperimentStatus.COMPLETED, completed_at=at or _now())
         self._transition(experiment, updated)
         return updated
 
@@ -196,9 +190,7 @@ class Registry:
         if not reason.strip():
             raise RegistryError("abandonment requires a reason")
         experiment = self.experiment(experiment_id)
-        updated = _evolve(
-            experiment, status=ExperimentStatus.ABANDONED, abandoned_reason=reason
-        )
+        updated = _evolve(experiment, status=ExperimentStatus.ABANDONED, abandoned_reason=reason)
         self._transition(experiment, updated)
         return updated
 
@@ -212,10 +204,7 @@ class Registry:
         run_experiment_id, reproducible = run
         if run_experiment_id != experiment_id:
             raise RegistryError("the cited evidence run belongs to a different experiment")
-        if (
-            experiment.classification is Classification.CONFIRMATORY
-            and not reproducible
-        ):
+        if experiment.classification is Classification.CONFIRMATORY and not reproducible:
             raise RegistryError(
                 "a non-reproducible run (dirty working tree) cannot be evidence for a "
                 "confirmatory conclusion"
