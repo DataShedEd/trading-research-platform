@@ -1,14 +1,49 @@
-# Interrogating the data yourself
+# Doing research and interrogating the data yourself
 
-Three layers, from rawest to most guarded. Everything below is read-only.
+Start with the lab if you are running an experiment; drop to SQL when you have an ad-hoc
+question about the data itself.
+
+## 0. The lab (run and evaluate experiments — the front door)
+
+```python
+from trp import lab
+
+exp = lab.design(
+    "qvm-ftse250-oos",              # experiment name (also the run-record prefix)
+    factor="qvm_equal",
+    universe="FTSE250",
+    hypothesis="QVM's IR advantage survives out of sample",   # or an existing "HYP-..." id
+    rationale="in-sample result needs an untouched test set",
+    tags=("out-of-sample",),
+)
+run_id = lab.run(exp)               # backtest + manifest + metrics + report.html, digest printed
+lab.compare("qvm-*")                # aligned metrics frame across matching experiments
+lab.report("qvm-*")                 # single-page HTML comparison of their latest runs
+lab.conclude(exp, "supported", text="...", weaknesses=["..."])
+```
+
+That is the whole loop: idea → registered experiment → run → evaluation → recorded
+conclusion, without leaving Python. `lab.run` writes **`report.html` inside the run
+record** — equity vs benchmark, drawdown, rolling Sharpe, annual excess, costs, warnings —
+fully self-contained (open it in any browser, `lab.open_in_browser(path)` if lazy).
+
+The lab is a facade over the experiment registry, never a bypass: hypotheses precede
+experiments, manifests capture automatically, a dirty working tree poisons confirmatory
+evidence, and the variant counter still triggers the multiple-testing warning. Defaults
+are the platform's honest ones (DEC-014 start, pessimistic costs, ISF total-return
+benchmark); every default is overridable per call. `lab.experiments()`, `lab.results(name)`
+and the `experiments`/`runs` SQL tables below give you the audit trail.
+
+Everything below is read-only interrogation of the underlying stores.
 
 ## The one trap to know first
 
 The price store is append-only, so **two copies of every bar coexist**:
 
-- `source = 'eodhd-gbx'` — the DEC-020 unit-repaired rows. **Use these.**
+- `source = 'eodhd-gbx2'` — the DEC-020 unit-repaired rows (v2 adds the Melrose
+  segment adjudication). **Use these.**
 - `source = 'eodhd'` — the provider's original rows, kept for audit. Some series are in
-  pounds, some flip units mid-history (see `data/canonical/corporate_actions/unit_repair_report.json`).
+  pounds, some flip units mid-history (see `data/canonical/corporate_actions/unit_repair_report_gbx2.json`).
 
 A naive glob over `data/canonical/prices/**` returns both and doubles every row. The SQL
 console below already filters for you; if you query the files directly, filter on `source`.

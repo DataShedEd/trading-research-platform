@@ -117,6 +117,7 @@ def open_console(database: str = ":memory:") -> duckdb.DuckDBPyConnection:
             "factor_panel",
             f'SELECT security_id, "end", {columns} FROM factor_values GROUP BY security_id, "end"',
         )
+    _mirror_registry(con)
     for name, filename in (
         ("backtest_daily", "daily.parquet"),
         ("backtest_events", "events.parquet"),
@@ -130,9 +131,76 @@ def open_console(database: str = ":memory:") -> duckdb.DuckDBPyConnection:
     return con
 
 
+def _mirror_registry(con: duckdb.DuckDBPyConnection) -> None:
+    """Experiments, runs and conclusions from the registry, flattened for SQL analysis
+    (join `runs.sharpe` against factor_panel in one session). Mirrored copies, rebuilt
+    on every `make db`; the registry sqlite stays the source of truth."""
+    import json
+    import sqlite3
+
+    from trp.config import load_settings
+
+    registry_path = load_settings().data_dir / "registry.sqlite"
+    if not registry_path.exists():
+        return
+    sqlite = sqlite3.connect(registry_path)
+    experiments = []
+    for (payload,) in sqlite.execute("SELECT payload FROM experiments").fetchall():
+        record = json.loads(payload)
+        conclusion = record.get("conclusion") or {}
+        experiments.append(
+            {
+                "name": record["name"],
+                "experiment_id": record["experiment_id"],
+                "hypothesis_id": record["hypothesis_id"],
+                "status": record["status"],
+                "classification": record["classification"],
+                "universe": record["config"]["universe"],
+                "factor": record["config"]["factor"],
+                "top_n": record["config"]["top_n"],
+                "tags": ",".join(record.get("tags", [])),
+                "created_at": record["created_at"],
+                "judgement": conclusion.get("judgement"),
+                "conclusion": conclusion.get("text"),
+                "multiple_testing_warning": conclusion.get("multiple_testing_warning"),
+            }
+        )
+    runs = []
+    for row in sqlite.execute(
+        "SELECT run_id, experiment_id, started_at, reproducible, metrics, artefact_path FROM runs"
+    ).fetchall():
+        metrics = json.loads(row[4]) if row[4] else {}
+        relative = metrics.get("relative") or {}
+        runs.append(
+            {
+                "run_id": row[0],
+                "experiment_id": row[1],
+                "started_at": row[2],
+                "reproducible": bool(row[3]),
+                "cagr": metrics.get("cagr"),
+                "sharpe": metrics.get("sharpe"),
+                "sortino": metrics.get("sortino"),
+                "max_drawdown": metrics.get("max_drawdown"),
+                "volatility": metrics.get("annualised_volatility"),
+                "excess_cagr": relative.get("excess_cagr"),
+                "information_ratio": relative.get("information_ratio"),
+                "tracking_error": relative.get("tracking_error"),
+                "artefact_path": row[5],
+            }
+        )
+    sqlite.close()
+    import polars as pl
+
+    for table, rows in (("experiments", experiments), ("runs", runs)):
+        if rows:
+            frame = pl.DataFrame(rows)  # noqa: F841 - registered by name below
+            con.execute(f"CREATE OR REPLACE TABLE {table} AS SELECT * FROM frame")
+
+
 _HELP = """Views: prices, prices_original, dividends, splits, dividends_original,
 splits_original, membership, securities, identifiers, listings, entities,
-backtest_daily, backtest_events, backtest_rebalances.
+fundamentals, factor_values, factor_panel, backtest_daily, backtest_events,
+backtest_rebalances, experiments, runs.
 Commands: \\d <view> describes it; quit/exit leaves. Cookbook: docs/QUERYING.md"""
 
 

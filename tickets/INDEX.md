@@ -50,6 +50,7 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-099](QNT-099-first-registered-experiment.md) | First registered experiment: QVM vs momentum | P1 | DONE |
 | [QNT-100](QNT-100-lifecycle-delistings.md) | Lifecycle delisting records | P2 | DONE |
 | [QNT-101](QNT-101-dust-sell-ordering.md) | Dust-sell ordering fix | P2 | DONE |
+| [QNT-102](QNT-102-researcher-lab-facade.md) | Researcher lab facade + HTML reports | P1 | DONE |
 
 ## EPIC 4 — Fundamental Data
 
