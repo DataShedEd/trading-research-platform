@@ -8,14 +8,26 @@ this roadmap — this file states ordering and intent only.
 Question to answer: *can we reliably reconstruct historical UK equity data without survivorship
 bias or future information?*
 
-**Status 2026-08-18: MILESTONE 1 COMPLETE.** The survivorship gate (QNT-041,
-`uv run pytest -m gate`) is green on the real dataset: `members("FTSE100", date, as_of)`
-answers correctly on every monthly date 2010–2026 with delisted members intact, every
-member inside DEC-014 coverage has price data (DEC-016's 17 adjudicated gaps ≈2.5% of
-member-months excepted, list may only shrink), and 1.26m canonical bars + 9.6k corporate
-actions back the universe. Remaining under this milestone's epics: QNT-032 (FMP adapter,
-BLOCKED by choice — likely never needed) and FTSE 250/350 sourcing (future, same
-machinery). M1's question is answered: yes, from 2010 onwards, with enumerated exceptions.
+**Status 2026-08-21 (qualified per DEC-024) — two claims of different strength:**
+
+- **Market data / historical universe: PASS.** The survivorship gate (QNT-041,
+  `uv run pytest -m gate`) is green on the real dataset: `members("FTSE100", date, as_of)`
+  answers correctly on every monthly date 2010–2026 with delisted members intact, every
+  member inside DEC-014 coverage has price data (DEC-016's 17 adjudicated gaps ≈2.5% of
+  member-months excepted — known survivorship-related missingness, direction
+  unquantified, per DEC-025; list may only shrink), and 1.26m canonical bars + 9.6k
+  corporate actions back the universe.
+- **True point-in-time fundamentals: PARTIAL / IMPUTED.** EODHD carries no reliable
+  historical publication timestamps for most UK/EU fundamental records, so fundamental
+  availability is DEC-007 conservative imputation, not observed publication dates.
+  Imputed availability is never to be described as equivalent to observed timestamps.
+  QNT-103 (real publication dates) and QNT-104 (reporting-lag sensitivity) track the
+  upgrade path; price-only research is unaffected.
+
+Remaining under this milestone's epics: QNT-032 (FMP adapter, BLOCKED by choice — likely
+never needed) and FTSE 250/350 sourcing (future, same machinery). M1's question is
+answered for prices, corporate actions and universes: yes, from 2010 onwards, with
+enumerated exceptions. For fundamentals it is answered only under imputation.
 
 Critical path:
 

@@ -51,6 +51,8 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-100](QNT-100-lifecycle-delistings.md) | Lifecycle delisting records | P2 | DONE |
 | [QNT-101](QNT-101-dust-sell-ordering.md) | Dust-sell ordering fix | P2 | DONE |
 | [QNT-102](QNT-102-researcher-lab-facade.md) | Researcher lab facade + HTML reports | P1 | DONE |
+| [QNT-105](QNT-105-second-provider-missing-histories.md) | Source DEC-016 missing histories (second provider) | P3 | BACKLOG |
+| [QNT-106](QNT-106-ma-consideration-records.md) | Historical M&A consideration records | P3 | BACKLOG |
 
 ## EPIC 4 — Fundamental Data
 
@@ -62,6 +64,7 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-023](QNT-023-fundamental-currency.md) | Fundamental currency handling | P1 | DONE |
 | [QNT-024](QNT-024-fundamental-storage.md) | Fundamental storage layout | P1 | DONE |
 | [QNT-025](QNT-025-asof-fundamental-queries.md) | As-of fundamental query API and time-travel tests | P1 | DONE |
+| [QNT-103](QNT-103-uk-fundamental-publication-dates.md) | UK fundamental publication dates from primary sources | P2 | BACKLOG |
 
 ## EPIC 5 — Data Provider Bake-Off
 
@@ -101,6 +104,8 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-047](QNT-047-cross-sectional-transforms.md) | Cross-sectional transforms | P2 | DONE |
 | [QNT-048](QNT-048-composite-scoring.md) | Composite factor scoring | P2 | DONE |
 | [QNT-049](QNT-049-factor-pit-tests.md) | Factor point-in-time test suite | P2 | DONE |
+| [QNT-104](QNT-104-fundamental-lag-sensitivity.md) | Fundamental reporting-lag sensitivity testing | P2 | BACKLOG |
+| [QNT-107](QNT-107-momentum-golden-observations.md) | 12-1 momentum convention + golden observations | P1 | IN_PROGRESS |
 
 ## EPIC 8 — Backtesting Engine
 
@@ -114,6 +119,8 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-055](QNT-055-benchmark-relative.md) | Benchmark and relative performance | P2 | DONE |
 | [QNT-056](QNT-056-rolling-statistics.md) | Rolling statistics | P2 | DONE |
 | [QNT-057](QNT-057-backtest-leakage-tests.md) | Backtest correctness and leakage regression suite | P2 | DONE |
+| [QNT-108](QNT-108-synthetic-market-gate.md) | Synthetic-market hand-calculated backtest gate | P1 | IN_PROGRESS |
+| [QNT-109](QNT-109-future-data-invariance-classes.md) | Future-data invariance per data class | P1 | IN_PROGRESS |
 
 ## EPIC 9 — Risk Engine
 
@@ -133,6 +140,7 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-064](QNT-064-run-capture-manifest.md) | Run capture and reproducibility manifest | P2 | DONE |
 | [QNT-065](QNT-065-results-persistence.md) | Results persistence and retrieval | P2 | DONE |
 | [QNT-066](QNT-066-hypothesis-workflow.md) | Hypothesis–experiment–evidence–conclusion workflow | P2 | DONE |
+| [QNT-110](QNT-110-canonical-momentum-baseline.md) | Canonical momentum baseline: report + diagnostics | P1 | IN_PROGRESS |
 
 ## EPIC 11 — Portfolio Construction
 
