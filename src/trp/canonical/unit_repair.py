@@ -42,7 +42,25 @@ import polars as pl
 
 logger = logging.getLogger(__name__)
 
-REPAIRED_SOURCE = "eodhd-gbx"
+ORIGINAL_SOURCE = "eodhd"
+REPAIRED_SOURCE = "eodhd-gbx2"
+"""Bumped when adjudications change the repaired values: the store is append-only, so a
+re-adjudication is a NEW full dataset under a new source, never an edit. gbx (v1) had
+Melrose's whole series x100; gbx2 adds the segment adjudication below."""
+
+DIVIDENDS_FILE = "eodhd_ftse100_dividends_gbx2.parquet"
+SPLITS_FILE = "eodhd_ftse100_splits_gbx2.parquet"
+REPORT_FILE = "unit_repair_report_gbx2.json"
+
+ADJUDICATED_SEGMENT_SCALES: dict[str, list[tuple[str, int]]] = {
+    # Melrose: vendor basis changes at the April 2023 Dowlais demerger + consolidation.
+    # Raw closes AFTER 2023-04-21 are GBX-native (404.35 on 2023-04-24 vs the real
+    # ~404p tape), so the classifier's whole-series x100 must stop there; the earlier
+    # era keeps x100 (a consistently scaled series is harmless for within-era ratios,
+    # and Melrose stays on the market-value exclusion list regardless).
+    "SEC-fa995f37-4006-480f-b273-410aa6790c12": [("2023-04-22", 1)],
+}
+"""security_id -> [(from_date ISO, global scale override)]. Grows only by human review."""
 
 RATIO_BAND_LOW = 70
 RATIO_BAND_HIGH = 140
@@ -183,7 +201,22 @@ def repair_prices(
             out_frames.append(frame)
             continue
         repair.global_scale = decision
-        out_frames.append(_apply_scales(frame, [s * decision for s in row_scale]))
+        segments = ADJUDICATED_SEGMENT_SCALES.get(security_id, [])
+        if segments:
+            from datetime import date as date_type
+
+            boundaries = [(date_type.fromisoformat(d), scale) for d, scale in segments]
+            per_row = []
+            for row_date, base in zip(dates, row_scale, strict=True):
+                scale = decision
+                for boundary, override in boundaries:
+                    if row_date >= boundary:
+                        scale = override
+                per_row.append(base * scale)
+            repair.evidence += f"; segment adjudication {segments}"
+            out_frames.append(_apply_scales(frame, per_row))
+        else:
+            out_frames.append(_apply_scales(frame, [s * decision for s in row_scale]))
 
     repaired = pl.concat(out_frames).sort(["security_id", "trade_date"])
     return repaired, report
@@ -397,7 +430,7 @@ def run_repair(*, write: bool) -> RepairReport:
     actions_dir = settings.canonical_dir / "corporate_actions"
     prices_root = settings.canonical_dir / "prices"
     prices = pl.concat([pl.read_parquet(f) for f in sorted(prices_root.rglob("part-*.parquet"))])
-    original = prices.filter(pl.col("source") != REPAIRED_SOURCE)
+    original = prices.filter(pl.col("source") == ORIGINAL_SOURCE)
     dividends = pl.read_parquet(actions_dir / "eodhd_ftse100_dividends.parquet")
     splits = pl.read_parquet(actions_dir / "eodhd_ftse100_splits.parquet")
 
@@ -420,9 +453,9 @@ def run_repair(*, write: bool) -> RepairReport:
     if not write:
         return report
 
-    report_path = actions_dir / "unit_repair_report.json"
-    dividends_path = actions_dir / "eodhd_ftse100_dividends_gbx.parquet"
-    splits_path = actions_dir / "eodhd_ftse100_splits_gbx.parquet"
+    report_path = actions_dir / REPORT_FILE
+    dividends_path = actions_dir / DIVIDENDS_FILE
+    splits_path = actions_dir / SPLITS_FILE
     for path in (report_path, dividends_path, splits_path):
         if path.exists():
             raise UnitRepairError(f"{path} exists; repairs are never overwritten")

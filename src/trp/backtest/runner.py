@@ -56,15 +56,24 @@ def _file_digest(path: Path) -> str:
 def load_actions(actions_dir: Path) -> tuple[list[CorporateAction], dict[str, str]]:
     actions: list[CorporateAction] = []
     versions: dict[str, str] = {}
-    # QNT-093 unit-repaired datasets: prices under source=eodhd-gbx, *_gbx action files.
-    dividends_path = actions_dir / "eodhd_ftse100_dividends_gbx.parquet"
-    splits_path = actions_dir / "eodhd_ftse100_splits_gbx.parquet"
+    # QNT-093/100 unit-repaired datasets, versioned with REPAIRED_SOURCE.
+    from trp.canonical.unit_repair import DIVIDENDS_FILE, SPLITS_FILE
+
+    dividends_path = actions_dir / DIVIDENDS_FILE
+    splits_path = actions_dir / SPLITS_FILE
     for row in pl.read_parquet(dividends_path).iter_rows(named=True):
         actions.append(Dividend.model_validate(row))
     for row in pl.read_parquet(splits_path).iter_rows(named=True):
         actions.append(Split.model_validate(row))
     versions["actions:dividends"] = _file_digest(dividends_path)
     versions["actions:splits"] = _file_digest(splits_path)
+    from trp.canonical.lifecycle import load_delisting_actions
+
+    delistings = load_delisting_actions(actions_dir)
+    actions.extend(delistings)
+    lifecycle_path = actions_dir / "lifecycle_delistings.parquet"
+    if lifecycle_path.exists():
+        versions["actions:delistings"] = _file_digest(lifecycle_path)
     return actions, versions
 
 

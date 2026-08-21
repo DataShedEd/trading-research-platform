@@ -48,6 +48,7 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-097](QNT-097-eodhd-fundamentals-canonicalisation.md) | EODHD fundamentals backfill + canonicalisation | P1 | DONE |
 | [QNT-098](QNT-098-market-cap-integrity.md) | Market-cap integrity (dated shares, price currency) | P1 | DONE |
 | [QNT-099](QNT-099-first-registered-experiment.md) | First registered experiment: QVM vs momentum | P1 | DONE |
+| [QNT-100](QNT-100-lifecycle-delistings.md) | Lifecycle delisting records | P2 | IN_PROGRESS |
 
 ## EPIC 4 — Fundamental Data
 

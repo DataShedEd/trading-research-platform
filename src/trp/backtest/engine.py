@@ -231,7 +231,14 @@ class BacktestEngine:
                     action.security_id, proceeds, day, note="merger cash consideration"
                 )
             elif isinstance(action, DelistingAction):
-                proceeds = Decimal(0) if action.reason is DelistingReason.FAILURE else None
+                if action.reason is DelistingReason.FAILURE:
+                    proceeds = Decimal(0)
+                else:
+                    # DEC-023: without cash terms, the last traded close is the honest
+                    # estimate for every non-failure exit — it approximates acquisition
+                    # consideration and is what a forced seller would have realised.
+                    found = self._market.close_on_or_before(action.security_id, day)
+                    proceeds = found[1] if found is not None else None
                 portfolio.resolve_delisting(
                     action.security_id,
                     proceeds,

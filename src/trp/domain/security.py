@@ -54,6 +54,7 @@ class DelistingReason(StrEnum):
     VOLUNTARY = "voluntary"
     REGULATORY = "regulatory"
     EXCHANGE_MOVE = "exchange_move"
+    UNKNOWN = "unknown"  # evidence-free exits: resolved at last close, never fabricated
 
 
 class Entity(FrozenModel):

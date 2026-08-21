@@ -279,3 +279,23 @@ def test_write_run_persists_and_never_overwrites(tmp_path: Path) -> None:
     assert meta["git_commit"]
     with pytest.raises(LedgerError, match="never overwritten"):
         write_run(result, tmp_path)
+
+
+def test_non_failure_delisting_without_terms_resolves_at_last_close() -> None:
+    """DEC-023: an acquisition/unknown exit with no cash terms pays the last traded
+    close on the ex-date — not a write-off, and not 15 days of forced-exit delay."""
+    bars = daily_bars(A, date(2020, 11, 2), date(2021, 3, 31), "100", {date(2021, 3, 1): "120"})
+    delisting = DelistingAction(
+        security_id=A,
+        ex_date=date(2021, 4, 1),
+        source="t",
+        available_at=KNOWN,
+        reason=DelistingReason.UNKNOWN,
+        last_trading_date=date(2021, 3, 31),
+    )
+    result = run_engine(make_config(), make_market(bars, [delisting]))
+    exits = result.events.filter(result.events["kind"] == "delisting_proceeds")
+    assert exits["note"].to_list() == ["delisting (unknown)"]
+    assert exits["price"].to_list() == ["120"]  # the last close, not zero
+    assert result.daily["value"].to_list()[-1] == 1002000.0  # 100 shares: +20 each
+    assert not any("forced exit" in w for w in result.warnings)

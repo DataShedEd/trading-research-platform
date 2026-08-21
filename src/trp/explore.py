@@ -48,18 +48,22 @@ def open_console(database: str = ":memory:") -> duckdb.DuckDBPyConnection:
     def view(name: str, sql: str) -> None:
         con.sql(f"CREATE OR REPLACE VIEW {name} AS {sql}")
 
+    from trp.canonical.unit_repair import ORIGINAL_SOURCE, REPAIRED_SOURCE
+
     prices_glob = f"{canonical}/prices/*/part-*.parquet"
-    view("prices", f"SELECT * FROM read_parquet('{prices_glob}') WHERE source = 'eodhd-gbx'")
+    view(
+        "prices",
+        f"SELECT * FROM read_parquet('{prices_glob}') WHERE source = '{REPAIRED_SOURCE}'",
+    )
     view(
         "prices_original",
-        f"SELECT * FROM read_parquet('{prices_glob}') WHERE source <> 'eodhd-gbx'",
+        f"SELECT * FROM read_parquet('{prices_glob}') WHERE source = '{ORIGINAL_SOURCE}'",
     )
     actions = canonical / "corporate_actions"
-    view(
-        "dividends",
-        f"SELECT * FROM read_parquet('{actions}/eodhd_ftse100_dividends_gbx.parquet')",
-    )
-    view("splits", f"SELECT * FROM read_parquet('{actions}/eodhd_ftse100_splits_gbx.parquet')")
+    from trp.canonical.unit_repair import DIVIDENDS_FILE, SPLITS_FILE
+
+    view("dividends", f"SELECT * FROM read_parquet('{actions}/{DIVIDENDS_FILE}')")
+    view("splits", f"SELECT * FROM read_parquet('{actions}/{SPLITS_FILE}')")
     view(
         "dividends_original",
         f"SELECT * FROM read_parquet('{actions}/eodhd_ftse100_dividends.parquet')",
