@@ -4111,7 +4111,7 @@
     }
    ],
    "matched_via": "ftse100-master",
-   "security_id": "SEC-5f255bba-6802-429e-9878-7e7704a90bfa"
+   "security_id": "SEC-4bb51071-4e69-45db-ac49-6e77031b2467"
   },
   "pennon": {
    "display": "Pennon Group",
@@ -8225,7 +8225,8 @@
     }
    ],
    "matched_via": "ftse100-master",
-   "security_id": "SEC-3bc972ab-71cf-435e-81af-3d4e9e598a4b"
+   "security_id": "SEC-3bc972ab-71cf-435e-81af-3d4e9e598a4b",
+   "eodhd_code": "AVON"
   },
   "kingfisher": {
    "display": "Kingfisher",
@@ -9673,8 +9674,7 @@
     }
    ],
    "matched_via": "ftse100-master",
-   "security_id": "SEC-f8c68993-0cd1-4472-b588-2d493bb0d457",
-   "eodhd_code": "AVON"
+   "security_id": "SEC-3bc972ab-71cf-435e-81af-3d4e9e598a4b"
   },
   "ashoka india equity investment trust": {
    "display": "Ashoka India Equity Investment Trust",

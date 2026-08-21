@@ -2814,242 +2814,242 @@
     "name": "SSE PLC ordinary"
    },
    {
+    "security_id": "SEC-2c0bb2ac-a2d3-4c6b-99d8-8469bed8aa6e",
+    "status": "ok",
+    "value": 0.01465117468568522,
+    "rank": 67,
+    "name": "Alliance Witan Ord ordinary"
+   },
+   {
     "security_id": "SEC-d663a5db-2574-4542-869a-83b35a62b1c7",
     "status": "ok",
     "value": 0.013295652940104263,
-    "rank": 67,
+    "rank": 68,
     "name": "Barratt Redrow plc ordinary"
    },
    {
     "security_id": "SEC-2cf5ab8f-0d6f-4b50-8892-81dc731a750c",
     "status": "ok",
     "value": 0.008961486441746436,
-    "rank": 68,
+    "rank": 69,
     "name": "Howden Joinery Group Plc ordinary"
    },
    {
     "security_id": "SEC-080266e4-54af-4cff-8e63-6355c269927d",
     "status": "ok",
     "value": 0.00652980738346276,
-    "rank": 69,
+    "rank": 70,
     "name": "Unite Group PLC ordinary"
    },
    {
     "security_id": "SEC-cb1fb684-b570-4bb9-a446-94eb1bb9a2e3",
     "status": "ok",
     "value": 0.006494997020275894,
-    "rank": 70,
+    "rank": 71,
     "name": "Experian PLC ordinary"
    },
    {
     "security_id": "SEC-690a5ac5-93dc-435a-8227-e25adcdf287a",
     "status": "ok",
     "value": 0.005288929036782131,
-    "rank": 71,
+    "rank": 72,
     "name": "Whitbread PLC ordinary"
    },
    {
     "security_id": "SEC-554493bc-c379-435b-8d5f-076b5cfdd2af",
     "status": "ok",
     "value": 0.0029981082322161345,
-    "rank": 72,
+    "rank": 73,
     "name": "Auto Trader Group plc ordinary"
    },
    {
     "security_id": "SEC-cdf6b074-be61-4757-b264-636fb23e77cf",
     "status": "ok",
     "value": -0.002453880960668231,
-    "rank": 73,
+    "rank": 74,
     "name": "Persimmon PLC ordinary"
    },
    {
     "security_id": "SEC-9dd156c2-277e-42fc-a241-a825f50d4e2c",
     "status": "ok",
     "value": -0.010606060606060619,
-    "rank": 74,
+    "rank": 75,
     "name": "Polar Capital Technology Trust ordinary"
    },
    {
     "security_id": "SEC-b13c2e20-3a80-4cfe-a65e-74c243f95a0a",
     "status": "ok",
     "value": -0.04869675814903651,
-    "rank": 75,
+    "rank": 76,
     "name": "Pershing Square Holdings Ltd ordinary"
    },
    {
     "security_id": "SEC-5f40e6b2-88bc-4836-ae6a-ba1b0a951678",
     "status": "ok",
     "value": -0.05882602821490157,
-    "rank": 76,
+    "rank": 77,
     "name": "Informa PLC ordinary"
    },
    {
     "security_id": "SEC-3161f087-04ec-4ad6-bcac-6b7ab74d521f",
     "status": "ok",
     "value": -0.06953667893917403,
-    "rank": 77,
+    "rank": 78,
     "name": "Intermediate Capital Group PLC ordinary"
    },
    {
     "security_id": "SEC-eb8cc109-20d8-4a26-8aa2-043c19972b00",
     "status": "ok",
     "value": -0.07172251779770389,
-    "rank": 78,
+    "rank": 79,
     "name": "The Berkeley Group Holdings plc ordinary"
    },
    {
     "security_id": "SEC-184ffdca-7026-4a96-bd44-f5aa74eb21ab",
     "status": "ok",
     "value": -0.09280484461001581,
-    "rank": 79,
+    "rank": 80,
     "name": "Anglo American PLC ordinary"
    },
    {
     "security_id": "SEC-1624ed01-93b1-4201-9a5c-97c097a42ac9",
     "status": "ok",
     "value": -0.09567416748880642,
-    "rank": 80,
+    "rank": 81,
     "name": "Taylor Wimpey PLC ordinary"
    },
    {
     "security_id": "SEC-71444bc6-0757-4a56-a9b9-52505a3a1d30",
     "status": "ok",
     "value": -0.09714992785501675,
-    "rank": 81,
+    "rank": 82,
     "name": "Rio Tinto PLC ordinary"
    },
    {
     "security_id": "SEC-c9e67a21-f2f5-42fc-8158-8975455cfe2d",
     "status": "ok",
     "value": -0.09930112242398914,
-    "rank": 82,
+    "rank": 83,
     "name": "Shell plc ordinary"
    },
    {
     "security_id": "SEC-d9202331-eaf4-4dc4-8455-2e6355d70f92",
     "status": "ok",
     "value": -0.11435466845670539,
-    "rank": 83,
+    "rank": 84,
     "name": "AstraZeneca PLC ordinary"
    },
    {
     "security_id": "SEC-ab2f8ad9-5569-470a-ad25-004880852b2a",
     "status": "ok",
     "value": -0.12185042747304464,
-    "rank": 84,
+    "rank": 85,
     "name": "Associated British Foods PLC ordinary"
    },
    {
     "security_id": "SEC-20a8f786-51e8-49ed-9cf0-bdbe15cc0cb3",
     "status": "ok",
     "value": -0.127581178018505,
-    "rank": 85,
+    "rank": 86,
     "name": "DCC plc ordinary"
    },
    {
     "security_id": "SEC-fa995f37-4006-480f-b273-410aa6790c12",
     "status": "ok",
     "value": -0.1442004623754577,
-    "rank": 86,
+    "rank": 87,
     "name": "Melrose Industries PLC ordinary"
    },
    {
     "security_id": "SEC-51b68f13-53b9-45e7-93ab-35f3eea9c6f4",
     "status": "ok",
     "value": -0.15628115793813568,
-    "rank": 87,
+    "rank": 88,
     "name": "WPP PLC ordinary"
    },
    {
     "security_id": "SEC-be121a43-cb67-4efb-b519-a675fb31328b",
     "status": "ok",
     "value": -0.16090047393364926,
-    "rank": 88,
+    "rank": 89,
     "name": "Antofagasta PLC ordinary"
    },
    {
     "security_id": "SEC-faa09e20-78c5-48fa-a80c-045c480c816c",
     "status": "ok",
     "value": -0.1620075727837802,
-    "rank": 89,
+    "rank": 90,
     "name": "Diageo PLC ordinary"
    },
    {
     "security_id": "SEC-d6c2acb3-7fc8-45df-841d-c5b2613da2ed",
     "status": "ok",
     "value": -0.16368226071912395,
-    "rank": 90,
+    "rank": 91,
     "name": "Ashtead Group PLC ordinary"
    },
    {
     "security_id": "SEC-2e73e173-61c3-4d49-b013-6b91abce7910",
     "status": "ok",
     "value": -0.16677334179358516,
-    "rank": 91,
+    "rank": 92,
     "name": "Mondi PLC ordinary"
    },
    {
     "security_id": "SEC-639f4970-01af-451a-8d40-268a56e15d4e",
     "status": "ok",
     "value": -0.18812695116026534,
-    "rank": 92,
+    "rank": 93,
     "name": "Bunzl PLC ordinary"
    },
    {
     "security_id": "SEC-4c832bcc-1646-4e65-a68d-51b098bf5e40",
     "status": "ok",
     "value": -0.1928911023083586,
-    "rank": 93,
+    "rank": 94,
     "name": "Segro Plc ordinary"
    },
    {
     "security_id": "SEC-a7f79b94-b305-4622-b2b0-c053135e3dd6",
     "status": "ok",
     "value": -0.19430592461537988,
-    "rank": 94,
+    "rank": 95,
     "name": "Croda International PLC ordinary"
    },
    {
     "security_id": "SEC-fe2af4b1-432a-41cf-8fe2-1260a48415a1",
     "status": "ok",
     "value": -0.19641632181062274,
-    "rank": 95,
+    "rank": 96,
     "name": "BP PLC ordinary"
    },
    {
     "security_id": "SEC-fa28b4f2-b431-466a-ad12-dfe9ebf8eaca",
     "status": "ok",
     "value": -0.21939836365233578,
-    "rank": 96,
+    "rank": 97,
     "name": "Rentokil Initial PLC ordinary"
    },
    {
     "security_id": "SEC-aa02a61b-7010-47b4-a89c-fa1afea8a037",
     "status": "ok",
     "value": -0.29417249194538486,
-    "rank": 97,
+    "rank": 98,
     "name": "JD Sports Fashion PLC ordinary"
    },
    {
     "security_id": "SEC-d474eef4-bd80-43bd-befe-224ab15d6a50",
     "status": "ok",
     "value": -0.3077026174076106,
-    "rank": 98,
+    "rank": 99,
     "name": "Spirax Group plc ordinary"
    },
    {
     "security_id": "SEC-7903a446-bf9d-4caf-875d-e2709b56cb89",
     "status": "ok",
     "value": -0.3717579250720462,
-    "rank": 99,
+    "rank": 100,
     "name": "Glencore PLC ordinary"
-   },
-   {
-    "security_id": "SEC-2c0bb2ac-a2d3-4c6b-99d8-8469bed8aa6e",
-    "status": "insufficient_data",
-    "value": null,
-    "rank": null,
-    "name": "Alliance Witan Ord ordinary"
    }
   ],
   "inspected": {
@@ -3080,29 +3080,24 @@
      ]
     }
    },
-   "SEC-28368d04-8083-4078-93a1-705c00385b36": {
-    "name": "Sage Group PLC ordinary",
+   "SEC-2b41be9b-9046-4a5a-ad0b-c9a9cfc5ef9c": {
+    "name": "J Sainsbury PLC ordinary",
     "member_on_date": true,
     "production_status": "ok",
-    "production_value": 0.13849325112221433,
-    "cross_sectional_rank": 50,
+    "production_value": 0.137456142507149,
+    "cross_sectional_rank": 51,
     "independent": {
      "status": "ok",
-     "value": 0.13849325112221456,
+     "value": 0.137456142507149,
      "start_bar": "2024-06-28",
-     "start_close_gbx": 1088.5,
+     "start_close_gbx": 255.0,
      "end_bar": "2025-05-30",
-     "end_close_gbx": 1219.0,
+     "end_close_gbx": 285.4,
      "actions_in_window": [
       {
        "kind": "dividend",
-       "ex_date": "2025-01-09",
-       "amount_gbx": 13.5
-      },
-      {
-       "kind": "dividend",
-       "ex_date": "2025-05-29",
-       "amount_gbx": 7.449999999999999
+       "ex_date": "2024-11-14",
+       "amount_gbx": 3.9
       }
      ]
     }
@@ -3112,7 +3107,7 @@
     "member_on_date": true,
     "production_status": "ok",
     "production_value": -0.3717579250720462,
-    "cross_sectional_rank": 99,
+    "cross_sectional_rank": 100,
     "independent": {
      "status": "ok",
      "value": -0.3717579250720462,
@@ -3121,17 +3116,6 @@
      "end_bar": "2025-05-30",
      "end_close_gbx": 283.4,
      "actions_in_window": []
-    }
-   },
-   "SEC-2c0bb2ac-a2d3-4c6b-99d8-8469bed8aa6e": {
-    "name": "Alliance Witan Ord ordinary",
-    "member_on_date": true,
-    "production_status": "insufficient_data",
-    "production_value": null,
-    "cross_sectional_rank": null,
-    "independent": {
-     "status": "insufficient_data",
-     "value": null
     }
    }
   }

@@ -4,7 +4,7 @@
    "expected": 1500,
    "resolved": 1321,
    "with_prices": 1086,
-   "with_actions": 1062,
+   "with_actions": 1058,
    "ipo_window": 42,
    "identity_gap_pct": 11.93,
    "price_gap_pct": 14.61
@@ -13,7 +13,7 @@
    "expected": 3000,
    "resolved": 2717,
    "with_prices": 2269,
-   "with_actions": 2214,
+   "with_actions": 2202,
    "ipo_window": 65,
    "identity_gap_pct": 9.43,
    "price_gap_pct": 14.1
@@ -22,7 +22,7 @@
    "expected": 3000,
    "resolved": 2866,
    "with_prices": 2396,
-   "with_actions": 2316,
+   "with_actions": 2304,
    "ipo_window": 59,
    "identity_gap_pct": 4.47,
    "price_gap_pct": 14.34
@@ -31,25 +31,25 @@
    "expected": 3000,
    "resolved": 2942,
    "with_prices": 2450,
-   "with_actions": 2363,
-   "ipo_window": 50,
+   "with_actions": 2351,
+   "ipo_window": 43,
    "identity_gap_pct": 1.93,
-   "price_gap_pct": 15.02
+   "price_gap_pct": 15.26
   },
   "2013": {
    "expected": 3000,
    "resolved": 3000,
    "with_prices": 2559,
-   "with_actions": 2472,
-   "ipo_window": 22,
+   "with_actions": 2460,
+   "ipo_window": 14,
    "identity_gap_pct": 0.0,
-   "price_gap_pct": 13.97
+   "price_gap_pct": 14.23
   },
   "2014": {
    "expected": 3000,
    "resolved": 2993,
    "with_prices": 2599,
-   "with_actions": 2491,
+   "with_actions": 2479,
    "ipo_window": 15,
    "identity_gap_pct": 0.23,
    "price_gap_pct": 12.66
@@ -58,7 +58,7 @@
    "expected": 3000,
    "resolved": 2988,
    "with_prices": 2672,
-   "with_actions": 2541,
+   "with_actions": 2529,
    "ipo_window": 18,
    "identity_gap_pct": 0.4,
    "price_gap_pct": 9.97
@@ -67,7 +67,7 @@
    "expected": 3000,
    "resolved": 2988,
    "with_prices": 2820,
-   "with_actions": 2682,
+   "with_actions": 2670,
    "ipo_window": 24,
    "identity_gap_pct": 0.4,
    "price_gap_pct": 4.82
@@ -76,7 +76,7 @@
    "expected": 3000,
    "resolved": 2981,
    "with_prices": 2858,
-   "with_actions": 2731,
+   "with_actions": 2719,
    "ipo_window": 18,
    "identity_gap_pct": 0.63,
    "price_gap_pct": 3.52
@@ -84,83 +84,83 @@
   "2018": {
    "expected": 3000,
    "resolved": 2969,
-   "with_prices": 2896,
-   "with_actions": 2803,
+   "with_prices": 2894,
+   "with_actions": 2791,
    "ipo_window": 2,
    "identity_gap_pct": 1.03,
-   "price_gap_pct": 2.39
+   "price_gap_pct": 2.46
   },
   "2019": {
    "expected": 3000,
    "resolved": 2973,
-   "with_prices": 2906,
-   "with_actions": 2830,
+   "with_prices": 2894,
+   "with_actions": 2818,
    "ipo_window": 0,
    "identity_gap_pct": 0.9,
-   "price_gap_pct": 2.25
+   "price_gap_pct": 2.66
   },
   "2020": {
    "expected": 3000,
    "resolved": 2987,
-   "with_prices": 2929,
-   "with_actions": 2856,
+   "with_prices": 2917,
+   "with_actions": 2844,
    "ipo_window": 4,
    "identity_gap_pct": 0.43,
-   "price_gap_pct": 1.81
+   "price_gap_pct": 2.21
   },
   "2021": {
    "expected": 3000,
    "resolved": 3000,
-   "with_prices": 2967,
-   "with_actions": 2873,
+   "with_prices": 2957,
+   "with_actions": 2863,
    "ipo_window": 0,
    "identity_gap_pct": 0.0,
-   "price_gap_pct": 1.1
+   "price_gap_pct": 1.43
   },
   "2022": {
    "expected": 3000,
    "resolved": 2986,
-   "with_prices": 2939,
-   "with_actions": 2829,
+   "with_prices": 2944,
+   "with_actions": 2834,
    "ipo_window": 0,
    "identity_gap_pct": 0.47,
-   "price_gap_pct": 1.57
+   "price_gap_pct": 1.41
   },
   "2023": {
    "expected": 3000,
    "resolved": 2995,
-   "with_prices": 2928,
-   "with_actions": 2830,
+   "with_prices": 2952,
+   "with_actions": 2854,
    "ipo_window": 0,
    "identity_gap_pct": 0.17,
-   "price_gap_pct": 2.24
+   "price_gap_pct": 1.44
   },
   "2024": {
    "expected": 3000,
    "resolved": 2991,
-   "with_prices": 2930,
-   "with_actions": 2807,
+   "with_prices": 2954,
+   "with_actions": 2831,
    "ipo_window": 0,
    "identity_gap_pct": 0.3,
-   "price_gap_pct": 2.04
+   "price_gap_pct": 1.24
   },
   "2025": {
    "expected": 3000,
    "resolved": 2983,
-   "with_prices": 2950,
-   "with_actions": 2786,
+   "with_prices": 2980,
+   "with_actions": 2809,
    "ipo_window": 0,
    "identity_gap_pct": 0.57,
-   "price_gap_pct": 1.11
+   "price_gap_pct": 0.1
   },
   "2026": {
    "expected": 2000,
    "resolved": 1986,
-   "with_prices": 1709,
-   "with_actions": 1583,
+   "with_prices": 1730,
+   "with_actions": 1597,
    "ipo_window": 0,
    "identity_gap_pct": 0.7,
-   "price_gap_pct": 13.95
+   "price_gap_pct": 12.89
   }
  },
  "missing_by_year": {
@@ -296,6 +296,7 @@
    "African Barrick Gold ordinary",
    "Alent ordinary",
    "Amlin ordinary",
+   "Anite ordinary",
    "Autonomy Corporation ordinary",
    "BBA Aviation ordinary",
    "Betfair Group ordinary",
@@ -340,6 +341,7 @@
    "African Barrick Gold ordinary",
    "Alent ordinary",
    "Amlin ordinary",
+   "Anite ordinary",
    "BBA Aviation ordinary",
    "Betfair Group ordinary",
    "Bluecrest Allblue Fund ordinary",
@@ -495,6 +497,7 @@
   "2018": [
    "African Barrick Gold ordinary",
    "BBA Aviation ordinary",
+   "Foreign & Colonial Investment Trust PLC ordinary",
    "Hastings Group Holdings ordinary",
    "ICAP ordinary",
    "Ladbrokes plc ordinary",
@@ -507,6 +510,7 @@
    "African Barrick Gold ordinary",
    "BBA Aviation ordinary",
    "F&C Commercial Property Trust ordinary",
+   "Foreign & Colonial Investment Trust PLC ordinary",
    "Hastings Group Holdings ordinary",
    "Stobart Group ordinary",
    "TI Fluid Systems ordinary",
@@ -515,6 +519,7 @@
   "2020": [
    "BBA Aviation ordinary",
    "F&C Commercial Property Trust ordinary",
+   "Foreign & Colonial Investment Trust PLC ordinary",
    "Hastings Group Holdings ordinary",
    "Hipgnosis Songs Fund C ordinary",
    "Hyve Group ordinary",
@@ -522,43 +527,34 @@
    "Witan Investment Trust ordinary"
   ],
   "2021": [
-   "Dixons Carphone plc ordinary",
    "F&C Commercial Property Trust ordinary",
+   "Foreign & Colonial Investment Trust PLC ordinary",
    "Pollen Street Secured Lending ordinary",
    "TI Fluid Systems ordinary",
    "Wickes Group ordinary",
    "Witan Investment Trust ordinary"
   ],
   "2022": [
-   "Dixons Carphone plc ordinary",
    "EVRAZ plc ordinary",
    "F&C Commercial Property Trust ordinary",
-   "Royal Mail PLC ordinary",
+   "Foreign & Colonial Investment Trust PLC ordinary",
    "TI Fluid Systems ordinary",
    "Witan Investment Trust ordinary"
   ],
   "2023": [
-   "Dixons Carphone plc ordinary",
    "Dowlais Group Plc ordinary",
    "F&C Commercial Property Trust ordinary",
    "Provident Financial PLC ordinary",
-   "Royal Mail PLC ordinary",
    "TI Fluid Systems ordinary",
    "Witan Investment Trust ordinary"
   ],
   "2024": [
-   "Dixons Carphone plc ordinary",
    "F&C Commercial Property Trust ordinary",
-   "Royal Mail PLC ordinary",
    "St. James's Place Wealth Management Group ordinary",
    "TI Fluid Systems ordinary",
    "Witan Investment Trust ordinary"
   ],
   "2025": [
-   "Ashoka India Equity Investment Trust ordinary",
-   "Avon Technologies ordinary",
-   "Dixons Carphone plc ordinary",
-   "Royal Mail PLC ordinary",
    "TI Fluid Systems ordinary"
   ],
   "2026": [
@@ -577,7 +573,7 @@
    "Ashoka India Equity Investment Trust ordinary",
    "Aston Martin Lagonda Global Holdings ordinary",
    "Atalaya Mining Copper ordinary",
-   "Avon Technologies ordinary",
+   "Avon Rubber ordinary",
    "BH Macro ordinary",
    "Baillie Gifford Japan Trust ordinary",
    "Baillie Gifford US Growth Trust ordinary",

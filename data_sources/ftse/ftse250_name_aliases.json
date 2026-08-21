@@ -250,5 +250,7 @@
  "GVC Holdings": "Entain",
  "_GVC": "GVC Holdings renamed Entain December 2020; the FTSE 100 master carries the full rename chain \u2014 same security.",
  "Spirax-Sarco Engineering": "Spirax Group",
- "_Spirax2": "Spirax-Sarco renamed Spirax Group 2024; the FTSE 100 master carries the renamed line."
+ "_Spirax2": "Spirax-Sarco renamed Spirax Group 2024; the FTSE 100 master carries the renamed line.",
+ "Avon Technologies": "Avon Protection",
+ "_AvonTech": "Rubber -> Protection -> Technologies: one company, one security."
 }

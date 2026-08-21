@@ -496,11 +496,29 @@ def canonicalise(settings: Settings) -> None:
                 continue
             reject_log.extend(f"{symbol}: {r}" for r in rejects)
 
+    window_bounds = {
+        f"{code.partition('.')[0]}:XLON": windows.get((str(sid), code), (None, None))
+        for sid, code in pairs
+    }
     for _key, candidates in multi_candidates.items():
         windowed = [c for c in candidates if c[0]]
-        pool = windowed if windowed else candidates
-        # deterministic tie-break: symbol order
-        chosen = sorted(pool, key=lambda c: c[1])[0]
+        if windowed:
+            chosen = sorted(windowed, key=lambda c: c[1])[0]
+        else:
+            # out of every code's window: prefer the code whose window is NEAREST in
+            # time (the pre-merger era belongs to the predecessor line, not to a code
+            # adopted years later); symbol order breaks exact ties.
+            def distance(candidate):  # type: ignore[no-untyped-def]
+                _in, symbol, bar = candidate
+                w_from, w_to = window_bounds.get(symbol, (None, None))
+                gaps = []
+                if w_from is not None:
+                    gaps.append(abs((bar.trade_date - w_from).days))
+                if w_to is not None:
+                    gaps.append(abs((bar.trade_date - w_to).days))
+                return (min(gaps) if gaps else 10**9, symbol)
+
+            chosen = sorted(candidates, key=distance)[0]
         all_bars.append(chosen[2])
     written = write_prices(all_bars, settings.canonical_dir / "prices", source="eodhd")
     actions_dir = settings.canonical_dir / "corporate_actions"
