@@ -30,3 +30,4 @@ htmlcov/
 
 # macOS
 .DS_Store
+data_sources/ftse/FTSE_250_Constituent_history_2026-04.pdf
