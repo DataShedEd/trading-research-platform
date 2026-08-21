@@ -6,6 +6,13 @@ registry; this document defines the discipline it encodes.
 
 ## The four artefacts
 
+Executable form: `trp.experiments` (QNT-063..066) — the registry at `data/registry.sqlite`
+holds Hypothesis/Experiment/Conclusion records with the workflow enforced in code: an
+experiment requires a pre-existing hypothesis; every run captures a reproducibility
+manifest automatically; conclusions require a judgement, a cited run and a weakness;
+the variant count (abandoned included) is stamped on every conclusion, with a
+multiple-testing warning past five variants that only an out-of-sample run clears.
+
 Keep these distinct and never conflate them:
 
 - **Hypothesis** — a falsifiable statement written *before* looking at results. Example: "Among
