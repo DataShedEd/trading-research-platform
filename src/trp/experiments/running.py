@@ -31,10 +31,11 @@ def default_executor(config: BacktestConfig) -> tuple[dict[str, Any], str | None
     if relative is not None:
         metrics["relative"] = json.loads(relative.to_json())
     metrics["warnings_count"] = len(result.warnings)
-    tearsheet = Path("docs/tearsheets") / f"{config.name}.md"
-    tearsheet.parent.mkdir(parents=True, exist_ok=True)
-    if not tearsheet.exists():  # tearsheets are never overwritten
-        tearsheet.write_text(render_tearsheet(result, record, directory, relative, rolling))
+    # The tearsheet lives INSIDE the immutable run record, not in tracked docs/ — an
+    # executor that dirties the working tree mid-run would poison the NEXT run's
+    # manifest (the registry caught exactly that on the first attempt).
+    tearsheet = Path(directory) / "tearsheet.md"
+    tearsheet.write_text(render_tearsheet(result, record, directory, relative, rolling))
     return metrics, str(directory)
 
 
