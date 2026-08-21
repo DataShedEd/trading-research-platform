@@ -140,7 +140,7 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-064](QNT-064-run-capture-manifest.md) | Run capture and reproducibility manifest | P2 | DONE |
 | [QNT-065](QNT-065-results-persistence.md) | Results persistence and retrieval | P2 | DONE |
 | [QNT-066](QNT-066-hypothesis-workflow.md) | Hypothesis–experiment–evidence–conclusion workflow | P2 | DONE |
-| [QNT-110](QNT-110-canonical-momentum-baseline.md) | Canonical momentum baseline: report + diagnostics | P1 | IN_PROGRESS |
+| [QNT-110](QNT-110-canonical-momentum-baseline.md) | Canonical momentum baseline: report + diagnostics | P1 | DONE |
 
 ## EPIC 11 — Portfolio Construction
 
