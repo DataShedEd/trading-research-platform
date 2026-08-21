@@ -1,8 +1,8 @@
 {
   "provider": "stub",
   "version": "1.0",
-  "taxonomy_version": "1.0",
-  "notes": "A fixture provider for the QNT-021 suite. Not a real feed: the names are invented to exercise the mapper's behaviour (a plain mapping, a sign flip, a deliberate exclusion, and — by omission — an item nobody has mapped). Entries are marked 'verified' because they are verified against the checked-in payload in tests/fixtures/provider_payload.py, which is the whole universe this table claims to describe.",
+  "taxonomy_version": "1.1",
+  "notes": "A fixture provider for the QNT-021 suite. Not a real feed: the names are invented to exercise the mapper's behaviour (a plain mapping, a sign flip, a deliberate exclusion, and \u2014 by omission \u2014 an item nobody has mapped). Entries are marked 'verified' because they are verified against the checked-in payload in tests/fixtures/provider_payload.py, which is the whole universe this table claims to describe.",
   "entries": [
     {
       "provider_item": "turnover",
@@ -53,7 +53,7 @@
       "statement": "cash_flow",
       "canonical": null,
       "review_status": "excluded",
-      "note": "The cash flow statement opens with the income-statement figure; mapping it here would create a second net_income for one filing. Note that the same provider name maps under 'income' and is excluded under 'cash_flow' — which is why the mapping key includes the statement."
+      "note": "The cash flow statement opens with the income-statement figure; mapping it here would create a second net_income for one filing. Note that the same provider name maps under 'income' and is excluded under 'cash_flow' \u2014 which is why the mapping key includes the statement."
     }
   ]
 }

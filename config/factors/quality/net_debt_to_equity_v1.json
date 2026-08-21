@@ -1,0 +1,18 @@
+{
+  "name": "net_debt_to_equity",
+  "version": 1,
+  "description": "Net debt over period-end equity. DIRECTION: lower is better; negative values are net cash. Not meaningful when equity <= 0. Financial-sector caveat in the catalogue.",
+  "inputs": [
+    "fundamentals"
+  ],
+  "transform": "fundamental_ratio",
+  "parameters": {
+    "numerator": [
+      "net_debt"
+    ],
+    "denominator": [
+      "total_equity"
+    ]
+  },
+  "content_hash": "8ec5628a800604db"
+}

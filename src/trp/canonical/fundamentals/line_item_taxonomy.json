@@ -1,6 +1,6 @@
 {
-  "version": "1.0",
-  "notes": "Canonical financial-statement line items (QNT-021). Versioned repository content: a canonical row is traceable to raw payload plus this version, so a mapping correction is distinguishable from a provider data change. Deliberately small — forty precise items beat three hundred half-understood ones; add an item when a factor needs it, and bump the version when any entry's meaning changes. Names are British English (amortisation, not amortization); provider spellings are the mapping files' problem, not the taxonomy's. Sign conventions: 'positive' means the item is carried as a positive magnitude even where it is economically a cost (cost_of_sales, total_liabilities) — it is subtracted by whoever uses it, never added; 'negative' means a cash outflow is carried negative (capital_expenditure, dividends_paid, share_buybacks), which is the convention that makes free_cash_flow = operating_cash_flow + capital_expenditure a sum; 'either' means the sign is genuinely informative (a loss, negative equity, negative free cash flow). A provider disagreeing with the convention is corrected by the mapping entry's sign flag, never by code. Derived ratios and factor definitions are Epic 8 and are deliberately absent.",
+  "version": "1.1",
+  "notes": "Canonical financial-statement line items (QNT-021). Versioned repository content: a canonical row is traceable to raw payload plus this version, so a mapping correction is distinguishable from a provider data change. Deliberately small \u2014 forty precise items beat three hundred half-understood ones; add an item when a factor needs it, and bump the version when any entry's meaning changes. Names are British English (amortisation, not amortization); provider spellings are the mapping files' problem, not the taxonomy's. Sign conventions: 'positive' means the item is carried as a positive magnitude even where it is economically a cost (cost_of_sales, total_liabilities) \u2014 it is subtracted by whoever uses it, never added; 'negative' means a cash outflow is carried negative (capital_expenditure, dividends_paid, share_buybacks), which is the convention that makes free_cash_flow = operating_cash_flow + capital_expenditure a sum; 'either' means the sign is genuinely informative (a loss, negative equity, negative free cash flow). A provider disagreeing with the convention is corrected by the mapping entry's sign flag, never by code. Derived ratios and factor definitions are Epic 8 and are deliberately absent.",
   "items": [
     {
       "name": "revenue",
@@ -91,7 +91,7 @@
       "statement": "balance",
       "unit_kind": "currency_amount",
       "sign_convention": "positive",
-      "definition": "Interest-bearing borrowings, short and long term, as a positive magnitude. Excludes trade payables; lease liabilities are included only where the provider includes them, which differs pre/post IFRS 16 — check the mapping's review status before using this in a leverage factor."
+      "definition": "Interest-bearing borrowings, short and long term, as a positive magnitude. Excludes trade payables; lease liabilities are included only where the provider includes them, which differs pre/post IFRS 16 \u2014 check the mapping's review status before using this in a leverage factor."
     },
     {
       "name": "cash_and_equivalents",
@@ -148,6 +148,34 @@
       "unit_kind": "currency_amount",
       "sign_convention": "positive",
       "definition": "Depreciation and amortisation charged in the period, as the positive add-back appearing in the cash flow statement."
+    },
+    {
+      "name": "ebit",
+      "statement": "income",
+      "unit_kind": "currency_amount",
+      "sign_convention": "either",
+      "definition": "Earnings before interest and tax as reported by the provider; negative for operating losses."
+    },
+    {
+      "name": "ebitda",
+      "statement": "income",
+      "unit_kind": "currency_amount",
+      "sign_convention": "either",
+      "definition": "Earnings before interest, tax, depreciation and amortisation as reported; negative for cash-operating losses."
+    },
+    {
+      "name": "tax_expense",
+      "statement": "income",
+      "unit_kind": "currency_amount",
+      "sign_convention": "either",
+      "definition": "Income tax charge for the period; positive for a charge, negative for a credit."
+    },
+    {
+      "name": "net_debt",
+      "statement": "balance",
+      "unit_kind": "currency_amount",
+      "sign_convention": "either",
+      "definition": "Total debt less cash and equivalents; NEGATIVE means a net cash position."
     }
   ]
 }

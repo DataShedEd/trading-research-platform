@@ -37,6 +37,12 @@ class ComputeContext:
     actions: Sequence[CorporateAction] = ()
     input_versions: dict[str, str] = field(default_factory=dict)
     mic: str = "XLON"
+    # QNT-045/046: fundamental transforms resolve statements through the QNT-025 as-of
+    # choke point rooted here, and convert currencies at dated FX rates rooted there.
+    # None means "this computation has no fundamentals": fundamental transforms then
+    # return no_data rather than guessing a location.
+    fundamentals_root: Path | None = None
+    fx_root: Path | None = None
 
 
 TransformFn = Callable[[ComputeContext, dict[str, object]], pl.DataFrame]

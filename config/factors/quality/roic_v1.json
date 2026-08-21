@@ -1,0 +1,11 @@
+{
+  "name": "roic",
+  "version": 1,
+  "description": "NOPAT over invested capital: ebit x (1 - effective tax rate from tax_expense/pre_tax_profit, clamped [0,1], zero shield when pre-tax <= 0) over (total_equity + net_debt). Not meaningful when invested capital <= 0.",
+  "inputs": [
+    "fundamentals"
+  ],
+  "transform": "roic",
+  "parameters": {},
+  "content_hash": "103564d2d7a7ef71"
+}

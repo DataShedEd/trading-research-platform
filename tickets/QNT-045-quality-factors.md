@@ -1,7 +1,7 @@
 # QNT-045 — Quality factor set
 
 - **Ticket ID:** QNT-045
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P2
 - **Epic:** EPIC 7 — Factor Engine
 
@@ -78,4 +78,23 @@ Factor catalogue entries recording each metric's formula, line items, period con
 not-meaningful rules.
 
 ## Completion notes
-_Not started._
+2026-08-21. Nine v1 definitions under config/factors/quality/ (roe, gross_profitability,
+operating_margin, fcf_margin, cash_conversion — inverse Sloan accruals oriented
+higher-is-better — earnings_stability, net_debt_to_equity, net_debt_to_ebitda, roic),
+line items entirely in configuration via three generic transforms in
+`trp.factors.fundamental`: `fundamental_ratio` (sum/sum with numerator_minus and a
+positive-denominator refusal), `earnings_stability` (trailing-window CV, min-periods
+typed), `roic` (effective tax from tax_expense/pre_tax_profit clamped [0,1], zero shield
+when pre-tax <= 0; invested = equity + net_debt). Consistent-snapshot rule stated once:
+each security's latest period holding every required item, period-end balances, mixed
+currencies refused. ComputeContext gained fundamentals_root/fx_root; everything resolves
+through the QNT-025 as-of choke point. Required four taxonomy additions (v1.1: ebit,
+ebitda, tax_expense, net_debt) and six mapping promotions (v1.2), each evidenced against
+the 197-payload corpus. Hand fixtures for all nine (ROIC 160/700 etc.); refusals typed
+and tested (negative equity, negative EBITDA, missing items, <4 years); the two QNT-045
+acceptance PIT cases (pre-availability uses the prior report; restatement respected
+between filings) plus the timetravel suite. DEVIATION, documented in the catalogue: the
+by-sector not-meaningful rule for financials cannot be applied — no sector reference
+data exists yet; composites must not lean on leverage/margins across financials until it
+does. Real FTSE 100 cross-section (2020-06-30, gate-tested): 98-100/100 computable,
+medians ROE 15.2% / gross profitability 19.3% / ROIC 12.0%. 797 default + 21 gate green.

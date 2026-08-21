@@ -1,0 +1,21 @@
+{
+  "name": "cash_conversion",
+  "version": 1,
+  "description": "Inverse accruals (Sloan, oriented higher-is-better): (operating cash flow minus net income) over total assets. High accruals score low.",
+  "inputs": [
+    "fundamentals"
+  ],
+  "transform": "fundamental_ratio",
+  "parameters": {
+    "numerator": [
+      "operating_cash_flow"
+    ],
+    "numerator_minus": [
+      "net_income"
+    ],
+    "denominator": [
+      "total_assets"
+    ]
+  },
+  "content_hash": "e65c413ea74e76c5"
+}

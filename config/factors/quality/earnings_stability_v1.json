@@ -1,0 +1,15 @@
+{
+  "name": "earnings_stability",
+  "version": 1,
+  "description": "Negative coefficient of variation of the trailing five annual net income figures; at least four reported years required. Stable earners score high.",
+  "inputs": [
+    "fundamentals"
+  ],
+  "transform": "earnings_stability",
+  "parameters": {
+    "item": "net_income",
+    "periods": 5,
+    "min_periods": 4
+  },
+  "content_hash": "0428f95f2acedb4b"
+}

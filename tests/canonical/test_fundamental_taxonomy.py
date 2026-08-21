@@ -34,7 +34,7 @@ VALUE_AND_QUALITY_ITEMS = (
 
 def test_packaged_taxonomy_covers_all_three_statements_with_full_entries() -> None:
     taxonomy = default_taxonomy()
-    assert taxonomy.version == "1.0"
+    assert taxonomy.version == "1.1"
     for statement in StatementType:
         assert taxonomy.for_statement(statement), f"no items on {statement.value}"
     for name in VALUE_AND_QUALITY_ITEMS:
@@ -58,9 +58,9 @@ def test_taxonomy_is_data_not_code() -> None:
 
 def test_unknown_canonical_name_is_rejected_loudly() -> None:
     taxonomy = default_taxonomy()
-    with pytest.raises(UnknownCanonicalItemError, match="ebitda"):
-        taxonomy.item("ebitda")
-    assert taxonomy.get("ebitda") is None  # the tolerant lookup, for callers that mean it
+    with pytest.raises(UnknownCanonicalItemError, match="community_ebitda"):
+        taxonomy.item("community_ebitda")
+    assert taxonomy.get("community_ebitda") is None  # the tolerant lookup, for callers that mean it
 
 
 def test_sign_conventions_are_stated_for_the_items_that_disagree_across_providers() -> None:

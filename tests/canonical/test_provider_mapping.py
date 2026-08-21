@@ -51,7 +51,7 @@ def write_table(directory: Path, provider: str, **overrides: object) -> Path:
     payload: dict[str, object] = {
         "provider": provider,
         "version": "1.0",
-        "taxonomy_version": "1.0",
+        "taxonomy_version": "1.1",
         "entries": [dict(BASE_ENTRY)],
     }
     payload.update(overrides)
@@ -176,9 +176,9 @@ def test_normalisation_neither_invents_nor_alters_a_timestamp(stub_table: Mappin
 
 def test_versions_are_recorded_on_every_mapped_row(stub_table: MappingTable) -> None:
     result = normalised(stub_table)
-    assert (result.taxonomy_version, result.mapping_version) == ("1.0", "1.0")
+    assert (result.taxonomy_version, result.mapping_version) == ("1.1", "1.0")
     for item in result.mapped:
-        assert item.taxonomy_version == "1.0"
+        assert item.taxonomy_version == "1.1"
         assert item.mapping_version == stub_table.version
         assert item.provider == STUB_PROVIDER
 

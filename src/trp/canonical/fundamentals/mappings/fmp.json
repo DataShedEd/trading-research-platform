@@ -1,8 +1,8 @@
 {
   "provider": "fmp",
   "version": "0.1",
-  "taxonomy_version": "1.0",
-  "notes": "PROVISIONAL THROUGHOUT, on the same terms as the EODHD table: written from provider documentation, not from recorded payloads, and to be confirmed field by field in QNT-032 before any entry is promoted to 'verified'. The value of a second table before the bake-off is coverage comparison — which canonical items each provider can actually populate — not production use.",
+  "taxonomy_version": "1.1",
+  "notes": "PROVISIONAL THROUGHOUT, on the same terms as the EODHD table: written from provider documentation, not from recorded payloads, and to be confirmed field by field in QNT-032 before any entry is promoted to 'verified'. The value of a second table before the bake-off is coverage comparison \u2014 which canonical items each provider can actually populate \u2014 not production use. Reviewed against taxonomy 1.1 (2026-08-21): the additions (ebit, ebitda, tax_expense, net_debt) touch no existing FMP entry; entries unchanged.",
   "entries": [
     {
       "provider_item": "revenue",

@@ -1,0 +1,18 @@
+{
+  "name": "operating_margin",
+  "version": 1,
+  "description": "Operating profit over revenue, one annual snapshot.",
+  "inputs": [
+    "fundamentals"
+  ],
+  "transform": "fundamental_ratio",
+  "parameters": {
+    "numerator": [
+      "operating_profit"
+    ],
+    "denominator": [
+      "revenue"
+    ]
+  },
+  "content_hash": "b679a7cc2b405f3d"
+}

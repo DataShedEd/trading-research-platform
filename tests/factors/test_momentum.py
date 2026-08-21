@@ -43,7 +43,8 @@ def test_all_four_definitions_load_from_config() -> None:
         "momentum_12_1_vol_adjusted",
     } <= names
     for definition in REGISTRY.definitions():
-        assert "months" in definition.parameters  # windows in config, never in Python
+        if definition.transform.startswith("window_"):
+            assert "months" in definition.parameters  # windows in config, never in Python
 
 
 def test_12_1_momentum_across_a_split() -> None:

@@ -1,0 +1,18 @@
+{
+  "name": "roe",
+  "version": 1,
+  "description": "Return on equity: net income over period-end total equity (same annual snapshot). Not meaningful when equity <= 0.",
+  "inputs": [
+    "fundamentals"
+  ],
+  "transform": "fundamental_ratio",
+  "parameters": {
+    "numerator": [
+      "net_income"
+    ],
+    "denominator": [
+      "total_equity"
+    ]
+  },
+  "content_hash": "f24c51ceb0c48c8d"
+}

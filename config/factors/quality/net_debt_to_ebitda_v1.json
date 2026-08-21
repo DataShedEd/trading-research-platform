@@ -1,0 +1,18 @@
+{
+  "name": "net_debt_to_ebitda",
+  "version": 1,
+  "description": "Net debt over EBITDA. DIRECTION: lower is better. Not meaningful when EBITDA <= 0. Financial-sector caveat in the catalogue.",
+  "inputs": [
+    "fundamentals"
+  ],
+  "transform": "fundamental_ratio",
+  "parameters": {
+    "numerator": [
+      "net_debt"
+    ],
+    "denominator": [
+      "ebitda"
+    ]
+  },
+  "content_hash": "527282f4ba328461"
+}

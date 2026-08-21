@@ -1,7 +1,7 @@
 {
   "provider": "eodhd",
-  "version": "1.1",
-  "taxonomy_version": "1.0",
+  "version": "1.2",
+  "taxonomy_version": "1.1",
   "notes": "Verified 2026-08-21 against 197 captured FTSE-100-ever payloads (QNT-097): every verified entry appears in 13k-21k statement rows at FTSE-scale magnitudes, and four cross-currency anchors reconcile with public figures (Tesco FY26 GBP revenue 73.7bn/NI 1.787bn/6.61bn shares; Shell FY25 USD revenue 272.5bn/equity 174.5bn; AstraZeneca FY25 USD revenue 58.7bn; Unilever FY25 EUR revenue 50.5bn). Evidence: `python -m trp.canonical.fundamentals.ingest_eodhd verify`. Entries stay provisional/excluded when unevidenced; canonicalisation refuses them.",
   "entries": [
     {
@@ -122,6 +122,48 @@
       "canonical": null,
       "review_status": "excluded",
       "note": "Deliberately not mapped: an aggregate spanning capex, acquisitions and securities purchases. No canonical item means it, and forcing it into capital_expenditure would be wrong by whatever the company bought that year."
+    },
+    {
+      "provider_item": "ebit",
+      "statement": "income",
+      "canonical": "ebit",
+      "review_status": "verified",
+      "note": "Verified 2026-08-21: 22,175 rows, 7.7% negative (genuine losses), median 1.44e8."
+    },
+    {
+      "provider_item": "ebitda",
+      "statement": "income",
+      "canonical": "ebitda",
+      "review_status": "verified",
+      "note": "Verified 2026-08-21: 21,538 rows, 6.2% negative, median 2.03e8."
+    },
+    {
+      "provider_item": "incomeTaxExpense",
+      "statement": "income",
+      "canonical": "tax_expense",
+      "review_status": "verified",
+      "note": "Verified 2026-08-21: 24,747 rows, 10.3% negative (tax credits), median 2.5e7."
+    },
+    {
+      "provider_item": "netDebt",
+      "statement": "balance",
+      "canonical": "net_debt",
+      "review_status": "verified",
+      "note": "Verified 2026-08-21: 17,001 rows, 27.3% negative \u2014 net cash positions, the sign semantics the canonical item requires."
+    },
+    {
+      "provider_item": "shortLongTermDebtTotal",
+      "statement": "balance",
+      "canonical": "total_debt",
+      "review_status": "verified",
+      "note": "Verified 2026-08-21: 15,719 rows, 0.0% negative, median 1.24e9."
+    },
+    {
+      "provider_item": "salePurchaseOfStock",
+      "statement": "cash_flow",
+      "canonical": "share_buybacks",
+      "review_status": "verified",
+      "note": "Verified 2026-08-21: 12,666 rows, 89.5% negative \u2014 outflow-negative as served, matching the canonical convention; positive rows are net issuance and are meaningful."
     }
   ]
 }

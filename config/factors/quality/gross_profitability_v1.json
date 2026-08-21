@@ -1,0 +1,18 @@
+{
+  "name": "gross_profitability",
+  "version": 1,
+  "description": "Novy-Marx gross profitability: gross profit over period-end total assets.",
+  "inputs": [
+    "fundamentals"
+  ],
+  "transform": "fundamental_ratio",
+  "parameters": {
+    "numerator": [
+      "gross_profit"
+    ],
+    "denominator": [
+      "total_assets"
+    ]
+  },
+  "content_hash": "748da05bc72e8ab0"
+}

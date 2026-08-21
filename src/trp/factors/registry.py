@@ -33,6 +33,7 @@ class FactorRegistry:
         cls, directory: Path = DEFAULT_CONFIG_DIR, *, known_transforms: frozenset[str] | None = None
     ) -> Self:
         if known_transforms is None:
+            import trp.factors.fundamental  # noqa: F401 - registers its transforms
             from trp.factors.compute import registered_transforms
 
             known_transforms = registered_transforms()
