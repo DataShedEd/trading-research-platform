@@ -813,18 +813,18 @@
     "name": "ITV PLC ordinary"
    },
    {
+    "security_id": "SEC-a86f61f0-d3ac-4ccd-9a16-911bdacdebbe",
+    "status": "ok",
+    "value": 0.5281592804051107,
+    "rank": 6,
+    "name": "Dixons Carphone plc ordinary"
+   },
+   {
     "security_id": "SEC-28368d04-8083-4078-93a1-705c00385b36",
     "status": "ok",
     "value": 0.5175424344771522,
-    "rank": 6,
-    "name": "Sage Group PLC ordinary"
-   },
-   {
-    "security_id": "SEC-a86f61f0-d3ac-4ccd-9a16-911bdacdebbe",
-    "status": "ok",
-    "value": 0.5006579688402888,
     "rank": 7,
-    "name": "Dixons Carphone plc ordinary"
+    "name": "Sage Group PLC ordinary"
    },
    {
     "security_id": "SEC-612a1456-eeed-46ba-a5ee-14f0aad730ab",
@@ -1142,67 +1142,67 @@
     "name": "Severn Trent PLC ordinary"
    },
    {
+    "security_id": "SEC-075d3307-c92e-4c1b-9d21-fda9e2ac0738",
+    "status": "ok",
+    "value": 0.14534943406567713,
+    "rank": 53,
+    "name": "Royal Mail PLC ordinary"
+   },
+   {
     "security_id": "SEC-510d998c-9177-4cf2-8df3-23221f7dc4fb",
     "status": "ok",
     "value": 0.14491635141421821,
-    "rank": 53,
+    "rank": 54,
     "name": "United Utilities Group PLC ordinary"
    },
    {
     "security_id": "SEC-86adcb5b-1fbd-4e47-aa5e-3eb0b19a2813",
     "status": "ok",
     "value": 0.13765678310386797,
-    "rank": 54,
+    "rank": 55,
     "name": "Johnson Matthey PLC ordinary"
    },
    {
     "security_id": "SEC-524f37cd-99d0-4146-825b-55325fdac058",
     "status": "ok",
     "value": 0.13622550144513612,
-    "rank": 55,
+    "rank": 56,
     "name": "Smith & Nephew PLC ordinary"
    },
    {
     "security_id": "SEC-6192db0d-b473-4cbd-a476-bee2837b248f",
     "status": "ok",
     "value": 0.1320085259945989,
-    "rank": 56,
+    "rank": 57,
     "name": "Unilever PLC ordinary"
    },
    {
     "security_id": "SEC-7061619a-37bc-4d5b-b067-81075d19e769",
     "status": "ok",
     "value": 0.12924491860304532,
-    "rank": 57,
+    "rank": 58,
     "name": "National Grid PLC ordinary"
    },
    {
     "security_id": "SEC-5a7e8ae9-ae89-4d6b-8402-fe8b66f1442e",
     "status": "ok",
     "value": 0.12602461030154632,
-    "rank": 58,
+    "rank": 59,
     "name": "SSE PLC ordinary"
    },
    {
     "security_id": "SEC-4f1e2f2d-adfb-4f48-9e40-2121b4e09f98",
     "status": "ok",
     "value": 0.11836115326251906,
-    "rank": 59,
+    "rank": 60,
     "name": "Old Mutual plc ordinary"
    },
    {
     "security_id": "SEC-e6f0463b-d175-4bb7-8dde-b199f3afcc17",
     "status": "ok",
     "value": 0.10893168258396413,
-    "rank": 60,
-    "name": "HSBC Holdings PLC ordinary"
-   },
-   {
-    "security_id": "SEC-075d3307-c92e-4c1b-9d21-fda9e2ac0738",
-    "status": "ok",
-    "value": 0.0966912374234199,
     "rank": 61,
-    "name": "Royal Mail PLC ordinary"
+    "name": "HSBC Holdings PLC ordinary"
    },
    {
     "security_id": "SEC-105adaa2-12f3-4db4-b4de-5fda9f1487de",
