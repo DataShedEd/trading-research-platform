@@ -2,9 +2,9 @@
  "version": "2026-08-21.1",
  "anchor_date": "2009-06-22",
  "spell_count": 910,
- "companies": 665,
+ "companies": 664,
  "final_members": 250,
- "reconciliations": 42,
+ "reconciliations": 41,
  "ledger": [
   {
    "date": "2010-09-20",
@@ -127,16 +127,6 @@
    "checkpoint": "2014-12-21",
    "action": "suppress-remove (transient snapshot glitch)",
    "name": "Rexam"
-  },
-  {
-   "checkpoint": "2014-12-21",
-   "action": "force-remove",
-   "name": "Spirent"
-  },
-  {
-   "date": "2014-12-22",
-   "action": "del-unmatched",
-   "name": "Spirent Communications"
   },
   {
    "checkpoint": "2015-06-22",
@@ -297,12 +287,6 @@
    "action": "auto-alias",
    "name": "Just Group",
    "matched": "Just Retirement Group"
-  },
-  {
-   "checkpoint": "2018-12-31",
-   "action": "auto-alias",
-   "name": "Spirent",
-   "matched": "Spirent Communications"
   },
   {
    "checkpoint": "2018-12-31",
@@ -622,7 +606,7 @@
   "bankers investment trust": "Bankers Investment Trust",
   "lion finance": "Bank of Georgia Holdings",
   "a g barr": "A.G. Barr",
-  "barratt developments": "Barratt Developments",
+  "barratt redrow": "Barratt Developments",
   "beazley": "Beazley Group",
   "bellway": "Bellway",
   "berendsen": "Berendsen",
@@ -817,12 +801,12 @@
   "soco": "SOCO International",
   "spectris": "Spectris",
   "spirax sarco engineering": "Spirax-Sarco Engineering",
-  "spirent": "Spirent",
+  "spirent communications": "Spirent",
   "sports direct": "Sports Direct",
   "st james s place wealth management": "St. James's Place Wealth Management Group",
   "st modwen properties": "St. Modwen Properties",
   "stagecoach": "Stagecoach Group",
-  "stobart": "Stobart Group",
+  "esken": "Stobart Group",
   "superdry": "SuperGroup",
   "synergy health": "Synergy Health",
   "synthomer": "Synthomer",
@@ -1093,7 +1077,6 @@
   "hilton food": "Hilton Food Group",
   "quilter": "Quilter",
   "blackrock smaller companies trust": "BlackRock Smaller Companies Tst",
-  "spirent communications": "Spirent Communications",
   "avast": "Avast",
   "plus500": "Plus500",
   "vivo energy": "Vivo Energy",
@@ -1385,7 +1368,7 @@
     "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 32"
    }
   ],
-  "barratt developments": [
+  "barratt redrow": [
    {
     "from": "2009-06-22",
     "to": "2014-03-24",
@@ -2709,12 +2692,18 @@
     "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 26"
    }
   ],
-  "spirent": [
+  "spirent communications": [
    {
     "from": "2009-06-22",
-    "to": "2014-12-21",
+    "to": "2014-12-22",
     "entry_source": "reverse-derived anchor @2009-06-22",
-    "exit_source": "RECONCILED-OUT at checkpoint 2014-12-21 (no explaining event; uncertainty back to previous checkpoint)"
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 21"
+   },
+   {
+    "from": "2018-09-06",
+    "to": "2025-10-16",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 25",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 36"
    }
   ],
   "sports direct": [
@@ -2758,7 +2747,7 @@
     "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 28"
    }
   ],
-  "stobart": [
+  "esken": [
    {
     "from": "2009-06-22",
     "to": "2013-03-18",
@@ -6325,14 +6314,6 @@
     "from": "2018-08-08",
     "to": null,
     "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 25"
-   }
-  ],
-  "spirent communications": [
-   {
-    "from": "2018-09-06",
-    "to": "2025-10-16",
-    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 25",
-    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 36"
    }
   ],
   "avast": [

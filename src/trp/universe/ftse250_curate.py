@@ -76,7 +76,7 @@ def normalise(name: str) -> str:
 
 _SUFFIX_TOKENS = {
     "group", "holdings", "hldgs", "hdg", "corp", "corporation", "ord", "shs",
-    "gbp", "eur", "international",
+    "gbp", "eur", "international", "ordinary", "ordinar", "units", "unit",
 }
 
 

@@ -1,0 +1,804 @@
+[
+ {
+  "canon": "bwin party digital entertainment",
+  "display": "Bwin.Party Digital Entertainment",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2016-01-26",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 22"
+   }
+  ],
+  "reason": "adjudicated code BPTY absent from EODHD LSE lists"
+ },
+ {
+  "canon": "colt",
+  "display": "Colt Group",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2015-08-17",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 22"
+   }
+  ],
+  "reason": "adjudicated code COLT absent from EODHD LSE lists"
+ },
+ {
+  "canon": "dixons retail",
+  "display": "Dixons Retail",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2014-08-07",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 21"
+   }
+  ],
+  "reason": "adjudicated code DXNS absent from EODHD LSE lists"
+ },
+ {
+  "canon": "heritage oil",
+  "display": "Heritage Oil",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2013-06-24",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 19"
+   },
+   {
+    "from": "2014-03-24",
+    "to": "2014-06-30",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 20",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 21"
+   }
+  ],
+  "reason": "adjudicated code HOIL absent from EODHD LSE lists"
+ },
+ {
+  "canon": "salamander energy",
+  "display": "Salamander Energy",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2013-09-23",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 20"
+   }
+  ],
+  "reason": "adjudicated code SMDR absent from EODHD LSE lists"
+ },
+ {
+  "canon": "synergy health",
+  "display": "Synergy Health",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2015-10-27",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 22"
+   }
+  ],
+  "reason": "adjudicated code SYR absent from EODHD LSE lists"
+ },
+ {
+  "canon": "telecity",
+  "display": "Telecity Group",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2016-01-15",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 22"
+   }
+  ],
+  "reason": "adjudicated code TCY absent from EODHD LSE lists"
+ },
+ {
+  "canon": "aquarius platinum",
+  "display": "Aquarius Platinum",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2012-09-24",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 19"
+   }
+  ]
+ },
+ {
+  "canon": "melrose",
+  "display": "Melrose PLC",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2012-09-24",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 19"
+   }
+  ]
+ },
+ {
+  "canon": "logica",
+  "display": "Logica",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2012-08-20",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 19"
+   }
+  ]
+ },
+ {
+  "canon": "kesa electricals",
+  "display": "Kesa Electricals",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2012-06-18",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 18"
+   }
+  ]
+ },
+ {
+  "canon": "misys",
+  "display": "Misys",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2012-06-01",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 18"
+   }
+  ]
+ },
+ {
+  "canon": "charter",
+  "display": "Charter International",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2012-01-13",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 18"
+   }
+  ]
+ },
+ {
+  "canon": "pace",
+  "display": "Pace",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2011-12-19",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 18"
+   },
+   {
+    "from": "2012-09-24",
+    "to": "2015-12-24",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 19",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 22"
+   }
+  ],
+  "reason": "adjudicated code PIC absent from EODHD LSE lists"
+ },
+ {
+  "canon": "northumbrian water",
+  "display": "Northumbrian Water Group",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2011-10-14",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 18"
+   }
+  ]
+ },
+ {
+  "canon": "forth ports",
+  "display": "Forth Ports",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2011-06-02",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 17"
+   }
+  ]
+ },
+ {
+  "canon": "brit insurance",
+  "display": "Brit Insurance Holdings",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2011-03-14",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 17"
+   }
+  ]
+ },
+ {
+  "canon": "wellstream",
+  "display": "Wellstream Holdings",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2011-02-09",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 17"
+   }
+  ]
+ },
+ {
+  "canon": "robert wiseman dairies",
+  "display": "Robert Wiseman Dairies",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2010-12-20",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 17"
+   }
+  ]
+ },
+ {
+  "canon": "xchanging",
+  "display": "Xchanging",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2010-12-20",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 17"
+   }
+  ]
+ },
+ {
+  "canon": "bluebay asset management",
+  "display": "BlueBay Asset Management",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2010-12-17",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 17"
+   }
+  ]
+ },
+ {
+  "canon": "bss",
+  "display": "BSS Group",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2010-12-15",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 17"
+   }
+  ]
+ },
+ {
+  "canon": "ssl",
+  "display": "SSL International",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2010-11-04",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 17"
+   }
+  ]
+ },
+ {
+  "canon": "dimension data",
+  "display": "Dimension Data Holdings",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2010-10-15",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 17"
+   }
+  ]
+ },
+ {
+  "canon": "game",
+  "display": "Game Group",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2010-09-20",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 17"
+   }
+  ]
+ },
+ {
+  "canon": "eaga",
+  "display": "Eaga",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2010-09-20",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 17"
+   }
+  ]
+ },
+ {
+  "canon": "connaught",
+  "display": "Connaught",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2010-09-14",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 16"
+   }
+  ]
+ },
+ {
+  "canon": "chloride",
+  "display": "Chloride Group",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2010-09-03",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 16"
+   }
+  ]
+ },
+ {
+  "canon": "vt",
+  "display": "VT Group",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2010-07-09",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 16"
+   }
+  ]
+ },
+ {
+  "canon": "hmv",
+  "display": "HMV Group",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2010-06-21",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 16"
+   }
+  ]
+ },
+ {
+  "canon": "melrose resources",
+  "display": "Melrose Resources",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2010-06-21",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 16"
+   },
+   {
+    "from": "2010-07-09",
+    "to": "2010-12-20",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 16",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 17"
+   }
+  ]
+ },
+ {
+  "canon": "ecofin water and power opportunities",
+  "display": "Ecofin Water & Power Opportunities",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2010-06-21",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 16"
+   }
+  ]
+ },
+ {
+  "canon": "northern foods",
+  "display": "Northern Foods",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2010-04-09",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 16"
+   }
+  ]
+ },
+ {
+  "canon": "new carphone warehouse",
+  "display": "New Carphone Warehouse",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2010-03-30",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 16"
+   }
+  ]
+ },
+ {
+  "canon": "thames river multi hedge pcc",
+  "display": "Thames River Multi Hedge PCC (GBP)",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2010-03-22",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 16"
+   }
+  ]
+ },
+ {
+  "canon": "chaucer",
+  "display": "Chaucer Holdings",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2009-12-21",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 16"
+   }
+  ]
+ },
+ {
+  "canon": "emerald energy",
+  "display": "Emerald Energy",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2009-10-09",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 15"
+   }
+  ]
+ },
+ {
+  "canon": "goldman sachs dynamic opportunities",
+  "display": "Goldman Sachs Dynamic Opportunities",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2009-09-21",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 15"
+   }
+  ]
+ },
+ {
+  "canon": "mouchel",
+  "display": "Mouchel Group",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2009-09-21",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 15"
+   }
+  ]
+ },
+ {
+  "canon": "edinburgh uk tracker trust",
+  "display": "Edinburgh UK Tracker Trust",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2009-09-21",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 15"
+   }
+  ]
+ },
+ {
+  "canon": "novae",
+  "display": "Novae Group",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2009-09-21",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 15"
+   }
+  ]
+ },
+ {
+  "canon": "jpmorgan european invest trust gwth",
+  "display": "JPMorgan European Invest Tst (Gwth Shs)",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2009-09-21",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 15"
+   }
+  ]
+ },
+ {
+  "canon": "absolute return trust",
+  "display": "Absolute Return Trust",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2009-09-21",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 15"
+   }
+  ]
+ },
+ {
+  "canon": "bpp",
+  "display": "BPP Holdings",
+  "spells": [
+   {
+    "from": "2009-06-22",
+    "to": "2009-07-30",
+    "entry_source": "reverse-derived anchor @2009-06-22",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 15"
+   }
+  ]
+ },
+ {
+  "canon": "imagination technologies",
+  "display": "Imagination Technologies Group",
+  "spells": [
+   {
+    "from": "2009-09-21",
+    "to": "2014-09-22",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 15",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 21"
+   },
+   {
+    "from": "2015-03-23",
+    "to": "2015-06-22",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 21",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 21"
+   }
+  ],
+  "reason": "adjudicated code IMG absent from EODHD LSE lists"
+ },
+ {
+  "canon": "avis europe",
+  "display": "Avis Europe",
+  "spells": [
+   {
+    "from": "2009-09-21",
+    "to": "2009-12-21",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 15",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 16"
+   },
+   {
+    "from": "2010-08-10",
+    "to": "2011-10-03",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 16",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 18"
+   }
+  ]
+ },
+ {
+  "canon": "afren",
+  "display": "Afren",
+  "spells": [
+   {
+    "from": "2010-03-22",
+    "to": "2015-03-23",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 16",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 21"
+   }
+  ],
+  "reason": "adjudicated code AFR absent from EODHD LSE lists"
+ },
+ {
+  "canon": "hansen transmissions",
+  "display": "Hansen Transmissions",
+  "spells": [
+   {
+    "from": "2010-03-22",
+    "to": "2011-03-21",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 16",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 17"
+   },
+   {
+    "from": "2011-09-19",
+    "to": "2011-10-11",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 18",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 18"
+   }
+  ]
+ },
+ {
+  "canon": "gartmore",
+  "display": "Gartmore Group",
+  "spells": [
+   {
+    "from": "2010-03-22",
+    "to": "2011-04-04",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 16",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 17"
+   }
+  ]
+ },
+ {
+  "canon": "cpp",
+  "display": "CPP Group",
+  "spells": [
+   {
+    "from": "2010-06-21",
+    "to": "2012-12-21",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 16",
+    "exit_source": "RECONCILED-OUT at checkpoint 2012-12-21 (no explaining event; uncertainty back to previous checkpoint)"
+   }
+  ]
+ },
+ {
+  "canon": "promethean world",
+  "display": "Promethean World",
+  "spells": [
+   {
+    "from": "2010-06-21",
+    "to": "2010-09-20",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 16",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 17"
+   }
+  ]
+ },
+ {
+  "canon": "cable and wireless worldwide",
+  "display": "Cable & Wireless Worldwide",
+  "spells": [
+   {
+    "from": "2010-09-20",
+    "to": "2012-07-27",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 17",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 19"
+   }
+  ]
+ },
+ {
+  "canon": "sportingbet",
+  "display": "Sportingbet",
+  "spells": [
+   {
+    "from": "2010-09-24",
+    "to": "2011-03-21",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 17",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 17"
+   }
+  ]
+ },
+ {
+  "canon": "cape",
+  "display": "Cape",
+  "spells": [
+   {
+    "from": "2011-09-19",
+    "to": "2012-09-24",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 18",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 19"
+   }
+  ]
+ },
+ {
+  "canon": "kentz",
+  "display": "Kentz Corporation",
+  "spells": [
+   {
+    "from": "2011-09-19",
+    "to": "2014-08-22",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 18",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 21"
+   }
+  ],
+  "reason": "adjudicated code KENZ absent from EODHD LSE lists"
+ },
+ {
+  "canon": "allied gold mining",
+  "display": "Allied Gold Mining",
+  "spells": [
+   {
+    "from": "2011-10-03",
+    "to": "2012-03-19",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 18",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 18"
+   }
+  ]
+ },
+ {
+  "canon": "ruspetro",
+  "display": "Ruspetro",
+  "spells": [
+   {
+    "from": "2012-03-19",
+    "to": "2012-12-24",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 18",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 19"
+   }
+  ]
+ },
+ {
+  "canon": "partnership assurance",
+  "display": "Partnership Assurance Group",
+  "spells": [
+   {
+    "from": "2013-09-23",
+    "to": "2014-06-23",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 20",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 20"
+   }
+  ],
+  "reason": "adjudicated code PA. absent from EODHD LSE lists"
+ },
+ {
+  "canon": "brit",
+  "display": "BRIT",
+  "spells": [
+   {
+    "from": "2014-06-23",
+    "to": "2015-05-29",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 20",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 21"
+   }
+  ],
+  "reason": "adjudicated code BRIT absent from EODHD LSE lists"
+ },
+ {
+  "canon": "tsb banking",
+  "display": "TSB Banking Group",
+  "spells": [
+   {
+    "from": "2014-09-22",
+    "to": "2015-07-03",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 21",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 22"
+   }
+  ],
+  "reason": "adjudicated code TSB absent from EODHD LSE lists"
+ },
+ {
+  "canon": "jimmy choo",
+  "display": "Jimmy Choo",
+  "spells": [
+   {
+    "from": "2014-12-22",
+    "to": "2016-06-20",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 21",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 23"
+   },
+   {
+    "from": "2017-08-14",
+    "to": "2017-10-31",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 24",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 24"
+   }
+  ],
+  "reason": "adjudicated code CHOO absent from EODHD LSE lists"
+ },
+ {
+  "canon": "darty",
+  "display": "Darty",
+  "spells": [
+   {
+    "from": "2016-05-16",
+    "to": "2016-07-22",
+    "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 23",
+    "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 23"
+   }
+  ],
+  "reason": "adjudicated code DRTY absent from EODHD LSE lists"
+ }
+]
