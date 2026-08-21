@@ -36,8 +36,17 @@ def test_latest_run_reproduces_from_its_persisted_config() -> None:
     assert meta["config_hash"] == config.config_hash()  # the record is self-consistent
 
     market = load_market(config)
-    strategy = factor_strategy(FactorRegistry.load().get(config.factor), config)
-    engine = BacktestEngine(config, market, UniverseQuery(SETTINGS.canonical_dir / "universes"))
+    strategy = factor_strategy(
+        FactorRegistry.load().get(config.factor, version=config.factor_version), config
+    )
+    engine = BacktestEngine(
+        config,
+        market,
+        UniverseQuery(SETTINGS.canonical_dir / "universes"),
+        fundamentals_root=SETTINGS.canonical_dir / "fundamentals",
+        fx_root=SETTINGS.canonical_dir / "fx",
+        shares_root=SETTINGS.canonical_dir / "shares",
+    )
     result = engine.run(strategy)
 
     persisted_daily = pl.read_parquet(run_dir / "daily.parquet")
