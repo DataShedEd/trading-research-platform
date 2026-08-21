@@ -1,7 +1,7 @@
 # QNT-047 — Cross-sectional transforms
 
 - **Ticket ID:** QNT-047
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P2
 - **Epic:** EPIC 7 — Factor Engine
 
@@ -76,4 +76,15 @@ Factor catalogue section documenting each transform, its parameters, its tie and
 policies, and the requirement that the universe be passed explicitly.
 
 ## Completion notes
-_Not started._
+2026-08-21. `trp.factors.transforms`: winsorise (percentile-interpolated, thresholds
+always from configuration — no silent default), zscore, zscore_robust (median/1.4826xMAD;
+zero-MAD refused), rank_percentile ((rank-0.5)/n with average/min/max tie policies,
+asserted exactly on a many-ties fixture), sector_neutralise (demean within groups from a
+caller-supplied PIT sector mapping — no sector reference data ships yet; below
+min_group_size or unmapped securities pass through UNNEUTRALISED with a warning, never
+silently dropped or global-demeaned). All registered by identifier in a cross-sectional
+registry that composite configurations name. Uniform policies, tested: only ok rows
+touched; missing never imputed and excluded from statistics; deterministic and row-order
+independent; degenerate cross-sections (constant/single-member/all-missing) typed. The
+robust-vs-standard outlier fixture shows the point: a 1000x outlier hides inside its own
+stdev under plain z (|z| < 2) and stands out >100 under median/MAD. 815 tests green.
