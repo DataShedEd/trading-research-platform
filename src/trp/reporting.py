@@ -13,6 +13,7 @@ import io
 import json
 from datetime import UTC, date, datetime, time
 from html import escape
+from itertools import pairwise
 from pathlib import Path
 from typing import Any
 
@@ -86,15 +87,142 @@ def _metric_rows(metrics: dict[str, Any]) -> list[tuple[str, str]]:
         (f"Sharpe (rf {pct(metrics.get('risk_free_rate'))})", num(metrics.get("sharpe"))),
         ("Sortino", num(metrics.get("sortino"))),
         ("Max drawdown", pct(metrics.get("max_drawdown"))),
+        ("Calmar", num(metrics.get("calmar"))),
         ("Hit rate (days)", pct(metrics.get("hit_rate_periods"))),
+        ("Hit rate (positions)", pct(metrics.get("hit_rate_positions"))),
     ]
+    if metrics.get("beta") is not None:
+        rows.append(("Beta vs benchmark", num(metrics.get("beta"))))
     if relative:
         rows += [
+            ("Benchmark total return", pct(relative.get("benchmark_total_return"))),
             ("Excess CAGR vs benchmark", pct(relative.get("excess_cagr"))),
             ("Tracking error", pct(relative.get("tracking_error"))),
             ("Information ratio", num(relative.get("information_ratio"))),
         ]
     return rows
+
+
+def _daily_returns(values: list[float]) -> list[float]:
+    return [b / a - 1 for a, b in pairwise(values) if a > 0]
+
+
+def _beta(strategy: list[float], benchmark: list[float]) -> float | None:
+    n = min(len(strategy), len(benchmark))
+    if n < 60:
+        return None
+    s, b = strategy[:n], benchmark[:n]
+    mean_s, mean_b = sum(s) / n, sum(b) / n
+    var_b = sum((x - mean_b) ** 2 for x in b) / (n - 1)
+    if var_b <= 0:
+        return None
+    cov = sum((x - mean_s) * (y - mean_b) for x, y in zip(s, b, strict=True)) / (n - 1)
+    return cov / var_b
+
+
+def _annual_table(dates: list[date], values: list[float], benchmark: list[float] | None) -> str:
+    """Year | Strategy | Benchmark | Excess — computed from the curves themselves."""
+    frame = pl.DataFrame({"date": dates, "value": values}).with_columns(
+        pl.col("date").dt.year().alias("year")
+    )
+    if benchmark:
+        frame = frame.with_columns(pl.Series("bench", benchmark))
+    rows = ""
+    previous_value: float | None = None
+    previous_bench: float | None = None
+    for (year,), group in sorted(frame.partition_by("year", as_dict=True).items()):
+        start_value = previous_value if previous_value is not None else group["value"][0]
+        strategy_return = group["value"][-1] / start_value - 1
+        cells = f"<td>{year}</td><td>{strategy_return:+.1%}</td>"
+        if benchmark:
+            start_bench = previous_bench if previous_bench is not None else group["bench"][0]
+            bench_return = group["bench"][-1] / start_bench - 1
+            cells += f"<td>{bench_return:+.1%}</td><td>{strategy_return - bench_return:+.1%}</td>"
+            previous_bench = group["bench"][-1]
+        rows += f"<tr>{cells}</tr>"
+        previous_value = group["value"][-1]
+    header = "<th>Year</th><th>Strategy</th>"
+    if benchmark:
+        header += "<th>Benchmark</th><th>Excess</th>"
+    return f"<table><tr>{header}</tr>{rows}</table>"
+
+
+def _rolling_window_table(
+    dates: list[date], values: list[float], benchmark: list[float] | None
+) -> str:
+    """Rolling 1y/3y/5y annualised returns and excess, sampled at each year end —
+    computed from the curves so 3y/5y need no re-run of the record."""
+
+    def annualised(window_years: int, index: int) -> tuple[float | None, float | None]:
+        target = dates[index].replace(year=dates[index].year - window_years)
+        starts = [i for i, d in enumerate(dates) if d >= target]
+        if not starts or (starts[0] == 0 and dates[0] > target):
+            return None, None
+        start = starts[0]
+        if (dates[index] - dates[start]).days < window_years * 360:
+            return None, None
+        strategy = (values[index] / values[start]) ** (1 / window_years) - 1
+        bench = (
+            (benchmark[index] / benchmark[start]) ** (1 / window_years) - 1 if benchmark else None
+        )
+        return strategy, bench
+
+    year_ends = [
+        i for i, d in enumerate(dates) if i + 1 == len(dates) or dates[i + 1].year != d.year
+    ]
+    rows = ""
+    for index in year_ends:
+        cells = f"<td>{dates[index]}</td>"
+        for window in (1, 3, 5):
+            strategy, bench = annualised(window, index)
+            if strategy is None:
+                cells += "<td>—</td><td>—</td>"
+            else:
+                excess = f"{strategy - bench:+.1%}" if bench is not None else "—"
+                cells += f"<td>{strategy:+.1%}</td><td>{excess}</td>"
+        rows += f"<tr>{cells}</tr>"
+    return (
+        "<table><tr><th>As at</th><th>1y</th><th>1y excess</th><th>3y ann.</th>"
+        "<th>3y excess</th><th>5y ann.</th><th>5y excess</th></tr>" + rows + "</table>"
+    )
+
+
+def _drawdown_episodes(
+    dates: list[date], values: list[float], benchmark: list[float] | None, top: int = 5
+) -> str:
+    """Largest drawdowns: start (prior peak), trough, recovery, duration, depth, and the
+    benchmark's drawdown over the same start→trough window."""
+    episodes: list[tuple[int, int, int | None]] = []
+    peak_index = 0
+    trough_index = 0
+    in_drawdown = False
+    for i, value in enumerate(values):
+        if value >= values[peak_index]:
+            if in_drawdown:
+                episodes.append((peak_index, trough_index, i))
+                in_drawdown = False
+            peak_index = i
+        else:
+            if not in_drawdown or value < values[trough_index]:
+                trough_index = i
+            in_drawdown = True
+    if in_drawdown:
+        episodes.append((peak_index, trough_index, None))
+    episodes.sort(key=lambda e: values[e[1]] / values[e[0]])
+    rows = ""
+    for peak, trough, recovery in episodes[:top]:
+        depth = values[trough] / values[peak] - 1
+        bench_depth = f"{benchmark[trough] / benchmark[peak] - 1:+.1%}" if benchmark else "—"
+        recovered = str(dates[recovery]) if recovery is not None else "not recovered"
+        duration = (dates[recovery] if recovery is not None else dates[-1]) - dates[peak]
+        rows += (
+            f"<tr><td>{dates[peak]}</td><td>{dates[trough]}</td><td>{recovered}</td>"
+            f"<td>{duration.days}d</td><td>{depth:+.1%}</td><td>{bench_depth}</td></tr>"
+        )
+    return (
+        "<table><tr><th>Peak</th><th>Trough</th><th>Recovered</th><th>Duration</th>"
+        "<th>Strategy DD</th><th>Benchmark same window</th></tr>" + rows + "</table>"
+    )
 
 
 def _load_run(run_dir: Path) -> dict[str, Any]:
@@ -112,7 +240,70 @@ def _load_run(run_dir: Path) -> dict[str, Any]:
         out["metrics"]["relative"] = json.loads(relative_path.read_text())
     rolling_path = run_dir / "rolling.parquet"
     out["rolling"] = pl.read_parquet(rolling_path) if rolling_path.exists() else None
+    events_path = run_dir / "events.parquet"
+    out["events"] = pl.read_parquet(events_path) if events_path.exists() else None
     return out
+
+
+def _portfolio_behaviour(run: dict[str, Any]) -> str:
+    daily, rebalances, events = run["daily"], run["rebalances"], run["events"]
+    holdings = daily["positions"].to_list()
+    cash_share = [
+        float(c) / float(v) for c, v in zip(daily["cash"], daily["value"], strict=True) if v
+    ]
+    active = rebalances.filter(pl.col("trades") > 0) if rebalances.height else rebalances
+    rows = [
+        ("Average holdings", f"{sum(holdings) / len(holdings):.1f}"),
+        ("Average one-way turnover / rebalance", f"{float(active['turnover'].mean() or 0):.1%}"),
+        ("Max one-way turnover", f"{float(active['turnover'].max() or 0):.1%}"),
+        ("Average cash drag", f"{sum(cash_share) / len(cash_share):.2%}"),
+    ]
+    if events is not None:
+        kinds = dict(events.group_by("kind").len().iter_rows())
+        rows += [
+            ("Delisting events (proceeds)", str(kinds.get("delisting_proceeds", 0))),
+            ("Delisting events (write-off)", str(kinds.get("delisting_writeoff", 0))),
+        ]
+    warnings = run["meta"].get("warnings", [])
+    forced = sum(1 for w in warnings if "forced exit" in str(w))
+    rows.append(("Forced exits (DEC-019 backstop)", str(forced)))
+    return (
+        "<table>"
+        + "".join(f"<tr><td>{escape(k)}</td><td>{escape(v)}</td></tr>" for k, v in rows)
+        + "</table>"
+    )
+
+
+_DEC016_NAMES = (
+    "SABMiller, Xstrata, ENRC, ICAP, AMEC, TUI Travel, Worldpay, Invensys, "
+    "International Power, Autonomy, Friends Life, Cable & Wireless, Home Retail, "
+    "African Barrick, Essar, Cadbury (+ Just Eat's 43-day 2019 tail)"
+)
+
+
+def _data_quality(run: dict[str, Any]) -> str:
+    config, meta = run["config"], run["meta"]
+    events = run["events"]
+    approximated = 0
+    if events is not None and "note" in (events.columns or []):
+        approximated = events.filter(
+            (pl.col("kind") == "delisting_proceeds")
+            & pl.col("note").str.contains("last traded close")
+        ).height
+    warnings = meta.get("warnings", [])
+    items = [
+        f"Research coverage starts {config.get('start')} (DEC-014).",
+        "Known survivorship-related missingness, direction unquantified (DEC-016/025): "
+        f"{_DEC016_NAMES} — ≈2.5% of member-months; the exclusion list may only shrink.",
+        "Prices/dividends/splits: unit-repaired dataset (DEC-020, source eodhd-gbx2); "
+        "originals retained for audit.",
+        "Fundamental availability is IMPUTED (DEC-007/024) — irrelevant to price-only "
+        "factors, disclosed for any fundamental sleeve.",
+        f"Delistings without sourced terms resolve at the last traded close (DEC-023): "
+        f"{approximated} such approximations in this run.",
+        f"Unresolved run warnings: {len(warnings)}.",
+    ]
+    return "<ul class='meta'>" + "".join(f"<li>{escape(i)}</li>" for i in items) + "</ul>"
 
 
 def run_report(run_dir: Path) -> Path:
@@ -122,6 +313,8 @@ def run_report(run_dir: Path) -> Path:
     values = [float(v) for v in daily["value"]]
     indexed = [v / values[0] for v in values]
     benchmark = _benchmark_curve(config, dates)
+    if benchmark and metrics.get("beta") is None:
+        metrics["beta"] = _beta(_daily_returns(values), _daily_returns(benchmark))
 
     figure, (top, bottom) = plt.subplots(2, 1, figsize=(9.5, 6), sharex=True, height_ratios=[3, 1])
     top.plot(dates, indexed, label=run["name"], linewidth=1.2)
@@ -203,9 +396,14 @@ top {config.get("top_n")} · config <code>{escape(run["meta"].get("config_hash",
 commit <code>{escape(str(run["meta"].get("git_commit", ""))[:12])}</code></p>
 <h2>Metrics</h2><table>{metric_table}</table>{costs_row}{flags_html}{warning_html}
 <h2>Equity and drawdown</h2><figure>{equity_svg}</figure>
-{f"<h2>Rolling</h2>{rolling_svg}" if rolling_svg else ""}
+<h2>Annual results</h2>{_annual_table(dates, values, benchmark)}
 {f"<h2>Annual excess</h2>{annual_svg}" if annual_svg else ""}
-<p class="meta">Conventions: DEC-014 coverage, DEC-016 gaps, DEC-017 timing/costs,
+{f"<h2>Rolling 12m Sharpe</h2>{rolling_svg}" if rolling_svg else ""}
+<h2>Rolling windows (year ends)</h2>{_rolling_window_table(dates, values, benchmark)}
+<h2>Largest drawdowns</h2>{_drawdown_episodes(dates, values, benchmark)}
+<h2>Portfolio behaviour</h2>{_portfolio_behaviour(run)}
+<h2>Data quality</h2>{_data_quality(run)}
+<p class="meta">Conventions: DEC-014 coverage, DEC-016/025 gaps, DEC-017 timing/costs,
 DEC-019/023 exits, DEC-020 unit repair. Generated from the immutable run record.</p>
 </body></html>"""
     target = run_dir / "report.html"

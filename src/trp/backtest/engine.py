@@ -472,4 +472,28 @@ def write_run(result: RunResult, root: Path) -> Path:
     result.daily.write_parquet(directory / "daily.parquet")
     result.events.write_parquet(directory / "events.parquet")
     result.rebalances.write_parquet(directory / "rebalances.parquet")
+    holdings_history(result.events).write_parquet(directory / "holdings.parquet")
     return directory
+
+
+def holdings_history(events: pl.DataFrame) -> pl.DataFrame:
+    """Per-security share counts after every day on which any position changed,
+    replayed from the ledger (QNT-110 §13: an inspectable artefact, not a new source
+    of truth — the event log remains canonical)."""
+    positions: dict[str, int] = {}
+    rows: list[dict[str, object]] = []
+    changed_days: dict[str, dict[str, int]] = {}
+    for event in events.sort("on").iter_rows(named=True):
+        security_id = event["security_id"]
+        delta = event["quantity_delta"]
+        if security_id is None or not delta:
+            continue
+        positions[security_id] = positions.get(security_id, 0) + delta
+        if positions[security_id] == 0:
+            del positions[security_id]
+        changed_days[event["on"]] = dict(positions)
+    for day, snapshot in sorted(changed_days.items()):
+        for security_id, shares in sorted(snapshot.items()):
+            rows.append({"date": day, "security_id": security_id, "shares": shares})
+    schema = {"date": pl.Utf8, "security_id": pl.Utf8, "shares": pl.Int64}
+    return pl.DataFrame(rows, schema=schema)
