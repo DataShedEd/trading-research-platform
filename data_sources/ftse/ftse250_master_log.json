@@ -1,0 +1,15 @@
+[
+ "Aclara Resources (Dummy line): minted WITHOUT provider code (override-unresolvable) \u2014 exception candidate",
+ "Ashoka India Equity Investment Trust: EODHD code AIE.LSE already attached to another security (recycled code) \u2014 NOT attached, no backfill",
+ "Avon Technologies: EODHD code AVON.LSE already attached to another security (recycled code) \u2014 NOT attached, no backfill",
+ "B&M European Value Retail: EODHD code BME.LSE already attached to another security (recycled code) \u2014 NOT attached, no backfill",
+ "BTG: EODHD code 'BTG_old' is not a valid ticker form (recycled-code suffix); provider identifier attached only",
+ "Daily Mail & General Trust (A Shs): EODHD code DMGT.LSE already attached to another security (recycled code) \u2014 NOT attached, no backfill",
+ "Finablr: EODHD code 'FIN_old' is not a valid ticker form (recycled-code suffix); provider identifier attached only",
+ "Hipgnosis Songs Fund C: EODHD code SONG.LSE already attached to another security (recycled code) \u2014 NOT attached, no backfill",
+ "Just Retirement Group: EODHD code JUST.LSE already attached to another security (recycled code) \u2014 NOT attached, no backfill",
+ "Smith (DS): EODHD code SMDS.LSE already attached to another security (recycled code) \u2014 NOT attached, no backfill",
+ "St. James's Place Wealth Management Group: EODHD code STJ.LSE already attached to another security (recycled code) \u2014 NOT attached, no backfill",
+ "Volution Group: EODHD code FAN.LSE already attached to another security (recycled code) \u2014 NOT attached, no backfill",
+ "Wood Group (John): EODHD code WG.LSE already attached to another security (recycled code) \u2014 NOT attached, no backfill"
+]

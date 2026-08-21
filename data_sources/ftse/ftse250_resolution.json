@@ -1,9 +1,9 @@
 {
  "companies": 664,
- "matched_master": 133,
+ "matched_master": 134,
  "matched_wiki_ticker": 218,
  "matched_eodhd": 210,
- "overrides": 57,
+ "overrides": 56,
  "rejects": 62,
  "resolution": {
   "3i infrastructure": {
@@ -7255,7 +7255,7 @@
    "eodhd_code": "UKW",
    "isin": "GB00B8SC6K54"
   },
-  "gvc": {
+  "entain": {
    "display": "GVC Holdings",
    "spells": [
     {
@@ -7271,9 +7271,8 @@
      "exit_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 28"
     }
    ],
-   "matched_via": "override",
-   "eodhd_code": "GVC",
-   "isin": "IM00B5VQMV65"
+   "matched_via": "ftse100-master",
+   "security_id": "SEC-e1c46810-9778-4264-8ace-7803963e6a06"
   },
   "gocompare com": {
    "display": "Gocompare.com Group",

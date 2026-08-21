@@ -1037,7 +1037,7 @@
   "cmc markets": "CMC Markets",
   "hill and smith": "Hill & Smith Hldgs",
   "greencoat uk wind": "Greencoat UK Wind",
-  "gvc": "GVC Holdings",
+  "entain": "GVC Holdings",
   "gocompare com": "Gocompare.com Group",
   "newriver reit": "NewRiver REIT",
   "capita": "Capita",
@@ -5960,7 +5960,7 @@
     "entry_source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', April 2026 edition (research.ftserussell.com/products/downloads/FTSE_250_Constituent_history.pdf), page 23"
    }
   ],
-  "gvc": [
+  "entain": [
    {
     "from": "2016-09-19",
     "to": "2018-06-18",

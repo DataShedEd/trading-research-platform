@@ -47,6 +47,28 @@ BENCHMARKS = {
         "kind": "etf_total_return (accumulating share class, reinvestment internal to the fund)",
         "source": "EODHD CUKX.LSE bars; cross-check series",
     },
+    # QNT-113: FTSE 250 holdout benchmark. iShares FTSE 250 UCITS ETF (dist), tracks
+    # the FULL FTSE 250 index (investment trusts included), inception 2004, TER 0.40%.
+    "midd-xlon-tr": {
+        "symbol": "MIDD:XLON",
+        "universe": "FTSE250",
+        "currency": "GBX",
+        "kind": "etf_total_return (distributing share class, dividends reinvested at "
+        "ex-date close)",
+        "source": "EODHD MIDD.LSE bars + dividends; see data/canonical/benchmarks/",
+    },
+    # Vanguard FTSE 250 UCITS ETF (dist), full index, inception September 2014,
+    # TER 0.10% — independent-issuer cross-check for midd-xlon-tr.
+    "vmid-xlon-tr": {
+        "symbol": "VMID:XLON",
+        "universe": "FTSE250",
+        # EODHD serves VMID's LSE line in POUNDS (closes ~24-38), unlike ISF/MIDD (GBX):
+        # declaring GBP keeps the GBP dividends unit-consistent. Verified 2026-08-21.
+        "currency": "GBP",
+        "kind": "etf_total_return (distributing share class, dividends reinvested at "
+        "ex-date close)",
+        "source": "EODHD VMID.LSE bars + dividends; cross-check series",
+    },
 }
 
 
@@ -73,20 +95,26 @@ class BenchmarkSeries:
 
 
 def total_return_series(
-    bars: pl.DataFrame, dividends: pl.DataFrame, *, as_of: datetime
+    bars: pl.DataFrame,
+    dividends: pl.DataFrame,
+    *,
+    as_of: datetime,
+    quote_currency: str = "GBX",
 ) -> pl.DataFrame:
     """Daily total returns from raw closes with dividends reinvested on their ex-dates.
 
-    ``r_t = (close_t + dividend_gbx(ex = t, available_at <= as_of)) / close_{t-1} - 1``.
-    A ~100x one-day close ratio (a quotation-unit flip, DEC-020's disease) refuses to
-    compute rather than producing a 99% "return"."""
+    ``r_t = (close_t + dividend(ex = t, available_at <= as_of)) / close_{t-1} - 1``,
+    with each dividend converted into the series' QUOTE currency (VMID's LSE line is
+    served in pounds; ISF/MIDD in pence — QNT-113). A ~100x one-day close ratio (a
+    quotation-unit flip, DEC-020's disease) refuses to compute rather than producing a
+    99% "return"."""
     _require_columns(bars, {"trade_date", "close"}, "benchmark bars")
     frame = bars.sort("trade_date")
     reference = default_reference_data()
     knowable = dividends.filter(pl.col("available_at") <= as_of)
     dividend_by_ex: dict[date, Decimal] = {}
     for row in knowable.iter_rows(named=True):
-        amount = reference.convert(Decimal(str(row["amount"])), row["currency"], "GBX")
+        amount = reference.convert(Decimal(str(row["amount"])), row["currency"], quote_currency)
         dividend_by_ex[row["ex_date"]] = dividend_by_ex.get(row["ex_date"], Decimal(0)) + amount
 
     dates = frame["trade_date"].to_list()
@@ -130,7 +158,9 @@ def load_benchmark(name: str, root: Path, *, as_of: datetime) -> BenchmarkSeries
         currency=spec["currency"],
         kind=spec["kind"],
         source=spec["source"],
-        returns=total_return_series(bars, dividends, as_of=as_of),
+        returns=total_return_series(
+            bars, dividends, as_of=as_of, quote_currency=str(spec["currency"])
+        ),
     )
 
 
