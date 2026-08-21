@@ -15,7 +15,13 @@ from trp.factors.registry import FactorRegistry
 from trp.universe.query import UniverseQuery
 
 SETTINGS = load_settings()
-RUNS = sorted((SETTINGS.derived_dir / "backtests").glob("*/config.json"))
+# Newest record by write time: after a canonical re-adjudication, OLDER records
+# legitimately stop reproducing (their manifests pin the prior data versions and the
+# registry's rerun path reports the diff); the gate's claim is about the CURRENT store.
+RUNS = sorted(
+    (SETTINGS.derived_dir / "backtests").glob("*/config.json"),
+    key=lambda path: path.stat().st_mtime,
+)
 
 pytestmark = [
     pytest.mark.gate,
