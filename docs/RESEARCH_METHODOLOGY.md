@@ -60,6 +60,21 @@ Keep these distinct and never conflate them:
 8. When a methodological choice could flatter results (universe tweak, exclusion, date range,
    winsorisation change), document it in the experiment record at the time it is made.
 
+## The 12-1 momentum convention (golden-validated)
+
+The platform's reference factor. The precise convention — calendar-month windows with a
+skip, endpoint resolution to the last bar on or before each date (≤15 days stale),
+total return under the ex-date reinvestment convention, the 60% session-coverage floor,
+delisting proceeds handling — is stated once, in
+`tests/gate/test_momentum_golden_gate.py`'s module docstring, alongside the golden
+observations that enforce it: at four historical dates (2011, 2015, COVID March 2020,
+2025) securities from the top, middle and bottom of the real FTSE 100 ranking are
+re-derived by an independent textbook implementation reading the canonical parquet
+files directly, and production must agree to 1e-9. The pinned fixture
+(`tests/gate/golden/momentum_12_1_goldens.json`) records, per inspected security, the
+endpoint bars, every corporate action in the window, the value and the rank — it
+answers "why was this security ranked #7 on this date?" without reading source code.
+
 ## Querying fundamentals point-in-time
 
 The only supported read path is `trp.canonical.fundamentals.queries.fundamentals(...)`,

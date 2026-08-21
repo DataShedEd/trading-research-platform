@@ -105,7 +105,7 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-048](QNT-048-composite-scoring.md) | Composite factor scoring | P2 | DONE |
 | [QNT-049](QNT-049-factor-pit-tests.md) | Factor point-in-time test suite | P2 | DONE |
 | [QNT-104](QNT-104-fundamental-lag-sensitivity.md) | Fundamental reporting-lag sensitivity testing | P2 | BACKLOG |
-| [QNT-107](QNT-107-momentum-golden-observations.md) | 12-1 momentum convention + golden observations | P1 | IN_PROGRESS |
+| [QNT-107](QNT-107-momentum-golden-observations.md) | 12-1 momentum convention + golden observations | P1 | DONE |
 
 ## EPIC 8 — Backtesting Engine
 

@@ -1,0 +1,3123 @@
+{
+ "2011-06-30": {
+  "cross_section": [
+   {
+    "security_id": "SEC-e81b96d0-946a-4229-81a6-5ed7844b095f",
+    "status": "ok",
+    "value": 3.666666666666667,
+    "rank": 1,
+    "name": "Randgold Resources Limited ordinary"
+   },
+   {
+    "security_id": "SEC-71f8629a-56e7-41c3-b8d7-1e3de2d8e728",
+    "status": "ok",
+    "value": 1.0897692167908417,
+    "rank": 2,
+    "name": "Arm Holdings Plc ordinary"
+   },
+   {
+    "security_id": "SEC-e9953022-7b87-4d81-868f-3dd8d810f31a",
+    "status": "ok",
+    "value": 1.068072996134254,
+    "rank": 3,
+    "name": "John Wood Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-f5265d22-5f21-4d47-bab7-a9737c7772f6",
+    "status": "ok",
+    "value": 0.9420549105130216,
+    "rank": 4,
+    "name": "Weir Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-dd627165-5f50-4ee0-80ab-77d7140a9bbc",
+    "status": "ok",
+    "value": 0.8665721755120299,
+    "rank": 5,
+    "name": "Hargreaves Lansdown plc ordinary"
+   },
+   {
+    "security_id": "SEC-90b37a42-5af3-4ccf-bf2f-df69f0ec00c7",
+    "status": "ok",
+    "value": 0.8589853826311264,
+    "rank": 6,
+    "name": "GKN plc ordinary"
+   },
+   {
+    "security_id": "SEC-3ac2cdfc-6478-4de8-9692-1f404e8653f3",
+    "status": "ok",
+    "value": 0.7249558209762696,
+    "rank": 7,
+    "name": "Burberry Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-be121a43-cb67-4efb-b519-a675fb31328b",
+    "status": "ok",
+    "value": 0.6681500317863953,
+    "rank": 8,
+    "name": "Antofagasta PLC ordinary"
+   },
+   {
+    "security_id": "SEC-86c9374a-d478-45bb-8acc-8d63c1e97f2e",
+    "status": "ok",
+    "value": 0.586992831366818,
+    "rank": 9,
+    "name": "BT Group Plc ordinary"
+   },
+   {
+    "security_id": "SEC-9add5484-79f0-44fe-b6d5-3b67fd5f599b",
+    "status": "ok",
+    "value": 0.5812500236374782,
+    "rank": 10,
+    "name": "Capita PLC ordinary"
+   },
+   {
+    "security_id": "SEC-c67386b9-ce1f-4b01-8bd3-64d4a87622c0",
+    "status": "ok",
+    "value": 0.5526287019866591,
+    "rank": 11,
+    "name": "RSA Insurance Group Limited ordinary"
+   },
+   {
+    "security_id": "SEC-f4d56936-8aba-4e80-9801-208616a5ef9e",
+    "status": "ok",
+    "value": 0.5452383853411835,
+    "rank": 12,
+    "name": "Legal & General Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-44097ed9-e2f4-40c8-ae8e-15c375032844",
+    "status": "ok",
+    "value": 0.5442378516201996,
+    "rank": 13,
+    "name": "Land Securities Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-c9d30025-712d-48f0-8c95-569a8d414902",
+    "status": "ok",
+    "value": 0.5341766675368138,
+    "rank": 14,
+    "name": "IMI PLC ordinary"
+   },
+   {
+    "security_id": "SEC-b3deb079-18d3-4470-9b7d-d1eb01a3eada",
+    "status": "ok",
+    "value": 0.5053707075345206,
+    "rank": 15,
+    "name": "Prudential plc ordinary"
+   },
+   {
+    "security_id": "SEC-b457685a-1d54-4aa1-9041-46e18a5ac23a",
+    "status": "ok",
+    "value": 0.48382267180516325,
+    "rank": 16,
+    "name": "Aviva PLC ordinary"
+   },
+   {
+    "security_id": "SEC-fe2af4b1-432a-41cf-8fe2-1260a48415a1",
+    "status": "ok",
+    "value": 0.4681799538937299,
+    "rank": 17,
+    "name": "BP PLC ordinary"
+   },
+   {
+    "security_id": "SEC-ce847614-18e0-4cd3-a6fa-7ccce835a92f",
+    "status": "ok",
+    "value": 0.4669730432040755,
+    "rank": 18,
+    "name": "Fresnillo PLC ordinary"
+   },
+   {
+    "security_id": "SEC-71444bc6-0757-4a56-a9b9-52505a3a1d30",
+    "status": "ok",
+    "value": 0.46569514656493305,
+    "rank": 19,
+    "name": "Rio Tinto PLC ordinary"
+   },
+   {
+    "security_id": "SEC-940c9f99-6df5-4595-bc62-6a292196606c",
+    "status": "ok",
+    "value": 0.42911157422985924,
+    "rank": 20,
+    "name": "British Land Company PLC ordinary"
+   },
+   {
+    "security_id": "SEC-97163c29-a484-4ca8-afa4-e0f2bcd72bfe",
+    "status": "ok",
+    "value": 0.41375162874611604,
+    "rank": 21,
+    "name": "BG Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-1f75a419-6e03-4917-ac4d-110d5d4f3618",
+    "status": "ok",
+    "value": 0.40260153611663796,
+    "rank": 22,
+    "name": "Hammerson PLC ordinary"
+   },
+   {
+    "security_id": "SEC-73ac999f-63e1-4d7c-889e-0b977608054e",
+    "status": "ok",
+    "value": 0.39999044678854334,
+    "rank": 23,
+    "name": "BHP Group Limited ordinary"
+   },
+   {
+    "security_id": "SEC-0a801269-2b3d-4cb2-818f-260bd15e01b2",
+    "status": "ok",
+    "value": 0.3907731201604625,
+    "rank": 24,
+    "name": "Intertek Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-17c6fcb2-c03b-4ff1-84a2-44b78d4411bc",
+    "status": "ok",
+    "value": 0.38562159065355606,
+    "rank": 25,
+    "name": "Kingfisher PLC ordinary"
+   },
+   {
+    "security_id": "SEC-964e6e0c-1b21-49c7-b45b-e2bdbb1f5e67",
+    "status": "ok",
+    "value": 0.38232373386295904,
+    "rank": 26,
+    "name": "ITV PLC ordinary"
+   },
+   {
+    "security_id": "SEC-54df56fe-1f80-428f-8edb-c9a914c0cf91",
+    "status": "ok",
+    "value": 0.3740902474526928,
+    "rank": 27,
+    "name": "Shire plc ordinary"
+   },
+   {
+    "security_id": "SEC-1a68114d-e59d-45d8-8141-1a80ed68aa40",
+    "status": "ok",
+    "value": 0.3714900968361734,
+    "rank": 28,
+    "name": "Tate & Lyle PLC ordinary"
+   },
+   {
+    "security_id": "SEC-86adcb5b-1fbd-4e47-aa5e-3eb0b19a2813",
+    "status": "ok",
+    "value": 0.3696145778009361,
+    "rank": 29,
+    "name": "Johnson Matthey PLC ordinary"
+   },
+   {
+    "security_id": "SEC-602c0924-9426-4bc2-82df-5feb65040f0e",
+    "status": "ok",
+    "value": 0.3566375513314808,
+    "rank": 30,
+    "name": "Petrofac Ltd ordinary"
+   },
+   {
+    "security_id": "SEC-561f75b8-77cb-4cdd-8200-b34187ef77ef",
+    "status": "ok",
+    "value": 0.35065247091614227,
+    "rank": 31,
+    "name": "Schroders PLC ordinary"
+   },
+   {
+    "security_id": "SEC-ff6bc2c0-d7c8-4b53-9c2d-385f064b0cd9",
+    "status": "ok",
+    "value": 0.33505319084766083,
+    "rank": 32,
+    "name": "British American Tobacco PLC ordinary"
+   },
+   {
+    "security_id": "SEC-cb1fb684-b570-4bb9-a446-94eb1bb9a2e3",
+    "status": "ok",
+    "value": 0.3337615215925305,
+    "rank": 33,
+    "name": "Experian PLC ordinary"
+   },
+   {
+    "security_id": "SEC-90abc84f-1556-438a-939f-af4b2c5d932e",
+    "status": "ok",
+    "value": 0.32409253291233053,
+    "rank": 34,
+    "name": "Tullow Oil PLC ordinary"
+   },
+   {
+    "security_id": "SEC-c9e67a21-f2f5-42fc-8158-8975455cfe2d",
+    "status": "ok",
+    "value": 0.31988962939846477,
+    "rank": 35,
+    "name": "Shell plc ordinary"
+   },
+   {
+    "security_id": "SEC-4c6cc130-9286-4116-aca1-c893e3f8a23e",
+    "status": "ok",
+    "value": 0.31767715228572624,
+    "rank": 36,
+    "name": "KAZ Minerals PLC ordinary"
+   },
+   {
+    "security_id": "SEC-ccc903b6-a572-42a9-a35b-7fc961fff334",
+    "status": "ok",
+    "value": 0.31317234145590445,
+    "rank": 37,
+    "name": "Pearson PLC ordinary"
+   },
+   {
+    "security_id": "SEC-c05f62b1-05f2-40d4-8b89-0db001768438",
+    "status": "ok",
+    "value": 0.3099766433099769,
+    "rank": 38,
+    "name": "Rexam Plc ordinary"
+   },
+   {
+    "security_id": "SEC-77620613-ca58-4911-9aa9-dce10c0e440e",
+    "status": "ok",
+    "value": 0.3077715359666735,
+    "rank": 39,
+    "name": "Abrdn PLC ordinary"
+   },
+   {
+    "security_id": "SEC-5a7e8ae9-ae89-4d6b-8402-fe8b66f1442e",
+    "status": "ok",
+    "value": 0.2976944639185257,
+    "rank": 40,
+    "name": "SSE PLC ordinary"
+   },
+   {
+    "security_id": "SEC-184ffdca-7026-4a96-bd44-f5aa74eb21ab",
+    "status": "ok",
+    "value": 0.2967283762626032,
+    "rank": 41,
+    "name": "Anglo American PLC ordinary"
+   },
+   {
+    "security_id": "SEC-7061619a-37bc-4d5b-b067-81075d19e769",
+    "status": "ok",
+    "value": 0.2911110513761914,
+    "rank": 42,
+    "name": "National Grid PLC ordinary"
+   },
+   {
+    "security_id": "SEC-23c45b46-9217-4e75-b4a2-c14ab00800cd",
+    "status": "ok",
+    "value": 0.2878690629011553,
+    "rank": 43,
+    "name": "Intu Properties PLC ordinary"
+   },
+   {
+    "security_id": "SEC-c4f38102-6e32-4a48-b373-5234b388ee98",
+    "status": "ok",
+    "value": 0.2819788373336638,
+    "rank": 44,
+    "name": "Aggreko Plc ordinary"
+   },
+   {
+    "security_id": "SEC-28368d04-8083-4078-93a1-705c00385b36",
+    "status": "ok",
+    "value": 0.2733630708929955,
+    "rank": 45,
+    "name": "Sage Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-81c21ebd-36bf-40e7-a895-464598c8b2d2",
+    "status": "ok",
+    "value": 0.26406239918643815,
+    "rank": 46,
+    "name": "Vodafone Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-258e2d0c-d891-4875-9fe9-ff3644a7bc42",
+    "status": "ok",
+    "value": 0.25493060307255955,
+    "rank": 47,
+    "name": "Severn Trent PLC ordinary"
+   },
+   {
+    "security_id": "SEC-faa09e20-78c5-48fa-a80c-045c480c816c",
+    "status": "ok",
+    "value": 0.25172184343485005,
+    "rank": 48,
+    "name": "Diageo PLC ordinary"
+   },
+   {
+    "security_id": "SEC-4f1e2f2d-adfb-4f48-9e40-2121b4e09f98",
+    "status": "ok",
+    "value": 0.25024154589371994,
+    "rank": 49,
+    "name": "Old Mutual plc ordinary"
+   },
+   {
+    "security_id": "SEC-27c4555f-1966-456e-88c3-a6b101fcae0b",
+    "status": "ok",
+    "value": 0.24937140167088168,
+    "rank": 50,
+    "name": "InterContinental Hotels Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-055f5fb5-c061-42a7-85cb-4693203d3b2a",
+    "status": "ok",
+    "value": 0.24670820716944908,
+    "rank": 51,
+    "name": "Admiral Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-5ac37276-0653-4bdd-b5e0-19659cdbc104",
+    "status": "ok",
+    "value": 0.2328452815900499,
+    "rank": 52,
+    "name": "GSK plc ordinary"
+   },
+   {
+    "security_id": "SEC-acde2d1a-e418-49af-bd0c-3f1760ec1e0f",
+    "status": "ok",
+    "value": 0.2120246503707639,
+    "rank": 53,
+    "name": "Marks and Spencer Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-510d998c-9177-4cf2-8df3-23221f7dc4fb",
+    "status": "ok",
+    "value": 0.20763509971067418,
+    "rank": 54,
+    "name": "United Utilities Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-b76b6481-4d14-4cb6-88c0-b6d8605c1fae",
+    "status": "ok",
+    "value": 0.20709233681484118,
+    "rank": 55,
+    "name": "Imperial Brands PLC ordinary"
+   },
+   {
+    "security_id": "SEC-612a1456-eeed-46ba-a5ee-14f0aad730ab",
+    "status": "ok",
+    "value": 0.2020420429000438,
+    "rank": 56,
+    "name": "International Consolidated Airlines Group S.A ordinary"
+   },
+   {
+    "security_id": "SEC-78f78a1e-7468-44d7-b4d8-6474e254810c",
+    "status": "ok",
+    "value": 0.1912919343326196,
+    "rank": 57,
+    "name": "Sky plc ordinary"
+   },
+   {
+    "security_id": "SEC-51b68f13-53b9-45e7-93ab-35f3eea9c6f4",
+    "status": "ok",
+    "value": 0.18636440764175433,
+    "rank": 58,
+    "name": "WPP PLC ordinary"
+   },
+   {
+    "security_id": "SEC-690a5ac5-93dc-435a-8227-e25adcdf287a",
+    "status": "ok",
+    "value": 0.1821305058030842,
+    "rank": 59,
+    "name": "Whitbread PLC ordinary"
+   },
+   {
+    "security_id": "SEC-698e32ce-c3be-4935-a59f-0b154a50b1ad",
+    "status": "ok",
+    "value": 0.17752637021382234,
+    "rank": 60,
+    "name": "Compass Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-cbb48d65-b777-42c6-85ed-0f17c324a732",
+    "status": "ok",
+    "value": 0.16984297822863126,
+    "rank": 61,
+    "name": "Smiths Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-4f7dcda7-3792-496d-a9da-6af119f972e4",
+    "status": "ok",
+    "value": 0.16267631525589987,
+    "rank": 62,
+    "name": "Next PLC ordinary"
+   },
+   {
+    "security_id": "SEC-2ad43e4a-fb30-4032-a107-a77739f16703",
+    "status": "ok",
+    "value": 0.1593083830476807,
+    "rank": 63,
+    "name": "Man Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-e4ccea18-86d8-4658-a1f0-113398db0a76",
+    "status": "ok",
+    "value": 0.15033207095647927,
+    "rank": 64,
+    "name": "Investec PLC ordinary"
+   },
+   {
+    "security_id": "SEC-e548d8eb-b9e7-4363-8272-946ed11289af",
+    "status": "ok",
+    "value": 0.14956783164223952,
+    "rank": 65,
+    "name": "Wm Morrison Supermarkets PLC ordinary"
+   },
+   {
+    "security_id": "SEC-77135fb3-b1e2-4456-9524-e390b84d75a6",
+    "status": "ok",
+    "value": 0.14278517248205636,
+    "rank": 66,
+    "name": "Relx PLC ordinary"
+   },
+   {
+    "security_id": "SEC-89256de9-d09e-4274-9398-6117f5a50e46",
+    "status": "ok",
+    "value": 0.13599672880197522,
+    "rank": 67,
+    "name": "Carnival PLC ordinary"
+   },
+   {
+    "security_id": "SEC-442cfc7a-6d12-4304-84cf-ba52c93d4597",
+    "status": "ok",
+    "value": 0.13377523168744965,
+    "rank": 68,
+    "name": "Tesco PLC ordinary"
+   },
+   {
+    "security_id": "SEC-79370f1a-9ecc-4a73-8992-6eb458f8cdeb",
+    "status": "ok",
+    "value": 0.1297942699636918,
+    "rank": 69,
+    "name": "Rolls-Royce Holdings PLC ordinary"
+   },
+   {
+    "security_id": "SEC-6192db0d-b473-4cbd-a476-bee2837b248f",
+    "status": "ok",
+    "value": 0.12849199210119555,
+    "rank": 70,
+    "name": "Unilever PLC ordinary"
+   },
+   {
+    "security_id": "SEC-e6548dbd-846a-4205-93fb-3107103283f9",
+    "status": "ok",
+    "value": 0.12527517320964354,
+    "rank": 71,
+    "name": "Reckitt Benckiser Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-533f274d-2762-46bc-aeaf-61dbd4772fe7",
+    "status": "ok",
+    "value": 0.11577903458724004,
+    "rank": 72,
+    "name": "Centrica PLC ordinary"
+   },
+   {
+    "security_id": "SEC-7f48bb17-3448-43e1-82e0-1d34dcf26521",
+    "status": "ok",
+    "value": 0.11410347271438703,
+    "rank": 73,
+    "name": "Lonmin Plc ordinary"
+   },
+   {
+    "security_id": "SEC-2b41be9b-9046-4a5a-ad0b-c9a9cfc5ef9c",
+    "status": "ok",
+    "value": 0.11383669455649525,
+    "rank": 74,
+    "name": "J Sainsbury PLC ordinary"
+   },
+   {
+    "security_id": "SEC-be72aef6-6171-46a5-a0cd-f263f7fd8380",
+    "status": "ok",
+    "value": 0.1113034984992829,
+    "rank": 75,
+    "name": "BAE Systems plc ordinary"
+   },
+   {
+    "security_id": "SEC-ab2f8ad9-5569-470a-ad25-004880852b2a",
+    "status": "ok",
+    "value": 0.1086785177775369,
+    "rank": 76,
+    "name": "Associated British Foods PLC ordinary"
+   },
+   {
+    "security_id": "SEC-90e23c5e-fcce-4aa2-a5cc-dd50395923bc",
+    "status": "ok",
+    "value": 0.08333201505022303,
+    "rank": 77,
+    "name": "3I Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-524f37cd-99d0-4146-825b-55325fdac058",
+    "status": "ok",
+    "value": 0.082134599647544,
+    "rank": 78,
+    "name": "Smith & Nephew PLC ordinary"
+   },
+   {
+    "security_id": "SEC-9906d8a0-45c2-4cda-a90a-7552bc6fe3ed",
+    "status": "ok",
+    "value": 0.06628083684251496,
+    "rank": 79,
+    "name": "Capricorn Energy PLC ordinary"
+   },
+   {
+    "security_id": "SEC-e6f0463b-d175-4bb7-8dde-b199f3afcc17",
+    "status": "ok",
+    "value": 0.06304188751751716,
+    "rank": 80,
+    "name": "HSBC Holdings PLC ordinary"
+   },
+   {
+    "security_id": "SEC-4148f194-e026-4b71-ae96-c0c99c6e5c27",
+    "status": "ok",
+    "value": 0.052001496445940765,
+    "rank": 81,
+    "name": "G4S plc ordinary"
+   },
+   {
+    "security_id": "SEC-d9202331-eaf4-4dc4-8455-2e6355d70f92",
+    "status": "ok",
+    "value": 0.04797433331333556,
+    "rank": 82,
+    "name": "AstraZeneca PLC ordinary"
+   },
+   {
+    "security_id": "SEC-404f607e-5a1a-46c5-9350-3e13a9c61039",
+    "status": "ok",
+    "value": 0.040953303210752745,
+    "rank": 83,
+    "name": "Standard Chartered PLC ordinary"
+   },
+   {
+    "security_id": "SEC-fa13cb40-1f82-4421-823a-5271404343e8",
+    "status": "ok",
+    "value": 0.03438834740526864,
+    "rank": 84,
+    "name": "Barclays PLC ordinary"
+   },
+   {
+    "security_id": "SEC-12e509f1-e661-4fe7-8255-13e9bafd7128",
+    "status": "ok",
+    "value": 0.02070588235294113,
+    "rank": 85,
+    "name": "Vedanta Resources plc ordinary"
+   },
+   {
+    "security_id": "SEC-bd878296-7cd8-4377-aa4c-0a0aa49c4bce",
+    "status": "ok",
+    "value": 0.01955104996379431,
+    "rank": 86,
+    "name": "NatWest Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-69669830-3371-47e7-b40a-fb8c865bf020",
+    "status": "ok",
+    "value": -0.017504655493482346,
+    "rank": 87,
+    "name": "Lloyds Banking Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-e1f501e6-a877-4294-adf1-cdca2de77003",
+    "status": "ok",
+    "value": -0.04202775515962742,
+    "rank": 88,
+    "name": "Serco Group ordinary"
+   },
+   {
+    "security_id": "SEC-ca28307e-6672-4936-983c-a79f069934d5",
+    "status": "ok",
+    "value": -0.15780979706088172,
+    "rank": 89,
+    "name": "Inmarsat Plc ordinary"
+   },
+   {
+    "security_id": "SEC-0162481a-9cde-4f9c-954a-f0a22a72d9ff",
+    "status": "no_data",
+    "value": null,
+    "rank": null,
+    "name": "Xstrata ordinary"
+   },
+   {
+    "security_id": "SEC-02068985-6645-405b-9625-f20b21bbfa22",
+    "status": "no_data",
+    "value": null,
+    "rank": null,
+    "name": "Autonomy Corporation ordinary"
+   },
+   {
+    "security_id": "SEC-498315be-c7a5-4d7f-930b-1e19c185dcdd",
+    "status": "no_data",
+    "value": null,
+    "rank": null,
+    "name": "SABMiller ordinary"
+   },
+   {
+    "security_id": "SEC-49f7f349-7d06-49e5-9a15-401611c86779",
+    "status": "no_data",
+    "value": null,
+    "rank": null,
+    "name": "Friends Life Group Limited ordinary"
+   },
+   {
+    "security_id": "SEC-5daa521c-822a-43de-8c79-13b561dedab8",
+    "status": "no_data",
+    "value": null,
+    "rank": null,
+    "name": "ICAP ordinary"
+   },
+   {
+    "security_id": "SEC-7903a446-bf9d-4caf-875d-e2709b56cb89",
+    "status": "insufficient_data",
+    "value": null,
+    "rank": null,
+    "name": "Glencore PLC ordinary"
+   },
+   {
+    "security_id": "SEC-bb079704-22ff-4690-9136-3079670ff690",
+    "status": "no_data",
+    "value": null,
+    "rank": null,
+    "name": "Eurasian Natural Resources Corporation ordinary"
+   },
+   {
+    "security_id": "SEC-bc2af1f7-fe56-44cb-8949-af1bed047167",
+    "status": "no_data",
+    "value": null,
+    "rank": null,
+    "name": "Essar energy ordinary"
+   },
+   {
+    "security_id": "SEC-db0967f2-23a0-4df8-af03-32c0de7da3a6",
+    "status": "no_data",
+    "value": null,
+    "rank": null,
+    "name": "International Power ordinary"
+   },
+   {
+    "security_id": "SEC-e9358707-dd8e-478b-b1e3-4c397410b732",
+    "status": "insufficient_data",
+    "value": null,
+    "rank": null,
+    "name": "Ferguson Plc ordinary"
+   },
+   {
+    "security_id": "SEC-f67bd543-2be7-4f4d-8e64-d1c741b7e407",
+    "status": "no_data",
+    "value": null,
+    "rank": null,
+    "name": "AMEC ordinary"
+   }
+  ],
+  "inspected": {
+   "SEC-e81b96d0-946a-4229-81a6-5ed7844b095f": {
+    "name": "Randgold Resources Limited ordinary",
+    "member_on_date": true,
+    "production_status": "ok",
+    "production_value": 3.666666666666667,
+    "cross_sectional_rank": 1,
+    "independent": {
+     "status": "ok",
+     "value": 3.666666666666667,
+     "start_bar": "2010-06-30",
+     "start_close_gbx": 6.0,
+     "end_bar": "2011-05-30",
+     "end_close_gbx": 28.0,
+     "actions_in_window": []
+    }
+   },
+   "SEC-28368d04-8083-4078-93a1-705c00385b36": {
+    "name": "Sage Group PLC ordinary",
+    "member_on_date": true,
+    "production_status": "ok",
+    "production_value": 0.2733630708929955,
+    "cross_sectional_rank": 45,
+    "independent": {
+     "status": "ok",
+     "value": 0.2733630708929957,
+     "start_bar": "2010-06-30",
+     "start_close_gbx": 231.6004,
+     "end_bar": "2011-05-27",
+     "end_close_gbx": 286.7005,
+     "actions_in_window": [
+      {
+       "kind": "dividend",
+       "ex_date": "2011-02-09",
+       "amount_gbx": 5.491
+      },
+      {
+       "kind": "dividend",
+       "ex_date": "2011-05-11",
+       "amount_gbx": 2.819
+      }
+     ]
+    }
+   },
+   "SEC-ca28307e-6672-4936-983c-a79f069934d5": {
+    "name": "Inmarsat Plc ordinary",
+    "member_on_date": true,
+    "production_status": "ok",
+    "production_value": -0.15780979706088172,
+    "cross_sectional_rank": 89,
+    "independent": {
+     "status": "ok",
+     "value": -0.15780979706088172,
+     "start_bar": "2010-06-30",
+     "start_close_gbx": 714.5,
+     "end_bar": "2011-05-27",
+     "end_close_gbx": 601.7449,
+     "actions_in_window": []
+    }
+   },
+   "SEC-0162481a-9cde-4f9c-954a-f0a22a72d9ff": {
+    "name": "Xstrata ordinary",
+    "member_on_date": true,
+    "production_status": "no_data",
+    "production_value": null,
+    "cross_sectional_rank": null,
+    "independent": {
+     "status": "insufficient_data",
+     "value": null
+    }
+   }
+  }
+ },
+ "2015-06-30": {
+  "cross_section": [
+   {
+    "security_id": "SEC-1624ed01-93b1-4201-9a5c-97c097a42ac9",
+    "status": "ok",
+    "value": 0.6943070938046711,
+    "rank": 1,
+    "name": "Taylor Wimpey PLC ordinary"
+   },
+   {
+    "security_id": "SEC-9add5484-79f0-44fe-b6d5-3b67fd5f599b",
+    "status": "ok",
+    "value": 0.6633362785795163,
+    "rank": 2,
+    "name": "Capita PLC ordinary"
+   },
+   {
+    "security_id": "SEC-d663a5db-2574-4542-869a-83b35a62b1c7",
+    "status": "ok",
+    "value": 0.631207290069733,
+    "rank": 3,
+    "name": "Barratt Redrow plc ordinary"
+   },
+   {
+    "security_id": "SEC-cdf6b074-be61-4757-b264-636fb23e77cf",
+    "status": "ok",
+    "value": 0.629179847561623,
+    "rank": 4,
+    "name": "Persimmon PLC ordinary"
+   },
+   {
+    "security_id": "SEC-964e6e0c-1b21-49c7-b45b-e2bdbb1f5e67",
+    "status": "ok",
+    "value": 0.5964676811291749,
+    "rank": 5,
+    "name": "ITV PLC ordinary"
+   },
+   {
+    "security_id": "SEC-28368d04-8083-4078-93a1-705c00385b36",
+    "status": "ok",
+    "value": 0.5175424344771522,
+    "rank": 6,
+    "name": "Sage Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-a86f61f0-d3ac-4ccd-9a16-911bdacdebbe",
+    "status": "ok",
+    "value": 0.5006579688402888,
+    "rank": 7,
+    "name": "Dixons Carphone plc ordinary"
+   },
+   {
+    "security_id": "SEC-612a1456-eeed-46ba-a5ee-14f0aad730ab",
+    "status": "ok",
+    "value": 0.4952766531713899,
+    "rank": 8,
+    "name": "International Consolidated Airlines Group S.A ordinary"
+   },
+   {
+    "security_id": "SEC-89256de9-d09e-4274-9398-6117f5a50e46",
+    "status": "ok",
+    "value": 0.468146105268368,
+    "rank": 9,
+    "name": "Carnival PLC ordinary"
+   },
+   {
+    "security_id": "SEC-2e73e173-61c3-4d49-b013-6b91abce7910",
+    "status": "ok",
+    "value": 0.4302537647043938,
+    "rank": 10,
+    "name": "Mondi PLC ordinary"
+   },
+   {
+    "security_id": "SEC-acde2d1a-e418-49af-bd0c-3f1760ec1e0f",
+    "status": "ok",
+    "value": 0.4171626775582664,
+    "rank": 11,
+    "name": "Marks and Spencer Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-90e23c5e-fcce-4aa2-a5cc-dd50395923bc",
+    "status": "ok",
+    "value": 0.41121563555614205,
+    "rank": 12,
+    "name": "3I Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-cca6096d-ee8b-4716-ab9d-f1e422205078",
+    "status": "ok",
+    "value": 0.39001369398452046,
+    "rank": 13,
+    "name": "Travis Perkins PLC ordinary"
+   },
+   {
+    "security_id": "SEC-5313522c-3667-41cd-9b67-bc2ba8544915",
+    "status": "ok",
+    "value": 0.3551564806535157,
+    "rank": 14,
+    "name": "London Stock Exchange Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-561f75b8-77cb-4cdd-8200-b34187ef77ef",
+    "status": "ok",
+    "value": 0.3524878522881443,
+    "rank": 15,
+    "name": "Schroders PLC ordinary"
+   },
+   {
+    "security_id": "SEC-b76b6481-4d14-4cb6-88c0-b6d8605c1fae",
+    "status": "ok",
+    "value": 0.34986394112154984,
+    "rank": 16,
+    "name": "Imperial Brands PLC ordinary"
+   },
+   {
+    "security_id": "SEC-81c21ebd-36bf-40e7-a895-464598c8b2d2",
+    "status": "ok",
+    "value": 0.3304389743589744,
+    "rank": 17,
+    "name": "Vodafone Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-ca28307e-6672-4936-983c-a79f069934d5",
+    "status": "ok",
+    "value": 0.32842809364548486,
+    "rank": 18,
+    "name": "Inmarsat Plc ordinary"
+   },
+   {
+    "security_id": "SEC-71f8629a-56e7-41c3-b8d7-1e3de2d8e728",
+    "status": "ok",
+    "value": 0.3110102156640182,
+    "rank": 19,
+    "name": "Arm Holdings Plc ordinary"
+   },
+   {
+    "security_id": "SEC-fa13cb40-1f82-4421-823a-5271404343e8",
+    "status": "ok",
+    "value": 0.3024214370835514,
+    "rank": 20,
+    "name": "Barclays PLC ordinary"
+   },
+   {
+    "security_id": "SEC-d6c2acb3-7fc8-45df-841d-c5b2613da2ed",
+    "status": "ok",
+    "value": 0.2971418638254235,
+    "rank": 21,
+    "name": "Ashtead Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-44097ed9-e2f4-40c8-ae8e-15c375032844",
+    "status": "ok",
+    "value": 0.2956311132946814,
+    "rank": 22,
+    "name": "Land Securities Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-85568253-2a77-43b0-87bc-7e5e58d9d1cf",
+    "status": "ok",
+    "value": 0.2874129789086213,
+    "rank": 23,
+    "name": "Direct Line Insurance Group plc ordinary"
+   },
+   {
+    "security_id": "SEC-77620613-ca58-4911-9aa9-dce10c0e440e",
+    "status": "ok",
+    "value": 0.2862094768682113,
+    "rank": 24,
+    "name": "Abrdn PLC ordinary"
+   },
+   {
+    "security_id": "SEC-09c69c2f-3f49-4fc9-a7e2-f7440e6db935",
+    "status": "ok",
+    "value": 0.28132630516997104,
+    "rank": 25,
+    "name": "Merlin Entertainments plc ordinary"
+   },
+   {
+    "security_id": "SEC-940c9f99-6df5-4595-bc62-6a292196606c",
+    "status": "ok",
+    "value": 0.27258517204551613,
+    "rank": 26,
+    "name": "British Land Company PLC ordinary"
+   },
+   {
+    "security_id": "SEC-cb1fb684-b570-4bb9-a446-94eb1bb9a2e3",
+    "status": "ok",
+    "value": 0.27059415771649653,
+    "rank": 27,
+    "name": "Experian PLC ordinary"
+   },
+   {
+    "security_id": "SEC-698e32ce-c3be-4935-a59f-0b154a50b1ad",
+    "status": "ok",
+    "value": 0.26720380171939695,
+    "rank": 28,
+    "name": "Compass Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-5e43feff-1c2f-4bbb-b018-3f27e16b29ee",
+    "status": "ok",
+    "value": 0.260610166432095,
+    "rank": 29,
+    "name": "CRH PLC ordinary"
+   },
+   {
+    "security_id": "SEC-3d0f8722-569c-41af-8dab-14a8d2a59900",
+    "status": "ok",
+    "value": 0.25067516684796276,
+    "rank": 30,
+    "name": "Hikma Pharmaceuticals PLC ordinary"
+   },
+   {
+    "security_id": "SEC-b3deb079-18d3-4470-9b7d-d1eb01a3eada",
+    "status": "ok",
+    "value": 0.2470836091380788,
+    "rank": 31,
+    "name": "Prudential plc ordinary"
+   },
+   {
+    "security_id": "SEC-be72aef6-6171-46a5-a0cd-f263f7fd8380",
+    "status": "ok",
+    "value": 0.24041859560329826,
+    "rank": 32,
+    "name": "BAE Systems plc ordinary"
+   },
+   {
+    "security_id": "SEC-54df56fe-1f80-428f-8edb-c9a914c0cf91",
+    "status": "ok",
+    "value": 0.2330415754923414,
+    "rank": 33,
+    "name": "Shire plc ordinary"
+   },
+   {
+    "security_id": "SEC-f4d56936-8aba-4e80-9801-208616a5ef9e",
+    "status": "ok",
+    "value": 0.2306212123527689,
+    "rank": 34,
+    "name": "Legal & General Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-80d3637c-cc18-42f0-969d-8fbc926fdeac",
+    "status": "ok",
+    "value": 0.22877775251101573,
+    "rank": 35,
+    "name": "St. James's Place plc ordinary"
+   },
+   {
+    "security_id": "SEC-51b68f13-53b9-45e7-93ab-35f3eea9c6f4",
+    "status": "ok",
+    "value": 0.22085441311123666,
+    "rank": 36,
+    "name": "WPP PLC ordinary"
+   },
+   {
+    "security_id": "SEC-e6548dbd-846a-4205-93fb-3107103283f9",
+    "status": "ok",
+    "value": 0.21591632499247115,
+    "rank": 37,
+    "name": "Reckitt Benckiser Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-4f7dcda7-3792-496d-a9da-6af119f972e4",
+    "status": "ok",
+    "value": 0.21541864670778876,
+    "rank": 38,
+    "name": "Next PLC ordinary"
+   },
+   {
+    "security_id": "SEC-77ef627e-dbcf-434c-afd6-0d44d1e7406a",
+    "status": "ok",
+    "value": 0.21488957682493792,
+    "rank": 39,
+    "name": "EasyJet PLC ordinary"
+   },
+   {
+    "security_id": "SEC-86c9374a-d478-45bb-8acc-8d63c1e97f2e",
+    "status": "ok",
+    "value": 0.19545401175274635,
+    "rank": 40,
+    "name": "BT Group Plc ordinary"
+   },
+   {
+    "security_id": "SEC-69669830-3371-47e7-b40a-fb8c865bf020",
+    "status": "ok",
+    "value": 0.19336126610287319,
+    "rank": 41,
+    "name": "Lloyds Banking Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-639f4970-01af-451a-8d40-268a56e15d4e",
+    "status": "ok",
+    "value": 0.19187683745274486,
+    "rank": 42,
+    "name": "Bunzl PLC ordinary"
+   },
+   {
+    "security_id": "SEC-77135fb3-b1e2-4456-9524-e390b84d75a6",
+    "status": "ok",
+    "value": 0.18346252224386683,
+    "rank": 43,
+    "name": "Relx PLC ordinary"
+   },
+   {
+    "security_id": "SEC-ccc903b6-a572-42a9-a35b-7fc961fff334",
+    "status": "ok",
+    "value": 0.17777316782876196,
+    "rank": 44,
+    "name": "Pearson PLC ordinary"
+   },
+   {
+    "security_id": "SEC-690a5ac5-93dc-435a-8227-e25adcdf287a",
+    "status": "ok",
+    "value": 0.17776425954673014,
+    "rank": 45,
+    "name": "Whitbread PLC ordinary"
+   },
+   {
+    "security_id": "SEC-808bd970-7132-4264-92fe-aa601e8b13d0",
+    "status": "ok",
+    "value": 0.17734474143379186,
+    "rank": 46,
+    "name": "TUI AG ordinary"
+   },
+   {
+    "security_id": "SEC-27c4555f-1966-456e-88c3-a6b101fcae0b",
+    "status": "ok",
+    "value": 0.17668072222030395,
+    "rank": 47,
+    "name": "InterContinental Hotels Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-1f75a419-6e03-4917-ac4d-110d5d4f3618",
+    "status": "ok",
+    "value": 0.17127142051628685,
+    "rank": 48,
+    "name": "Hammerson PLC ordinary"
+   },
+   {
+    "security_id": "SEC-4148f194-e026-4b71-ae96-c0c99c6e5c27",
+    "status": "ok",
+    "value": 0.16888133215364043,
+    "rank": 49,
+    "name": "G4S plc ordinary"
+   },
+   {
+    "security_id": "SEC-3ac2cdfc-6478-4de8-9692-1f404e8653f3",
+    "status": "ok",
+    "value": 0.168013630307567,
+    "rank": 50,
+    "name": "Burberry Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-78f78a1e-7468-44d7-b4d8-6474e254810c",
+    "status": "ok",
+    "value": 0.1670353982300885,
+    "rank": 51,
+    "name": "Sky plc ordinary"
+   },
+   {
+    "security_id": "SEC-258e2d0c-d891-4875-9fe9-ff3644a7bc42",
+    "status": "ok",
+    "value": 0.15654975539708071,
+    "rank": 52,
+    "name": "Severn Trent PLC ordinary"
+   },
+   {
+    "security_id": "SEC-510d998c-9177-4cf2-8df3-23221f7dc4fb",
+    "status": "ok",
+    "value": 0.14491635141421821,
+    "rank": 53,
+    "name": "United Utilities Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-86adcb5b-1fbd-4e47-aa5e-3eb0b19a2813",
+    "status": "ok",
+    "value": 0.13765678310386797,
+    "rank": 54,
+    "name": "Johnson Matthey PLC ordinary"
+   },
+   {
+    "security_id": "SEC-524f37cd-99d0-4146-825b-55325fdac058",
+    "status": "ok",
+    "value": 0.13622550144513612,
+    "rank": 55,
+    "name": "Smith & Nephew PLC ordinary"
+   },
+   {
+    "security_id": "SEC-6192db0d-b473-4cbd-a476-bee2837b248f",
+    "status": "ok",
+    "value": 0.1320085259945989,
+    "rank": 56,
+    "name": "Unilever PLC ordinary"
+   },
+   {
+    "security_id": "SEC-7061619a-37bc-4d5b-b067-81075d19e769",
+    "status": "ok",
+    "value": 0.12924491860304532,
+    "rank": 57,
+    "name": "National Grid PLC ordinary"
+   },
+   {
+    "security_id": "SEC-5a7e8ae9-ae89-4d6b-8402-fe8b66f1442e",
+    "status": "ok",
+    "value": 0.12602461030154632,
+    "rank": 58,
+    "name": "SSE PLC ordinary"
+   },
+   {
+    "security_id": "SEC-4f1e2f2d-adfb-4f48-9e40-2121b4e09f98",
+    "status": "ok",
+    "value": 0.11836115326251906,
+    "rank": 59,
+    "name": "Old Mutual plc ordinary"
+   },
+   {
+    "security_id": "SEC-e6f0463b-d175-4bb7-8dde-b199f3afcc17",
+    "status": "ok",
+    "value": 0.10893168258396413,
+    "rank": 60,
+    "name": "HSBC Holdings PLC ordinary"
+   },
+   {
+    "security_id": "SEC-075d3307-c92e-4c1b-9d21-fda9e2ac0738",
+    "status": "ok",
+    "value": 0.0966912374234199,
+    "rank": 61,
+    "name": "Royal Mail PLC ordinary"
+   },
+   {
+    "security_id": "SEC-105adaa2-12f3-4db4-b4de-5fda9f1487de",
+    "status": "ok",
+    "value": 0.09266952553642671,
+    "rank": 62,
+    "name": "Coca Cola HBC AG ordinary"
+   },
+   {
+    "security_id": "SEC-ff6bc2c0-d7c8-4b53-9c2d-385f064b0cd9",
+    "status": "ok",
+    "value": 0.07919290591809602,
+    "rank": 63,
+    "name": "British American Tobacco PLC ordinary"
+   },
+   {
+    "security_id": "SEC-23c45b46-9217-4e75-b4a2-c14ab00800cd",
+    "status": "ok",
+    "value": 0.0728498074454429,
+    "rank": 64,
+    "name": "Intu Properties PLC ordinary"
+   },
+   {
+    "security_id": "SEC-b457685a-1d54-4aa1-9041-46e18a5ac23a",
+    "status": "ok",
+    "value": 0.07188165790115963,
+    "rank": 65,
+    "name": "Aviva PLC ordinary"
+   },
+   {
+    "security_id": "SEC-17c6fcb2-c03b-4ff1-84a2-44b78d4411bc",
+    "status": "ok",
+    "value": 0.06126613020818272,
+    "rank": 66,
+    "name": "Kingfisher PLC ordinary"
+   },
+   {
+    "security_id": "SEC-bd878296-7cd8-4377-aa4c-0a0aa49c4bce",
+    "status": "ok",
+    "value": 0.0514616321559076,
+    "rank": 67,
+    "name": "NatWest Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-d9202331-eaf4-4dc4-8455-2e6355d70f92",
+    "status": "ok",
+    "value": 0.04975361359182462,
+    "rank": 68,
+    "name": "AstraZeneca PLC ordinary"
+   },
+   {
+    "security_id": "SEC-dd627165-5f50-4ee0-80ab-77d7140a9bbc",
+    "status": "ok",
+    "value": 0.046568626016300296,
+    "rank": 69,
+    "name": "Hargreaves Lansdown plc ordinary"
+   },
+   {
+    "security_id": "SEC-055f5fb5-c061-42a7-85cb-4693203d3b2a",
+    "status": "ok",
+    "value": 0.0320453124133,
+    "rank": 70,
+    "name": "Admiral Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-1664d7d0-fa52-46bb-b10f-9b1d6a432741",
+    "status": "ok",
+    "value": 0.030754821575149194,
+    "rank": 71,
+    "name": "Meggitt PLC ordinary"
+   },
+   {
+    "security_id": "SEC-90b37a42-5af3-4ccf-bf2f-df69f0ec00c7",
+    "status": "ok",
+    "value": 0.009639217846323378,
+    "rank": 72,
+    "name": "GKN plc ordinary"
+   },
+   {
+    "security_id": "SEC-faa09e20-78c5-48fa-a80c-045c480c816c",
+    "status": "ok",
+    "value": 0.002335463389634862,
+    "rank": 73,
+    "name": "Diageo PLC ordinary"
+   },
+   {
+    "security_id": "SEC-ab2f8ad9-5569-470a-ad25-004880852b2a",
+    "status": "ok",
+    "value": 0.0007092578389034099,
+    "rank": 74,
+    "name": "Associated British Foods PLC ordinary"
+   },
+   {
+    "security_id": "SEC-5ac37276-0653-4bdd-b5e0-19659cdbc104",
+    "status": "ok",
+    "value": -0.004852205452443692,
+    "rank": 75,
+    "name": "GSK plc ordinary"
+   },
+   {
+    "security_id": "SEC-9f6066a8-5b24-4c5d-a516-1e083398af30",
+    "status": "ok",
+    "value": -0.01312487101297044,
+    "rank": 76,
+    "name": "Babcock International Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-7444f961-9a65-4e6d-9338-eacbb536900e",
+    "status": "ok",
+    "value": -0.016082837629433744,
+    "rank": 77,
+    "name": "Aberdeen Asset Management PLC ordinary"
+   },
+   {
+    "security_id": "SEC-be121a43-cb67-4efb-b519-a675fb31328b",
+    "status": "ok",
+    "value": -0.022280471821756187,
+    "rank": 78,
+    "name": "Antofagasta PLC ordinary"
+   },
+   {
+    "security_id": "SEC-71444bc6-0757-4a56-a9b9-52505a3a1d30",
+    "status": "ok",
+    "value": -0.037260620142991474,
+    "rank": 79,
+    "name": "Rio Tinto PLC ordinary"
+   },
+   {
+    "security_id": "SEC-ed2d75c8-010f-4b35-aa98-41169a13345a",
+    "status": "ok",
+    "value": -0.043170559094125927,
+    "rank": 80,
+    "name": "Frasers Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-cbb48d65-b777-42c6-85ed-0f17c324a732",
+    "status": "ok",
+    "value": -0.04327706974785739,
+    "rank": 81,
+    "name": "Smiths Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-79370f1a-9ecc-4a73-8992-6eb458f8cdeb",
+    "status": "ok",
+    "value": -0.058453290439482775,
+    "rank": 82,
+    "name": "Rolls-Royce Holdings PLC ordinary"
+   },
+   {
+    "security_id": "SEC-e548d8eb-b9e7-4363-8272-946ed11289af",
+    "status": "ok",
+    "value": -0.06691427754715507,
+    "rank": 83,
+    "name": "Wm Morrison Supermarkets PLC ordinary"
+   },
+   {
+    "security_id": "SEC-533f274d-2762-46bc-aeaf-61dbd4772fe7",
+    "status": "ok",
+    "value": -0.06806801526784056,
+    "rank": 84,
+    "name": "Centrica PLC ordinary"
+   },
+   {
+    "security_id": "SEC-0a801269-2b3d-4cb2-818f-260bd15e01b2",
+    "status": "ok",
+    "value": -0.07297283569369817,
+    "rank": 85,
+    "name": "Intertek Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-fe2af4b1-432a-41cf-8fe2-1260a48415a1",
+    "status": "ok",
+    "value": -0.0741708364972885,
+    "rank": 86,
+    "name": "BP PLC ordinary"
+   },
+   {
+    "security_id": "SEC-404f607e-5a1a-46c5-9350-3e13a9c61039",
+    "status": "ok",
+    "value": -0.07749790961614866,
+    "rank": 87,
+    "name": "Standard Chartered PLC ordinary"
+   },
+   {
+    "security_id": "SEC-97163c29-a484-4ca8-afa4-e0f2bcd72bfe",
+    "status": "ok",
+    "value": -0.07935222672064779,
+    "rank": 88,
+    "name": "BG Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-c67386b9-ce1f-4b01-8bd3-64d4a87622c0",
+    "status": "ok",
+    "value": -0.08733875502430355,
+    "rank": 89,
+    "name": "RSA Insurance Group Limited ordinary"
+   },
+   {
+    "security_id": "SEC-7903a446-bf9d-4caf-875d-e2709b56cb89",
+    "status": "ok",
+    "value": -0.11098528270791508,
+    "rank": 90,
+    "name": "Glencore PLC ordinary"
+   },
+   {
+    "security_id": "SEC-ce847614-18e0-4cd3-a6fa-7ccce835a92f",
+    "status": "ok",
+    "value": -0.12413970680524622,
+    "rank": 91,
+    "name": "Fresnillo PLC ordinary"
+   },
+   {
+    "security_id": "SEC-c9e67a21-f2f5-42fc-8158-8975455cfe2d",
+    "status": "ok",
+    "value": -0.15030775035786748,
+    "rank": 92,
+    "name": "Shell plc ordinary"
+   },
+   {
+    "security_id": "SEC-2b41be9b-9046-4a5a-ad0b-c9a9cfc5ef9c",
+    "status": "ok",
+    "value": -0.16211815433585952,
+    "rank": 93,
+    "name": "J Sainsbury PLC ordinary"
+   },
+   {
+    "security_id": "SEC-f5265d22-5f21-4d47-bab7-a9737c7772f6",
+    "status": "ok",
+    "value": -0.20965338823780255,
+    "rank": 94,
+    "name": "Weir Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-73ac999f-63e1-4d7c-889e-0b977608054e",
+    "status": "ok",
+    "value": -0.23328323948001817,
+    "rank": 95,
+    "name": "BHP Group Limited ordinary"
+   },
+   {
+    "security_id": "SEC-184ffdca-7026-4a96-bd44-f5aa74eb21ab",
+    "status": "ok",
+    "value": -0.2365886269785712,
+    "rank": 96,
+    "name": "Anglo American PLC ordinary"
+   },
+   {
+    "security_id": "SEC-442cfc7a-6d12-4304-84cf-ba52c93d4597",
+    "status": "ok",
+    "value": -0.24689683914947724,
+    "rank": 97,
+    "name": "Tesco PLC ordinary"
+   },
+   {
+    "security_id": "SEC-e81b96d0-946a-4229-81a6-5ed7844b095f",
+    "status": "ok",
+    "value": -0.4285714285714286,
+    "rank": 98,
+    "name": "Randgold Resources Limited ordinary"
+   },
+   {
+    "security_id": "SEC-498315be-c7a5-4d7f-930b-1e19c185dcdd",
+    "status": "no_data",
+    "value": null,
+    "rank": null,
+    "name": "SABMiller ordinary"
+   },
+   {
+    "security_id": "SEC-e9358707-dd8e-478b-b1e3-4c397410b732",
+    "status": "insufficient_data",
+    "value": null,
+    "rank": null,
+    "name": "Ferguson Plc ordinary"
+   }
+  ],
+  "inspected": {
+   "SEC-1624ed01-93b1-4201-9a5c-97c097a42ac9": {
+    "name": "Taylor Wimpey PLC ordinary",
+    "member_on_date": true,
+    "production_status": "ok",
+    "production_value": 0.6943070938046711,
+    "cross_sectional_rank": 1,
+    "independent": {
+     "status": "ok",
+     "value": 0.6943070938046711,
+     "start_bar": "2014-06-30",
+     "start_close_gbx": 114.0,
+     "end_bar": "2015-05-29",
+     "end_close_gbx": 183.5,
+     "actions_in_window": [
+      {
+       "kind": "dividend",
+       "ex_date": "2014-08-20",
+       "amount_gbx": 0.24
+      },
+      {
+       "kind": "dividend",
+       "ex_date": "2015-04-09",
+       "amount_gbx": 1.32
+      },
+      {
+       "kind": "dividend",
+       "ex_date": "2015-05-21",
+       "amount_gbx": 7.68
+      }
+     ]
+    }
+   },
+   "SEC-3ac2cdfc-6478-4de8-9692-1f404e8653f3": {
+    "name": "Burberry Group PLC ordinary",
+    "member_on_date": true,
+    "production_status": "ok",
+    "production_value": 0.168013630307567,
+    "cross_sectional_rank": 50,
+    "independent": {
+     "status": "ok",
+     "value": 0.168013630307567,
+     "start_bar": "2014-06-30",
+     "start_close_gbx": 1483.0,
+     "end_bar": "2015-05-29",
+     "end_close_gbx": 1695.0,
+     "actions_in_window": [
+      {
+       "kind": "dividend",
+       "ex_date": "2014-07-02",
+       "amount_gbx": 23.200000000000003
+      },
+      {
+       "kind": "dividend",
+       "ex_date": "2014-12-29",
+       "amount_gbx": 9.700000000000001
+      }
+     ]
+    }
+   },
+   "SEC-e81b96d0-946a-4229-81a6-5ed7844b095f": {
+    "name": "Randgold Resources Limited ordinary",
+    "member_on_date": true,
+    "production_status": "ok",
+    "production_value": -0.4285714285714286,
+    "cross_sectional_rank": 98,
+    "independent": {
+     "status": "ok",
+     "value": -0.4285714285714285,
+     "start_bar": "2014-06-30",
+     "start_close_gbx": 10.0,
+     "end_bar": "2015-05-29",
+     "end_close_gbx": 4.0,
+     "actions_in_window": [
+      {
+       "kind": "dividend",
+       "ex_date": "2015-03-12",
+       "amount_gbx": 0.6
+      }
+     ]
+    }
+   },
+   "SEC-498315be-c7a5-4d7f-930b-1e19c185dcdd": {
+    "name": "SABMiller ordinary",
+    "member_on_date": true,
+    "production_status": "no_data",
+    "production_value": null,
+    "cross_sectional_rank": null,
+    "independent": {
+     "status": "insufficient_data",
+     "value": null
+    }
+   }
+  }
+ },
+ "2020-03-31": {
+  "cross_section": [
+   {
+    "security_id": "SEC-5313522c-3667-41cd-9b67-bc2ba8544915",
+    "status": "ok",
+    "value": 0.6127044255943304,
+    "rank": 1,
+    "name": "London Stock Exchange Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-93bd12f2-2101-42ab-a07e-907bc7ca20d8",
+    "status": "ok",
+    "value": 0.5653079817585245,
+    "rank": 2,
+    "name": "Pennon Group Plc ordinary"
+   },
+   {
+    "security_id": "SEC-3161f087-04ec-4ad6-bcac-6b7ab74d521f",
+    "status": "ok",
+    "value": 0.5495282289828451,
+    "rank": 3,
+    "name": "Intermediate Capital Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-f5fa5076-893d-4dba-bfdd-5411c843946b",
+    "status": "ok",
+    "value": 0.4835012649048058,
+    "rank": 4,
+    "name": "Polymetal International plc ordinary"
+   },
+   {
+    "security_id": "SEC-aa02a61b-7010-47b4-a89c-fa1afea8a037",
+    "status": "ok",
+    "value": 0.46720015291854855,
+    "rank": 5,
+    "name": "JD Sports Fashion PLC ordinary"
+   },
+   {
+    "security_id": "SEC-d68c4a71-4a56-4c0b-b0eb-2074b27ef9e6",
+    "status": "ok",
+    "value": 0.43462437752942895,
+    "rank": 6,
+    "name": "Flutter Entertainment PLC ordinary"
+   },
+   {
+    "security_id": "SEC-5a7e8ae9-ae89-4d6b-8402-fe8b66f1442e",
+    "status": "ok",
+    "value": 0.39067064944827123,
+    "rank": 7,
+    "name": "SSE PLC ordinary"
+   },
+   {
+    "security_id": "SEC-fa28b4f2-b431-466a-ad12-dfe9ebf8eaca",
+    "status": "ok",
+    "value": 0.38656268570138463,
+    "rank": 8,
+    "name": "Rentokil Initial PLC ordinary"
+   },
+   {
+    "security_id": "SEC-cdf6b074-be61-4757-b264-636fb23e77cf",
+    "status": "ok",
+    "value": 0.3825914938060424,
+    "rank": 9,
+    "name": "Persimmon PLC ordinary"
+   },
+   {
+    "security_id": "SEC-e00188d4-3504-4f8e-88dd-1a288e96563d",
+    "status": "ok",
+    "value": 0.377690670954387,
+    "rank": 10,
+    "name": "AVEVA Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-d663a5db-2574-4542-869a-83b35a62b1c7",
+    "status": "ok",
+    "value": 0.36661355133262474,
+    "rank": 11,
+    "name": "Barratt Redrow plc ordinary"
+   },
+   {
+    "security_id": "SEC-be72aef6-6171-46a5-a0cd-f263f7fd8380",
+    "status": "ok",
+    "value": 0.316911655149382,
+    "rank": 12,
+    "name": "BAE Systems plc ordinary"
+   },
+   {
+    "security_id": "SEC-d6c2acb3-7fc8-45df-841d-c5b2613da2ed",
+    "status": "ok",
+    "value": 0.31467712575135187,
+    "rank": 13,
+    "name": "Ashtead Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-258e2d0c-d891-4875-9fe9-ff3644a7bc42",
+    "status": "ok",
+    "value": 0.30441832820321624,
+    "rank": 14,
+    "name": "Severn Trent PLC ordinary"
+   },
+   {
+    "security_id": "SEC-eb8cc109-20d8-4a26-8aa2-043c19972b00",
+    "status": "ok",
+    "value": 0.29620810502089534,
+    "rank": 15,
+    "name": "The Berkeley Group Holdings plc ordinary"
+   },
+   {
+    "security_id": "SEC-1624ed01-93b1-4201-9a5c-97c097a42ac9",
+    "status": "ok",
+    "value": 0.28756751577445194,
+    "rank": 16,
+    "name": "Taylor Wimpey PLC ordinary"
+   },
+   {
+    "security_id": "SEC-cb1fb684-b570-4bb9-a446-94eb1bb9a2e3",
+    "status": "ok",
+    "value": 0.2654462490494367,
+    "rank": 17,
+    "name": "Experian PLC ordinary"
+   },
+   {
+    "security_id": "SEC-65e92c56-6464-4c15-8c99-e9e17648781a",
+    "status": "ok",
+    "value": 0.2597775816193564,
+    "rank": 18,
+    "name": "Smurfit Kappa Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-4c832bcc-1646-4e65-a68d-51b098bf5e40",
+    "status": "ok",
+    "value": 0.22979978223700548,
+    "rank": 19,
+    "name": "Segro Plc ordinary"
+   },
+   {
+    "security_id": "SEC-5c0fb6a8-31fd-446a-8d0d-331207098aaa",
+    "status": "ok",
+    "value": 0.2292561316522781,
+    "rank": 20,
+    "name": "Rightmove PLC ordinary"
+   },
+   {
+    "security_id": "SEC-510d998c-9177-4cf2-8df3-23221f7dc4fb",
+    "status": "ok",
+    "value": 0.21780320196106873,
+    "rank": 21,
+    "name": "United Utilities Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-7061619a-37bc-4d5b-b067-81075d19e769",
+    "status": "ok",
+    "value": 0.2174157796991658,
+    "rank": 22,
+    "name": "National Grid PLC ordinary"
+   },
+   {
+    "security_id": "SEC-d474eef4-bd80-43bd-befe-224ab15d6a50",
+    "status": "ok",
+    "value": 0.18260462908399178,
+    "rank": 23,
+    "name": "Spirax Group plc ordinary"
+   },
+   {
+    "security_id": "SEC-77135fb3-b1e2-4456-9524-e390b84d75a6",
+    "status": "ok",
+    "value": 0.1653309846109028,
+    "rank": 24,
+    "name": "Relx PLC ordinary"
+   },
+   {
+    "security_id": "SEC-3d369c14-1fa2-4f43-9c50-691b0396cc9f",
+    "status": "ok",
+    "value": 0.1627669000299088,
+    "rank": 25,
+    "name": "Halma PLC ordinary"
+   },
+   {
+    "security_id": "SEC-524f37cd-99d0-4146-825b-55325fdac058",
+    "status": "ok",
+    "value": 0.16168842582628362,
+    "rank": 26,
+    "name": "Smith & Nephew PLC ordinary"
+   },
+   {
+    "security_id": "SEC-fa995f37-4006-480f-b273-410aa6790c12",
+    "status": "ok",
+    "value": 0.14462854103299083,
+    "rank": 27,
+    "name": "Melrose Industries PLC ordinary"
+   },
+   {
+    "security_id": "SEC-d9202331-eaf4-4dc4-8455-2e6355d70f92",
+    "status": "ok",
+    "value": 0.14125831744639705,
+    "rank": 28,
+    "name": "AstraZeneca PLC ordinary"
+   },
+   {
+    "security_id": "SEC-77620613-ca58-4911-9aa9-dce10c0e440e",
+    "status": "ok",
+    "value": 0.1376561641423124,
+    "rank": 29,
+    "name": "Abrdn PLC ordinary"
+   },
+   {
+    "security_id": "SEC-4f7dcda7-3792-496d-a9da-6af119f972e4",
+    "status": "ok",
+    "value": 0.12191564280273415,
+    "rank": 30,
+    "name": "Next PLC ordinary"
+   },
+   {
+    "security_id": "SEC-5e43feff-1c2f-4bbb-b018-3f27e16b29ee",
+    "status": "ok",
+    "value": 0.11810410646501746,
+    "rank": 31,
+    "name": "CRH PLC ordinary"
+   },
+   {
+    "security_id": "SEC-0a801269-2b3d-4cb2-818f-260bd15e01b2",
+    "status": "ok",
+    "value": 0.10645590105408198,
+    "rank": 32,
+    "name": "Intertek Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-6f45079c-e5df-43a4-a076-d3858cbeff8e",
+    "status": "ok",
+    "value": 0.1024630314947208,
+    "rank": 33,
+    "name": "Scottish Mortgage Investment Trust plc ordinary"
+   },
+   {
+    "security_id": "SEC-cbb48d65-b777-42c6-85ed-0f17c324a732",
+    "status": "ok",
+    "value": 0.1001287259106276,
+    "rank": 34,
+    "name": "Smiths Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-1664d7d0-fa52-46bb-b10f-9b1d6a432741",
+    "status": "ok",
+    "value": 0.08751966545050771,
+    "rank": 35,
+    "name": "Meggitt PLC ordinary"
+   },
+   {
+    "security_id": "SEC-90e23c5e-fcce-4aa2-a5cc-dd50395923bc",
+    "status": "ok",
+    "value": 0.06066663665008343,
+    "rank": 36,
+    "name": "3I Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-561f75b8-77cb-4cdd-8200-b34187ef77ef",
+    "status": "ok",
+    "value": 0.05856429159885712,
+    "rank": 37,
+    "name": "Schroders PLC ordinary"
+   },
+   {
+    "security_id": "SEC-87585aac-e5d0-43e6-a842-0d268010a21d",
+    "status": "ok",
+    "value": 0.056652320590045546,
+    "rank": 38,
+    "name": "Standard Life PLC ordinary"
+   },
+   {
+    "security_id": "SEC-5ac37276-0653-4bdd-b5e0-19659cdbc104",
+    "status": "ok",
+    "value": 0.03993102179456165,
+    "rank": 39,
+    "name": "GSK plc ordinary"
+   },
+   {
+    "security_id": "SEC-c67386b9-ce1f-4b01-8bd3-64d4a87622c0",
+    "status": "ok",
+    "value": 0.03654931772336756,
+    "rank": 40,
+    "name": "RSA Insurance Group Limited ordinary"
+   },
+   {
+    "security_id": "SEC-80d3637c-cc18-42f0-969d-8fbc926fdeac",
+    "status": "ok",
+    "value": 0.03648155274116749,
+    "rank": 41,
+    "name": "St. James's Place plc ordinary"
+   },
+   {
+    "security_id": "SEC-612a1456-eeed-46ba-a5ee-14f0aad730ab",
+    "status": "ok",
+    "value": 0.03596501527125762,
+    "rank": 42,
+    "name": "International Consolidated Airlines Group S.A ordinary"
+   },
+   {
+    "security_id": "SEC-055f5fb5-c061-42a7-85cb-4693203d3b2a",
+    "status": "ok",
+    "value": 0.035503060634111794,
+    "rank": 43,
+    "name": "Admiral Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-77ef627e-dbcf-434c-afd6-0d44d1e7406a",
+    "status": "ok",
+    "value": 0.02942564191341135,
+    "rank": 44,
+    "name": "EasyJet PLC ordinary"
+   },
+   {
+    "security_id": "SEC-105adaa2-12f3-4db4-b4de-5fda9f1487de",
+    "status": "ok",
+    "value": 0.0188958967474695,
+    "rank": 45,
+    "name": "Coca Cola HBC AG ordinary"
+   },
+   {
+    "security_id": "SEC-fa13cb40-1f82-4421-823a-5271404343e8",
+    "status": "ok",
+    "value": 0.018378768830667358,
+    "rank": 46,
+    "name": "Barclays PLC ordinary"
+   },
+   {
+    "security_id": "SEC-3d0f8722-569c-41af-8dab-14a8d2a59900",
+    "status": "ok",
+    "value": 0.016067856894530275,
+    "rank": 47,
+    "name": "Hikma Pharmaceuticals PLC ordinary"
+   },
+   {
+    "security_id": "SEC-442cfc7a-6d12-4304-84cf-ba52c93d4597",
+    "status": "ok",
+    "value": 0.0131478458672174,
+    "rank": 48,
+    "name": "Tesco PLC ordinary"
+   },
+   {
+    "security_id": "SEC-81c21ebd-36bf-40e7-a895-464598c8b2d2",
+    "status": "ok",
+    "value": 0.012732973076722942,
+    "rank": 49,
+    "name": "Vodafone Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-192d6cd5-fce9-4729-a3c7-e69593aaad3b",
+    "status": "ok",
+    "value": 0.010378057820607856,
+    "rank": 50,
+    "name": "Just Eat Takeaway.com N.V ordinary"
+   },
+   {
+    "security_id": "SEC-ff6bc2c0-d7c8-4b53-9c2d-385f064b0cd9",
+    "status": "ok",
+    "value": 0.009482074911283389,
+    "rank": 51,
+    "name": "British American Tobacco PLC ordinary"
+   },
+   {
+    "security_id": "SEC-554493bc-c379-435b-8d5f-076b5cfdd2af",
+    "status": "ok",
+    "value": 0.009026979958576709,
+    "rank": 52,
+    "name": "Auto Trader Group plc ordinary"
+   },
+   {
+    "security_id": "SEC-f4d56936-8aba-4e80-9801-208616a5ef9e",
+    "status": "ok",
+    "value": 0.006241106284590181,
+    "rank": 53,
+    "name": "Legal & General Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-28368d04-8083-4078-93a1-705c00385b36",
+    "status": "ok",
+    "value": -0.00582724930181866,
+    "rank": 54,
+    "name": "Sage Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-51b68f13-53b9-45e7-93ab-35f3eea9c6f4",
+    "status": "ok",
+    "value": -0.012824888279746816,
+    "rank": 55,
+    "name": "WPP PLC ordinary"
+   },
+   {
+    "security_id": "SEC-6192db0d-b473-4cbd-a476-bee2837b248f",
+    "status": "ok",
+    "value": -0.01630871135313261,
+    "rank": 56,
+    "name": "Unilever PLC ordinary"
+   },
+   {
+    "security_id": "SEC-b3deb079-18d3-4470-9b7d-d1eb01a3eada",
+    "status": "ok",
+    "value": -0.021237067664580556,
+    "rank": 57,
+    "name": "Prudential plc ordinary"
+   },
+   {
+    "security_id": "SEC-964e6e0c-1b21-49c7-b45b-e2bdbb1f5e67",
+    "status": "ok",
+    "value": -0.02653435202115806,
+    "rank": 58,
+    "name": "ITV PLC ordinary"
+   },
+   {
+    "security_id": "SEC-698e32ce-c3be-4935-a59f-0b154a50b1ad",
+    "status": "ok",
+    "value": -0.03175266990608416,
+    "rank": 59,
+    "name": "Compass Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-2e73e173-61c3-4d49-b013-6b91abce7910",
+    "status": "ok",
+    "value": -0.03625782903780528,
+    "rank": 60,
+    "name": "Mondi PLC ordinary"
+   },
+   {
+    "security_id": "SEC-404f607e-5a1a-46c5-9350-3e13a9c61039",
+    "status": "ok",
+    "value": -0.04062958361903923,
+    "rank": 61,
+    "name": "Standard Chartered PLC ordinary"
+   },
+   {
+    "security_id": "SEC-44097ed9-e2f4-40c8-ae8e-15c375032844",
+    "status": "ok",
+    "value": -0.04764226373670566,
+    "rank": 62,
+    "name": "Land Securities Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-5f40e6b2-88bc-4836-ae6a-ba1b0a951678",
+    "status": "ok",
+    "value": -0.05715814250521545,
+    "rank": 63,
+    "name": "Informa PLC ordinary"
+   },
+   {
+    "security_id": "SEC-ab2f8ad9-5569-470a-ad25-004880852b2a",
+    "status": "ok",
+    "value": -0.058060954395462994,
+    "rank": 64,
+    "name": "Associated British Foods PLC ordinary"
+   },
+   {
+    "security_id": "SEC-b457685a-1d54-4aa1-9041-46e18a5ac23a",
+    "status": "ok",
+    "value": -0.06001116959445563,
+    "rank": 65,
+    "name": "Aviva PLC ordinary"
+   },
+   {
+    "security_id": "SEC-27c4555f-1966-456e-88c3-a6b101fcae0b",
+    "status": "ok",
+    "value": -0.061887020396600434,
+    "rank": 66,
+    "name": "InterContinental Hotels Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-252b4e7b-36ef-4589-9f83-ea21d6744204",
+    "status": "ok",
+    "value": -0.06416659121097634,
+    "rank": 67,
+    "name": "DS Smith PLC ordinary"
+   },
+   {
+    "security_id": "SEC-e6548dbd-846a-4205-93fb-3107103283f9",
+    "status": "ok",
+    "value": -0.07605231989179617,
+    "rank": 68,
+    "name": "Reckitt Benckiser Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-a7f79b94-b305-4622-b2b0-c053135e3dd6",
+    "status": "ok",
+    "value": -0.0812503542739359,
+    "rank": 69,
+    "name": "Croda International PLC ordinary"
+   },
+   {
+    "security_id": "SEC-184ffdca-7026-4a96-bd44-f5aa74eb21ab",
+    "status": "ok",
+    "value": -0.093051707972859,
+    "rank": 70,
+    "name": "Anglo American PLC ordinary"
+   },
+   {
+    "security_id": "SEC-faa09e20-78c5-48fa-a80c-045c480c816c",
+    "status": "ok",
+    "value": -0.09907027996416007,
+    "rank": 71,
+    "name": "Diageo PLC ordinary"
+   },
+   {
+    "security_id": "SEC-940c9f99-6df5-4595-bc62-6a292196606c",
+    "status": "ok",
+    "value": -0.11340359177751924,
+    "rank": 72,
+    "name": "British Land Company PLC ordinary"
+   },
+   {
+    "security_id": "SEC-2b41be9b-9046-4a5a-ad0b-c9a9cfc5ef9c",
+    "status": "ok",
+    "value": -0.12165727096334811,
+    "rank": 73,
+    "name": "J Sainsbury PLC ordinary"
+   },
+   {
+    "security_id": "SEC-e6f0463b-d175-4bb7-8dde-b199f3afcc17",
+    "status": "ok",
+    "value": -0.12499895610417744,
+    "rank": 74,
+    "name": "HSBC Holdings PLC ordinary"
+   },
+   {
+    "security_id": "SEC-3ac2cdfc-6478-4de8-9692-1f404e8653f3",
+    "status": "ok",
+    "value": -0.1366476272052548,
+    "rank": 75,
+    "name": "Burberry Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-69669830-3371-47e7-b40a-fb8c865bf020",
+    "status": "ok",
+    "value": -0.14554328400713046,
+    "rank": 76,
+    "name": "Lloyds Banking Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-20a8f786-51e8-49ed-9cf0-bdbe15cc0cb3",
+    "status": "ok",
+    "value": -0.1485605043798518,
+    "rank": 77,
+    "name": "DCC plc ordinary"
+   },
+   {
+    "security_id": "SEC-71444bc6-0757-4a56-a9b9-52505a3a1d30",
+    "status": "ok",
+    "value": -0.15639465648631923,
+    "rank": 78,
+    "name": "Rio Tinto PLC ordinary"
+   },
+   {
+    "security_id": "SEC-dd627165-5f50-4ee0-80ab-77d7140a9bbc",
+    "status": "ok",
+    "value": -0.16015908129305323,
+    "rank": 79,
+    "name": "Hargreaves Lansdown plc ordinary"
+   },
+   {
+    "security_id": "SEC-86adcb5b-1fbd-4e47-aa5e-3eb0b19a2813",
+    "status": "ok",
+    "value": -0.16993304080018612,
+    "rank": 80,
+    "name": "Johnson Matthey PLC ordinary"
+   },
+   {
+    "security_id": "SEC-73ac999f-63e1-4d7c-889e-0b977608054e",
+    "status": "ok",
+    "value": -0.20497619974618642,
+    "rank": 81,
+    "name": "BHP Group Limited ordinary"
+   },
+   {
+    "security_id": "SEC-bd878296-7cd8-4377-aa4c-0a0aa49c4bce",
+    "status": "ok",
+    "value": -0.21725198634748255,
+    "rank": 82,
+    "name": "NatWest Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-690a5ac5-93dc-435a-8227-e25adcdf287a",
+    "status": "ok",
+    "value": -0.21813526951194706,
+    "rank": 83,
+    "name": "Whitbread PLC ordinary"
+   },
+   {
+    "security_id": "SEC-be121a43-cb67-4efb-b519-a675fb31328b",
+    "status": "ok",
+    "value": -0.22153209109730854,
+    "rank": 84,
+    "name": "Antofagasta PLC ordinary"
+   },
+   {
+    "security_id": "SEC-d031f9d4-ba31-4022-8c16-bea875146137",
+    "status": "ok",
+    "value": -0.2236410069317767,
+    "rank": 85,
+    "name": "Ocado Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-639f4970-01af-451a-8d40-268a56e15d4e",
+    "status": "ok",
+    "value": -0.24345554948260195,
+    "rank": 86,
+    "name": "Bunzl PLC ordinary"
+   },
+   {
+    "security_id": "SEC-fe2af4b1-432a-41cf-8fe2-1260a48415a1",
+    "status": "ok",
+    "value": -0.24349263346936356,
+    "rank": 87,
+    "name": "BP PLC ordinary"
+   },
+   {
+    "security_id": "SEC-e548d8eb-b9e7-4363-8272-946ed11289af",
+    "status": "ok",
+    "value": -0.246957036263309,
+    "rank": 88,
+    "name": "Wm Morrison Supermarkets PLC ordinary"
+   },
+   {
+    "security_id": "SEC-c9e67a21-f2f5-42fc-8158-8975455cfe2d",
+    "status": "ok",
+    "value": -0.2658133375696001,
+    "rank": 89,
+    "name": "Shell plc ordinary"
+   },
+   {
+    "security_id": "SEC-ce847614-18e0-4cd3-a6fa-7ccce835a92f",
+    "status": "ok",
+    "value": -0.2921924297404844,
+    "rank": 90,
+    "name": "Fresnillo PLC ordinary"
+   },
+   {
+    "security_id": "SEC-533f274d-2762-46bc-aeaf-61dbd4772fe7",
+    "status": "ok",
+    "value": -0.29807767725107326,
+    "rank": 91,
+    "name": "Centrica PLC ordinary"
+   },
+   {
+    "security_id": "SEC-86c9374a-d478-45bb-8acc-8d63c1e97f2e",
+    "status": "ok",
+    "value": -0.3095631103140557,
+    "rank": 92,
+    "name": "BT Group Plc ordinary"
+   },
+   {
+    "security_id": "SEC-79370f1a-9ecc-4a73-8992-6eb458f8cdeb",
+    "status": "ok",
+    "value": -0.310234108563031,
+    "rank": 93,
+    "name": "Rolls-Royce Holdings PLC ordinary"
+   },
+   {
+    "security_id": "SEC-ccc903b6-a572-42a9-a35b-7fc961fff334",
+    "status": "ok",
+    "value": -0.31775086595375135,
+    "rank": 94,
+    "name": "Pearson PLC ordinary"
+   },
+   {
+    "security_id": "SEC-89256de9-d09e-4274-9398-6117f5a50e46",
+    "status": "ok",
+    "value": -0.32246599480211147,
+    "rank": 95,
+    "name": "Carnival PLC ordinary"
+   },
+   {
+    "security_id": "SEC-b76b6481-4d14-4cb6-88c0-b6d8605c1fae",
+    "status": "ok",
+    "value": -0.36352191193050754,
+    "rank": 96,
+    "name": "Imperial Brands PLC ordinary"
+   },
+   {
+    "security_id": "SEC-7903a446-bf9d-4caf-875d-e2709b56cb89",
+    "status": "ok",
+    "value": -0.39216857996540333,
+    "rank": 97,
+    "name": "Glencore PLC ordinary"
+   },
+   {
+    "security_id": "SEC-af96681c-3bf2-40d5-885a-954c0f0d861c",
+    "status": "ok",
+    "value": -0.4740490006447453,
+    "rank": 98,
+    "name": "EVRAZ plc ordinary"
+   },
+   {
+    "security_id": "SEC-7a4eeb02-5149-4e1d-821c-feb54a2af28f",
+    "status": "insufficient_data",
+    "value": null,
+    "rank": null,
+    "name": "M&G Plc ordinary"
+   },
+   {
+    "security_id": "SEC-e9358707-dd8e-478b-b1e3-4c397410b732",
+    "status": "insufficient_data",
+    "value": null,
+    "rank": null,
+    "name": "Ferguson Plc ordinary"
+   }
+  ],
+  "inspected": {
+   "SEC-5313522c-3667-41cd-9b67-bc2ba8544915": {
+    "name": "London Stock Exchange Group PLC ordinary",
+    "member_on_date": true,
+    "production_status": "ok",
+    "production_value": 0.6127044255943304,
+    "cross_sectional_rank": 1,
+    "independent": {
+     "status": "ok",
+     "value": 0.6127044255943304,
+     "start_bar": "2019-03-29",
+     "start_close_gbx": 4751.0,
+     "end_bar": "2020-02-28",
+     "end_close_gbx": 7576.0,
+     "actions_in_window": [
+      {
+       "kind": "dividend",
+       "ex_date": "2019-05-02",
+       "amount_gbx": 43.2
+      },
+      {
+       "kind": "dividend",
+       "ex_date": "2019-08-22",
+       "amount_gbx": 20.1
+      }
+     ]
+    }
+   },
+   "SEC-192d6cd5-fce9-4729-a3c7-e69593aaad3b": {
+    "name": "Just Eat Takeaway.com N.V ordinary",
+    "member_on_date": true,
+    "production_status": "ok",
+    "production_value": 0.010378057820607856,
+    "cross_sectional_rank": 50,
+    "independent": {
+     "status": "ok",
+     "value": 0.010378057820607856,
+     "start_bar": "2019-03-29",
+     "start_close_gbx": 6745.0,
+     "end_bar": "2020-02-28",
+     "end_close_gbx": 6815.0,
+     "actions_in_window": []
+    }
+   },
+   "SEC-af96681c-3bf2-40d5-885a-954c0f0d861c": {
+    "name": "EVRAZ plc ordinary",
+    "member_on_date": true,
+    "production_status": "ok",
+    "production_value": -0.4740490006447453,
+    "cross_sectional_rank": 98,
+    "independent": {
+     "status": "ok",
+     "value": -0.4740490006447453,
+     "start_bar": "2019-03-29",
+     "start_close_gbx": 620.4,
+     "end_bar": "2020-02-28",
+     "end_close_gbx": 326.3,
+     "actions_in_window": []
+    }
+   },
+   "SEC-7a4eeb02-5149-4e1d-821c-feb54a2af28f": {
+    "name": "M&G Plc ordinary",
+    "member_on_date": true,
+    "production_status": "insufficient_data",
+    "production_value": null,
+    "cross_sectional_rank": null,
+    "independent": {
+     "status": "insufficient_data",
+     "value": null
+    }
+   }
+  }
+ },
+ "2025-06-30": {
+  "cross_section": [
+   {
+    "security_id": "SEC-ce847614-18e0-4cd3-a6fa-7ccce835a92f",
+    "status": "ok",
+    "value": 1.1922625599206294,
+    "rank": 1,
+    "name": "Fresnillo PLC ordinary"
+   },
+   {
+    "security_id": "SEC-80d3637c-cc18-42f0-969d-8fbc926fdeac",
+    "status": "ok",
+    "value": 1.0877115032327977,
+    "rank": 2,
+    "name": "St. James's Place plc ordinary"
+   },
+   {
+    "security_id": "SEC-612a1456-eeed-46ba-a5ee-14f0aad730ab",
+    "status": "ok",
+    "value": 1.0379425643176838,
+    "rank": 3,
+    "name": "International Consolidated Airlines Group S.A ordinary"
+   },
+   {
+    "security_id": "SEC-79370f1a-9ecc-4a73-8992-6eb458f8cdeb",
+    "status": "ok",
+    "value": 0.9120762355392276,
+    "rank": 4,
+    "name": "Rolls-Royce Holdings PLC ordinary"
+   },
+   {
+    "security_id": "SEC-9f6066a8-5b24-4c5d-a516-1e083398af30",
+    "status": "ok",
+    "value": 0.8111569237673666,
+    "rank": 5,
+    "name": "Babcock International Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-bd878296-7cd8-4377-aa4c-0a0aa49c4bce",
+    "status": "ok",
+    "value": 0.7748789988870226,
+    "rank": 6,
+    "name": "NatWest Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-404f607e-5a1a-46c5-9350-3e13a9c61039",
+    "status": "ok",
+    "value": 0.6616164443676302,
+    "rank": 7,
+    "name": "Standard Chartered PLC ordinary"
+   },
+   {
+    "security_id": "SEC-fa13cb40-1f82-4421-823a-5271404343e8",
+    "status": "ok",
+    "value": 0.6173160449647199,
+    "rank": 8,
+    "name": "Barclays PLC ordinary"
+   },
+   {
+    "security_id": "SEC-ac7aa185-96f8-4198-90c6-47be18586252",
+    "status": "ok",
+    "value": 0.4969641169035226,
+    "rank": 9,
+    "name": "Games Workshop Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-69669830-3371-47e7-b40a-fb8c865bf020",
+    "status": "ok",
+    "value": 0.48448640675401866,
+    "rank": 10,
+    "name": "Lloyds Banking Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-b76b6481-4d14-4cb6-88c0-b6d8605c1fae",
+    "status": "ok",
+    "value": 0.48216463313080116,
+    "rank": 11,
+    "name": "Imperial Brands PLC ordinary"
+   },
+   {
+    "security_id": "SEC-be72aef6-6171-46a5-a0cd-f263f7fd8380",
+    "status": "ok",
+    "value": 0.47156154795645877,
+    "rank": 12,
+    "name": "BAE Systems plc ordinary"
+   },
+   {
+    "security_id": "SEC-b2ba16d0-2271-4123-ad0e-8f75eae3f78f",
+    "status": "ok",
+    "value": 0.4704412989175688,
+    "rank": 13,
+    "name": "Airtel Africa\u00a0Plc ordinary"
+   },
+   {
+    "security_id": "SEC-105adaa2-12f3-4db4-b4de-5fda9f1487de",
+    "status": "ok",
+    "value": 0.4641828527864271,
+    "rank": 14,
+    "name": "Coca Cola HBC AG ordinary"
+   },
+   {
+    "security_id": "SEC-ff6bc2c0-d7c8-4b53-9c2d-385f064b0cd9",
+    "status": "ok",
+    "value": 0.45735444370563405,
+    "rank": 15,
+    "name": "British American Tobacco PLC ordinary"
+   },
+   {
+    "security_id": "SEC-4f7dcda7-3792-496d-a9da-6af119f972e4",
+    "status": "ok",
+    "value": 0.45672906378828637,
+    "rank": 16,
+    "name": "Next PLC ordinary"
+   },
+   {
+    "security_id": "SEC-5c0fb6a8-31fd-446a-8d0d-331207098aaa",
+    "status": "ok",
+    "value": 0.4069607632158989,
+    "rank": 17,
+    "name": "Rightmove PLC ordinary"
+   },
+   {
+    "security_id": "SEC-063c2f78-133a-4ce7-9c50-1054d315f101",
+    "status": "ok",
+    "value": 0.3974656838337751,
+    "rank": 18,
+    "name": "Endeavour Mining Corp ordinary"
+   },
+   {
+    "security_id": "SEC-b457685a-1d54-4aa1-9041-46e18a5ac23a",
+    "status": "ok",
+    "value": 0.3780453031089157,
+    "rank": 19,
+    "name": "Aviva PLC ordinary"
+   },
+   {
+    "security_id": "SEC-eb181726-7621-4fb8-839c-00e437e82469",
+    "status": "ok",
+    "value": 0.37078940726503196,
+    "rank": 20,
+    "name": "Beazley plc ordinary"
+   },
+   {
+    "security_id": "SEC-055f5fb5-c061-42a7-85cb-4693203d3b2a",
+    "status": "ok",
+    "value": 0.36228496605910054,
+    "rank": 21,
+    "name": "Admiral Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-e6f0463b-d175-4bb7-8dde-b199f3afcc17",
+    "status": "ok",
+    "value": 0.35810216710711273,
+    "rank": 22,
+    "name": "HSBC Holdings PLC ordinary"
+   },
+   {
+    "security_id": "SEC-86c9374a-d478-45bb-8acc-8d63c1e97f2e",
+    "status": "ok",
+    "value": 0.3569527830880517,
+    "rank": 23,
+    "name": "BT Group Plc ordinary"
+   },
+   {
+    "security_id": "SEC-87585aac-e5d0-43e6-a842-0d268010a21d",
+    "status": "ok",
+    "value": 0.34093579483571057,
+    "rank": 24,
+    "name": "Standard Life PLC ordinary"
+   },
+   {
+    "security_id": "SEC-90e23c5e-fcce-4aa2-a5cc-dd50395923bc",
+    "status": "ok",
+    "value": 0.3392325519419932,
+    "rank": 25,
+    "name": "3I Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-acde2d1a-e418-49af-bd0c-3f1760ec1e0f",
+    "status": "ok",
+    "value": 0.31921579932453903,
+    "rank": 26,
+    "name": "Marks and Spencer Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-442cfc7a-6d12-4304-84cf-ba52c93d4597",
+    "status": "ok",
+    "value": 0.31674487709099597,
+    "rank": 27,
+    "name": "Tesco PLC ordinary"
+   },
+   {
+    "security_id": "SEC-e9039a51-87a1-4676-9d01-db7d1884df15",
+    "status": "ok",
+    "value": 0.3056955199394569,
+    "rank": 28,
+    "name": "Haleon PLC ordinary"
+   },
+   {
+    "security_id": "SEC-cbb48d65-b777-42c6-85ed-0f17c324a732",
+    "status": "ok",
+    "value": 0.29633835691580224,
+    "rank": 29,
+    "name": "Smiths Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-77ef627e-dbcf-434c-afd6-0d44d1e7406a",
+    "status": "ok",
+    "value": 0.2902979537999688,
+    "rank": 30,
+    "name": "EasyJet PLC ordinary"
+   },
+   {
+    "security_id": "SEC-7a4eeb02-5149-4e1d-821c-feb54a2af28f",
+    "status": "ok",
+    "value": 0.2773202198280553,
+    "rank": 31,
+    "name": "M&G Plc ordinary"
+   },
+   {
+    "security_id": "SEC-666a0762-7460-4ae5-82a2-ee0f424e84a1",
+    "status": "ok",
+    "value": 0.2595263656002318,
+    "rank": 32,
+    "name": "ConvaTec Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-f5265d22-5f21-4d47-bab7-a9737c7772f6",
+    "status": "ok",
+    "value": 0.24568239275645487,
+    "rank": 33,
+    "name": "Weir Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-7061619a-37bc-4d5b-b067-81075d19e769",
+    "status": "ok",
+    "value": 0.2408903386112322,
+    "rank": 34,
+    "name": "National Grid PLC ordinary"
+   },
+   {
+    "security_id": "SEC-e6548dbd-846a-4205-93fb-3107103283f9",
+    "status": "ok",
+    "value": 0.23174155169759025,
+    "rank": 35,
+    "name": "Reckitt Benckiser Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-510d998c-9177-4cf2-8df3-23221f7dc4fb",
+    "status": "ok",
+    "value": 0.23014824405119771,
+    "rank": 36,
+    "name": "United Utilities Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-e1c46810-9778-4264-8ace-7803963e6a06",
+    "status": "ok",
+    "value": 0.22753221292136971,
+    "rank": 37,
+    "name": "Entain PLC ordinary"
+   },
+   {
+    "security_id": "SEC-698e32ce-c3be-4935-a59f-0b154a50b1ad",
+    "status": "ok",
+    "value": 0.22076233633706677,
+    "rank": 38,
+    "name": "Compass Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-5313522c-3667-41cd-9b67-bc2ba8544915",
+    "status": "ok",
+    "value": 0.21389534283605216,
+    "rank": 39,
+    "name": "London Stock Exchange Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-533f274d-2762-46bc-aeaf-61dbd4772fe7",
+    "status": "ok",
+    "value": 0.2119328150603459,
+    "rank": 40,
+    "name": "Centrica PLC ordinary"
+   },
+   {
+    "security_id": "SEC-c6e78fc0-c726-4a79-b3b7-bb00a2ac215f",
+    "status": "ok",
+    "value": 0.21126496561066643,
+    "rank": 41,
+    "name": "Coca-Cola Europacific Partners PLC ordinary"
+   },
+   {
+    "security_id": "SEC-b3deb079-18d3-4470-9b7d-d1eb01a3eada",
+    "status": "ok",
+    "value": 0.20329438782058062,
+    "rank": 42,
+    "name": "Prudential plc ordinary"
+   },
+   {
+    "security_id": "SEC-ccc903b6-a572-42a9-a35b-7fc961fff334",
+    "status": "ok",
+    "value": 0.19989502371956047,
+    "rank": 43,
+    "name": "Pearson PLC ordinary"
+   },
+   {
+    "security_id": "SEC-f4d56936-8aba-4e80-9801-208616a5ef9e",
+    "status": "ok",
+    "value": 0.1980993246872067,
+    "rank": 44,
+    "name": "Legal & General Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-258e2d0c-d891-4875-9fe9-ff3644a7bc42",
+    "status": "ok",
+    "value": 0.18804021508509683,
+    "rank": 45,
+    "name": "Severn Trent PLC ordinary"
+   },
+   {
+    "security_id": "SEC-3d0f8722-569c-41af-8dab-14a8d2a59900",
+    "status": "ok",
+    "value": 0.16583800394395287,
+    "rank": 46,
+    "name": "Hikma Pharmaceuticals PLC ordinary"
+   },
+   {
+    "security_id": "SEC-17c6fcb2-c03b-4ff1-84a2-44b78d4411bc",
+    "status": "ok",
+    "value": 0.16156640268020417,
+    "rank": 47,
+    "name": "Kingfisher PLC ordinary"
+   },
+   {
+    "security_id": "SEC-c9d30025-712d-48f0-8c95-569a8d414902",
+    "status": "ok",
+    "value": 0.14620740899880924,
+    "rank": 48,
+    "name": "IMI PLC ordinary"
+   },
+   {
+    "security_id": "SEC-97ee1754-beb8-4506-8c5a-a80e3394dd98",
+    "status": "ok",
+    "value": 0.14529385038027476,
+    "rank": 49,
+    "name": "Diploma PLC ordinary"
+   },
+   {
+    "security_id": "SEC-28368d04-8083-4078-93a1-705c00385b36",
+    "status": "ok",
+    "value": 0.13849325112221433,
+    "rank": 50,
+    "name": "Sage Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-2b41be9b-9046-4a5a-ad0b-c9a9cfc5ef9c",
+    "status": "ok",
+    "value": 0.137456142507149,
+    "rank": 51,
+    "name": "J Sainsbury PLC ordinary"
+   },
+   {
+    "security_id": "SEC-81c21ebd-36bf-40e7-a895-464598c8b2d2",
+    "status": "ok",
+    "value": 0.13203355316018617,
+    "rank": 52,
+    "name": "Vodafone Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-42cb6e0a-62c4-4b63-9453-d6682bbd5908",
+    "status": "ok",
+    "value": 0.1273150346041536,
+    "rank": 53,
+    "name": "Hiscox Ltd ordinary"
+   },
+   {
+    "security_id": "SEC-6192db0d-b473-4cbd-a476-bee2837b248f",
+    "status": "ok",
+    "value": 0.126114763274918,
+    "rank": 54,
+    "name": "Unilever PLC ordinary"
+   },
+   {
+    "security_id": "SEC-524f37cd-99d0-4146-825b-55325fdac058",
+    "status": "ok",
+    "value": 0.12429390732341217,
+    "rank": 55,
+    "name": "Smith & Nephew PLC ordinary"
+   },
+   {
+    "security_id": "SEC-6f45079c-e5df-43a4-a076-d3858cbeff8e",
+    "status": "ok",
+    "value": 0.11551376829937143,
+    "rank": 56,
+    "name": "Scottish Mortgage Investment Trust plc ordinary"
+   },
+   {
+    "security_id": "SEC-77135fb3-b1e2-4456-9524-e390b84d75a6",
+    "status": "ok",
+    "value": 0.11525981205465374,
+    "rank": 57,
+    "name": "Relx PLC ordinary"
+   },
+   {
+    "security_id": "SEC-d1a358d5-86f1-4fa9-b669-15b64491b1c2",
+    "status": "ok",
+    "value": 0.10704874357477334,
+    "rank": 58,
+    "name": "LondonMetric Property Plc ordinary"
+   },
+   {
+    "security_id": "SEC-3d369c14-1fa2-4f43-9c50-691b0396cc9f",
+    "status": "ok",
+    "value": 0.08275094111033954,
+    "rank": 59,
+    "name": "Halma PLC ordinary"
+   },
+   {
+    "security_id": "SEC-5f255bba-6802-429e-9878-7e7704a90bfa",
+    "status": "ok",
+    "value": 0.07230793716834727,
+    "rank": 60,
+    "name": "F&C Investment Trust PLC ordinary"
+   },
+   {
+    "security_id": "SEC-44097ed9-e2f4-40c8-ae8e-15c375032844",
+    "status": "ok",
+    "value": 0.07019138758021581,
+    "rank": 61,
+    "name": "Land Securities Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-561f75b8-77cb-4cdd-8200-b34187ef77ef",
+    "status": "ok",
+    "value": 0.03710981692793158,
+    "rank": 62,
+    "name": "Schroders PLC ordinary"
+   },
+   {
+    "security_id": "SEC-27c4555f-1966-456e-88c3-a6b101fcae0b",
+    "status": "ok",
+    "value": 0.03642610515878375,
+    "rank": 63,
+    "name": "InterContinental Hotels Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-0a801269-2b3d-4cb2-818f-260bd15e01b2",
+    "status": "ok",
+    "value": 0.03126123839027928,
+    "rank": 64,
+    "name": "Intertek Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-5ac37276-0653-4bdd-b5e0-19659cdbc104",
+    "status": "ok",
+    "value": 0.029131946780816875,
+    "rank": 65,
+    "name": "GSK plc ordinary"
+   },
+   {
+    "security_id": "SEC-5a7e8ae9-ae89-4d6b-8402-fe8b66f1442e",
+    "status": "ok",
+    "value": 0.019311484515372124,
+    "rank": 66,
+    "name": "SSE PLC ordinary"
+   },
+   {
+    "security_id": "SEC-2c0bb2ac-a2d3-4c6b-99d8-8469bed8aa6e",
+    "status": "ok",
+    "value": 0.01465117468568522,
+    "rank": 67,
+    "name": "Alliance Witan Ord ordinary"
+   },
+   {
+    "security_id": "SEC-d663a5db-2574-4542-869a-83b35a62b1c7",
+    "status": "ok",
+    "value": 0.013295652940104263,
+    "rank": 68,
+    "name": "Barratt Redrow plc ordinary"
+   },
+   {
+    "security_id": "SEC-2cf5ab8f-0d6f-4b50-8892-81dc731a750c",
+    "status": "ok",
+    "value": 0.008961486441746436,
+    "rank": 69,
+    "name": "Howden Joinery Group Plc ordinary"
+   },
+   {
+    "security_id": "SEC-080266e4-54af-4cff-8e63-6355c269927d",
+    "status": "ok",
+    "value": 0.00652980738346276,
+    "rank": 70,
+    "name": "Unite Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-cb1fb684-b570-4bb9-a446-94eb1bb9a2e3",
+    "status": "ok",
+    "value": 0.006494997020275894,
+    "rank": 71,
+    "name": "Experian PLC ordinary"
+   },
+   {
+    "security_id": "SEC-690a5ac5-93dc-435a-8227-e25adcdf287a",
+    "status": "ok",
+    "value": 0.005288929036782131,
+    "rank": 72,
+    "name": "Whitbread PLC ordinary"
+   },
+   {
+    "security_id": "SEC-554493bc-c379-435b-8d5f-076b5cfdd2af",
+    "status": "ok",
+    "value": 0.0029981082322161345,
+    "rank": 73,
+    "name": "Auto Trader Group plc ordinary"
+   },
+   {
+    "security_id": "SEC-cdf6b074-be61-4757-b264-636fb23e77cf",
+    "status": "ok",
+    "value": -0.002453880960668231,
+    "rank": 74,
+    "name": "Persimmon PLC ordinary"
+   },
+   {
+    "security_id": "SEC-9dd156c2-277e-42fc-a241-a825f50d4e2c",
+    "status": "ok",
+    "value": -0.010606060606060619,
+    "rank": 75,
+    "name": "Polar Capital Technology Trust ordinary"
+   },
+   {
+    "security_id": "SEC-b13c2e20-3a80-4cfe-a65e-74c243f95a0a",
+    "status": "ok",
+    "value": -0.04869675814903651,
+    "rank": 76,
+    "name": "Pershing Square Holdings Ltd ordinary"
+   },
+   {
+    "security_id": "SEC-5f40e6b2-88bc-4836-ae6a-ba1b0a951678",
+    "status": "ok",
+    "value": -0.05882602821490157,
+    "rank": 77,
+    "name": "Informa PLC ordinary"
+   },
+   {
+    "security_id": "SEC-3161f087-04ec-4ad6-bcac-6b7ab74d521f",
+    "status": "ok",
+    "value": -0.06953667893917403,
+    "rank": 78,
+    "name": "Intermediate Capital Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-eb8cc109-20d8-4a26-8aa2-043c19972b00",
+    "status": "ok",
+    "value": -0.07172251779770389,
+    "rank": 79,
+    "name": "The Berkeley Group Holdings plc ordinary"
+   },
+   {
+    "security_id": "SEC-184ffdca-7026-4a96-bd44-f5aa74eb21ab",
+    "status": "ok",
+    "value": -0.09280484461001581,
+    "rank": 80,
+    "name": "Anglo American PLC ordinary"
+   },
+   {
+    "security_id": "SEC-1624ed01-93b1-4201-9a5c-97c097a42ac9",
+    "status": "ok",
+    "value": -0.09567416748880642,
+    "rank": 81,
+    "name": "Taylor Wimpey PLC ordinary"
+   },
+   {
+    "security_id": "SEC-71444bc6-0757-4a56-a9b9-52505a3a1d30",
+    "status": "ok",
+    "value": -0.09714992785501675,
+    "rank": 82,
+    "name": "Rio Tinto PLC ordinary"
+   },
+   {
+    "security_id": "SEC-c9e67a21-f2f5-42fc-8158-8975455cfe2d",
+    "status": "ok",
+    "value": -0.09930112242398914,
+    "rank": 83,
+    "name": "Shell plc ordinary"
+   },
+   {
+    "security_id": "SEC-d9202331-eaf4-4dc4-8455-2e6355d70f92",
+    "status": "ok",
+    "value": -0.11435466845670539,
+    "rank": 84,
+    "name": "AstraZeneca PLC ordinary"
+   },
+   {
+    "security_id": "SEC-ab2f8ad9-5569-470a-ad25-004880852b2a",
+    "status": "ok",
+    "value": -0.12185042747304464,
+    "rank": 85,
+    "name": "Associated British Foods PLC ordinary"
+   },
+   {
+    "security_id": "SEC-20a8f786-51e8-49ed-9cf0-bdbe15cc0cb3",
+    "status": "ok",
+    "value": -0.127581178018505,
+    "rank": 86,
+    "name": "DCC plc ordinary"
+   },
+   {
+    "security_id": "SEC-fa995f37-4006-480f-b273-410aa6790c12",
+    "status": "ok",
+    "value": -0.1442004623754577,
+    "rank": 87,
+    "name": "Melrose Industries PLC ordinary"
+   },
+   {
+    "security_id": "SEC-51b68f13-53b9-45e7-93ab-35f3eea9c6f4",
+    "status": "ok",
+    "value": -0.15628115793813568,
+    "rank": 88,
+    "name": "WPP PLC ordinary"
+   },
+   {
+    "security_id": "SEC-be121a43-cb67-4efb-b519-a675fb31328b",
+    "status": "ok",
+    "value": -0.16090047393364926,
+    "rank": 89,
+    "name": "Antofagasta PLC ordinary"
+   },
+   {
+    "security_id": "SEC-faa09e20-78c5-48fa-a80c-045c480c816c",
+    "status": "ok",
+    "value": -0.1620075727837802,
+    "rank": 90,
+    "name": "Diageo PLC ordinary"
+   },
+   {
+    "security_id": "SEC-d6c2acb3-7fc8-45df-841d-c5b2613da2ed",
+    "status": "ok",
+    "value": -0.16368226071912395,
+    "rank": 91,
+    "name": "Ashtead Group PLC ordinary"
+   },
+   {
+    "security_id": "SEC-2e73e173-61c3-4d49-b013-6b91abce7910",
+    "status": "ok",
+    "value": -0.16677334179358516,
+    "rank": 92,
+    "name": "Mondi PLC ordinary"
+   },
+   {
+    "security_id": "SEC-639f4970-01af-451a-8d40-268a56e15d4e",
+    "status": "ok",
+    "value": -0.18812695116026534,
+    "rank": 93,
+    "name": "Bunzl PLC ordinary"
+   },
+   {
+    "security_id": "SEC-4c832bcc-1646-4e65-a68d-51b098bf5e40",
+    "status": "ok",
+    "value": -0.1928911023083586,
+    "rank": 94,
+    "name": "Segro Plc ordinary"
+   },
+   {
+    "security_id": "SEC-a7f79b94-b305-4622-b2b0-c053135e3dd6",
+    "status": "ok",
+    "value": -0.19430592461537988,
+    "rank": 95,
+    "name": "Croda International PLC ordinary"
+   },
+   {
+    "security_id": "SEC-fe2af4b1-432a-41cf-8fe2-1260a48415a1",
+    "status": "ok",
+    "value": -0.19641632181062274,
+    "rank": 96,
+    "name": "BP PLC ordinary"
+   },
+   {
+    "security_id": "SEC-fa28b4f2-b431-466a-ad12-dfe9ebf8eaca",
+    "status": "ok",
+    "value": -0.21939836365233578,
+    "rank": 97,
+    "name": "Rentokil Initial PLC ordinary"
+   },
+   {
+    "security_id": "SEC-aa02a61b-7010-47b4-a89c-fa1afea8a037",
+    "status": "ok",
+    "value": -0.29417249194538486,
+    "rank": 98,
+    "name": "JD Sports Fashion PLC ordinary"
+   },
+   {
+    "security_id": "SEC-d474eef4-bd80-43bd-befe-224ab15d6a50",
+    "status": "ok",
+    "value": -0.3077026174076106,
+    "rank": 99,
+    "name": "Spirax Group plc ordinary"
+   },
+   {
+    "security_id": "SEC-7903a446-bf9d-4caf-875d-e2709b56cb89",
+    "status": "ok",
+    "value": -0.3717579250720462,
+    "rank": 100,
+    "name": "Glencore PLC ordinary"
+   }
+  ],
+  "inspected": {
+   "SEC-ce847614-18e0-4cd3-a6fa-7ccce835a92f": {
+    "name": "Fresnillo PLC ordinary",
+    "member_on_date": true,
+    "production_status": "ok",
+    "production_value": 1.1922625599206294,
+    "cross_sectional_rank": 1,
+    "independent": {
+     "status": "ok",
+     "value": 1.1922625599206294,
+     "start_bar": "2024-06-28",
+     "start_close_gbx": 562.0,
+     "end_bar": "2025-05-30",
+     "end_close_gbx": 1163.0,
+     "actions_in_window": [
+      {
+       "kind": "dividend",
+       "ex_date": "2024-08-08",
+       "amount_gbx": 5.006
+      },
+      {
+       "kind": "dividend",
+       "ex_date": "2025-04-17",
+       "amount_gbx": 51.126000000000005
+      }
+     ]
+    }
+   },
+   "SEC-2b41be9b-9046-4a5a-ad0b-c9a9cfc5ef9c": {
+    "name": "J Sainsbury PLC ordinary",
+    "member_on_date": true,
+    "production_status": "ok",
+    "production_value": 0.137456142507149,
+    "cross_sectional_rank": 51,
+    "independent": {
+     "status": "ok",
+     "value": 0.137456142507149,
+     "start_bar": "2024-06-28",
+     "start_close_gbx": 255.0,
+     "end_bar": "2025-05-30",
+     "end_close_gbx": 285.4,
+     "actions_in_window": [
+      {
+       "kind": "dividend",
+       "ex_date": "2024-11-14",
+       "amount_gbx": 3.9
+      }
+     ]
+    }
+   },
+   "SEC-7903a446-bf9d-4caf-875d-e2709b56cb89": {
+    "name": "Glencore PLC ordinary",
+    "member_on_date": true,
+    "production_status": "ok",
+    "production_value": -0.3717579250720462,
+    "cross_sectional_rank": 100,
+    "independent": {
+     "status": "ok",
+     "value": -0.3717579250720462,
+     "start_bar": "2024-06-28",
+     "start_close_gbx": 451.1,
+     "end_bar": "2025-05-30",
+     "end_close_gbx": 283.4,
+     "actions_in_window": []
+    }
+   }
+  }
+ }
+}

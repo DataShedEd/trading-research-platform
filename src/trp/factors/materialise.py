@@ -18,6 +18,7 @@ import logging
 import sys
 from datetime import UTC, date, datetime, time, timedelta
 
+from trp.backtest.context import computable_inputs
 from trp.canonical.calendars import get_trading_calendar
 from trp.canonical.price_store import read_bars
 from trp.canonical.unit_repair import REPAIRED_SOURCE
@@ -52,6 +53,15 @@ def materialise(names: list[str] | None = None) -> None:
     universe_query = UniverseQuery(settings.canonical_dir / "universes")
     derived_root = settings.derived_dir / "factors"
     prices_root = settings.canonical_dir / "prices"
+    # The same repaired action set the backtest supplies (QNT-107 correction: momentum
+    # declares corporate_actions as an input; omitting them silently degraded "total"
+    # to a dividend-free return and left surviving split gaps unadjusted).
+    from trp.backtest.runner import load_actions
+
+    all_actions, action_versions = load_actions(settings.canonical_dir / "corporate_actions")
+    actions_by_sid: dict[str, list] = {}  # type: ignore[type-arg]
+    for action in all_actions:
+        actions_by_sid.setdefault(str(action.security_id), []).append(action)
     today = datetime.now(UTC).date()
     newest = max(
         bar.trade_date
@@ -81,12 +91,21 @@ def materialise(names: list[str] | None = None) -> None:
             sources=[REPAIRED_SOURCE],
             security_ids=[str(m) for m in members],
         )
+        candidate_actions = [
+            action for member in members for action in actions_by_sid.get(str(member), [])
+        ]
+        bars, actions = computable_inputs(list(bars), candidate_actions)
         context = ComputeContext(
             security_ids=sorted(members),
             end=end,
             as_of=as_of,
             bars=bars,
-            input_versions={"prices": REPAIRED_SOURCE, "universe": UNIVERSE},
+            actions=actions,
+            input_versions={
+                "prices": REPAIRED_SOURCE,
+                "universe": UNIVERSE,
+                **action_versions,
+            },
             fundamentals_root=settings.canonical_dir / "fundamentals",
             fx_root=settings.canonical_dir / "fx",
             shares_root=settings.canonical_dir / "shares",

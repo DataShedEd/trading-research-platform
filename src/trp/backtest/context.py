@@ -11,6 +11,7 @@ adding future-dated data to the inputs cannot change any result.
 """
 
 from bisect import bisect_left
+from collections.abc import Sequence
 from datetime import UTC, date, datetime, time, timedelta
 from decimal import Decimal
 from pathlib import Path
@@ -31,6 +32,42 @@ if TYPE_CHECKING:
     from trp.backtest.engine import MarketData
 
 _MARK_STALENESS_DAYS = 15
+
+
+def computable_inputs(
+    bars: list[DailyBar], candidate_actions: "Sequence[CorporateAction]"
+) -> tuple[list[DailyBar], list[CorporateAction]]:
+    """The actions computable AGAINST a sliced bar window — shared by the backtest
+    context and factor materialisation so the two surfaces cannot diverge.
+
+    An action whose ex-date is on or before a security's first sliced bar has no anchor
+    close inside the window; excluding it is exact, because a pre-window adjustment
+    multiplies every in-window value by the same constant and cancels in any
+    within-window ratio. A security whose IN-window action cannot anchor (bar gap wider
+    than the adjustment engine tolerates — a suspension) is excluded from the
+    computation entirely: its factor is unknowable at this clock, and it was
+    untradeable anyway. ``bars`` must be in ascending date order per security."""
+    dates_by_sid: dict[SecurityId, list[date]] = {}
+    for bar in bars:
+        dates_by_sid.setdefault(bar.security_id, []).append(bar.trade_date)
+    unanchorable: set[SecurityId] = set()
+    actions: list[CorporateAction] = []
+    for action in candidate_actions:
+        dates = dates_by_sid.get(action.security_id)
+        # Outside the security's sliced span the action multiplies every in-window
+        # value equally (before) or none of them (after) — either way it cancels.
+        if dates is None or action.ex_date <= dates[0] or action.ex_date > dates[-1]:
+            continue
+        index = bisect_left(dates, action.ex_date)
+        previous = dates[index - 1]
+        if (action.ex_date - previous).days > MAX_PREV_CLOSE_GAP_DAYS:
+            unanchorable.add(action.security_id)
+            continue
+        actions.append(action)
+    if unanchorable:
+        bars = [b for b in bars if b.security_id not in unanchorable]
+        actions = [a for a in actions if a.security_id not in unanchorable]
+    return bars, actions
 
 
 class BacktestContext:
@@ -109,38 +146,9 @@ class BacktestContext:
     def _sliced_inputs(
         self, security_ids: frozenset[SecurityId]
     ) -> tuple[list[DailyBar], list[CorporateAction]]:
-        """Bars over the lookback window plus the actions computable AGAINST those bars.
-
-        An action whose ex-date is on or before a security's first sliced bar has no
-        anchor close inside the window; excluding it is exact, because a pre-window
-        adjustment multiplies every in-window value by the same constant and cancels in
-        any within-window ratio."""
+        """Bars over the lookback window plus the actions computable AGAINST those bars."""
         bars = self._market.bars_for(security_ids, self._lookback_start(), self._clock)
-        dates_by_sid: dict[SecurityId, list[date]] = {}
-        for bar in bars:  # bars_for returns each security's bars in ascending date order
-            dates_by_sid.setdefault(bar.security_id, []).append(bar.trade_date)
-        # A pre-window action cancels in any within-window ratio and is dropped exactly.
-        # A security whose IN-window action cannot anchor (bar gap wider than the
-        # adjustment engine tolerates — a suspension) is excluded from this computation
-        # entirely: its factor is unknowable at this clock, and it was untradeable anyway.
-        unanchorable: set[SecurityId] = set()
-        actions: list[CorporateAction] = []
-        for action in self._market.actions_for(security_ids):
-            dates = dates_by_sid.get(action.security_id)
-            # Outside the security's sliced span the action multiplies every in-window
-            # value equally (before) or none of them (after) — either way it cancels.
-            if dates is None or action.ex_date <= dates[0] or action.ex_date > dates[-1]:
-                continue
-            index = bisect_left(dates, action.ex_date)
-            previous = dates[index - 1]
-            if (action.ex_date - previous).days > MAX_PREV_CLOSE_GAP_DAYS:
-                unanchorable.add(action.security_id)
-                continue
-            actions.append(action)
-        if unanchorable:
-            bars = [b for b in bars if b.security_id not in unanchorable]
-            actions = [a for a in actions if a.security_id not in unanchorable]
-        return bars, actions
+        return computable_inputs(bars, self._market.actions_for(security_ids))
 
     def factor_values(
         self, definition: FactorDefinition, security_ids: frozenset[SecurityId]
