@@ -47,7 +47,7 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-096](QNT-096-uk-risk-free-series.md) | UK risk-free series (3M gilt) | P2 | DONE |
 | [QNT-097](QNT-097-eodhd-fundamentals-canonicalisation.md) | EODHD fundamentals backfill + canonicalisation | P1 | DONE |
 | [QNT-098](QNT-098-market-cap-integrity.md) | Market-cap integrity (dated shares, price currency) | P1 | DONE |
-| [QNT-099](QNT-099-first-registered-experiment.md) | First registered experiment: QVM vs momentum | P1 | IN_PROGRESS |
+| [QNT-099](QNT-099-first-registered-experiment.md) | First registered experiment: QVM vs momentum | P1 | DONE |
 
 ## EPIC 4 — Fundamental Data
 
