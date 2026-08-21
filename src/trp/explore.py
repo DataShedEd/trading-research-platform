@@ -21,7 +21,9 @@ Views (see ``docs/QUERYING.md`` for a cookbook):
                          with a ``run`` column from the directory name
 - ``fundamentals``       point-in-time statement store (available_at is load-bearing)
 - ``fx_gbpusd``/``fx_gbpeur``/``risk_free``/``benchmark_bars``  the auxiliary series
-- ``factor_values``      materialised factor cross-sections (empty until first write)
+- ``factor_values``      materialised factor cross-sections, long form
+- ``factor_panel``       the same data wide: one row per (security, end), a column per
+                         factor, NULL where not computable — the analysis shape
 
 This is a read surface: the connection is opened read-only against the files, and nothing
 here mutates a store.
@@ -95,6 +97,22 @@ def open_console(database: str = ":memory:") -> duckdb.DuckDBPyConnection:
             f"SELECT * FROM read_parquet('{derived}/factors/*/*/*.parquet', "
             "union_by_name = true, hive_partitioning = true)",
         )
+        # The analysis-friendly wide shape: one row per (security, end), one column per
+        # factor, NULL where that factor was not 'ok' (missingness stays visible). The
+        # column set is fixed at build time from the materialised names — rerun
+        # `make db` after materialising a new factor.
+        names = [
+            row[0]
+            for row in con.sql("SELECT DISTINCT name FROM factor_values ORDER BY name").fetchall()
+        ]
+        columns = ",\n            ".join(
+            f"max(CASE WHEN name = '{name}' AND status = 'ok' THEN value END) AS {name}"
+            for name in names
+        )
+        view(
+            "factor_panel",
+            f'SELECT security_id, "end", {columns} FROM factor_values GROUP BY security_id, "end"',
+        )
     for name, filename in (
         ("backtest_daily", "daily.parquet"),
         ("backtest_events", "events.parquet"),
@@ -135,13 +153,20 @@ def repl(con: duckdb.DuckDBPyConnection) -> None:
 
 
 def build_database() -> Path:
-    """(Re)create ``data/trp.duckdb`` holding all the views, for IDE/JDBC clients
-    (DataGrip, DBeaver, ...). The file contains only view definitions over the Parquet
-    stores — no data is copied, so it is always current and safe to rebuild. Connect
-    read-only from the IDE so an open session never blocks this rebuild."""
+    """(Re)create ``data/trp.duckdb`` for IDE/JDBC clients (DataGrip, DBeaver, ...).
+
+    The file holds only view definitions over the Parquet stores — no data is copied.
+    Built into a scratch file and atomically swapped into place, because ANY open DuckDB
+    connection (read-only included) holds a file lock: an attached IDE session keeps
+    reading its old inode and picks up the new views on its next reconnect/refresh."""
+    import os
+
     settings = load_settings()
     target = settings.data_dir.resolve() / "trp.duckdb"
-    open_console(str(target)).close()
+    scratch = target.with_suffix(".duckdb.building")
+    scratch.unlink(missing_ok=True)
+    open_console(str(scratch)).close()
+    os.replace(scratch, target)
     return target
 
 

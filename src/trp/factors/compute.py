@@ -43,6 +43,7 @@ class ComputeContext:
     # return no_data rather than guessing a location.
     fundamentals_root: Path | None = None
     fx_root: Path | None = None
+    shares_root: Path | None = None
 
 
 TransformFn = Callable[[ComputeContext, dict[str, object]], pl.DataFrame]

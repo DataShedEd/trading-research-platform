@@ -89,6 +89,7 @@ def materialise(names: list[str] | None = None) -> None:
             input_versions={"prices": REPAIRED_SOURCE, "universe": UNIVERSE},
             fundamentals_root=settings.canonical_dir / "fundamentals",
             fx_root=settings.canonical_dir / "fx",
+            shares_root=settings.canonical_dir / "shares",
         )
         for definition in pending:
             frame = compute_factor(definition, context)

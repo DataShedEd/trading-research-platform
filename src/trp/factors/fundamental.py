@@ -38,6 +38,7 @@ import polars as pl
 
 from trp.canonical.fundamentals.queries import fundamentals
 from trp.canonical.fx import FxError, FxRates
+from trp.canonical.shares import SharesSeries
 from trp.domain.fundamentals import PeriodType
 from trp.domain.identifiers import SecurityId
 from trp.factors.compute import ComputeContext, register_transform
@@ -235,8 +236,12 @@ def _earnings_stability(context: ComputeContext, parameters: dict[str, object]) 
 
 
 def _close_gbp_on_or_before(
-    context: ComputeContext, security_id: SecurityId
+    context: ComputeContext, security_id: SecurityId, fx: FxRates | None
 ) -> tuple[date, float] | None:
+    """Last close on or before t, in GBP: GBX divides by 100; USD/EUR convert at the
+    dated rate (raising FxError when no sane rate exists); GBP passes through."""
+    from trp.canonical.price_overrides import PRICE_CURRENCY_OVERRIDES
+
     series = sorted(
         (bar.trade_date, bar.close, bar.currency)
         for bar in context.bars
@@ -247,8 +252,16 @@ def _close_gbp_on_or_before(
     if index == 0:
         return None
     trade_date, close, unit = series[index - 1]
-    value = float(close) / 100 if unit == "GBX" else float(close)
-    return trade_date, value
+    override = PRICE_CURRENCY_OVERRIDES.get(str(security_id))
+    if override is not None:
+        unit = override[0]
+    if unit == "GBX":
+        return trade_date, float(close) / 100
+    if unit == "GBP":
+        return trade_date, float(close)
+    if fx is None:
+        raise FxError(f"bar currency {unit} needs an fx_root")
+    return trade_date, fx.to_gbp(float(close), unit, context.end)
 
 
 @register_transform("market_value_yield")
@@ -269,18 +282,40 @@ def _market_value_yield(context: ComputeContext, parameters: dict[str, object]) 
         items.append("net_debt")
     snapshots = latest_snapshots(context, items)
     fx = FxRates(context.fx_root) if context.fx_root is not None else None
+    # Share counts come from the DATED series when present (QNT-098): it is correct
+    # where the balance-sheet field is not, and shares the vendor's price basis. The
+    # balance-sheet figure is the flagged fallback.
+    shares_series = SharesSeries(context.shares_root) if context.shares_root is not None else None
+    from trp.canonical.price_overrides import MARKET_VALUE_EXCLUSIONS
+
     rows = []
     for security_id in context.security_ids:
+        excluded = MARKET_VALUE_EXCLUSIONS.get(str(security_id))
+        if excluded is not None:
+            rows.append(_row(security_id, NO_DATA, None, f"price basis excluded: {excluded}"))
+            continue
         snapshot = snapshots[security_id]
         if isinstance(snapshot, str):
             rows.append(_row(security_id, NO_DATA, None, snapshot))
             continue
-        priced = _close_gbp_on_or_before(context, security_id)
+        try:
+            priced = _close_gbp_on_or_before(context, security_id, fx)
+        except FxError as error:
+            rows.append(_row(security_id, NO_DATA, None, str(error)))
+            continue
         if priced is None:
             rows.append(_row(security_id, NO_DATA, None, "no close on or before t"))
             continue
         _trade_date, price_gbp = priced
-        shares = snapshot.values["shares_outstanding"]
+        share_warnings: list[str] = []
+        shares = (
+            shares_series.outstanding(str(security_id), context.end)
+            if shares_series is not None
+            else None
+        )
+        if shares is None:
+            shares = snapshot.values["shares_outstanding"]
+            share_warnings.append("balance-sheet share count (no dated series)")
         if shares <= 0:
             rows.append(_row(security_id, NOT_MEANINGFUL, None, "non-positive share count"))
             continue
@@ -326,5 +361,5 @@ def _market_value_yield(context: ComputeContext, parameters: dict[str, object]) 
                 )
             )
             continue
-        rows.append(_row(security_id, OK, numerator_value / denominator_value))
+        rows.append(_row(security_id, OK, numerator_value / denominator_value, *share_warnings))
     return _frame(rows)

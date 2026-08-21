@@ -57,6 +57,7 @@ def context() -> ComputeContext:
         bars=bars,
         fundamentals_root=SETTINGS.canonical_dir / "fundamentals",
         fx_root=SETTINGS.canonical_dir / "fx",
+        shares_root=SETTINGS.canonical_dir / "shares",
     )
 
 
@@ -71,3 +72,16 @@ def test_cross_section_coverage_and_plausibility(
     median = values[len(values) // 2]
     low, high = band
     assert low < median < high, f"{name}: median {median:.4f} outside [{low}, {high}]"
+
+
+def test_market_cap_harness_has_no_unadjudicated_flags() -> None:
+    """QNT-098: every implausible FTSE-member market-cap month is on the documented
+    exclusion list — the list may only shrink."""
+    import polars as pl
+
+    from trp.canonical.price_overrides import MARKET_VALUE_EXCLUSIONS
+    from trp.canonical.shares import validate_market_caps
+
+    flagged = validate_market_caps()
+    residual = flagged.filter(~pl.col("security_id").is_in(list(MARKET_VALUE_EXCLUSIONS)))
+    assert residual.height == 0, residual.head(10)
