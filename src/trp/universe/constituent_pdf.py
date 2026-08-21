@@ -22,6 +22,7 @@ import re
 from dataclasses import dataclass
 from datetime import date, datetime
 from pathlib import Path
+from typing import Any
 
 _DATE = re.compile(r"^(\d{1,2})\s*-?\s*([A-Z][a-z]{2})\s*-?\s*(\d{2})$")
 _FOOTER = re.compile(r"^(FTSE|lseg|Source|©|Further)")
@@ -46,25 +47,25 @@ class ConstituentChange:
 def _parse_date(token: str) -> date:
     match = _DATE.match(token)
     assert match is not None, token
-    return datetime.strptime("-".join(match.groups()), "%d-%b-%y").date()
+    return datetime.strptime("-".join(match.groups()), "%d-%b-%y").date()  # noqa: DTZ007 - date-only cell, no tz exists
 
 
 def parse_history_pdf(path: Path) -> list[ConstituentChange]:
     import pdfplumber
 
     rows: list[ConstituentChange] = []
-    open_row: dict[str, object] | None = None
+    open_row: dict[str, Any] | None = None
 
     def flush() -> None:
         nonlocal open_row
         if open_row is not None:
             rows.append(
                 ConstituentChange(
-                    effective=open_row["date"],  # type: ignore[arg-type]
-                    added=" ".join(open_row["added"]).strip(),  # type: ignore[arg-type]
-                    deleted=" ".join(open_row["deleted"]).strip(),  # type: ignore[arg-type]
-                    notes=" ".join(open_row["notes"]).strip(),  # type: ignore[arg-type]
-                    page=open_row["page"],  # type: ignore[arg-type]
+                    effective=open_row["date"],
+                    added=" ".join(open_row["added"]).strip(),
+                    deleted=" ".join(open_row["deleted"]).strip(),
+                    notes=" ".join(open_row["notes"]).strip(),
+                    page=open_row["page"],
                 )
             )
             open_row = None
@@ -72,7 +73,7 @@ def parse_history_pdf(path: Path) -> list[ConstituentChange]:
     with pdfplumber.open(path) as pdf:
         for page_number, page in enumerate(pdf.pages):
             words = page.extract_words()
-            lines: dict[float, list[dict[str, object]]] = {}
+            lines: dict[float, list[dict[str, Any]]] = {}
             for word in words:
                 placed = False
                 for key in lines:
@@ -123,11 +124,11 @@ def parse_history_pdf(path: Path) -> list[ConstituentChange]:
                     x = float(word["x0"])
                     text = str(word["text"])
                     if x < ADDED_MAX_X:
-                        open_row["added"].append(text)  # type: ignore[union-attr]
+                        open_row["added"].append(text)
                     elif x < DELETED_MAX_X:
-                        open_row["deleted"].append(text)  # type: ignore[union-attr]
+                        open_row["deleted"].append(text)
                     else:
-                        open_row["notes"].append(text)  # type: ignore[union-attr]
+                        open_row["notes"].append(text)
     flush()
 
     if not rows:

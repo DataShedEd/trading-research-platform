@@ -15,9 +15,12 @@
   regenerated file must be byte-stable — asserted by ``tests/gate``.
 """
 
+# ruff: noqa: SIM115 - curation tooling reads dozens of small JSON files; json.load(open(...)) keeps the provenance one-liners readable
+
 import json
 import sys
 from datetime import date
+from typing import Any
 
 from trp.canonical.security_store import read_security_master, write_security_master
 from trp.config import load_settings
@@ -34,7 +37,7 @@ RESOLUTION = SOURCES / "ftse250_resolution.json"
 ASSIGNMENTS = SOURCES / "ftse250_security_ids.json"
 
 
-def _spell_window(spells: list[dict[str, object]]) -> tuple[date, date | None]:
+def _spell_window(spells: list[dict[str, Any]]) -> tuple[date, date | None]:
     start = min(date.fromisoformat(str(s["from"])) for s in spells)
     ends = [s.get("to") for s in spells]
     end = None if any(e is None for e in ends) else max(date.fromisoformat(str(e)) for e in ends)
@@ -49,9 +52,7 @@ def build_master() -> None:
     taken_provider_codes = {
         r.value for r in master.identifiers if r.kind is IdentifierKind.PROVIDER
     }
-    assignments: dict[str, str] = (
-        json.load(open(ASSIGNMENTS)) if ASSIGNMENTS.exists() else {}
-    )
+    assignments: dict[str, str] = json.load(open(ASSIGNMENTS)) if ASSIGNMENTS.exists() else {}
 
     entities = list(master.entities)
     securities = list(master.securities)
@@ -69,8 +70,8 @@ def build_master() -> None:
             continue  # unresolved (pre-2013 tail) — counted by coverage, not minted
         display = str(entry["display"])
         code = entry.get("eodhd_code")
-        spells = entry["spells"]  # type: ignore[assignment]
-        start, end = _spell_window(spells)  # type: ignore[arg-type]
+        spells = entry["spells"]
+        start, end = _spell_window(spells)
 
         if canon_key in assignments:
             security_id = SecurityId(assignments[canon_key])
@@ -95,10 +96,12 @@ def build_master() -> None:
             Listing(security_id=security_id, mic="XLON", currency="GBX", valid_from=start)
         )
         if code:
-            provider_value = f"{str(code).partition('.')[0].rstrip('.')}." if str(
-                code
-            ).endswith(".") else str(code)
-            provider_value = f"{str(code)}.LSE" if not str(code).endswith(".LSE") else str(code)
+            provider_value = (
+                f"{str(code).partition('.')[0].rstrip('.')}."
+                if str(code).endswith(".")
+                else str(code)
+            )
+            provider_value = f"{code!s}.LSE" if not str(code).endswith(".LSE") else str(code)
             if provider_value in taken_provider_codes:
                 log.append(
                     f"{display}: EODHD code {provider_value} already attached to another "
@@ -137,7 +140,14 @@ def build_master() -> None:
         else:
             log.append(f"{display}: minted WITHOUT provider code ({via}) — exception candidate")
         isin = entry.get("isin")
-        if isin and validate_isin(str(isin)):
+        isin_valid = False
+        if isin:
+            try:
+                validate_isin(str(isin))
+                isin_valid = True
+            except ValueError:
+                log.append(f"{display}: ISIN {isin!r} fails checksum — not attached")
+        if isin_valid:
             identifiers.append(
                 IdentifierRecord(
                     security_id=security_id,
@@ -197,7 +207,7 @@ def build_membership() -> None:
         if not security_id or str(security_id) not in known:
             skipped.append(str(entry["display"]))
             continue
-        for spell in entry["spells"]:  # type: ignore[union-attr]
+        for spell in entry["spells"]:
             source = str(spell["entry_source"])[:150]
             flagged = "RECONCILED" in source or "reverse-derived" in source
             records.append(
@@ -205,9 +215,7 @@ def build_membership() -> None:
                     universe="FTSE250",
                     security_id=SecurityId(str(security_id)),
                     valid_from=date.fromisoformat(str(spell["from"])),
-                    valid_to=(
-                        date.fromisoformat(str(spell["to"])) if spell.get("to") else None
-                    ),
+                    valid_to=(date.fromisoformat(str(spell["to"])) if spell.get("to") else None),
                     source=("[unverified] " if flagged else "") + source[:160],
                 )
             )

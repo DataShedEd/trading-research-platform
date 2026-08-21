@@ -21,12 +21,16 @@ asynchronous replacements) make the count deviate transiently — each deviation
 tracked and must return to 250 within ``MAX_TRANSIENT_DAYS``.
 """
 
+# ruff: noqa: SIM115 - curation tooling reads dozens of small JSON files; json.load(open(...)) keeps the provenance one-liners readable
+
+import itertools
 import json
 import re
 from collections import defaultdict
-from datetime import date, timedelta
+from datetime import date
 from difflib import SequenceMatcher
 from pathlib import Path
+from typing import Any
 
 SOURCES = Path("data_sources/ftse")
 HIST_ANCHOR_DATE = date(2009, 6, 22)  # June 2009 quarterly review effective date
@@ -75,8 +79,21 @@ def normalise(name: str) -> str:
 
 
 _SUFFIX_TOKENS = {
-    "group", "holdings", "hldgs", "hdg", "corp", "corporation", "ord", "shs",
-    "gbp", "eur", "international", "ordinary", "ordinar", "units", "unit",
+    "group",
+    "holdings",
+    "hldgs",
+    "hdg",
+    "corp",
+    "corporation",
+    "ord",
+    "shs",
+    "gbp",
+    "eur",
+    "international",
+    "ordinary",
+    "ordinar",
+    "units",
+    "unit",
 }
 
 
@@ -118,7 +135,7 @@ class NameMatcher:
             value = _strip_suffixes(normalise(v))
             if key != value:
                 self.aliases[key] = value
-        self.unresolved: list[dict[str, object]] = []
+        self.unresolved: list[dict[str, Any]] = []
 
     def canon(self, name: str) -> str:
         key = _strip_suffixes(normalise(name))
@@ -135,9 +152,7 @@ class NameMatcher:
             return wanted
         # unique containment either direction (e.g. "micro focus" vs
         # "micro focus international")
-        contains = [
-            k for k in state if k.startswith(wanted + " ") or wanted.startswith(k + " ")
-        ]
+        contains = [k for k in state if k.startswith(wanted + " ") or wanted.startswith(k + " ")]
         if len(contains) == 1:
             return contains[0]
         # corporate-suffix drift: "serco group" vs "serco", "wizz air holdings" vs
@@ -159,9 +174,12 @@ class NameMatcher:
             ),
             reverse=True,
         )
-        if scored and scored[0][0] >= FUZZY_ACCEPT:
-            if len(scored) == 1 or scored[0][0] - scored[1][0] >= FUZZY_MARGIN:
-                return scored[0][1]
+        if (
+            scored
+            and scored[0][0] >= FUZZY_ACCEPT
+            and (len(scored) == 1 or scored[0][0] - scored[1][0] >= FUZZY_MARGIN)
+        ):
+            return scored[0][1]
         self.unresolved.append(
             {
                 "event_name": event_name,
@@ -173,7 +191,7 @@ class NameMatcher:
         return None
 
 
-def load_events() -> list[dict[str, object]]:
+def load_events() -> list[dict[str, Any]]:
     """All change events, oldest→newest, as {effective, added:[names], deleted:[names],
     notes, source}."""
     rows = json.load(open(SOURCES / "ftse250_changes_raw.json"))
@@ -189,10 +207,12 @@ def load_events() -> list[dict[str, object]]:
             if len(hits) != 1:
                 raise ValueError(f"correction matched {len(hits)} rows: {correction}")
             hits[0].update(correction["set"])
-            hits[0]["notes"] = (hits[0]["notes"] + " [CORRECTED: " + correction["reason"][:80] + "]").strip()
+            hits[0]["notes"] = (
+                hits[0]["notes"] + " [CORRECTED: " + correction["reason"][:80] + "]"
+            ).strip()
 
     def names(cell: str) -> list[str]:
-        return [] if cell.strip() in ("", "-", "–") else [cell]
+        return [] if cell.strip() in ("", "-", "\u2013") else [cell]
 
     events = [
         {
@@ -202,8 +222,7 @@ def load_events() -> list[dict[str, object]]:
             "notes": r["notes"],
             "source": "FTSE Russell, 'FTSE 250 Historic Additions and Deletions', "
             "April 2026 edition (research.ftserussell.com/products/downloads/"
-            "FTSE_250_Constituent_history.pdf), page "
-            + str(r["page"] + 2),
+            "FTSE_250_Constituent_history.pdf), page " + str(r["page"] + 2),
         }
         for r in rows
     ]
@@ -247,12 +266,12 @@ def reverse_replay() -> tuple[dict[str, str], NameMatcher, list[str]]:
     for event in reversed(events):
         day = event["effective"]
         # Reverse of "added on day": the name must be present; remove it.
-        for name in event["added"]:  # type: ignore[union-attr]
-            key = matcher.find(str(name), state, f"reverse-remove @{day}")
-            if key is not None:
-                del state[key]
+        for name in event["added"]:
+            found = matcher.find(str(name), state, f"reverse-remove @{day}")
+            if found is not None:
+                del state[found]
         # Reverse of "deleted on day": the name re-enters going backwards.
-        for name in event["deleted"]:  # type: ignore[union-attr]
+        for name in event["deleted"]:
             key = matcher.canon(str(name))
             if key in state:
                 log.append(f"{day}: reverse-add {name!r} already present (rename/dup?)")
@@ -303,22 +322,20 @@ def validate_checkpoints() -> None:
 
     report = []
     dirty = 0
-    for (day_a, _, names_a), (day_b, _, names_b) in zip(snaps, snaps[1:], strict=False):
+    for (day_a, _, names_a), (day_b, _, names_b) in itertools.pairwise(snaps):
         state: dict[str, str] = {}
         for name in names_a:
             state[canon(name)] = name
         for event in events:
             if not (day_a < str(event["effective"]) <= day_b):
                 continue
-            for name in event["deleted"]:  # type: ignore[union-attr]
+            for name in event["deleted"]:
                 key = matcher.find(str(name), state, f"seg-del @{event['effective']}")
                 if key is not None:
                     del state[key]
                 else:
-                    report.append(
-                        f"{day_a}..{day_b}: DEL {name!r} unmatched @{event['effective']}"
-                    )
-            for name in event["added"]:  # type: ignore[union-attr]
+                    report.append(f"{day_a}..{day_b}: DEL {name!r} unmatched @{event['effective']}")
+            for name in event["added"]:
                 state[canon(str(name))] = str(name)
         # Compare against snapshot B with the same conservative matcher.
         remaining = dict(state)
@@ -339,7 +356,7 @@ def validate_checkpoints() -> None:
     print(f"segments with mismatches: {dirty} of {len(snaps) - 1}; detail lines: {len(report)}")
 
 
-def ftse100_boundary_events(matcher: NameMatcher) -> list[dict[str, object]]:
+def ftse100_boundary_events(matcher: NameMatcher) -> list[dict[str, Any]]:
     """Synthetic FTSE 250 events implied by the VALIDATED FTSE 100 history where the
     FTSE 250 PDF omits the mirror row. A review-reason FTSE 100 removal is a demotion
     INTO the 250; a review-date FTSE 100 addition of an existing 250 member is a
@@ -348,13 +365,14 @@ def ftse100_boundary_events(matcher: NameMatcher) -> list[dict[str, object]]:
     doc = json.load(open(Path("src/trp/universe/data/ftse100_history.json")))
     explicit: set[tuple[str, str, str]] = set()
     for event in load_events():
-        for name in event["added"]:  # type: ignore[union-attr]
+        for name in event["added"]:
             explicit.add((matcher.canon(str(name)), str(event["effective"]), "add"))
-        for name in event["deleted"]:  # type: ignore[union-attr]
+        for name in event["deleted"]:
             explicit.add((matcher.canon(str(name)), str(event["effective"]), "del"))
 
     def covered(key: str, day: str, side: str) -> bool:
-        from datetime import date as _date, timedelta as _timedelta
+        from datetime import date as _date
+        from datetime import timedelta as _timedelta
 
         base = _date.fromisoformat(day)
         for offset in range(-3, 4):
@@ -378,7 +396,8 @@ def ftse100_boundary_events(matcher: NameMatcher) -> list[dict[str, object]]:
                         "added": [removed["name"]],
                         "deleted": [],
                         "notes": "SYNTHETIC: FTSE 100 review relegation implies FTSE 250 entry",
-                        "source": f"ftse100_history.json change {day} (validated; FTSE 250 PDF omits the mirror row)",
+                        "source": f"ftse100_history.json change {day} (validated; "
+                        "FTSE 250 PDF omits the mirror row)",
                     }
                 )
         for added in change.get("added", []):
@@ -391,7 +410,8 @@ def ftse100_boundary_events(matcher: NameMatcher) -> list[dict[str, object]]:
                         "deleted": [added["name"]],
                         "notes": "SYNTHETIC: FTSE 100 addition implies FTSE 250 exit if member",
                         "conditional": True,  # only applies if the name IS a 250 member
-                        "source": f"ftse100_history.json change {day} (validated; FTSE 250 PDF omits the mirror row)",
+                        "source": f"ftse100_history.json change {day} (validated; "
+                        "FTSE 250 PDF omits the mirror row)",
                     }
                 )
     return synthetic
@@ -417,8 +437,8 @@ def build_membership() -> None:
     snaps.append((end_anchor["date"], [m["name"] for m in end_anchor["members"]]))
     snaps.sort()
 
-    ledger: list[dict[str, object]] = []
-    spells: dict[str, list[dict[str, object]]] = defaultdict(list)
+    ledger: list[dict[str, Any]] = []
+    spells: dict[str, list[dict[str, Any]]] = defaultdict(list)
     display: dict[str, str] = {}
 
     def open_spell(key: str, day: str, source: str) -> None:
@@ -438,12 +458,14 @@ def build_membership() -> None:
         state[matcher.canon(name)] = name
         display.setdefault(matcher.canon(name), name)
     head_state = dict(state)
-    for event in reversed([e for e in events if str(HIST_ANCHOR_DATE) < str(e["effective"]) <= first_day]):
-        for name in event["added"]:  # type: ignore[union-attr]
+    for event in reversed(
+        [e for e in events if str(HIST_ANCHOR_DATE) < str(e["effective"]) <= first_day]
+    ):
+        for name in event["added"]:
             key = matcher.find(str(name), head_state, f"head-rev @{event['effective']}")
             if key is not None:
                 del head_state[key]
-        for name in event["deleted"]:  # type: ignore[union-attr]
+        for name in event["deleted"]:
             if event.get("conditional"):
                 continue  # conditional synthetics never create members backwards
             head_state[matcher.canon(str(name))] = str(name)
@@ -457,7 +479,7 @@ def build_membership() -> None:
     checkpoints = iter(snaps)
     next_cp = next(checkpoints, None)
     all_days = sorted({str(e["effective"]) for e in events})
-    events_by_day: dict[str, list[dict[str, object]]] = defaultdict(list)
+    events_by_day: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for event in events:
         events_by_day[str(event["effective"])].append(event)
 
@@ -478,13 +500,13 @@ def build_membership() -> None:
         # trust events over stale snapshots: a diff explained by an event within
         # 45 days either side of the checkpoint is left alone
         near = set()
-        from datetime import date as _date, timedelta as _td
+        from datetime import date as _date
 
         cp = _date.fromisoformat(cp_day)
         for event in events:
             eff = _date.fromisoformat(str(event["effective"]))
             if abs((eff - cp).days) <= 45:
-                for name in list(event["added"]) + list(event["deleted"]):  # type: ignore[arg-type]
+                for name in list(event["added"]) + list(event["deleted"]):
                     near.add(matcher.canon(str(name)))
         missing_keys = sorted(set(target) - set(state))
         extra_keys = sorted(set(state) - set(target))
@@ -522,19 +544,41 @@ def build_membership() -> None:
             if key in near:
                 continue
             if following is not None and key not in following:
-                ledger.append({"checkpoint": cp_day, "action": "suppress-add (transient snapshot glitch)", "name": target[key]})
+                ledger.append(
+                    {
+                        "checkpoint": cp_day,
+                        "action": "suppress-add (transient snapshot glitch)",
+                        "name": target[key],
+                    }
+                )
                 continue
             display.setdefault(key, target[key])
             state[key] = target[key]
-            open_spell(key, cp_day, f"RECONCILED-IN at checkpoint {cp_day} (no explaining event; uncertainty back to previous checkpoint)")
+            open_spell(
+                key,
+                cp_day,
+                f"RECONCILED-IN at checkpoint {cp_day} (no explaining event; "
+                "uncertainty back to previous checkpoint)",
+            )
             ledger.append({"checkpoint": cp_day, "action": "force-add", "name": target[key]})
         for key in extra_keys:
             if key in near:
                 continue
             if following is not None and key in following:
-                ledger.append({"checkpoint": cp_day, "action": "suppress-remove (transient snapshot glitch)", "name": state[key]})
+                ledger.append(
+                    {
+                        "checkpoint": cp_day,
+                        "action": "suppress-remove (transient snapshot glitch)",
+                        "name": state[key],
+                    }
+                )
                 continue
-            close_spell(key, cp_day, f"RECONCILED-OUT at checkpoint {cp_day} (no explaining event; uncertainty back to previous checkpoint)")
+            close_spell(
+                key,
+                cp_day,
+                f"RECONCILED-OUT at checkpoint {cp_day} (no explaining event; "
+                "uncertainty back to previous checkpoint)",
+            )
             ledger.append({"checkpoint": cp_day, "action": "force-remove", "name": state[key]})
             del state[key]
 
@@ -546,14 +590,14 @@ def build_membership() -> None:
             next_cp = next(checkpoints, None)
         for event in events_by_day[day]:
             source = str(event["source"])
-            for name in event["deleted"]:  # type: ignore[union-attr]
+            for name in event["deleted"]:
                 key = matcher.find(str(name), state, f"fwd-del @{day}")
                 if key is not None:
                     close_spell(key, day, source)
                     del state[key]
                 elif not event.get("conditional"):
                     ledger.append({"date": day, "action": "del-unmatched", "name": str(name)})
-            for name in event["added"]:  # type: ignore[union-attr]
+            for name in event["added"]:
                 key = matcher.canon(str(name))
                 if key in state:
                     ledger.append({"date": day, "action": "add-duplicate", "name": str(name)})
@@ -571,10 +615,10 @@ def build_membership() -> None:
         "spell_count": sum(len(v) for v in spells.values()),
         "companies": len(spells),
         "final_members": len(state),
-        "reconciliations": len([l for l in ledger if str(l.get("action", "")).startswith("force")]),
+        "reconciliations": len([e for e in ledger if str(e.get("action", "")).startswith("force")]),
         "ledger": ledger,
         "display": display,
-        "spells": {k: v for k, v in spells.items()},
+        "spells": dict(spells.items()),
     }
     (SOURCES / "ftse250_membership_draft.json").write_text(json.dumps(out, indent=1))
     print(
@@ -599,8 +643,6 @@ if __name__ == "__main__":
     (SOURCES / "ftse250_unresolved.json").write_text(json.dumps(matcher.unresolved, indent=1))
     (SOURCES / "ftse250_reverse_log.json").write_text(json.dumps(log, indent=1))
     (SOURCES / "ftse250_hist_anchor_draft.json").write_text(
-        json.dumps(
-            {"date": str(HIST_ANCHOR_DATE), "members": sorted(state.values())}, indent=1
-        )
+        json.dumps({"date": str(HIST_ANCHOR_DATE), "members": sorted(state.values())}, indent=1)
     )
     print("wrote unresolved report, reverse log, historical anchor draft")

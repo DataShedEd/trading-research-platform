@@ -1,7 +1,7 @@
 # QNT-111 — FTSE 250 historical membership + overlap gate
 
 - **Ticket ID:** QNT-111
-- **Status:** IN_PROGRESS
+- **Status:** DONE
 - **Priority:** P1
 - **Epic:** EPIC 6 — Historical Universe Engine
 - **Depends on:** QNT-037/038/039 (DONE)
@@ -31,13 +31,35 @@ what an investor could actually trade).
 - Price/action backfill for new members via the QNT-091 pipeline.
 
 ## Acceptance criteria
-- [ ] members("FTSE250", d, as_of) live over the covered span; entrants/exits/
+- [x] members("FTSE250", d, as_of) live over the covered span; entrants/exits/
       promotions/demotions/acquisitions/failures preserved; at least one known
       promotion and demotion hand-asserted (same security_id on both sides).
-- [ ] FTSE100 ∩ FTSE250 = ∅ gate green at every monthly date; any source-date overlap
+- [x] FTSE100 ∩ FTSE250 = ∅ gate green at every monthly date; any source-date overlap
       resolved explicitly in the curated file, not deduplicated silently.
-- [ ] Dataset versioned; provenance and adjudications documented; coverage report
+- [x] Dataset versioned; provenance and adjudications documented; coverage report
       generated (QNT-112 consumes it).
 
 ## Completion notes
-_In progress._
+See DEC-026 for the full sourcing decision. Highlights:
+- Official FTSE Russell constituent-history PDF parsed positionally (1,034 rows;
+  a first-pass parser bug dropping single-digit-day rows was caught by cross-checking
+  Burberry/Royal Mail against the validated FTSE 100 history and fixed to
+  refuse-not-drop); June 2025 + June 2026 reviews from LSEG releases (two-column
+  interleaved tables de-interleaved and count-verified).
+- End anchor = Wikipedia 2026-08-20 (validated against the June 2026 review);
+  EODHD FTMC components REJECTED (internally inconsistent). 26 dated Wikipedia
+  snapshots 2013–2025 as replay checkpoints; look-ahead confirmation suppresses
+  transient wiki staleness; self-healing auto-aliases for label drift.
+- Documented errata corrected with citations (duplicate Provident/Royal Mail row,
+  Hvve/Reinshaw/Utilco typos, Hipgnosis C-line conversion); ~120 rename/label aliases,
+  every one annotated; sanctioned exits (Evraz/Polymetal) and NMC dated ad-hoc.
+- Identity: 664 companies → 618 resolved (134 to EXISTING FTSE 100 master ids —
+  promotions/demotions never mint identities, gate-asserted with Royal Mail 2018 and
+  Burberry 2024); 484 new securities minted; 16 EODHD-absent (provisional exception
+  list, may only shrink, no bias direction claimed per DEC-025); 46 pre-2013-only
+  unresolved (logged, outside checkpoint support).
+- 861 membership spells written under universe=FTSE250; reconciliation ledger: 41
+  checkpoint-dated boundaries flagged '[unverified]' (~0.26% of member-months, each
+  bounded by adjacent snapshots).
+- Gates (tests/gate/test_ftse250_gate.py): overlap ∅ at ~165 monthly dates, counts
+  244–253, promotion/demotion identity, survivorship (Carillion in June 2017).

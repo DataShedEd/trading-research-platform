@@ -91,7 +91,7 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-039](QNT-039-ftse-membership-sourcing.md) | FTSE index membership sourcing | P1 | DONE |
 | [QNT-040](QNT-040-broad-uk-universe.md) | Broad UK-listed universe construction | P1 | READY |
 | [QNT-041](QNT-041-universe-survivorship-tests.md) | Universe survivorship test suite | P1 | DONE |
-| [QNT-111](QNT-111-ftse250-membership.md) | FTSE 250 historical membership + overlap gate | P1 | IN_PROGRESS |
+| [QNT-111](QNT-111-ftse250-membership.md) | FTSE 250 historical membership + overlap gate | P1 | DONE |
 | [QNT-112](QNT-112-ftse250-coverage.md) | FTSE 250 coverage + missing-history remediation | P1 | BACKLOG |
 
 ## EPIC 7 — Factor Engine

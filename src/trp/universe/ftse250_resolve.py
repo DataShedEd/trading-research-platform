@@ -17,13 +17,16 @@ security_id (existing or freshly minted), eodhd_code, isin, matched_via} plus a
 rejects list. The write stage (ftse250_build) consumes this.
 """
 
+# ruff: noqa: SIM115 - curation tooling reads dozens of small JSON files; json.load(open(...)) keeps the provenance one-liners readable
+
 import json
 from difflib import SequenceMatcher
 from pathlib import Path
+from typing import Any
 
 from trp.canonical.security_store import read_security_master
 from trp.config import load_settings
-from trp.universe.ftse250_curate import SOURCES, NameMatcher, normalise
+from trp.universe.ftse250_curate import SOURCES, NameMatcher
 
 FUZZY_ACCEPT = 0.92
 FUZZY_MARGIN = 0.05
@@ -44,11 +47,11 @@ def name_variants(display: str) -> list[str]:
     return variants
 
 
-def load_eodhd_rows() -> list[dict[str, str]]:
+def load_eodhd_rows() -> list[dict[str, object]]:
     """Every page of the archived LSE exchange-symbol lists (listed + delisted)."""
 
-    def pages(pattern: str) -> list[dict[str, object]]:
-        out: list[dict[str, object]] = []
+    def pages(pattern: str) -> list[dict[str, Any]]:
+        out: list[dict[str, Any]] = []
         for path in sorted(Path("data/raw/eodhd").glob(pattern)):
             if path.name.endswith(".meta.json"):
                 continue
@@ -59,7 +62,7 @@ def load_eodhd_rows() -> list[dict[str, str]]:
 
     listed = pages("securities/a7de7a6803aae50e/*.json")
     delisted = pages("delisted_securities/a7de7a6803aae50e/*.json")
-    rows = []
+    rows: list[dict[str, object]] = []
     for row, is_delisted in [(r, False) for r in listed] + [(r, True) for r in delisted]:
         rows.append(
             {
@@ -81,9 +84,7 @@ def resolve() -> None:
     matcher = NameMatcher(aliases)
     overrides_path = SOURCES / "ftse250_ticker_overrides.json"
     overrides = json.load(open(overrides_path)) if overrides_path.exists() else {}
-    override_map = {
-        matcher.canon(k): v for k, v in overrides.items() if not k.startswith("_")
-    }
+    override_map = {matcher.canon(k): v for k, v in overrides.items() if not k.startswith("_")}
 
     # 1. existing master by canonical name
     master = read_security_master(settings.canonical_dir / "securities")
@@ -93,31 +94,35 @@ def resolve() -> None:
 
     # 2/3. EODHD corpus
     eodhd = load_eodhd_rows()
-    eodhd_by_code: dict[str, dict[str, str]] = {}
-    for row in eodhd:
-        eodhd_by_code.setdefault(row["code"], row)
-    by_canon: dict[str, list[dict[str, str]]] = {}
-    for row in eodhd:
-        name = row["name"].lower()
+    eodhd_by_code: dict[str, dict[str, object]] = {}
+    for source_row in eodhd:
+        eodhd_by_code.setdefault(str(source_row["code"]), source_row)
+    by_canon: dict[str, list[dict[str, object]]] = {}
+    for source_row in eodhd:
+        name = str(source_row["name"]).lower()
         for noise in _EODHD_NOISE:
             name = name.removesuffix(noise)
-        by_canon.setdefault(matcher.canon(name), []).append(row)
+        by_canon.setdefault(matcher.canon(name), []).append(source_row)
 
     wiki_tickers = {
         matcher.canon(m["name"]): m["ticker"]
         for m in json.load(open(SOURCES / "ftse250_end_anchor.json"))["members"]
     }
 
-    def eodhd_by_name(canon_key: str) -> tuple[dict[str, str] | None, str]:
+    def eodhd_by_name(canon_key: str) -> tuple[dict[str, object] | None, str]:
         rows = by_canon.get(canon_key, [])
-        equity = [r for r in rows if r["type"] in ("Common Stock", "Fund", "ETF", "")]
+        equity = [r for r in rows if str(r["type"]) in ("Common Stock", "Fund", "ETF", "")]
         if len(equity) == 1:
             return equity[0], "eodhd-name-exact"
         if len(equity) > 1:
             # prefer listed over delisted, GBX/GBP over foreign
             ranked = sorted(
                 equity,
-                key=lambda r: (r["delisted"], r["currency"] not in ("GBX", "GBP"), r["code"]),
+                key=lambda r: (
+                    bool(r["delisted"]),
+                    str(r["currency"]) not in ("GBX", "GBP"),
+                    str(r["code"]),
+                ),
             )
             return ranked[0], "eodhd-name-ambiguous-ranked"
         # containment / fuzzy over the whole corpus (unique only)
@@ -140,11 +145,11 @@ def resolve() -> None:
             return by_canon[scored[0][1]][0], f"eodhd-name-fuzzy-{scored[0][0]:.2f}"
         return None, "unmatched"
 
-    resolution: dict[str, dict[str, object]] = {}
-    rejects: list[dict[str, object]] = []
+    resolution: dict[str, dict[str, Any]] = {}
+    rejects: list[dict[str, Any]] = []
     for canon_key, spell_list in draft["spells"].items():
         display = draft["display"].get(canon_key, canon_key)
-        entry: dict[str, object] = {"display": display, "spells": spell_list}
+        entry: dict[str, Any] = {"display": display, "spells": spell_list}
         if canon_key in override_map:
             override = override_map[canon_key]
             if override is None:
@@ -152,12 +157,12 @@ def resolve() -> None:
                 resolution[canon_key] = entry
                 continue
             code = str(override)
-            row = (
+            hit: dict[str, object] | None = (
                 eodhd_by_code.get(code)
                 or eodhd_by_code.get(code + ".")
                 or eodhd_by_code.get(code.rstrip("."))
             )
-            if row is None:
+            if hit is None:
                 entry.update(matched_via="override-NOT-IN-EODHD", eodhd_code=code)
                 rejects.append(
                     {
@@ -169,7 +174,7 @@ def resolve() -> None:
                 )
                 resolution[canon_key] = entry
                 continue
-            entry.update(matched_via="override", eodhd_code=row["code"], isin=row["isin"])
+            entry.update(matched_via="override", eodhd_code=hit["code"], isin=hit["isin"])
             resolution[canon_key] = entry
             continue
         variant_keys = [matcher.canon(v) for v in name_variants(display)]
@@ -180,22 +185,21 @@ def resolve() -> None:
             continue
         ticker = wiki_tickers.get(canon_key)
         if ticker:
-            row = eodhd_by_code.get(ticker) or eodhd_by_code.get(ticker + ".")
-            if row is None and len(ticker) <= 3:
-                row = eodhd_by_code.get(ticker.rstrip(".") )
-            if row is not None:
-                entry.update(
-                    matched_via="wiki-ticker", eodhd_code=row["code"], isin=row["isin"]
-                )
+            hit2 = eodhd_by_code.get(ticker) or eodhd_by_code.get(ticker + ".")
+            if hit2 is None and len(ticker) <= 3:
+                hit2 = eodhd_by_code.get(ticker.rstrip("."))
+            if hit2 is not None:
+                entry.update(matched_via="wiki-ticker", eodhd_code=hit2["code"], isin=hit2["isin"])
                 resolution[canon_key] = entry
                 continue
-        row, how = None, "unmatched"
+        found: dict[str, object] | None = None
+        how = "unmatched"
         for variant in variant_keys:
-            row, how = eodhd_by_name(variant)
-            if row is not None:
+            found, how = eodhd_by_name(variant)
+            if found is not None:
                 break
-        if row is not None:
-            entry.update(matched_via=how, eodhd_code=row["code"], isin=row["isin"])
+        if found is not None:
+            entry.update(matched_via=how, eodhd_code=found["code"], isin=found["isin"])
             resolution[canon_key] = entry
             continue
         rejects.append({"canon": canon_key, "display": display, "spells": spell_list})
