@@ -1,7 +1,7 @@
 # QNT-065 — Results persistence and retrieval
 
 - **Ticket ID:** QNT-065
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P2
 - **Epic:** EPIC 10 — Research Experiment Registry
 
@@ -28,16 +28,16 @@ Workflow enforcement (QNT-066); API exposure (QNT-074); charting and terminal vi
 automated statistical comparison or significance testing between experiments.
 
 ## Acceptance criteria
-- [ ] Scalar metrics, time series, per-period holdings and generated artefacts each persist under the
+- [x] Scalar metrics, time series, per-period holdings and generated artefacts each persist under the
       experiment identifier and are retrievable together with the manifest that produced them.
-- [ ] Listing supports filtering by hypothesis, universe, status, tag and run date, and returns
+- [x] Listing supports filtering by hypothesis, universe, status, tag and run date, and returns
       results in a stable documented order.
-- [ ] Comparison returns a metric-by-experiment table over an arbitrary set of experiment ids,
+- [x] Comparison returns a metric-by-experiment table over an arbitrary set of experiment ids,
       aligning metrics by name and marking metrics absent from some experiments as missing rather
       than zero.
-- [ ] Results are immutable once written: re-running an experiment creates a new run under the same
+- [x] Results are immutable once written: re-running an experiment creates a new run under the same
       record instead of overwriting the previous run's results.
-- [ ] Deleting an experiment record is not supported by the API; abandoning is a status change.
+- [x] Deleting an experiment record is not supported by the API; abandoning is a status change.
 
 ## Technical notes
 Split by shape: transactional metadata in the QNT-063 store, bulk series in Parquet queried through
@@ -64,4 +64,17 @@ Storage layout documented in `docs/ARCHITECTURE.md` under the derived layer; ret
 usage in the module docstring.
 
 ## Completion notes
-_Not started._
+2026-08-21. `trp.experiments.results`. Shape-matched persistence with no duplication:
+scalar metrics live against each run row in the registry; the series/holdings/report
+artefacts ARE the immutable QNT-050 run-record directories that the run's artefact_path
+references (equity curve, events, rebalances, rolling parquet, metrics.json,
+relative.json already persist there per run) — the registry stores references, never
+series. `experiment_results` bundles record + hypothesis + variant count + every run
+with its manifest, metrics and artefact reference. `list_experiments` filters by
+hypothesis, universe, status, tag and run date, returning creation-time-then-id order
+(documented, stable). `compare` flattens nested metric dicts to dotted names and returns
+one row per metric across arbitrary experiments — a metric absent from an experiment is
+null, never zero (the short-exposure test makes the distinction explicit). Runs never
+overwrite (<name>-r<n> per execution); there is no delete anywhere — abandonment is the
+only exit and requires a reason. Tests (5) in tests/experiments/test_results.py.
+838 tests green.
