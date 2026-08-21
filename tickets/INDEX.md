@@ -126,7 +126,7 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | ID | Title | Priority | Status |
 |---|---|---|---|
 | [QNT-063](QNT-063-experiment-schema.md) | Experiment registry schema | P2 | DONE |
-| [QNT-064](QNT-064-run-capture-manifest.md) | Run capture and reproducibility manifest | P2 | BACKLOG |
+| [QNT-064](QNT-064-run-capture-manifest.md) | Run capture and reproducibility manifest | P2 | DONE |
 | [QNT-065](QNT-065-results-persistence.md) | Results persistence and retrieval | P2 | BACKLOG |
 | [QNT-066](QNT-066-hypothesis-workflow.md) | Hypothesis–experiment–evidence–conclusion workflow | P2 | BACKLOG |
 

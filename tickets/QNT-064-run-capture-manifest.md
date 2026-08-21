@@ -1,7 +1,7 @@
 # QNT-064 — Run capture and reproducibility manifest
 
 - **Ticket ID:** QNT-064
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P2
 - **Epic:** EPIC 10 — Research Experiment Registry
 
@@ -29,15 +29,15 @@ different library major versions or a changed provider dataset — these are det
 not repaired.
 
 ## Acceptance criteria
-- [ ] Every run persists git commit, working-tree cleanliness, resolved parameters, input dataset
+- [x] Every run persists git commit, working-tree cleanliness, resolved parameters, input dataset
       versions with ingestion timestamps, definition versions and random seed, with no manual step.
-- [ ] A run started from a dirty working tree is recorded as such and is flagged as non-reproducible
+- [x] A run started from a dirty working tree is recorded as such and is flagged as non-reproducible
       in the registry; it cannot be cited as evidence for a confirmatory conclusion.
-- [ ] Re-running an experiment from its manifest on the same commit and data version reproduces the
+- [x] Re-running an experiment from its manifest on the same commit and data version reproduces the
       headline metrics exactly, asserted by an automated test over a small fixture experiment.
-- [ ] A re-run whose inputs no longer match the manifest (different commit, changed dataset version)
+- [x] A re-run whose inputs no longer match the manifest (different commit, changed dataset version)
       fails with a diff of what changed rather than silently producing different numbers.
-- [ ] Seeds are recorded even where the current code is deterministic, so that later stochastic
+- [x] Seeds are recorded even where the current code is deterministic, so that later stochastic
       components inherit the discipline.
 
 ## Technical notes
@@ -70,4 +70,21 @@ researcher must still write down. `QUANT_PRINCIPLES.md` §4 cross-references thi
 its implementation.
 
 ## Completion notes
-_Not started._
+2026-08-21. `trp.experiments.manifest` + `trp.experiments.running`. Capture is a
+function of the environment, zero manual steps: git commit + porcelain dirty flag,
+resolved config JSON + config hash, seed (recorded even though today's engine is
+deterministic), factor definition content hashes (composite components enumerated),
+dataset version stamps — append-only ingestion-log tails for the partitioned stores
+(prices, fundamentals), provenance timestamps for benchmarks/riskfree/fx, content
+digests for the single-file datasets (dividends, splits, shares, membership) — and
+library/python versions. A dirty-tree run is stored reproducible=false; the registry
+refuses it as confirmatory evidence (QNT-066). `run_experiment` transitions the record,
+captures, executes (executor injectable; the default wraps the backtest runner and
+returns headline + relative metrics and the run-record path) and stores an immutable
+per-run row (<name>-r<n> — reruns never overwrite). `rerun` reconstructs the config from
+the stored manifest, verifies the CURRENT environment against it with a named diff on
+any mismatch (commit, cleanliness, datasets, definitions, libraries), executes, and
+demands metric-for-metric EXACT equality — a reproduction needing tolerance is a failed
+reproduction. Tests (6) run on a deterministic fake executor with monkeypatched
+git/datasets; the real-data end-to-end proof is the first registered experiment
+(QNT-099). 833 tests green.

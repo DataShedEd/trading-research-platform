@@ -294,6 +294,13 @@ class Registry:
                 return True
         return False
 
+    def runs_for(self, experiment_id: str) -> list[str]:
+        rows = self._connection.execute(
+            "SELECT run_id FROM runs WHERE experiment_id = ? ORDER BY started_at, run_id",
+            (experiment_id,),
+        ).fetchall()
+        return [row[0] for row in rows]
+
 
 def _evolve(experiment: Experiment, **updates: object) -> Experiment:
     return Experiment.model_validate({**experiment.model_dump(), **updates})
