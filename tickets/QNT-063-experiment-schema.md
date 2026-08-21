@@ -1,7 +1,7 @@
 # QNT-063 — Experiment registry schema
 
 - **Ticket ID:** QNT-063
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Priority:** P2
 - **Epic:** EPIC 10 — Research Experiment Registry
 
@@ -28,16 +28,16 @@ Run capture and the reproducibility manifest (QNT-064); results and artefact per
 workflow enforcement and variant counting (QNT-066); any UI.
 
 ## Acceptance criteria
-- [ ] The schema carries every field listed in `RESEARCH_METHODOLOGY.md` for hypothesis, experiment,
+- [x] The schema carries every field listed in `RESEARCH_METHODOLOGY.md` for hypothesis, experiment,
       evidence reference and conclusion, with hypothesis, universe, periods, factor versions,
       cost assumptions and benchmark all required at creation time.
-- [ ] Conclusion, weaknesses and follow-ups are optional at creation and required before a record can
+- [x] Conclusion, weaknesses and follow-ups are optional at creation and required before a record can
       move to a concluded status; a concluded record with no weaknesses recorded is rejected.
-- [ ] The storage backend is chosen between Parquet, SQLite and PostgreSQL with the reasoning and
+- [x] The storage backend is chosen between Parquet, SQLite and PostgreSQL with the reasoning and
       consequences appended to `docs/DECISIONS.md` as a new entry referencing DEC-004.
-- [ ] Records are round-trippable: writing and re-reading a fully populated record returns an equal
+- [x] Records are round-trippable: writing and re-reading a fully populated record returns an equal
       object, and unknown fields from a future schema version fail loudly rather than being dropped.
-- [ ] A record carries a schema version so later migrations can be detected.
+- [x] A record carries a schema version so later migrations can be detected.
 
 ## Technical notes
 DEC-004 deferred PostgreSQL until something has genuinely transactional state; the registry is the
@@ -67,4 +67,16 @@ New `DECISIONS.md` entry for the storage choice; `docs/RESEARCH_METHODOLOGY.md` 
 the schema as the executable form of the four artefacts.
 
 ## Completion notes
-_Not started._
+2026-08-21. `trp.experiments.records` + `trp.experiments.store`. The four artefacts as
+frozen pydantic models: Hypothesis (falsifiable statement >= 20 chars, rationale,
+timezone-aware creation time), Experiment (the embedded BacktestConfig IS the
+parameterisation — universe, periods, factor name+version, construction, costs,
+benchmark all structurally required at creation), Conclusion (judgement enum, text,
+evidence run citation, >= 1 weakness required by the model itself, optional rule-4
+parameter-sensitivity field), statuses DESIGNED/RUNNING/COMPLETED/CONCLUDED/ABANDONED
+with shape invariants (CONCLUDED <=> Conclusion; ABANDONED <=> reason). Storage: SQLite
+(DEC-022) — payloads as extra="forbid" JSON so future-schema fields fail loudly on read;
+PRAGMA user_version gates opening a mismatched schema with a "migrate deliberately"
+error; round-trip equality tested including a Decimal-bearing config. Nothing is ever
+deleted; the store's workflow/transition enforcement is QNT-066's remit and ships with
+it. Tests: tests/experiments/test_schema.py (7).

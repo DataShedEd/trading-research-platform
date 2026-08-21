@@ -212,3 +212,13 @@ Context: QNT-055 requires a total-return benchmark. EODHD's All-In-One plan retu
 Alternatives: License the official index (cost, and not investable anyway); use the price index + assumed yield (fabrication); construct a cap-weighted series from our own universe (no shares-outstanding data, and it would share every defect of our universe — kept as a possible future addition, clearly labelled).
 Reason: An ETF is investable, GBX-denominated, carries genuine fund costs, and its reinvestment construction is validated against CUKX to within 3bp/yr on the 2016+ overlap (gate-tested). Comparing an investable strategy to an investable benchmark is the honest comparison.
 Consequences: The benchmark embeds ISF's TER (~0.07%), slightly flattering strategy excess returns by that amount — documented rather than adjusted. Pre-2000 backtests would need a different series. The benchmark shares EODHD provenance with strategy data; an index from a second vendor would be a stronger independent check if ever licensed.
+
+---
+
+DEC-022
+Date: 2026-08-21
+Decision: The experiment registry's metadata store is SQLite (standard library, one file at data/registry.sqlite, PRAGMA user_version for schema versioning, foreign keys on). Bulk results — equity curves, holdings, rolling series — stay in Parquet under the immutable run records; the registry holds records and references only. Records serialise as pydantic JSON payloads with extra="forbid", so a record written by a newer schema fails loudly on read instead of silently dropping fields.
+Context: QNT-063 required choosing between Parquet, SQLite and PostgreSQL. Registry records are MUTATED as conclusions arrive, which Parquet (append-only analytics) handles badly; DEC-004 deferred PostgreSQL until something genuinely needs a shared transactional store.
+Alternatives: PostgreSQL (right answer once paper trading in Epic 15 needs shared transactional state — revisit then, with a migration path from the versioned schema); Parquet (wrong shape for mutation); JSON files (no transactions, no counting queries).
+Reason: A single-researcher registry needs transactions, zero administration and durable single-file backup semantics — SQLite exactly.
+Consequences: Concurrency is single-writer (fine for one researcher; revisit with Epic 15). The user_version gate means schema migrations are deliberate, written operations. The registry file is inside data/ (gitignored): the registry is operational state, while its SCHEMA lives in code under version control.
