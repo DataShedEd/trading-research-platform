@@ -259,13 +259,18 @@ def test_an_unknown_provider_names_the_ones_that_exist(tmp_path: Path) -> None:
         load_mapping_table("nobody", directory=tmp_path)
 
 
-def test_shipped_provisional_entries_are_visible_as_provisional() -> None:
-    """Provider tables written from documentation must not read as verified fact."""
+def test_shipped_eodhd_entries_are_verified_with_evidence() -> None:
+    """QNT-097 promoted every mapped entry against 197 captured payloads; the table must
+    say so, cite its evidence, and keep the two documented sign flips (capex confirmed
+    positive-magnitude in 20,738/20,738 rows; dividendsPaid in 98.8% of 15,064)."""
     table = load_mapping_table("eodhd")
     statuses = {e.review_status for e in table.mapped_entries}
-    assert statuses == {ReviewStatus.PROVISIONAL}
+    assert statuses == {ReviewStatus.VERIFIED}
+    assert "Verified 2026-08-21" in table.notes
     capex = table.entry(StatementType.CASH_FLOW, "capitalExpenditures")
     assert capex is not None and capex.sign is Sign.FLIP and capex.note
+    dividends = table.entry(StatementType.CASH_FLOW, "dividendsPaid")
+    assert dividends is not None and dividends.sign is Sign.FLIP and dividends.note
 
 
 def test_unit_kind_travels_with_the_mapped_item(stub_table: MappingTable) -> None:

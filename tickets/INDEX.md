@@ -45,6 +45,7 @@ ticket's status changes. **M1 critical path:** QNT-006 → 007 → 008 → 009 �
 | [QNT-094](QNT-094-data-exploration-surface.md) | Ad-hoc data exploration surface | P2 | DONE |
 | [QNT-095](QNT-095-notebook-and-ide-access.md) | Notebook and IDE (JDBC) data access | P2 | DONE |
 | [QNT-096](QNT-096-uk-risk-free-series.md) | UK risk-free series (3M gilt) | P2 | DONE |
+| [QNT-097](QNT-097-eodhd-fundamentals-canonicalisation.md) | EODHD fundamentals backfill + canonicalisation | P1 | DONE |
 
 ## EPIC 4 — Fundamental Data
 

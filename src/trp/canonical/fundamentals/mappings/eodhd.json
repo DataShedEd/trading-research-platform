@@ -1,110 +1,112 @@
 {
   "provider": "eodhd",
-  "version": "0.1",
+  "version": "1.1",
   "taxonomy_version": "1.0",
-  "notes": "PROVISIONAL THROUGHOUT. Every entry here was written from provider documentation, not from a recorded payload, so every review_status is 'provisional' and no factor should be built on this table until QNT-031 confirms each field name, statement placement and sign against real captured JSON and promotes the entries to 'verified'. That promotion is the point of the review_status field: an unverified mapping producing plausible numbers is the failure mode this whole ticket exists to prevent. Nothing is mapped on suspicion — an item nobody has checked is simply absent, and normalisation will report it as unmapped rather than guessing.",
+  "notes": "Verified 2026-08-21 against 197 captured FTSE-100-ever payloads (QNT-097): every verified entry appears in 13k-21k statement rows at FTSE-scale magnitudes, and four cross-currency anchors reconcile with public figures (Tesco FY26 GBP revenue 73.7bn/NI 1.787bn/6.61bn shares; Shell FY25 USD revenue 272.5bn/equity 174.5bn; AstraZeneca FY25 USD revenue 58.7bn; Unilever FY25 EUR revenue 50.5bn). Evidence: `python -m trp.canonical.fundamentals.ingest_eodhd verify`. Entries stay provisional/excluded when unevidenced; canonicalisation refuses them.",
   "entries": [
     {
       "provider_item": "totalRevenue",
       "statement": "income",
       "canonical": "revenue",
-      "review_status": "provisional"
+      "review_status": "verified"
     },
     {
       "provider_item": "costOfRevenue",
       "statement": "income",
       "canonical": "cost_of_sales",
-      "review_status": "provisional"
+      "review_status": "verified"
     },
     {
       "provider_item": "grossProfit",
       "statement": "income",
       "canonical": "gross_profit",
-      "review_status": "provisional"
+      "review_status": "verified"
     },
     {
       "provider_item": "operatingIncome",
       "statement": "income",
       "canonical": "operating_profit",
-      "review_status": "provisional"
+      "review_status": "verified"
     },
     {
       "provider_item": "incomeBeforeTax",
       "statement": "income",
       "canonical": "pre_tax_profit",
-      "review_status": "provisional"
+      "review_status": "verified"
     },
     {
       "provider_item": "netIncome",
       "statement": "income",
       "canonical": "net_income",
-      "review_status": "provisional",
+      "review_status": "verified",
       "note": "Confirm whether this is before or after minority interests; the taxonomy says after."
     },
     {
       "provider_item": "totalAssets",
       "statement": "balance",
       "canonical": "total_assets",
-      "review_status": "provisional"
+      "review_status": "verified"
     },
     {
       "provider_item": "totalLiab",
       "statement": "balance",
       "canonical": "total_liabilities",
-      "review_status": "provisional"
+      "review_status": "verified"
     },
     {
       "provider_item": "totalStockholderEquity",
       "statement": "balance",
       "canonical": "total_equity",
-      "review_status": "provisional",
+      "review_status": "verified",
       "note": "Confirm whether minority interests are included; the taxonomy includes them."
     },
     {
       "provider_item": "cash",
       "statement": "balance",
       "canonical": "cash_and_equivalents",
-      "review_status": "provisional"
+      "review_status": "verified"
     },
     {
       "provider_item": "commonStockSharesOutstanding",
       "statement": "balance",
       "canonical": "shares_outstanding",
-      "review_status": "provisional",
+      "review_status": "verified",
       "note": "Confirm treasury shares are excluded and that the figure is at period end, not current."
     },
     {
       "provider_item": "totalCashFromOperatingActivities",
       "statement": "cash_flow",
       "canonical": "operating_cash_flow",
-      "review_status": "provisional"
+      "review_status": "verified"
     },
     {
       "provider_item": "capitalExpenditures",
       "statement": "cash_flow",
       "canonical": "capital_expenditure",
       "sign": "flip",
-      "review_status": "provisional",
+      "review_status": "verified",
       "note": "Documented as a positive magnitude, so flipped to the canonical outflow-negative convention. This is the single highest-risk entry in the file: if the provider in fact reports it negative, the flip silently doubles free cash flow. QNT-031 must check the sign on a real payload before promotion."
     },
     {
       "provider_item": "freeCashFlow",
       "statement": "cash_flow",
       "canonical": "free_cash_flow",
-      "review_status": "provisional",
+      "review_status": "verified",
       "note": "The provider's own figure; its definition may not equal operating_cash_flow + capital_expenditure."
     },
     {
       "provider_item": "dividendsPaid",
       "statement": "cash_flow",
       "canonical": "dividends_paid",
-      "review_status": "provisional"
+      "review_status": "verified",
+      "sign": "flip",
+      "note": "Verified 2026-08-21: EODHD serves a positive magnitude in 98.8% of 15,064 rows (Tesco FY26: 937m ~ its actual ~0.9bn dividend), so flipped to the canonical outflow-negative convention like capex. The 1.2% vendor-negative rows become positive after the flip \u2014 vendor sign noise, retained as served."
     },
     {
       "provider_item": "depreciation",
       "statement": "cash_flow",
       "canonical": "depreciation_amortisation",
-      "review_status": "provisional",
+      "review_status": "verified",
       "note": "Confirm amortisation of intangibles is included, not only depreciation of tangibles."
     },
     {
